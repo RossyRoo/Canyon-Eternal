@@ -14,6 +14,7 @@ public class PlayerStats : CharacterStats
     [HideInInspector] public float staminaRecoveryTimer = 0;
     [HideInInspector] public float staminaRecoveryBuffer = 0.5f;
 
+
     private void Awake()
     {
         heartMeter = FindObjectOfType<HeartMeter>();
@@ -67,6 +68,7 @@ public class PlayerStats : CharacterStats
             return;
 
 
+        EnableInvulnerability(hurtInvulnerabilityTime);
         currentHealth -= damageHealth;
         heartMeter.SetCurrentHealth(currentHealth);
 

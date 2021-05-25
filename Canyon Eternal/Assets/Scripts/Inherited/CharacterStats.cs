@@ -17,6 +17,9 @@ public class CharacterStats : MonoBehaviour
     [HideInInspector]
     public float currentStamina;
 
+    public float hurtInvulnerabilityTime = 1f;
+
+
     [Header("Loot Drops")]
     public int fragmentDrop; //THIS SHOULD GO IN CHARACTER INVENTORY
 
