@@ -78,7 +78,6 @@ public class InputManager : MonoBehaviour
                 return;
 
             playerManager.dashFlag = true;
-            Debug.Log("Dash flag");
         }
     }
 
