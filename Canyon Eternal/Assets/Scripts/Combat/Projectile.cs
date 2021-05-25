@@ -27,7 +27,6 @@ public class Projectile : MonoBehaviour
     private void FlyStraight()
     {
         rb.velocity = transform.up * force;
-        Debug.Log("Flying");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Data/Input Settings/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Controls/PlayerControls.inputactions'
 
 using System;
 using System.Collections;
@@ -110,7 +110,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""96aad6bd-3b68-4424-b200-0a29c04537fb"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

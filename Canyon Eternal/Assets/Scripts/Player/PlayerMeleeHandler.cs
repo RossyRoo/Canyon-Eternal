@@ -10,7 +10,10 @@ public class PlayerMeleeHandler : MonoBehaviour
     [Header("Weapon Loading")]
     public MeleeCard activeMeleeCard;
     public GameObject currentMeleeModel;
-    public Transform parentOverride;
+    public Transform thrustTransform;
+    public Transform slashTransform;
+    public Transform strikeTransform;
+    Transform parrentOverride;
     public DamageCollider meleeDamageCollider;
 
 
@@ -22,7 +25,28 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     private void Start()
     {
+        SetParentOverride();
         LoadMelee();
+    }
+
+    private void SetParentOverride()
+    {
+        if(activeMeleeCard.isThrust)
+        {
+            parrentOverride = thrustTransform;
+        }
+        else if(activeMeleeCard.isSlash)
+        {
+            parrentOverride = slashTransform;
+        }
+        else if(activeMeleeCard.isStrike)
+        {
+            parrentOverride = strikeTransform;
+        }
+        else
+        {
+            Debug.LogWarning("You do not have a melee weapon assigned to the player.");
+        }
     }
 
     public void UnloadMelee()
@@ -44,9 +68,9 @@ public class PlayerMeleeHandler : MonoBehaviour
         GameObject meleeModelPrefab = Instantiate(activeMeleeCard.modelPrefab) as GameObject;
         if (meleeModelPrefab != null)
         {
-            if (parentOverride != null)
+            if (parrentOverride != null)
             {
-                meleeModelPrefab.transform.parent = parentOverride;
+                meleeModelPrefab.transform.parent = parrentOverride;
             }
             else
             {
@@ -54,7 +78,7 @@ public class PlayerMeleeHandler : MonoBehaviour
             }
             meleeModelPrefab.transform.localPosition = Vector3.zero;
             meleeModelPrefab.transform.localRotation = Quaternion.identity;
-            //meleeModelPrefab.transform.localScale = Vector3.one;
+            meleeModelPrefab.transform.localScale = Vector3.one;
         }
         currentMeleeModel = meleeModelPrefab;
         meleeDamageCollider = currentMeleeModel.GetComponentInChildren<DamageCollider>();

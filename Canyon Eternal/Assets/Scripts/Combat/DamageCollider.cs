@@ -12,6 +12,7 @@ public class DamageCollider : MonoBehaviour
 
     public bool dealsConstantDamage;
     public bool targetIsWithinRange;
+    public bool canDamageEnemy = true;
 
     private void Awake()
     {
@@ -72,7 +73,7 @@ public class DamageCollider : MonoBehaviour
             }
         }
 
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" && canDamageEnemy)
         {
             EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
             EnemyManager enemyManager = collision.GetComponent<EnemyManager>();
