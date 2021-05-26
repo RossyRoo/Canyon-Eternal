@@ -88,7 +88,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleHealInput()
     {
-        if (playerStats.currentLunchBoxCapacity >= 0
+        if (playerStats.currentLunchBoxCapacity > 0
             && playerStats.currentHealth < playerStats.maxHealth)
         {
             if (heal_Input)
