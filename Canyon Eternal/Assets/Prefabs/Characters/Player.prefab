@@ -586,7 +586,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06426358, y: 3.1084132}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 4.073932, y: 6.7458143}
   m_Direction: 0
 --- !u!50 &8652666736338822577
@@ -645,6 +645,7 @@ MonoBehaviour:
   lastMoveInput: {x: 0, y: 0}
   melee_Input: 0
   dash_Input: 0
+  heal_Input: 0
 --- !u!114 &9008261327072951981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,6 +662,7 @@ MonoBehaviour:
   characterSFXBank: {fileID: 11400000, guid: 01e60f2d09f354b70b9d8c6eea2f0644, type: 2}
   maxHealth: 4
   currentHealth: 0
+  healAmount: 1
   maxStamina: 4
   currentStamina: 0
   hurtInvulnerabilityTime: 0.8
@@ -749,7 +751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8652666736507707591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 884914677}

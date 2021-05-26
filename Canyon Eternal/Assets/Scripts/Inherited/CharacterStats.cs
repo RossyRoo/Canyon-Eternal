@@ -14,6 +14,7 @@ public class CharacterStats : MonoBehaviour
     [Header("Health and Stamina")]
     public int maxHealth;
     public int currentHealth;
+    public int healAmount;
     public float maxStamina;
     [HideInInspector]
     public float currentStamina;

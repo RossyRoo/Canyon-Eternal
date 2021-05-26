@@ -39,6 +39,5 @@ public class HeartMeter : MonoBehaviour
                 hearts[i].sprite = emptyHeart;
             }
         }
-
     }
 }

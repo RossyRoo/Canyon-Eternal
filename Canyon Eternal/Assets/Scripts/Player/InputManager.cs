@@ -6,8 +6,8 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
     PlayerManager playerManager;
+    PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
-    PlayerLocomotion playerLocomotion;
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
@@ -15,12 +15,13 @@ public class InputManager : MonoBehaviour
 
     public bool melee_Input;
     public bool dash_Input;
+    public bool heal_Input;
 
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
-        playerLocomotion = GetComponent<PlayerLocomotion>();
     }
 
     private void Start()
@@ -44,6 +45,9 @@ public class InputManager : MonoBehaviour
 
             //DASH
             playerControls.PlayerActions.Dash.performed += i => dash_Input = true;
+
+            //HEAL
+            playerControls.PlayerActions.Heal.performed += i => heal_Input = true;
         }
         playerControls.Enable();
     }
@@ -57,6 +61,7 @@ public class InputManager : MonoBehaviour
     {
         HandleMeleeInput();
         HandleDashInput();
+        HandleHealInput();
     }
 
     private void HandleMeleeInput()
@@ -78,6 +83,18 @@ public class InputManager : MonoBehaviour
                 return;
 
             playerManager.dashFlag = true;
+        }
+    }
+
+    private void HandleHealInput()
+    {
+        if (playerStats.currentLunchBoxCapacity >= 0
+            && playerStats.currentHealth < playerStats.maxHealth)
+        {
+            if (heal_Input)
+            {
+                playerStats.RecoverHealth(playerStats.healAmount, false);
+            }
         }
     }
 

@@ -51,6 +51,7 @@ public class PlayerManager : CharacterManager
     {
         inputManager.melee_Input = false;
         inputManager.dash_Input = false;
+        inputManager.heal_Input = false;
         //inputManager.guard_Input = false;
     }
 }

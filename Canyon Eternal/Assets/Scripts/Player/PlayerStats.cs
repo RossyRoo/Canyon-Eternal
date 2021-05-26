@@ -6,6 +6,7 @@ public class PlayerStats : CharacterStats
 {
     HeartMeter heartMeter;
     StaminaMeter staminaMeter;
+    LunchboxMeter lunchboxMeter;
 
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
@@ -14,11 +15,16 @@ public class PlayerStats : CharacterStats
     [HideInInspector] public float staminaRecoveryTimer = 0;
     [HideInInspector] public float staminaRecoveryBuffer = 0.5f;
 
+    [Header("Lunchbox")]
+    public int maxLunchBoxCapacity = 5;
+    public int currentLunchBoxCapacity;
+
 
     private void Awake()
     {
         heartMeter = FindObjectOfType<HeartMeter>();
         staminaMeter = FindObjectOfType<StaminaMeter>();
+        lunchboxMeter = FindObjectOfType<LunchboxMeter>();
         playerManager = GetComponent<PlayerManager>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
     }
@@ -30,6 +36,9 @@ public class PlayerStats : CharacterStats
 
         currentStamina = maxStamina;
         staminaMeter.SetMaxStamina(maxStamina);
+
+        currentLunchBoxCapacity = maxLunchBoxCapacity;
+        lunchboxMeter.SetMaxLunchbox(maxLunchBoxCapacity);
     }
 
     public void LoseStamina(int damageStamina)
@@ -87,15 +96,33 @@ public class PlayerStats : CharacterStats
         }
     }
 
-    public void RecoverHealth(int recoveryHealth)
+    public void RecoverHealth(int recoveryHealth, bool isFullHeal)
     {
         currentHealth += recoveryHealth;
         heartMeter.SetCurrentHealth(currentHealth);
 
-        if (currentHealth >= maxHealth)
+        if(!isFullHeal)
         {
+            currentLunchBoxCapacity -= 1;
+            lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
+            //Play crunch SFX
+        }
+        else
+        {
+            //Do full heal animation and SFX
             currentHealth = maxHealth;
         }
+
+        if (currentHealth >= maxHealth)
+        {
+            //do full heal FX
+        }
+    }
+
+    public void RefillLunchbox()
+    {
+        currentLunchBoxCapacity = maxLunchBoxCapacity;
+        lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
     }
 
     public void EnableInvulnerability(float iFrames)
