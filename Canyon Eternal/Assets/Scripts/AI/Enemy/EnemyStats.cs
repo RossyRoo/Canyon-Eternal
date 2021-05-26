@@ -29,8 +29,6 @@ public class EnemyStats : CharacterStats
         if (enemyManager.isDead || enemyManager.isInvulnerable)
             return;
 
-        Debug.Log("Enemy loses " + damageHealth);
-
         EnableInvulnerability(hurtInvulnerabilityTime);
         currentHealth -= damageHealth;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeathState : EnemyStateMachine
 {
-    public float destroyTimer = 15f;
+    public float destroyTimer = 0.5f;
     public bool runningDeathCoroutine;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
