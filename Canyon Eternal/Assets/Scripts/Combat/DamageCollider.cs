@@ -81,6 +81,7 @@ public class DamageCollider : MonoBehaviour
             if (enemyStats != null && !enemyManager.isDead)
             {
                 enemyStats.LoseHealth(damage);
+                Debug.Log("ENEMY HIT");
             }
         }
 

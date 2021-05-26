@@ -203,13 +203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteracting: 0
   isInvulnerable: 0
+  isDead: 0
   isConversing: 0
   isPerformingAction: 0
-  rotationSpeed: 25
-  moveSpeed: 2
-  detectionRadius: 20
-  maximumDetectionAngle: 50
-  minimumDetectionAngle: -50
   rb: {fileID: 0}
   currentState: {fileID: 2231658945502614938}
   currentTarget: {fileID: 0}
@@ -227,12 +223,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d05b42790c4d480ba301dac36e0d04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 12
+  characterSFXBank: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   maxStamina: 4
   currentStamina: 0
-  isDead: 0
+  hurtInvulnerabilityTime: 0.8
   fragmentDrop: 10
+  rotationSpeed: 25
+  detectionRadius: 20
+  maximumDetectionAngle: 50
+  minimumDetectionAngle: -50
 --- !u!1 &2231658944828759552
 GameObject:
   m_ObjectHideFlags: 0

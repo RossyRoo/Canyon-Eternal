@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    CharacterManager characterManager;
+
     public float moveSpeed = 12f;
 
     [Header("Data")]
@@ -11,16 +13,21 @@ public class CharacterStats : MonoBehaviour
 
     [Header("Health and Stamina")]
     public int maxHealth;
-    [HideInInspector]
     public int currentHealth;
     public float maxStamina;
     [HideInInspector]
     public float currentStamina;
 
-    public float hurtInvulnerabilityTime = 1f;
+    public float hurtInvulnerabilityTime = 0.8f;
 
 
     [Header("Loot Drops")]
     public int fragmentDrop; //THIS SHOULD GO IN CHARACTER INVENTORY
+
+    private void Awake()
+    {
+        characterManager = GetComponent<CharacterManager>();
+    }
+
 
 }

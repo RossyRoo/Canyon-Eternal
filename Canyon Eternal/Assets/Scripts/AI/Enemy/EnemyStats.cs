@@ -29,6 +29,9 @@ public class EnemyStats : CharacterStats
         if (enemyManager.isDead || enemyManager.isInvulnerable)
             return;
 
+        Debug.Log("Enemy loses " + damageHealth);
+
+        EnableInvulnerability(hurtInvulnerabilityTime);
         currentHealth -= damageHealth;
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
@@ -38,5 +41,16 @@ public class EnemyStats : CharacterStats
             enemyManager.isDead = true;
             currentHealth = 0;
         }
+    }
+
+    public void EnableInvulnerability(float iFrames)
+    {
+        enemyManager.isInvulnerable = true;
+        Invoke("DisableInvulnerability", iFrames);
+    }
+
+    private void DisableInvulnerability()
+    {
+        enemyManager.isInvulnerable = false;
     }
 }
