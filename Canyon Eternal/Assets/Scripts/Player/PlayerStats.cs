@@ -72,7 +72,7 @@ public class PlayerStats : CharacterStats
         currentHealth -= damageHealth;
         heartMeter.SetCurrentHealth(currentHealth);
 
-        playerAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
+        playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
         playerManager.sFXPlayer.PlaySFXAudioClip(characterSFXBank.takeDamage);
         CinemachineShake.Instance.Shake(5f, 0.5f);
 
