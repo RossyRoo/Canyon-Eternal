@@ -30,6 +30,7 @@ public class EnemyManager : CharacterManager
     private void Start()
     {
         rb.isKinematic = false;
+        GenerateTrackingWall();
     }
 
     private void Update()
@@ -73,4 +74,5 @@ public class EnemyManager : CharacterManager
             }
         }
     }
+
 }

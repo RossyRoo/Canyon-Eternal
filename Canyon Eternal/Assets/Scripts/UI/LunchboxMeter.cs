@@ -2,42 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LunchboxMeter : MonoBehaviour
 {
-    public Image[] healItems;
+    public Image nextHealItemSlot;
 
     public Sprite[] fullHealItems;
-    public Sprite[] emptyHealItems;
+
+    public Sprite fullWindow;
+    public Sprite emptyWindow;
+
+    public TextMeshProUGUI currentLunchboxCapacityText;
+
 
     public void SetMaxLunchbox(int maxLunchboxCapacity)
     {
-        for (int i = 0; i < healItems.Length; i++)
-        {
-            healItems[i].sprite = fullHealItems[i];
-            if (i < maxLunchboxCapacity)
-            {
-                healItems[i].enabled = true;
-            }
-            else
-            {
-                healItems[i].enabled = false;
-            }
-        }
+        currentLunchboxCapacityText.gameObject.SetActive(true);
+        currentLunchboxCapacityText.text = maxLunchboxCapacity.ToString();
+
+        nextHealItemSlot.GetComponentInParent<RawImage>().texture = fullWindow.texture;
+
+        nextHealItemSlot.enabled = true;
+        nextHealItemSlot.sprite = fullHealItems[maxLunchboxCapacity - 1];
     }
 
     public void SetCurrentLunchBox(int currentLunchboxCapacity)
     {
-        for (int i = 0; i < healItems.Length; i++)
+        currentLunchboxCapacityText.text = currentLunchboxCapacity.ToString();
+
+        if(currentLunchboxCapacity == 0)
         {
-            if (i < currentLunchboxCapacity)
-            {
-                healItems[i].sprite = fullHealItems[i];
-            }
-            else
-            {
-                healItems[i].sprite = emptyHealItems[i];
-            }
+            currentLunchboxCapacityText.gameObject.SetActive(false);
+            nextHealItemSlot.enabled = false;
+            nextHealItemSlot.GetComponentInParent<RawImage>().texture = emptyWindow.texture;
+        }
+        else
+        {
+            currentLunchboxCapacityText.gameObject.SetActive(true);
+            nextHealItemSlot.enabled = true;
+            nextHealItemSlot.sprite = fullHealItems[currentLunchboxCapacity - 1];
         }
     }
 }

@@ -10,6 +10,7 @@ public class PlayerManager : CharacterManager
     PlayerStats playerStats;
     Animator animator;
 
+
     //Game Components
     public SFXPlayer sFXPlayer;
 
@@ -22,6 +23,11 @@ public class PlayerManager : CharacterManager
         playerStats = GetComponent<PlayerStats>();
         animator = GetComponentInChildren<Animator>();
         sFXPlayer = FindObjectOfType<SFXPlayer>();
+    }
+
+    void Start()
+    {
+        GenerateTrackingWall();
     }
 
     private void Update()
@@ -54,4 +60,6 @@ public class PlayerManager : CharacterManager
         inputManager.heal_Input = false;
         //inputManager.guard_Input = false;
     }
+
+
 }

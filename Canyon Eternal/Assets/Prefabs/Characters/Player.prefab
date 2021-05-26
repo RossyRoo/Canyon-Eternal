@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7050b041d934e7d89a2a37bed1c01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 17
   characterSFXBank: {fileID: 11400000, guid: 01e60f2d09f354b70b9d8c6eea2f0644, type: 2}
   maxHealth: 4
   currentHealth: 0
@@ -670,6 +670,8 @@ MonoBehaviour:
   staminaRecoverySpeed: 1.25
   staminaRecoveryTimer: 0
   staminaRecoveryBuffer: 0.25
+  maxLunchBoxCapacity: 5
+  currentLunchBoxCapacity: 0
 --- !u!114 &8652666736338822579
 MonoBehaviour:
   m_ObjectHideFlags: 0

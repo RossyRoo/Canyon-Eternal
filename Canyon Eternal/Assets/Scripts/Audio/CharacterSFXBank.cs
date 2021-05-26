@@ -11,4 +11,8 @@ public class CharacterSFXBank : SFXBank
     [Header("Taking Damage")]
     public AudioClip takeDamage;
     public AudioClip deathRattle;
+
+    [Header("Healing")]
+    public AudioClip[] consumeHealItem;
+
 }

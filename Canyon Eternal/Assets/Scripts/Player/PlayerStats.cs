@@ -103,9 +103,9 @@ public class PlayerStats : CharacterStats
 
         if(!isFullHeal)
         {
+            playerManager.sFXPlayer.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
             currentLunchBoxCapacity -= 1;
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
-            //Play crunch SFX
         }
         else
         {
