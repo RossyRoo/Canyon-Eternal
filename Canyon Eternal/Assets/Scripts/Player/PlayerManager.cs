@@ -12,6 +12,7 @@ public class PlayerManager : CharacterManager
 
 
     //Game Components
+    [HideInInspector]
     public SFXPlayer sFXPlayer;
 
     public bool dashFlag;

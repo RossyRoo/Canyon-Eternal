@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimatorEvents : MonoBehaviour
 {
+    PlayerManager playerManager;
     PlayerMeleeHandler playerMeleeHandler;
 
     private void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
     }
 
@@ -24,5 +26,10 @@ public class PlayerAnimatorEvents : MonoBehaviour
     public void CloseDamageCollider()
     {
         playerMeleeHandler.meleeDamageCollider.DisableDamageCollider();
+    }
+
+    public void PlayWeaponSwingSFX()
+    {
+        playerManager.sFXPlayer.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
     }
 }

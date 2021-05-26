@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMeleeHandler : MonoBehaviour
 {
+    PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerStats playerStats;
 
@@ -19,6 +20,7 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = GetComponent<PlayerManager>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerStats = GetComponent<PlayerStats>();
     }
@@ -90,8 +92,11 @@ public class PlayerMeleeHandler : MonoBehaviour
         if (playerStats.currentStamina < activeMeleeCard.staminaCost)
             return;
 
-        currentMeleeModel.SetActive(true);
-        playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
         playerStats.LoseStamina(activeMeleeCard.staminaCost);
+        currentMeleeModel.SetActive(true);
+
+        playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
+
+        //Play VFX
     }
 }
