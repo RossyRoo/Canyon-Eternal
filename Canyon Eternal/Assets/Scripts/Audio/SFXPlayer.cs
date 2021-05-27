@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class SFXPlayer : MonoBehaviour
 {
+    public static SFXPlayer Instance { get; private set; }
+
     AudioSource audioSource;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void GenerateNewInstance()
+    {
+        Debug.Log("Finding new SFX Player");
+        if(Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public void PlaySFXAudioClip

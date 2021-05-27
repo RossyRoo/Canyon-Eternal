@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 8652666736338822579}
   - component: {fileID: 1284162258}
   - component: {fileID: 4708498828894331879}
+  - component: {fileID: 2270418408050079692}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -622,12 +623,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213834097304645399dcb3c2418654fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myWallPrefab: {fileID: -220400652482688709, guid: da0c736b42d144724a50a461784a0380,
+    type: 3}
+  myWall: {fileID: 0}
   isInteracting: 0
   isInvulnerable: 0
   isDead: 0
   isConversing: 0
   isPerformingAction: 0
-  sFXPlayer: {fileID: 0}
+  deathTimeBuffer: 0.5
   dashFlag: 0
 --- !u!114 &3785282042947835105
 MonoBehaviour:
@@ -706,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2135b11cde62a4eb89b6930934d1e76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeMeleeCard: {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
+  activeMeleeCard: {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}
   currentMeleeModel: {fileID: 0}
   thrustTransform: {fileID: 1682047786}
   slashTransform: {fileID: 4970626563322260538}
@@ -726,6 +730,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragmentInventory: 0
   cardInventory: []
+--- !u!114 &2270418408050079692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652666736338822588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9306f635ebf943dc9729b5737309629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8652666736507707591
 GameObject:
   m_ObjectHideFlags: 0

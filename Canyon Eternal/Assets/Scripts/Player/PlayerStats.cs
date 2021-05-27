@@ -31,6 +31,7 @@ public class PlayerStats : CharacterStats
 
     private void Start()
     {
+        Debug.Log("Start");
         currentHealth = maxHealth;
         heartMeter.SetMaxHearts(maxHealth);
 
@@ -82,17 +83,13 @@ public class PlayerStats : CharacterStats
         heartMeter.SetCurrentHealth(currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
-        playerManager.sFXPlayer.PlaySFXAudioClip(characterSFXBank.takeDamage);
+        SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeDamage);
         CinemachineShake.Instance.Shake(5f, 0.5f);
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            //playerAnimatorHandler.PlayTargetAnimation("DeathKneel", true);
-            //HUD hud = FindObjectOfType<HUD>();
-
-            //hud.DisplayDeathDecision();
-            //playerManager.isDecidingFate = true;
+            StartCoroutine(playerManager.HandleDeathCoroutine());
         }
     }
 
@@ -103,19 +100,18 @@ public class PlayerStats : CharacterStats
 
         if(!isFullHeal)
         {
-            playerManager.sFXPlayer.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
+            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
             currentLunchBoxCapacity -= 1;
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
         }
         else
         {
             //Do full heal animation and SFX
-            currentHealth = maxHealth;
         }
 
         if (currentHealth >= maxHealth)
         {
-            //do full heal FX
+            currentHealth = maxHealth;
         }
     }
 
@@ -135,5 +131,6 @@ public class PlayerStats : CharacterStats
     {
         playerManager.isInvulnerable = false;
     }
+
 
 }

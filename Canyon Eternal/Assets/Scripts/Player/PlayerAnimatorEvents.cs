@@ -30,6 +30,6 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
     public void PlayWeaponSwingSFX()
     {
-        playerManager.sFXPlayer.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
     }
 }

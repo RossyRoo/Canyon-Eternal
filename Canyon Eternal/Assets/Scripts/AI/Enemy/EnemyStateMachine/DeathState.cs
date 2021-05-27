@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeathState : EnemyStateMachine
 {
-    public float destroyTimer = 0.5f;
     public bool runningDeathCoroutine;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
@@ -22,7 +21,8 @@ public class DeathState : EnemyStateMachine
         runningDeathCoroutine = true;
         FindObjectOfType<PlayerInventory>().AdjustFragmentInventory(enemyStats.fragmentDrop);
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSeconds(destroyTimer);
+        yield return new WaitForSeconds(enemyManager.deathTimeBuffer);
+        Destroy(enemyManager.myWall.gameObject);
         Destroy(enemyManager.gameObject);
     }
 }

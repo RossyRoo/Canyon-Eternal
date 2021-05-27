@@ -10,11 +10,7 @@ public class PlayerManager : CharacterManager
     PlayerStats playerStats;
     Animator animator;
 
-
     //Game Components
-    [HideInInspector]
-    public SFXPlayer sFXPlayer;
-
     public bool dashFlag;
 
     private void Awake()
@@ -23,13 +19,8 @@ public class PlayerManager : CharacterManager
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStats = GetComponent<PlayerStats>();
         animator = GetComponentInChildren<Animator>();
-        sFXPlayer = FindObjectOfType<SFXPlayer>();
     }
 
-    void Start()
-    {
-        GenerateTrackingWall();
-    }
 
     private void Update()
     {
@@ -62,5 +53,16 @@ public class PlayerManager : CharacterManager
         //inputManager.guard_Input = false;
     }
 
+    public IEnumerator HandleDeathCoroutine()
+    {
+        yield return new WaitForSeconds(deathTimeBuffer);
+        //Drop fragments
+        //Reload from fort
+    }
+
+    public void OnLoadScene()
+    {
+        transform.position = GameObject.FindGameObjectWithTag("Entrance").transform.position; //Move Player To Start Position
+    }
 
 }

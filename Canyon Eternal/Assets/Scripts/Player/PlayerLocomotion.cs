@@ -184,7 +184,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         playerStats.EnableInvulnerability(startDashTime);
         //playerAnimatorHandler.PlayTargetAnimation("Dash", true);
-        playerManager.sFXPlayer.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
         GameObject dashParticleFXGO = Instantiate(dashParticleFXPrefab, dashFXTransform.position, rotation);
         dashParticleFXGO.transform.parent = null;
         Destroy(dashParticleFXGO, 1f);
