@@ -8,8 +8,9 @@ public class SceneChangeManager : MonoBehaviour
     public static SceneChangeManager Instance { get; private set; }
 
     GenericAnimatorHandler blackFaderAnimatorHandler;
+    public AudioClip transitionAudioClip;
 
-    public float loadTime =0.5f;
+    float transitionScreenBuffer = 0.75f;
     public int currentBuildIndex;
 
     public void OnLoadScene()
@@ -24,7 +25,8 @@ public class SceneChangeManager : MonoBehaviour
     public IEnumerator ChangeScene(int sceneNum = 999)
     {
         blackFaderAnimatorHandler.PlayTargetAnimation("FadeToBlack");
-        yield return new WaitForSeconds(loadTime);
+        SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip);
+        yield return new WaitForSeconds(transitionScreenBuffer);
 
         if (sceneNum != 999)
         {
