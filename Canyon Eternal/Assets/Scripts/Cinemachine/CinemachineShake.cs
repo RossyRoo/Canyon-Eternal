@@ -21,6 +21,8 @@ public class CinemachineShake : MonoBehaviour
         {
             Instance = this;
         }
+        cinemachineVirtualCamera.enabled = false;
+        cinemachineVirtualCamera.enabled = true;
     }
 
     public void Shake(float intensity, float time)

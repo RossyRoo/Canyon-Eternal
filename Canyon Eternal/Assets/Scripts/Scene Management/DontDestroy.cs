@@ -29,8 +29,8 @@ public class DontDestroy : MonoBehaviour
 
             playerManager = dontDestroyDuplicate.GetComponentInChildren<PlayerManager>();
             sFXPlayer = dontDestroyDuplicate.GetComponentInChildren<SFXPlayer>();
-            cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
+            cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
 
             HandleOnLoadSceneFunctions();
         }
