@@ -10,10 +10,6 @@ public class CinemachineShake : MonoBehaviour
     private CinemachineVirtualCamera cinemachineVirtualCamera;
     private float shakeTimer;
 
-    private void Awake()
-    {
-        cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
-    }
 
     public void OnLoadScene()
     {
@@ -21,6 +17,8 @@ public class CinemachineShake : MonoBehaviour
         {
             Instance = this;
         }
+        cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+
         cinemachineVirtualCamera.enabled = false;
         cinemachineVirtualCamera.enabled = true;
     }
