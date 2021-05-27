@@ -15,7 +15,6 @@ public class SFXPlayer : MonoBehaviour
 
     public void OnLoadScene()
     {
-        Debug.Log("Finding new SFX Player");
         if(Instance == null)
         {
             Instance = this;

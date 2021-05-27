@@ -611,7 +611,6 @@ GameObject:
   - component: {fileID: 1586417207834823803}
   - component: {fileID: 1586417207834823796}
   - component: {fileID: 1586417207834823799}
-  - component: {fileID: 1641741881}
   m_Layer: 9
   m_Name: Vessel
   m_TagString: Enemy
@@ -685,11 +684,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bca72872ce46cc954fb5caae1a9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myWallPrefab: {fileID: 5838069692043969820, guid: e47193f2ff29e46bd887c6d39250dd6b,
+    type: 3}
+  myWall: {fileID: 0}
   isInteracting: 0
   isInvulnerable: 0
   isDead: 0
   isConversing: 0
   isPerformingAction: 0
+  deathTimeBuffer: 0.5
   rb: {fileID: 0}
   currentState: {fileID: 2231658945502614938}
   currentTarget: {fileID: 0}
@@ -720,18 +723,6 @@ MonoBehaviour:
   detectionRadius: 20
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
---- !u!114 &1641741881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586417207834823798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 427812310b2244410b3cff77ec06f8f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2231658944828759552
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399e161af3b3f4e988bb3e1074dd82e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTimer: 0.5
   runningDeathCoroutine: 0
 --- !u!1 &2231658946094631310
 GameObject:

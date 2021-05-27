@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimatorHandler : MonoBehaviour
+public class CharacterAnimatorHandler : MonoBehaviour
 {
+    [HideInInspector]
     public Animator animator;
 
     private void Awake()

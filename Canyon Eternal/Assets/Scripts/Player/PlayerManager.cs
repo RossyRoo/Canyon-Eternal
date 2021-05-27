@@ -63,6 +63,12 @@ public class PlayerManager : CharacterManager
     public void OnLoadScene()
     {
         transform.position = GameObject.FindGameObjectWithTag("Entrance").transform.position;
+
+        if(myWall != null)
+        {
+            Destroy(myWall.gameObject);
+        }
+
         GenerateTrackingWall();
     }
 

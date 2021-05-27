@@ -12,8 +12,15 @@ public class CinemachineShake : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+    }
+
+    public void OnLoadScene()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public void Shake(float intensity, float time)

@@ -8,7 +8,7 @@ public class TrackingWall : MonoBehaviour
     //This invisible wall follows an NPC around to block the player.
     //It also follows the player around to block NPCs.
 
-    Transform followTransform;
+    public Transform followTransform;
 
     public void Init(Transform targetTrans)
     {
@@ -16,6 +16,7 @@ public class TrackingWall : MonoBehaviour
         transform.position = followTransform.position;
         transform.rotation = followTransform.rotation;
     }
+
 
     private void FixedUpdate()
     {

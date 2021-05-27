@@ -31,7 +31,6 @@ public class PlayerStats : CharacterStats
 
     private void Start()
     {
-        Debug.Log("Start");
         currentHealth = maxHealth;
         heartMeter.SetMaxHearts(maxHealth);
 
@@ -73,7 +72,6 @@ public class PlayerStats : CharacterStats
     public void LoseHealth(int damageHealth, string damageAnimation = "TakeDamage")
     {
         if (playerManager.isInvulnerable
-//            || playerManager.isDecidingFate
             || playerManager.isDead)
             return;
 

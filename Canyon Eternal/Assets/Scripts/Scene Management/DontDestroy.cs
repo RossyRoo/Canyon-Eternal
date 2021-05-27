@@ -6,12 +6,16 @@ public class DontDestroy : MonoBehaviour
 {
     bool isPersistent;
 
+    PlayerManager playerManager;
+    SFXPlayer sFXPlayer;
+    CinemachineShake cinemachineShake;
+    SceneChangeManager sceneChangeManager;
+
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
         HandleDuplicates();
     }
-
 
     private void HandleDuplicates()
     {
@@ -23,10 +27,12 @@ public class DontDestroy : MonoBehaviour
         {
             duplicateCount += 1;
 
-            PlayerManager playerManager = dontDestroyDuplicate.GetComponentInChildren<PlayerManager>();
-            SFXPlayer sFXPlayer = dontDestroyDuplicate.GetComponentInChildren<SFXPlayer>();
+            playerManager = dontDestroyDuplicate.GetComponentInChildren<PlayerManager>();
+            sFXPlayer = dontDestroyDuplicate.GetComponentInChildren<SFXPlayer>();
+            cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
+            sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
 
-            HandleNewSceneFunctions(playerManager, sFXPlayer);
+            HandleOnLoadSceneFunctions();
         }
 
         if(duplicateCount == 1)
@@ -41,12 +47,13 @@ public class DontDestroy : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-
     }
 
-    private void HandleNewSceneFunctions(PlayerManager playerManager, SFXPlayer sFXPlayer)
+    private void HandleOnLoadSceneFunctions()
     {
         sFXPlayer.OnLoadScene();
         playerManager.OnLoadScene();
+        cinemachineShake.OnLoadScene();
+        sceneChangeManager.OnLoadScene();
     }
 }

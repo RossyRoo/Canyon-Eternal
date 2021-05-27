@@ -33,6 +33,7 @@ public class EnemyManager : CharacterManager
         GenerateTrackingWall();
     }
 
+
     private void Update()
     {
         HandleRecoveryTimer();
@@ -74,5 +75,7 @@ public class EnemyManager : CharacterManager
             }
         }
     }
+
+
 
 }

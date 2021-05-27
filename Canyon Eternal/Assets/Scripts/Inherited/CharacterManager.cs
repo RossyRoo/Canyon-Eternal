@@ -20,14 +20,11 @@ public class CharacterManager : MonoBehaviour
 
     public void GenerateTrackingWall()
     {
-        if(myWall != null)
-        {
-            Destroy(myWall);
-        }
-
         myWall = Instantiate<TrackingWall>(myWallPrefab);
         myWall.Init(transform);
         myWall.transform.parent = FindObjectOfType<TrackingWallPool>().gameObject.transform;
+
+        Debug.Log("Generating tracking wall for " + myWall.followTransform.gameObject.name);
     }
 
 }
