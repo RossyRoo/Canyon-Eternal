@@ -62,7 +62,8 @@ public class PlayerManager : CharacterManager
 
     public void OnLoadScene()
     {
-        transform.position = GameObject.FindGameObjectWithTag("Entrance").transform.position; //Move Player To Start Position
+        transform.position = GameObject.FindGameObjectWithTag("Entrance").transform.position;
+        GenerateTrackingWall();
     }
 
 }

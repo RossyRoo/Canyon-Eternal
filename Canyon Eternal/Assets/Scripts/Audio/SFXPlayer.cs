@@ -13,7 +13,7 @@ public class SFXPlayer : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void GenerateNewInstance()
+    public void OnLoadScene()
     {
         Debug.Log("Finding new SFX Player");
         if(Instance == null)

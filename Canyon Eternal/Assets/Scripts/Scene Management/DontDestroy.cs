@@ -46,8 +46,7 @@ public class DontDestroy : MonoBehaviour
 
     private void HandleNewSceneFunctions(PlayerManager playerManager, SFXPlayer sFXPlayer)
     {
-        sFXPlayer.GenerateNewInstance();
+        sFXPlayer.OnLoadScene();
         playerManager.OnLoadScene();
-        playerManager.GenerateTrackingWall();
     }
 }
