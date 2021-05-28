@@ -6,12 +6,11 @@ using TMPro;
 
 public class LunchboxMeter : MonoBehaviour
 {
-    public Image nextHealItemSlot;
+    //public Image nextHealItemSlot;
 
-    public Sprite[] fullHealItems;
+    //public Sprite[] fullHealItems;
 
-    public Sprite fullWindow;
-    public Sprite emptyWindow;
+    public Sprite lunchSprite;
 
     public TextMeshProUGUI currentLunchboxCapacityText;
 
@@ -21,10 +20,10 @@ public class LunchboxMeter : MonoBehaviour
         currentLunchboxCapacityText.gameObject.SetActive(true);
         currentLunchboxCapacityText.text = maxLunchboxCapacity.ToString();
 
-        nextHealItemSlot.GetComponentInParent<RawImage>().texture = fullWindow.texture;
+        //nextHealItemSlot.GetComponentInParent<RawImage>().texture = fullWindow.texture;
 
-        nextHealItemSlot.enabled = true;
-        nextHealItemSlot.sprite = fullHealItems[maxLunchboxCapacity - 1];
+        //nextHealItemSlot.enabled = true;
+        //nextHealItemSlot.sprite = fullHealItems[maxLunchboxCapacity - 1];
     }
 
     public void SetCurrentLunchBox(int currentLunchboxCapacity)
@@ -33,15 +32,15 @@ public class LunchboxMeter : MonoBehaviour
 
         if(currentLunchboxCapacity == 0)
         {
-            currentLunchboxCapacityText.gameObject.SetActive(false);
-            nextHealItemSlot.enabled = false;
-            nextHealItemSlot.GetComponentInParent<RawImage>().texture = emptyWindow.texture;
+            //currentLunchboxCapacityText.gameObject.SetActive(false);
+            //nextHealItemSlot.enabled = false;
+            //nextHealItemSlot.GetComponentInParent<RawImage>().texture = emptyWindow.texture;
         }
         else
         {
             currentLunchboxCapacityText.gameObject.SetActive(true);
-            nextHealItemSlot.enabled = true;
-            nextHealItemSlot.sprite = fullHealItems[currentLunchboxCapacity - 1];
+            //nextHealItemSlot.enabled = true;
+            //nextHealItemSlot.sprite = fullHealItems[currentLunchboxCapacity - 1];
         }
     }
 }

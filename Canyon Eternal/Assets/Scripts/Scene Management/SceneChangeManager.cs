@@ -30,7 +30,7 @@ public class SceneChangeManager : MonoBehaviour
 
         if (sceneNum != 999)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(sceneNum);
         }
         else
         {
@@ -41,5 +41,10 @@ public class SceneChangeManager : MonoBehaviour
     public void LoadOutsideLastFort()
     {
         SceneManager.LoadScene(currentBuildIndex);
+    }
+
+    public void LoadSavedGame()
+    {
+        SceneManager.LoadScene(1);
     }
 }
