@@ -41,6 +41,7 @@ public class CinemachineShake : MonoBehaviour
 
         if(shakeTimer <= 0)
         {
+
             CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
                 cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 

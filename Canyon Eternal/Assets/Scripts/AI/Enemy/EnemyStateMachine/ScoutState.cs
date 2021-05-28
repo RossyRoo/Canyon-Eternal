@@ -27,7 +27,6 @@ public class ScoutState : EnemyStateMachine
             if (playerStats != null)
             {
                 enemyManager.currentTarget = playerStats;
-                Debug.Log("Found Player");
             }
         }
         #endregion

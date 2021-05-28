@@ -8,25 +8,22 @@ public class AttackState : EnemyStateMachine
     public CombatState combatStanceState;
     public DeathState deathState;
 
-    //public EnemyAttackAction[] enemyAttacks;
-    //public EnemyAttackAction currentAttack;
+    public EnemyAttackAction[] enemyAttacks;
+    public EnemyAttackAction currentAttack;
 
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        /*Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
-        float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
-        float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-
-        enemyCardManager = GetComponentInParent<CardManager>();
-
-        if (enemyStats.isDead)
+        if (enemyManager.isDead)
         {
             return deathState;
         }
 
-        HandleRotateTowardsTarget(enemyManager);
+        Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+        //float viewableAngle = Vector2.Angle(targetDirection, transform.forward);
+        float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
 
+        
         if (enemyManager.isPerformingAction)
             return combatStanceState;
 
@@ -38,18 +35,22 @@ public class AttackState : EnemyStateMachine
             }
             else if (distanceFromTarget < currentAttack.maximumDistanceNeededToAttack)
             {
-                if (viewableAngle <= currentAttack.maximumAttackAngle
-                    && viewableAngle >= currentAttack.minimumAttackAngle)
+                //if (viewableAngle <= currentAttack.maximumAttackAngle
+                //    && viewableAngle >= currentAttack.minimumAttackAngle)
                 {
                     if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isPerformingAction == false)
                     {
-                        enemyAnimatorManager.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
-                        enemyAnimatorManager.animator.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
-                        enemyCardManager.currentMeleeModel.SetActive(true);
-                        enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
+                        enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
                         enemyManager.isPerformingAction = true;
                         enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+
+                        if (currentAttack.chargeForce != 999f) //CHARGE ATTACKS ONLY
+                        {
+                            Vector2 force = targetDirection * currentAttack.chargeForce * Time.deltaTime;
+                            enemyManager.rb.AddForce(force);
+                        }
                         currentAttack = null;
+
                         return combatStanceState;
                     }
                 }
@@ -62,12 +63,12 @@ public class AttackState : EnemyStateMachine
 
         return combatStanceState;
 
-    }
+        }
 
     private void GetNewAttack(EnemyManager enemyManager)
     {
-        Vector3 targetsDirection = enemyManager.currentTarget.transform.position - transform.position;
-        float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
+        //Vector2 targetsDirection = enemyManager.currentTarget.transform.position - transform.position;
+        //float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
 
         int maxScore = 0;
@@ -76,11 +77,13 @@ public class AttackState : EnemyStateMachine
         {
             EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
+            Debug.Log(distanceFromTarget);
+
             if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
             {
-                if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
+                //if (viewableAngle <= enemyAttackAction.maximumAttackAngle
+                //    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
                 {
                     maxScore += enemyAttackAction.attackScore;
                 }
@@ -97,8 +100,8 @@ public class AttackState : EnemyStateMachine
             if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
             {
-                if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
+                //if (viewableAngle <= enemyAttackAction.maximumAttackAngle
+                //    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
                 {
                     if (currentAttack != null)
                         return;
@@ -111,13 +114,13 @@ public class AttackState : EnemyStateMachine
                     }
                 }
             }
-        }*/
-
-        return this;
+        }
     }
 
-    private void HandleRotateTowardsTarget(EnemyManager enemyManager)
-    {
 
-    }
 }
+
+
+
+    
+       

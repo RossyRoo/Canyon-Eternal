@@ -33,8 +33,8 @@ public class DontDestroy : MonoBehaviour
             musicPlayer = dontDestroyDuplicate.GetComponentInChildren<MusicPlayer>();
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
             cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
-            HandleOnLoadSceneFunctions();
 
+            HandleOnLoadSceneFunctions();
         }
 
         if (duplicateCount == 1)

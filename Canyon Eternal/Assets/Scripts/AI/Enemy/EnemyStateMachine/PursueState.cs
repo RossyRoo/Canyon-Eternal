@@ -7,7 +7,7 @@ public class PursueState : EnemyStateMachine
 {
     [Header("STATE TRANSITIONS")]
     public ScoutState scoutState;
-    public CombatState combatStanceState;
+    public CombatState combatState;
     public DeathState deathState;
 
     public float nextWaypointDistance = 3f;
@@ -32,16 +32,24 @@ public class PursueState : EnemyStateMachine
             pathfindingInitiated = true;
         }
 
-        HandleMoveTowardTarget(enemyManager);
+        MoveTowardsTarget(enemyManager);
 
-        if (HandleLoseTarget(enemyManager))
+        enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
+
+        if (enemyManager.distanceFromTarget > blindDistance)
         {
+            enemyManager.currentTarget = null;
             return scoutState;
+        }
+        else if(enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
+        {
+            return combatState;
         }
         else
         {
             return this;
         }
+
     }
 
     private IEnumerator InitiatePathfinding(EnemyManager enemyManager)
@@ -50,7 +58,7 @@ public class PursueState : EnemyStateMachine
         {
             enemyManager.seeker.StartPath(enemyManager.rb.position, enemyManager.currentTarget.transform.position, OnPathComplete);
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         StartCoroutine(InitiatePathfinding(enemyManager));
     }
 
@@ -63,7 +71,7 @@ public class PursueState : EnemyStateMachine
         }
     }
 
-    private void HandleMoveTowardTarget(EnemyManager enemyManager)
+    private void MoveTowardsTarget(EnemyManager enemyManager)
     {
         if (path == null)
             return;
@@ -97,9 +105,7 @@ public class PursueState : EnemyStateMachine
     {
         if (Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position) > blindDistance)
         {
-            Debug.Log("Distance: " + Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position));
             enemyManager.currentTarget = null;
-            Debug.Log("Target ran away");
             return true;
         }
         else return false;

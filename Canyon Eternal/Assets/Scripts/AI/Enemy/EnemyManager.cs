@@ -21,6 +21,8 @@ public class EnemyManager : CharacterManager
     [Header("Enemy Action Settings")]
     public float maximumAttackRange = 1.5f;
     public float currentRecoveryTime;
+    public float distanceFromTarget;
+
 
     public Vector2 moveDirection;
 

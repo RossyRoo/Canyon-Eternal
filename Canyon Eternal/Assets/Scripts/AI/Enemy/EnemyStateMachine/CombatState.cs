@@ -17,14 +17,7 @@ public class CombatState : EnemyStateMachine
         {
             return deathState;
         }
-
-        HandleRotateTowardsTarget(enemyManager);
-
-        if (enemyManager.isPerformingAction)
-        {
-            enemyAnimatorHandler.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
-        }
-
+        
         if (enemyManager.currentRecoveryTime <= 0 && distanceFromTarget <= enemyManager.maximumAttackRange)
         {
             return attackState;
@@ -39,8 +32,4 @@ public class CombatState : EnemyStateMachine
         }
     }
 
-    private void HandleRotateTowardsTarget(EnemyManager enemyManager)
-    {
-
-    }
 }
