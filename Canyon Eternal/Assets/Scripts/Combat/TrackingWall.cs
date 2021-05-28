@@ -20,13 +20,15 @@ public class TrackingWall : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = followTransform.position;
-        transform.rotation = followTransform.rotation;
+        if(followTransform != null)
+        {
+            transform.position = followTransform.position;
+            transform.rotation = followTransform.rotation;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void LateUpdate()
-    {
-        if (followTransform == null)
-            Destroy(gameObject);
-    }
 }

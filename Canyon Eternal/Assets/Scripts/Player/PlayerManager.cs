@@ -63,8 +63,11 @@ public class PlayerManager : CharacterManager
     public IEnumerator HandleDeathCoroutine()
     {
         yield return new WaitForSeconds(deathTimeBuffer);
+        //Death Anim
         //Drop fragments
         //Reload from fort
+        playerStats.SetStartingStats();
+        SceneChangeManager.Instance.LoadOutsideLastFort();
     }
 
     public void OnLoadScene()
@@ -91,7 +94,6 @@ public class PlayerManager : CharacterManager
 
             if (hit)
             {
-                Debug.Log("Interactable detected");
                 Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
                 if (interactableObject != null)

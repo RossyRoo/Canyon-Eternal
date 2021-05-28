@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SFX Banks/Character SFX")]
 public class CharacterSFXBank : SFXBank
 {
+    [Header("Default Sounds")]
+    public AudioClip defaultAttack;
+
     [Header("Movement")]
     public AudioClip dash;
 

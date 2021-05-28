@@ -37,4 +37,9 @@ public class SceneChangeManager : MonoBehaviour
             SceneManager.LoadScene(currentBuildIndex + 1);
         }
     }
+
+    public void LoadOutsideLastFort()
+    {
+        SceneManager.LoadScene(currentBuildIndex);
+    }
 }

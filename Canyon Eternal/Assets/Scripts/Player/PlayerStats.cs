@@ -31,14 +31,7 @@ public class PlayerStats : CharacterStats
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        heartMeter.SetMaxHearts(maxHealth);
-
-        currentStamina = maxStamina;
-        staminaMeter.SetMaxStamina(maxStamina);
-
-        currentLunchBoxCapacity = maxLunchBoxCapacity;
-        lunchboxMeter.SetMaxLunchbox(maxLunchBoxCapacity);
+        SetStartingStats();
     }
 
     public void LoseStamina(int damageStamina)
@@ -111,6 +104,18 @@ public class PlayerStats : CharacterStats
         {
             currentHealth = maxHealth;
         }
+    }
+
+    public void SetStartingStats()
+    {
+        currentHealth = maxHealth;
+        heartMeter.SetMaxHearts(maxHealth);
+
+        currentStamina = maxStamina;
+        staminaMeter.SetMaxStamina(maxStamina);
+
+        currentLunchBoxCapacity = maxLunchBoxCapacity;
+        lunchboxMeter.SetMaxLunchbox(maxLunchBoxCapacity);
     }
 
     public void EnableInvulnerability(float iFrames)

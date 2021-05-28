@@ -23,8 +23,6 @@ public class CharacterManager : MonoBehaviour
         myWall = Instantiate<TrackingWall>(myWallPrefab);
         myWall.Init(transform);
         myWall.transform.parent = FindObjectOfType<TrackingWallPool>().gameObject.transform;
-
-        Debug.Log("Generating tracking wall for " + myWall.followTransform.gameObject.name);
     }
 
 }

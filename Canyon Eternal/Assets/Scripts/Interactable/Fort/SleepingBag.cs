@@ -9,18 +9,12 @@ public class SleepingBag : Interactable
     {
         base.Interact(playerManager);
         FullyRecover(playerManager);
-        RespawnEnemies();
+        //Play Full Heal Anim and Particles
     }
 
     private void FullyRecover(PlayerManager playerManager)
     {
         PlayerStats playerStats = playerManager.GetComponent<PlayerStats>();
         playerStats.RecoverHealth(8, true);
-        Debug.Log("Healed");
-    }
-
-    private void RespawnEnemies()
-    {
-
     }
 }

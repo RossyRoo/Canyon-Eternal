@@ -6,12 +6,17 @@ public class Projectile : MonoBehaviour
 {
     DamageCollider damageCollider;
     Rigidbody2D rb;
+
+    public ItemSFXBank itemSFXBank;
+
     public float force = 100f;
 
     private void Awake()
     {
         damageCollider = GetComponent<DamageCollider>();
         rb = GetComponent<Rigidbody2D>();
+
+        SFXPlayer.Instance.PlaySFXAudioClip(itemSFXBank.useItem, 0.5f);
     }
 
     private void Start()
