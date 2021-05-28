@@ -112,6 +112,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""db0b053b-677c-4256-9c2a-f1b5e022b6c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -147,6 +155,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e46bf096-595a-4743-b7e1-646873ae66c1"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -161,6 +180,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Melee = m_PlayerActions.FindAction("Melee", throwIfNotFound: true);
         m_PlayerActions_Dash = m_PlayerActions.FindAction("Dash", throwIfNotFound: true);
         m_PlayerActions_Heal = m_PlayerActions.FindAction("Heal", throwIfNotFound: true);
+        m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +266,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Melee;
     private readonly InputAction m_PlayerActions_Dash;
     private readonly InputAction m_PlayerActions_Heal;
+    private readonly InputAction m_PlayerActions_Interact;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -253,6 +274,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Melee => m_Wrapper.m_PlayerActions_Melee;
         public InputAction @Dash => m_Wrapper.m_PlayerActions_Dash;
         public InputAction @Heal => m_Wrapper.m_PlayerActions_Heal;
+        public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -271,6 +293,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Heal.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeal;
                 @Heal.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeal;
                 @Heal.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnHeal;
+                @Interact.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -284,6 +309,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -297,5 +325,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMelee(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

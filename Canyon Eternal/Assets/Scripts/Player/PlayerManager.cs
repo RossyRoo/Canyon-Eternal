@@ -10,6 +10,11 @@ public class PlayerManager : CharacterManager
     PlayerStats playerStats;
     Animator animator;
 
+    public GameObject interactionPopupGO;
+    public GameObject itemPopupGO;
+    public InteractableUI interactableUI;
+    public LayerMask interactableLayers;
+
     //Game Components
     public bool dashFlag;
 
@@ -28,6 +33,7 @@ public class PlayerManager : CharacterManager
 
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
+        CheckForInteractable();
     }
 
     private void FixedUpdate()
@@ -50,6 +56,7 @@ public class PlayerManager : CharacterManager
         inputManager.melee_Input = false;
         inputManager.dash_Input = false;
         inputManager.heal_Input = false;
+        inputManager.interact_Input = false;
         //inputManager.guard_Input = false;
     }
 
@@ -64,12 +71,54 @@ public class PlayerManager : CharacterManager
     {
         transform.position = GameObject.FindGameObjectWithTag("Entrance").transform.position;
 
+        
+
         if(myWall != null)
         {
             Destroy(myWall.gameObject);
         }
 
         GenerateTrackingWall();
+    }
+
+    private void CheckForInteractable()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,
+            playerLocomotion.lastMoveDirection, 10f, interactableLayers);
+
+        Debug.DrawRay(transform.position,
+            playerLocomotion.lastMoveDirection * 10f, Color.red);
+
+            if (hit)
+            {
+                Debug.Log("Interactable detected");
+                Interactable interactableObject = hit.collider.GetComponent<Interactable>();
+
+                if (interactableObject != null)
+                {
+                    string interactableText = interactableObject.interactableText;
+                    interactableUI.interactableText.text = interactableText;
+                    interactionPopupGO.SetActive(true);
+
+                    if (inputManager.interact_Input)
+                    {
+                        hit.collider.GetComponent<Interactable>().Interact(this);
+                    }
+                }
+            }
+            else
+            {
+                if (interactionPopupGO != null)
+                {
+                    interactionPopupGO.SetActive(false);
+                }
+
+                if (itemPopupGO != null && inputManager.interact_Input == true)
+                {
+                    itemPopupGO.SetActive(false);
+                }
+            }
+
     }
 
 }

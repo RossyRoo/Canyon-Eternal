@@ -1,0 +1,13 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Interactable : MonoBehaviour
+{
+    public string interactableText;
+
+    public virtual void Interact(PlayerManager playerManager)
+    {
+        Debug.Log("Player interacted with " + gameObject.name);
+    }
+}

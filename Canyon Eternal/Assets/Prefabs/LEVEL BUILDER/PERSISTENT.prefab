@@ -280,8 +280,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3751347429483001726}
   - {fileID: 3751347431271440652}
+  - {fileID: 5437754874508088045}
   m_Father: {fileID: 1882935357957997551}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -315,7 +315,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3751347430886195192}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3751347431271440654
 MonoBehaviour:
@@ -589,7 +589,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &2536480945353731861
+--- !u!1001 &6650370074484378246
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -634,7 +634,7 @@ PrefabInstance:
     - target: {fileID: 1674236695952988267, guid: c9b4ee7421ba2436f9b5dee02e15a722,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1674236695952988267, guid: c9b4ee7421ba2436f9b5dee02e15a722,
         type: 3}
@@ -708,11 +708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9b4ee7421ba2436f9b5dee02e15a722, type: 3}
---- !u!224 &3751347429483001726 stripped
+--- !u!224 &5437754874508088045 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1674236695952988267, guid: c9b4ee7421ba2436f9b5dee02e15a722,
     type: 3}
-  m_PrefabInstance: {fileID: 2536480945353731861}
+  m_PrefabInstance: {fileID: 6650370074484378246}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8652666736395252244
 PrefabInstance:
@@ -810,6 +810,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652666737089679821, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
+        type: 3}
+      propertyPath: interactionPopupGO
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652666737089679821, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
+        type: 3}
+      propertyPath: itemPopupGO
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652666737089679821, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
+        type: 3}
+      propertyPath: interactableLayers.m_Bits
+      value: 4096
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2270418408050079692, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a, type: 3}

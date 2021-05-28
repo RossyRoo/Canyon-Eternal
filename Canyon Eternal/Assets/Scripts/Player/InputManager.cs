@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     public bool melee_Input;
     public bool dash_Input;
     public bool heal_Input;
+    public bool interact_Input;
 
     private void Awake()
     {
@@ -48,6 +49,9 @@ public class InputManager : MonoBehaviour
 
             //HEAL
             playerControls.PlayerActions.Heal.performed += i => heal_Input = true;
+
+            //INTERACT
+            playerControls.PlayerActions.Interact.performed += i => interact_Input = true;
         }
         playerControls.Enable();
     }

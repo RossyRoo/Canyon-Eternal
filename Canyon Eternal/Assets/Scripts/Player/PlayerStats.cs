@@ -6,7 +6,7 @@ public class PlayerStats : CharacterStats
 {
     HeartMeter heartMeter;
     StaminaMeter staminaMeter;
-    LunchboxMeter lunchboxMeter;
+    public LunchboxMeter lunchboxMeter;
 
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
@@ -111,12 +111,6 @@ public class PlayerStats : CharacterStats
         {
             currentHealth = maxHealth;
         }
-    }
-
-    public void RefillLunchbox()
-    {
-        currentLunchBoxCapacity = maxLunchBoxCapacity;
-        lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
     }
 
     public void EnableInvulnerability(float iFrames)
