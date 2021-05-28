@@ -21,18 +21,24 @@ public class MusicPlayer : MonoBehaviour
     {
         if (Instance == null)
         {
-            audioSource = GetComponent<AudioSource>();
             Instance = this;
-            AutoplayMusic();
         }
+
+        audioSource = GetComponent<AudioSource>();
+        AutoplayMusic();
+
     }
 
     private void AutoplayMusic()
     {
         SceneMusicBank sceneMusicBank = FindObjectOfType<SceneMusicBank>();
 
-        if(sceneMusicBank.autoMusic != null)
+
+        if (sceneMusicBank.autoMusic != null)
         {
+            //Check to see if this scene's music is supposed to override the other scene's
+            audioSource.Stop();
+            audioSource.clip = sceneMusicBank.autoMusic;
             PlayMusicAudioClip(sceneMusicBank.autoMusic);
         }
     }

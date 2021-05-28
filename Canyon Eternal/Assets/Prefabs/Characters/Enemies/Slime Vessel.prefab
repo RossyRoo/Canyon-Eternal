@@ -231,10 +231,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoutState: {fileID: 3538717596244281534}
-  combatStanceState: {fileID: 3538717597360276473}
+  combatState: {fileID: 3538717597360276473}
   deathState: {fileID: 3538717597237797453}
   nextWaypointDistance: 3
-  blindDistance: 50
+  blindDistance: 30
 --- !u!1 &3538717596244281528
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +407,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatStanceState: {fileID: 3538717597360276473}
   deathState: {fileID: 3538717597237797453}
+  enemyAttacks:
+  - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
+  currentAttack: {fileID: 0}
 --- !u!1 &3538717597360276475
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,8 +557,9 @@ MonoBehaviour:
   seeker: {fileID: 0}
   currentState: {fileID: 3538717596244281534}
   currentTarget: {fileID: 0}
-  maximumAttackRange: 1.5
+  maximumAttackRange: 10
   currentRecoveryTime: 0
+  distanceFromTarget: 0
   moveDirection: {x: 0, y: 0}
 --- !u!114 &4170450973767946579
 MonoBehaviour:

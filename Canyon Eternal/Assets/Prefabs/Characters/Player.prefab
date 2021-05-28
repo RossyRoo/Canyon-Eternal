@@ -738,7 +738,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fragmentInventory: 0
-  cardInventory: []
+  heldThrustCard: {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}
+  heldSlashCard: {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
+  heldStrikeCard: {fileID: 11400000, guid: 4e080a877e8ac49a0bf4e520d04e2e9d, type: 2}
 --- !u!1 &8652666736507707591
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,17 +879,17 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -2.8923162e-15
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000039352585
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.1382012e-22
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}

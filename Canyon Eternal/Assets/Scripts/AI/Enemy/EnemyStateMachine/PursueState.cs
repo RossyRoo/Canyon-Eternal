@@ -17,6 +17,8 @@ public class PursueState : EnemyStateMachine
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
     bool pathfindingInitiated = false;
+    [HideInInspector]
+    public Vector2 moveForce;
 
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
@@ -87,9 +89,9 @@ public class PursueState : EnemyStateMachine
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
-        Vector2 force = direction * enemyManager.enemyStats.moveSpeed * Time.deltaTime;
+        moveForce = direction * enemyManager.enemyStats.moveSpeed * Time.deltaTime;
 
-        enemyManager.rb.AddForce(force);
+        enemyManager.rb.AddForce(moveForce);
 
         float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
 
@@ -99,15 +101,4 @@ public class PursueState : EnemyStateMachine
         }
     }
 
-
-
-    private bool HandleLoseTarget(EnemyManager enemyManager)
-    {
-        if (Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position) > blindDistance)
-        {
-            enemyManager.currentTarget = null;
-            return true;
-        }
-        else return false;
-    }
 }

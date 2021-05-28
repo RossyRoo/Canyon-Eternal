@@ -31,7 +31,7 @@ public class PlayerMeleeHandler : MonoBehaviour
         LoadMelee();
     }
 
-    private void SetParentOverride()
+    public void SetParentOverride()
     {
         if(activeMeleeCard.isThrust)
         {
@@ -57,6 +57,12 @@ public class PlayerMeleeHandler : MonoBehaviour
         {
             currentMeleeModel.SetActive(false);
         }
+    }
+
+    public void DestroyMelee()
+    {
+        Destroy(currentMeleeModel);
+        currentMeleeModel = null;
     }
 
     public void LoadMelee()
