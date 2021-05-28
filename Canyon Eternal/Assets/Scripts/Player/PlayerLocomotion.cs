@@ -64,6 +64,9 @@ public class PlayerLocomotion : MonoBehaviour
             return;
         }
 
+        //Pass through enemies
+        ReverseDashThroughEnemies();
+
         if (direction == 0 && moveDirection == Vector2.zero)
         {
             if(lastMoveDirection == new Vector2(0,1))
@@ -128,6 +131,7 @@ public class PlayerLocomotion : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 playerManager.dashFlag = false;
                 playerStats.currentStamina -= 1;
+                ReverseDashThroughEnemies();
             }
             else
             {
@@ -183,11 +187,17 @@ public class PlayerLocomotion : MonoBehaviour
             return;
 
         playerStats.EnableInvulnerability(startDashTime);
-        //playerAnimatorHandler.PlayTargetAnimation("Dash", true);
+        playerAnimatorHandler.PlayTargetAnimation("Dash", false);
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
         GameObject dashParticleFXGO = Instantiate(dashParticleFXPrefab, dashFXTransform.position, rotation);
         dashParticleFXGO.transform.parent = null;
         Destroy(dashParticleFXGO, 1f);
         dashFXTriggered = true;
+    }
+
+    private void ReverseDashThroughEnemies()
+    {
+        Physics2D.IgnoreLayerCollision(9, 10, playerManager.dashFlag);
+        Physics2D.IgnoreLayerCollision(8, 11, playerManager.dashFlag);
     }
 }

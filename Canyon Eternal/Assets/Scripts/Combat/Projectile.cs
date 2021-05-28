@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
         damageCollider = GetComponent<DamageCollider>();
         rb = GetComponent<Rigidbody2D>();
 
-        SFXPlayer.Instance.PlaySFXAudioClip(itemSFXBank.useItem, 0.5f);
+        SFXPlayer.Instance.PlaySFXAudioClip(itemSFXBank.useItem, 0.1f);
     }
 
     private void Start()

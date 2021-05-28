@@ -629,6 +629,7 @@ MonoBehaviour:
   isInteracting: 0
   isInvulnerable: 0
   isDead: 0
+  isMoving: 0
   isConversing: 0
   isPerformingAction: 0
   deathTimeBuffer: 0.5
@@ -876,17 +877,17 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000030966767
+      value: -2.8923162e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000007457749
+      value: 0.000000039352585
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -2.309424e-15
+      value: 1.1382012e-22
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
@@ -926,7 +927,7 @@ PrefabInstance:
     - target: {fileID: 7560709639479523168, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_Lens.OrthographicSize
-      value: 17
+      value: 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84a83826c9b1a48cf9f37e4c1fa7d592, type: 3}

@@ -631,7 +631,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1586417207468804367}
-  - {fileID: 2231658946094631311}
   - {fileID: 2231658945816055763}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -691,6 +690,7 @@ MonoBehaviour:
   isInteracting: 0
   isInvulnerable: 0
   isDead: 0
+  isMoving: 0
   isConversing: 0
   isPerformingAction: 0
   deathTimeBuffer: 0.5
@@ -701,6 +701,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   maximumAttackRange: 1.5
   currentRecoveryTime: 0
+  moveDirection: {x: 0, y: 0}
 --- !u!114 &1586417207834823799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,7 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d05b42790c4d480ba301dac36e0d04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 600
+  moveSpeed: 1000
   characterSFXBank: {fileID: 11400000, guid: 4ee9bdd09fd5d4640bb2a7e84949534b, type: 2}
   maxHealth: 10
   currentHealth: 0
@@ -797,9 +798,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121df7972c43149af9545c8a427c7f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoutState: {fileID: 2231658945502614938}
   combatStanceState: {fileID: 2231658946551373533}
   deathState: {fileID: 2231658945894252393}
   nextWaypointDistance: 3
+  blindDistance: 50
 --- !u!1 &2231658945502614940
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +884,7 @@ Transform:
   - {fileID: 2231658946587524351}
   - {fileID: 2231658945894252392}
   m_Father: {fileID: 1586417207834823800}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2231658945894252395
 GameObject:
@@ -927,36 +930,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runningDeathCoroutine: 0
---- !u!1 &2231658946094631310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2231658946094631311}
-  m_Layer: 0
-  m_Name: Follow Cam Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2231658946094631311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2231658946094631310}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1586417207834823800}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2231658946551373535
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class DontDestroy : MonoBehaviour
 
     PlayerManager playerManager;
     SFXPlayer sFXPlayer;
+    MusicPlayer musicPlayer;
     CinemachineShake cinemachineShake;
     SceneChangeManager sceneChangeManager;
 
@@ -29,13 +30,14 @@ public class DontDestroy : MonoBehaviour
 
             playerManager = dontDestroyDuplicate.GetComponentInChildren<PlayerManager>();
             sFXPlayer = dontDestroyDuplicate.GetComponentInChildren<SFXPlayer>();
+            musicPlayer = dontDestroyDuplicate.GetComponentInChildren<MusicPlayer>();
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
             cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
-
             HandleOnLoadSceneFunctions();
+
         }
 
-        if(duplicateCount == 1)
+        if (duplicateCount == 1)
         {
             isPersistent = true;
         }
@@ -47,6 +49,7 @@ public class DontDestroy : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+
     }
 
     private void HandleOnLoadSceneFunctions()
@@ -55,5 +58,6 @@ public class DontDestroy : MonoBehaviour
         playerManager.OnLoadScene();
         cinemachineShake.OnLoadScene();
         sceneChangeManager.OnLoadScene();
+        musicPlayer.OnLoadScene();
     }
 }

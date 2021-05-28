@@ -44,6 +44,8 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.gameObject.name);
+
         if (collision.gameObject.GetComponent<CharacterManager>() != null)
         {
             targetIsWithinRange = true;

@@ -7,24 +7,33 @@ public class SceneChangeManager : MonoBehaviour
 {
     public static SceneChangeManager Instance { get; private set; }
 
-    public GenericAnimatorHandler blackFaderAnimatorHandler;
+    GenericAnimatorHandler blackFaderAnimatorHandler;
     public AudioClip transitionAudioClip;
 
     float transitionScreenBuffer = 1f;
     public int currentBuildIndex;
+
+    private void Start()
+    {
+        if (!GetComponentInParent<DontDestroy>())
+        {
+            OnLoadScene();
+        }
+    }
 
     public void OnLoadScene()
     {
         Instance = this;
 
         currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        blackFaderAnimatorHandler = GetComponentInChildren<GenericAnimatorHandler>();
-        //blackFaderAnimatorHandler.PlayTargetAnimation("FadeFromBlack");
+        blackFaderAnimatorHandler = FindObjectOfType<GenericAnimatorHandler>();
+        blackFaderAnimatorHandler.PlayTargetAnimation("FadeFromBlack");
     }
 
     public IEnumerator ChangeScene(int sceneNum = 999)
     {
-        //blackFaderAnimatorHandler.PlayTargetAnimation("FadeToBlack");
+        blackFaderAnimatorHandler.PlayTargetAnimation("FadeToBlack");
+
         SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 1f, 0.25f);
         yield return new WaitForSeconds(transitionScreenBuffer);
 

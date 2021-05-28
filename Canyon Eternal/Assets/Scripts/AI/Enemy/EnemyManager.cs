@@ -22,6 +22,7 @@ public class EnemyManager : CharacterManager
     public float maximumAttackRange = 1.5f;
     public float currentRecoveryTime;
 
+    public Vector2 moveDirection;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class EnemyManager : CharacterManager
     {
         HandleRecoveryTimer();
         HandleStateMachine();
+        HandleRotation();
         isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
         animator.SetBool("isDead", isDead);
     }
@@ -79,6 +81,50 @@ public class EnemyManager : CharacterManager
                 isPerformingAction = false;
             }
         }
+    }
+
+    private void HandleRotation()
+    {
+        Vector2 rawMoveDirection;
+        rawMoveDirection.x = Mathf.RoundToInt(rb.velocity.x);
+        rawMoveDirection.y = Mathf.RoundToInt(rb.velocity.y);
+
+        if (rawMoveDirection.x == 0)
+        {
+            moveDirection.x = 0;
+        }
+        else if (rawMoveDirection.x > 0)
+        {
+            moveDirection.x = 1;
+        }
+        else
+        {
+            moveDirection.x = -1;
+        }
+
+        if (rawMoveDirection.y == 0)
+        {
+            moveDirection.y = 0;
+        }
+        else if (rawMoveDirection.y > 0)
+        {
+            moveDirection.y = 1;
+        }
+        else
+        {
+            moveDirection.y = -1;
+        }
+
+        if(moveDirection.x == 0 && moveDirection.y ==0)
+        {
+            isMoving = false;
+        }
+        else
+        {
+            isMoving = true;
+        }
+
+        enemyAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, isMoving);
     }
 
 

@@ -10,7 +10,6 @@ public class PursueState : EnemyStateMachine
     public CombatState combatStanceState;
     public DeathState deathState;
 
-    public Vector2 moveDirection;
     public float nextWaypointDistance = 3f;
     public float blindDistance = 25f;
 
@@ -33,13 +32,10 @@ public class PursueState : EnemyStateMachine
             pathfindingInitiated = true;
         }
 
-        HandleRotateTowardsTarget(enemyManager, enemyAnimatorHandler);
-
         HandleMoveTowardTarget(enemyManager);
 
         if (HandleLoseTarget(enemyManager))
         {
-            enemyAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, false);
             return scoutState;
         }
         else
@@ -95,40 +91,7 @@ public class PursueState : EnemyStateMachine
         }
     }
 
-    private void HandleRotateTowardsTarget(EnemyManager enemyManager, EnemyAnimatorHandler enemyAnimatorHandler)
-    {
-        Vector2 rawMoveDirection;
-        rawMoveDirection.x = Mathf.RoundToInt(enemyManager.rb.velocity.x);
-        rawMoveDirection.y = Mathf.RoundToInt(enemyManager.rb.velocity.y);
 
-        if(rawMoveDirection.x == 0)
-        {
-            moveDirection.x = 0;
-        }
-        else if(rawMoveDirection.x > 0)
-        {
-            moveDirection.x = 1;
-        }
-        else
-        {
-            moveDirection.x = -1;
-        }
-
-        if (rawMoveDirection.y == 0)
-        {
-            moveDirection.y = 0;
-        }
-        else if (rawMoveDirection.y > 0)
-        {
-            moveDirection.y = 1;
-        }
-        else
-        {
-            moveDirection.y = -1;
-        }
-
-        enemyAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, true);
-    }
 
     private bool HandleLoseTarget(EnemyManager enemyManager)
     {
