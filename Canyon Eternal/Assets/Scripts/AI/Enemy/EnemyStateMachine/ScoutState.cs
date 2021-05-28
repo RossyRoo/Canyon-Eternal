@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoutState : EnemyStateMachine
 {
+    [Header("STATE TRANSITIONS")]
     public PursueState pursueTargetState;
     public DeathState deathState;
 
@@ -16,25 +17,19 @@ public class ScoutState : EnemyStateMachine
             return deathState;
         }
 
-        #region Handle Enemy Target Detection
-        /*Collider[] colliders = Physics.OverlapSphere(transform.position, enemyStats.detectionRadius, detectionLayer);
+        #region Handle Target Detection
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), enemyStats.detectionRadius);
+
         for (int i = 0; i < colliders.Length; i++)
         {
-            CharacterStats characterStats = colliders[i].GetComponent<CharacterStats>();
+            PlayerStats playerStats = colliders[i].GetComponent<PlayerStats>();
 
-            if (characterStats != null)
+            if (playerStats != null)
             {
-                //Check for team ID
-
-                Vector3 targetDirection = characterStats.transform.position - transform.position;
-                float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-
-                if (viewableAngle > enemyStats.minimumDetectionAngle && viewableAngle < enemyStats.maximumDetectionAngle)
-                {
-                    enemyManager.currentTarget = characterStats;
-                }
+                enemyManager.currentTarget = playerStats;
+                Debug.Log("Found Player");
             }
-        }*/
+        }
         #endregion
 
         #region Handle Switch State

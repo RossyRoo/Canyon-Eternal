@@ -2,17 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using Pathfinding;
 
 public class EnemyManager : CharacterManager
 {
-    EnemyStats enemyStats;
+    [HideInInspector]
+    public EnemyStats enemyStats;
     EnemyAnimatorHandler enemyAnimatorHandler;
     Animator animator;
-    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
+    [HideInInspector]
+    public Seeker seeker;
 
     public EnemyStateMachine currentState;
-    [HideInInspector] public CharacterStats currentTarget;
+    public PlayerStats currentTarget;
 
     [Header("Enemy Action Settings")]
     public float maximumAttackRange = 1.5f;
@@ -23,6 +27,7 @@ public class EnemyManager : CharacterManager
     {
         enemyStats = GetComponent<EnemyStats>();
         rb = GetComponent<Rigidbody2D>();
+        seeker = GetComponent<Seeker>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         animator = GetComponentInChildren<Animator>();
     }

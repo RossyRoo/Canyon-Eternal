@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CombatState : EnemyStateMachine
 {
+    [Header("STATE TRANSITIONS")]
     public AttackState attackState;
     public PursueState pursueTargetState;
     public DeathState deathState;

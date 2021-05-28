@@ -43,8 +43,8 @@ public class SceneChangeManager : MonoBehaviour
         SceneManager.LoadScene(currentBuildIndex);
     }
 
-    public void LoadSavedGame()
+    public void LoadSaveGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(currentBuildIndex + 1);
     }
 }

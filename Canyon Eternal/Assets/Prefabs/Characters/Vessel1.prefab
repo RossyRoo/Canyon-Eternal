@@ -67,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayerID: -959509495
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3db801edc987c4487b575e1306b2b1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -151,8 +151,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayerID: -959509495
+  m_SortingLayer: 2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3db801edc987c4487b575e1306b2b1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -232,8 +232,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayerID: -959509495
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e5dd705e067144f16b988d410531797d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -378,8 +378,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayerID: -959509495
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8a74f44c88de445d1870af758cf6c8ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -459,8 +459,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayerID: -959509495
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8a74f44c88de445d1870af758cf6c8ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 1586417207834823803}
   - component: {fileID: 1586417207834823796}
   - component: {fileID: 1586417207834823799}
+  - component: {fileID: 261286942}
   m_Layer: 9
   m_Name: Vessel1
   m_TagString: Enemy
@@ -659,12 +660,12 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586417207834823798}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -693,7 +694,9 @@ MonoBehaviour:
   isConversing: 0
   isPerformingAction: 0
   deathTimeBuffer: 0.5
+  enemyStats: {fileID: 0}
   rb: {fileID: 0}
+  seeker: {fileID: 0}
   currentState: {fileID: 2231658945502614938}
   currentTarget: {fileID: 0}
   maximumAttackRange: 1.5
@@ -710,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d05b42790c4d480ba301dac36e0d04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 600
   characterSFXBank: {fileID: 11400000, guid: 4ee9bdd09fd5d4640bb2a7e84949534b, type: 2}
   maxHealth: 10
   currentHealth: 0
@@ -723,6 +726,34 @@ MonoBehaviour:
   detectionRadius: 20
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
+--- !u!114 &261286942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586417207834823798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &2231658944828759552
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatStanceState: {fileID: 2231658946551373533}
   deathState: {fileID: 2231658945894252393}
+  nextWaypointDistance: 3
 --- !u!1 &2231658945502614940
 GameObject:
   m_ObjectHideFlags: 0
