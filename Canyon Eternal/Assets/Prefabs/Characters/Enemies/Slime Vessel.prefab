@@ -235,6 +235,7 @@ MonoBehaviour:
   deathState: {fileID: 3538717597237797453}
   nextWaypointDistance: 3
   blindDistance: 30
+  moveForce: {x: 0, y: 0}
 --- !u!1 &3538717596244281528
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,8 +507,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012345791, y: 0.38889122}
-  m_Size: {x: 2.5183659, y: 4.3877745}
+  m_Offset: {x: 0.077282906, y: -0.02238369}
+  m_Size: {x: 5.004286, y: 5.004286}
   m_Direction: 0
 --- !u!50 &4170450973767946591
 Rigidbody2D:
@@ -542,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bca72872ce46cc954fb5caae1a9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myWallPrefab: {fileID: 5838069692043969820, guid: e47193f2ff29e46bd887c6d39250dd6b,
+  myWallPrefab: {fileID: 5838069692043969820, guid: dd653c5d2327c4c20a53609f190220d3,
     type: 3}
   myWall: {fileID: 0}
   isInteracting: 0
