@@ -12,8 +12,11 @@ public class DontDestroy : MonoBehaviour
     CinemachineShake cinemachineShake;
     SceneChangeManager sceneChangeManager;
 
+    public RoomData currentRoom;
+
     private void Awake()
     {
+        currentRoom = FindObjectOfType<RoomDataHolder>().thisRoom;
         DontDestroyOnLoad(transform.gameObject);
         HandleDuplicates();
     }
@@ -33,6 +36,11 @@ public class DontDestroy : MonoBehaviour
             musicPlayer = dontDestroyDuplicate.GetComponentInChildren<MusicPlayer>();
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
             cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
+
+            if(dontDestroyDuplicate.currentRoom == null) //destroyed GO passes off its room data to the persistant game objects
+            {
+                dontDestroyDuplicate.currentRoom = currentRoom;
+            }
 
             HandleOnLoadSceneFunctions();
         }
@@ -55,9 +63,9 @@ public class DontDestroy : MonoBehaviour
     private void HandleOnLoadSceneFunctions()
     {
         sFXPlayer.OnLoadScene();
-        playerManager.OnLoadScene();
+        playerManager.OnLoadScene(currentRoom);
         cinemachineShake.OnLoadScene();
         sceneChangeManager.OnLoadScene();
-        musicPlayer.OnLoadScene();
+        musicPlayer.OnLoadScene(currentRoom);
     }
 }

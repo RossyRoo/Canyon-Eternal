@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SFX Banks/Character SFX")]
-public class CharacterSFXBank : SFXBank
+[CreateAssetMenu(menuName = "Audio Banks/Character SFX")]
+public class CharacterSFXBank : AudioBank
 {
     [Header("Default Sounds")]
     public AudioClip defaultAttack;

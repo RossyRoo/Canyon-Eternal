@@ -15,8 +15,6 @@ public class PlayerManager : CharacterManager
     public InteractableUI interactableUI;
     public LayerMask interactableLayers;
 
-    public Room currentRoom;
-
     //Game Components
     public bool dashFlag;
 
@@ -74,14 +72,12 @@ public class PlayerManager : CharacterManager
         SceneChangeManager.Instance.LoadOutsideLastFort();
     }
 
-    public void OnLoadScene()
+    public void OnLoadScene(RoomData currentRoom)
     {
-        currentRoom = FindObjectOfType<Room>();
-
         if (nextSpawnPoint == Vector3.zero)
         {
             Debug.Log("NO SPAWN POINT FOUND - SPAWNING AT DEFAULT");
-            nextSpawnPoint = currentRoom.roomData.spawnPoints[0];
+            nextSpawnPoint = currentRoom.spawnPoints[0];
         }
         transform.position = nextSpawnPoint;
         Debug.Log("Spawning player at " + nextSpawnPoint);

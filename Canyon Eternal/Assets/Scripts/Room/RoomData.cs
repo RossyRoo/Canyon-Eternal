@@ -8,4 +8,5 @@ public class RoomData : ScriptableObject
     [Header("SPAWN POINTS")]
     public Vector3[] spawnPoints;
 
+    public SceneMusicBank sceneMusicBank;
 }

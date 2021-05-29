@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneMusicBank : MonoBehaviour
+[CreateAssetMenu(menuName = "Audio Banks / Scene Music")]
+public class SceneMusicBank : ScriptableObject
 {
     public AudioClip autoMusic;
+    public bool isInterruptingTrack = true;
 }

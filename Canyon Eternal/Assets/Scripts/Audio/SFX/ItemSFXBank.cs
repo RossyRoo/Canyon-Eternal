@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "SFX Banks/Item SFX")]
-public class ItemSFXBank : SFXBank
+[CreateAssetMenu(menuName = "Audio Banks/Item SFX")]
+public class ItemSFXBank : AudioBank
 {
     public AudioClip useItem;
 }

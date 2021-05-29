@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXBank : ScriptableObject
+public class AudioBank : ScriptableObject
 {
 
 }

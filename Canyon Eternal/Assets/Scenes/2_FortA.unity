@@ -147,10 +147,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 456007360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1309fc014c28644d0a72b0b44099e9d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 52a1b75bab5944b05ac765170dcec229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomData: {fileID: 11400000, guid: 1364e008b5669491d9c8507e218f461f, type: 2}
+  thisRoom: {fileID: 11400000, guid: 85fbf132030df4675a5b8085349a065b, type: 2}
 --- !u!4 &456007362
 Transform:
   m_ObjectHideFlags: 0
@@ -431,50 +431,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0190176, y: 1.0289154}
   m_EdgeRadius: 0
---- !u!1 &2012073680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2012073682}
-  - component: {fileID: 2012073681}
-  m_Layer: 0
-  m_Name: Music Cues
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2012073681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012073680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cabd91f1b0214bce83d845bb4708968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoMusic: {fileID: 8300000, guid: d0f6984f1931a42f8b436e6be7cd47ea, type: 3}
---- !u!4 &2012073682
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012073680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2146122702
 PrefabInstance:
   m_ObjectHideFlags: 0
