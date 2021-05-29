@@ -15,8 +15,12 @@ public class PlayerManager : CharacterManager
     public InteractableUI interactableUI;
     public LayerMask interactableLayers;
 
+    public Room currentRoom;
+
     //Game Components
     public bool dashFlag;
+
+    public Vector3 nextSpawnPoint;
 
     private void Awake()
     {
@@ -72,9 +76,16 @@ public class PlayerManager : CharacterManager
 
     public void OnLoadScene()
     {
-        transform.position = GameObject.FindGameObjectWithTag("Entrance").transform.position;
+        currentRoom = FindObjectOfType<Room>();
 
-        
+        if (nextSpawnPoint == Vector3.zero)
+        {
+            Debug.Log("NO SPAWN POINT FOUND - SPAWNING AT DEFAULT");
+            nextSpawnPoint = currentRoom.roomData.spawnPoints[0];
+        }
+        transform.position = nextSpawnPoint;
+        Debug.Log("Spawning player at " + nextSpawnPoint);
+
 
         if(myWall != null)
         {
