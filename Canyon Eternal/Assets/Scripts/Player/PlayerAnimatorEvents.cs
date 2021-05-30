@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerAnimatorEvents : MonoBehaviour
 {
-    PlayerManager playerManager;
+    CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
+
+    public GameObject footstepVFXPrefab;
+    public Transform trailPosition;
+
 
     private void Awake()
     {
-        playerManager = GetComponentInParent<PlayerManager>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
+        characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
     }
 
     public void DespawnMelee()
@@ -31,5 +35,36 @@ public class PlayerAnimatorEvents : MonoBehaviour
     public void PlayWeaponSwingSFX()
     {
         SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
+    }
+
+    public void Footstep()
+    {
+        ObjectPool objectPool = FindObjectOfType<ObjectPool>();
+        int instantiatedFootstepsCount = 0;
+        ParticleSystem []instantiatedFootsteps = objectPool.GetComponentsInChildren<ParticleSystem>();
+
+        for (int i = 0; i < instantiatedFootsteps.Length; i++)
+        {
+            if(instantiatedFootsteps[i].gameObject.name == "footstep_vfx")
+            {
+                instantiatedFootstepsCount++;
+            }
+        }
+
+        if(instantiatedFootstepsCount<=1)
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.rockFootsteps
+                [Random.Range(0, characterSFXBank.rockFootsteps.Length)]);
+
+            GameObject footstepVFXGO = Instantiate(footstepVFXPrefab, trailPosition.position, Quaternion.identity);
+            footstepVFXGO.transform.parent = objectPool.transform;
+            footstepVFXGO.name = "footstep_vfx";
+            Destroy(footstepVFXGO, 0.4f);
+        }
+        else
+        {
+            return;
+        }
+
     }
 }

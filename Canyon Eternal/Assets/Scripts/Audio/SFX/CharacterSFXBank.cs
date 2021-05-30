@@ -9,6 +9,7 @@ public class CharacterSFXBank : AudioBank
     public AudioClip defaultAttack;
 
     [Header("Movement")]
+    public AudioClip [] rockFootsteps;
     public AudioClip dash;
 
     [Header("Taking Damage")]

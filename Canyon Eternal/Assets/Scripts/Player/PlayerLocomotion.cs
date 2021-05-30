@@ -43,7 +43,7 @@ public class PlayerLocomotion : MonoBehaviour
         lastMoveDirection.x = Mathf.RoundToInt(inputManager.lastMoveInput.x);
         lastMoveDirection.y = Mathf.RoundToInt(inputManager.lastMoveInput.y);
 
-        rb.MovePosition(rb.position + moveDirection * playerStats.moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveDirection.normalized * playerStats.moveSpeed * Time.fixedDeltaTime);
 
 
         if (moveDirection.x == 0 && moveDirection.y == 0)

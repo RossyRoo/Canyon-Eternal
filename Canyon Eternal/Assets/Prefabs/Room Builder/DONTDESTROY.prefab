@@ -47,7 +47,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 1882935357957997551}
   - component: {fileID: 1867069723}
   m_Layer: 0
-  m_Name: PERSISTENT
+  m_Name: DONTDESTROY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -698,7 +698,7 @@ PrefabInstance:
     - target: {fileID: 4530792898907104593, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1e-45
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4530792898907104593, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}
@@ -741,7 +741,7 @@ PrefabInstance:
     - target: {fileID: 8652666736338822578, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8652666736338822578, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}
