@@ -11,8 +11,6 @@ public class EnemyManager : CharacterManager
     EnemyAnimatorHandler enemyAnimatorHandler;
     Animator animator;
     [HideInInspector]
-    public Rigidbody2D rb;
-    [HideInInspector]
     public Seeker seeker;
 
     public EnemyStateMachine currentState;
@@ -20,11 +18,12 @@ public class EnemyManager : CharacterManager
 
     [Header("Enemy Action Settings")]
     public float maximumAttackRange = 1.5f;
+    public float blindDistance = 50f;
     public float currentRecoveryTime;
     public float distanceFromTarget;
 
-
-    public Vector2 moveDirection;
+    public Vector2 movementDirection;
+    public Vector2 lastFacingDirection = Vector2.down;
 
     private void Awake()
     {
@@ -48,6 +47,9 @@ public class EnemyManager : CharacterManager
         HandleStateMachine();
         isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
         animator.SetBool("isDead", isDead);
+
+        GetFacingDirection();
+        //UPDATE FACING DIRECTION
     }
 
 
@@ -88,38 +90,37 @@ public class EnemyManager : CharacterManager
     private void HandleRotation()
     {
         Vector2 rawMoveDirection;
-        PursueState pursueState = GetComponentInChildren<PursueState>();
 
-        rawMoveDirection.x = Mathf.RoundToInt(pursueState.moveForce.x);
-        rawMoveDirection.y = Mathf.RoundToInt(pursueState.moveForce.y);
+        rawMoveDirection.x = Mathf.RoundToInt(rb.velocity.x);
+        rawMoveDirection.y = Mathf.RoundToInt(rb.velocity.y);
 
         if (rawMoveDirection.x == 0)
         {
-            moveDirection.x = 0;
+            movementDirection.x = 0;
         }
         else if (rawMoveDirection.x > 0)
         {
-            moveDirection.x = 1;
+            movementDirection.x = 1;
         }
         else
         {
-            moveDirection.x = -1;
+            movementDirection.x = -1;
         }
 
         if (rawMoveDirection.y == 0)
         {
-            moveDirection.y = 0;
+            movementDirection.y = 0;
         }
         else if (rawMoveDirection.y > 0)
         {
-            moveDirection.y = 1;
+            movementDirection.y = 1;
         }
         else
         {
-            moveDirection.y = -1;
+            movementDirection.y = -1;
         }
 
-        if(moveDirection.x == 0 && moveDirection.y ==0)
+        if(movementDirection.x == 0 && movementDirection.y ==0)
         {
             isMoving = false;
         }
@@ -128,9 +129,23 @@ public class EnemyManager : CharacterManager
             isMoving = true;
         }
 
-        enemyAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, isMoving);
+        enemyAnimatorHandler.UpdateMoveAnimationValues(movementDirection.x, movementDirection.y, isMoving);
     }
 
+    private void GetFacingDirection()
+    {
+        if (movementDirection != Vector2.zero)
+        {
+            //limit to one direction
+            facingDirection = movementDirection;
 
+            lastFacingDirection = movementDirection;
+        }
+        else
+        {
+            facingDirection = lastFacingDirection;
+        }
+
+    }
 
 }

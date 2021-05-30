@@ -10,13 +10,13 @@ public class EnemyStats : CharacterStats
     [Header("AI Settings")]
     public float rotationSpeed = 25;
     public float detectionRadius = 20;
-    public float maximumDetectionAngle = 50;
-    public float minimumDetectionAngle = -50;
+
 
     private void Awake()
     {
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
+        
     }
 
     private void Start()

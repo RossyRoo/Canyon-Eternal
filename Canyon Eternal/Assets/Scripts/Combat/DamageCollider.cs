@@ -7,8 +7,18 @@ public class DamageCollider : MonoBehaviour
     [Tooltip("Assign if this damage collider belongs to a melee weapon")]
     public Card cardData;
     Collider2D damageCollider;
+    CharacterManager characterManager;
+
 
     int damage = 1;
+
+    [Header("Knockback Settings")]
+    public float knockbackForce = 10f;
+    public float knockbackTime;
+    private float startKnockbackTime = 0.1f;
+    public Vector2 knockbackDirection;
+    public bool knockbackFlag;
+    public CharacterManager knockbackTarget;
 
     public bool dealsConstantDamage;
     public bool targetIsWithinRange;
@@ -29,7 +39,16 @@ public class DamageCollider : MonoBehaviour
         if (cardData != null)
         {
             damage = cardData.damage;
+            knockbackForce = cardData.cardKnockback;
         }
+
+        knockbackTime = startKnockbackTime;
+    }
+
+
+    private void Update()
+    {
+        HandleKnockback();
     }
 
     public void EnableDamageCollider()
@@ -44,11 +63,21 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
+        knockbackTarget = characterCollision;
 
-        if (collision.gameObject.GetComponent<CharacterManager>() != null)
+        CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
+
+        knockbackDirection = myCharacterManager.facingDirection;
+        Debug.Log("KB Force: " + knockbackForce);
+        Debug.Log("KB targ: " + knockbackTarget);
+
+
+        if (characterCollision != null)
         {
             targetIsWithinRange = true;
+            knockbackFlag = true;
+            Invoke("ClearKnockbackTarget", 0.5f);
             StartCoroutine(DealDamage(collision.gameObject));
         }
     }
@@ -88,5 +117,33 @@ public class DamageCollider : MonoBehaviour
 
         yield return new WaitForFixedUpdate();
         StartCoroutine(DealDamage(collision));
+    }
+
+
+    private void HandleKnockback()
+    {
+        if (knockbackFlag)
+        {
+            if (knockbackTime <= 0)
+            {
+                knockbackTarget = null;
+                knockbackTime = startKnockbackTime;
+                knockbackFlag = false;
+            }
+            else
+            {
+                knockbackTime -= Time.deltaTime;
+
+                knockbackTarget.rb.AddForce(knockbackDirection * knockbackForce);
+                Debug.Log("Knockback Force: " + knockbackDirection * knockbackForce);
+            }
+        }
+
+    }
+
+    private void ClearKnockbackTarget()
+    {
+        //knockbackTarget = null;
+        //knockbackFlag = false;
     }
 }

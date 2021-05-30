@@ -8,10 +8,14 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector]
     public TrackingWall myWall;
 
+    [HideInInspector]
+    public Rigidbody2D rb;
+
     public bool isInteracting;
     public bool isInvulnerable;
     public bool isDead;
     public bool isMoving;
+    public Vector2 facingDirection;
 
     public bool isConversing; //Used when conversation is happening on this character
     public bool isPerformingAction; //Character actions like performing attacks, healing, or evading

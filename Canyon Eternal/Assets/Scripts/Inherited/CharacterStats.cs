@@ -22,6 +22,7 @@ public class CharacterStats : MonoBehaviour
     public float hurtInvulnerabilityTime = 0.8f;
 
 
+
     [Header("Loot Drops")]
     public int fragmentDrop; //THIS SHOULD GO IN CHARACTER INVENTORY
 

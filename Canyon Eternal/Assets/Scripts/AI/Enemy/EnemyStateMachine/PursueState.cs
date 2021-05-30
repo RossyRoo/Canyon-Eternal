@@ -5,20 +5,22 @@ using Pathfinding;
 
 public class PursueState : EnemyStateMachine
 {
+
     [Header("STATE TRANSITIONS")]
     public ScoutState scoutState;
     public CombatState combatState;
     public DeathState deathState;
 
     public float nextWaypointDistance = 3f;
-    public float blindDistance = 25f;
 
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
     bool pathfindingInitiated = false;
     [HideInInspector]
+
     public Vector2 moveForce;
+
 
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
@@ -38,7 +40,7 @@ public class PursueState : EnemyStateMachine
 
         enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
 
-        if (enemyManager.distanceFromTarget > blindDistance)
+        if (enemyManager.distanceFromTarget > enemyManager.blindDistance)
         {
             enemyManager.currentTarget = null;
             return scoutState;
@@ -75,6 +77,7 @@ public class PursueState : EnemyStateMachine
 
     private void MoveTowardsTarget(EnemyManager enemyManager)
     {
+        Debug.Log("Move");
         if (path == null)
             return;
 

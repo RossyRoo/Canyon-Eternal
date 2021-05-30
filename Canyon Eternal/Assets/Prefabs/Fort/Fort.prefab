@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8769371310710043293}
   - component: {fileID: 8769371310710043294}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,6 +71,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNum: 999
+  doorNum: 0
+  nextRoom: {fileID: 0}
+  nextRoomSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &8769371310856522097
 GameObject:
   m_ObjectHideFlags: 0

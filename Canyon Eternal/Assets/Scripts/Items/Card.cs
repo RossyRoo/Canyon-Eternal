@@ -9,4 +9,5 @@ public class Card : Item
 
     public int staminaCost = 1;
     public int damage;
+    public float cardKnockback;
 }

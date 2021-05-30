@@ -45,7 +45,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02779746, y: -0.11119175}
+  m_Offset: {x: 0.007969856, y: 0.057344437}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,7 +56,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.0585217, y: 3.27944}
+  m_Size: {x: 6.0499134, y: 4.64756}
   m_EdgeRadius: 0
 --- !u!114 &1134303067
 MonoBehaviour:
@@ -71,6 +71,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardData: {fileID: 0}
+  knockbackForce: 500
+  knockbackTime: 0
+  knockbackDirection: {x: 0, y: 0}
+  knockbackFlag: 0
+  knockbackTarget: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
@@ -234,7 +239,6 @@ MonoBehaviour:
   combatState: {fileID: 3538717597360276473}
   deathState: {fileID: 3538717597237797453}
   nextWaypointDistance: 3
-  blindDistance: 50
   moveForce: {x: 0, y: 0}
 --- !u!1 &3538717596244281528
 GameObject:
@@ -523,7 +527,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -546,22 +550,25 @@ MonoBehaviour:
   myWallPrefab: {fileID: 5838069692043969820, guid: dd653c5d2327c4c20a53609f190220d3,
     type: 3}
   myWall: {fileID: 0}
+  rb: {fileID: 0}
   isInteracting: 0
   isInvulnerable: 0
   isDead: 0
   isMoving: 0
+  facingDirection: {x: 0, y: 0}
   isConversing: 0
   isPerformingAction: 0
   deathTimeBuffer: 0.5
   enemyStats: {fileID: 0}
-  rb: {fileID: 0}
   seeker: {fileID: 0}
   currentState: {fileID: 3538717596244281534}
   currentTarget: {fileID: 0}
-  maximumAttackRange: 10
+  maximumAttackRange: 25
+  blindDistance: 50
   currentRecoveryTime: 0
   distanceFromTarget: 0
-  moveDirection: {x: 0, y: 0}
+  movementDirection: {x: 0, y: 0}
+  lastFacingDirection: {x: 0, y: -1}
 --- !u!114 &4170450973767946579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d05b42790c4d480ba301dac36e0d04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 600
+  moveSpeed: 1400
   characterSFXBank: {fileID: 11400000, guid: 4ee9bdd09fd5d4640bb2a7e84949534b, type: 2}
   maxHealth: 20
   currentHealth: 0
@@ -585,8 +592,6 @@ MonoBehaviour:
   fragmentDrop: 10
   rotationSpeed: 25
   detectionRadius: 20
-  maximumDetectionAngle: 50
-  minimumDetectionAngle: -50
 --- !u!114 &3451020769818308922
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -77,8 +77,6 @@ public class AttackState : EnemyStateMachine
         {
             EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-            Debug.Log(distanceFromTarget);
-
             if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
             {

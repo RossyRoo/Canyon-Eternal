@@ -26,6 +26,7 @@ public class PlayerManager : CharacterManager
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStats = GetComponent<PlayerStats>();
         animator = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
 
@@ -36,6 +37,8 @@ public class PlayerManager : CharacterManager
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
         CheckForInteractable();
+
+
     }
 
     private void FixedUpdate()
@@ -96,8 +99,8 @@ public class PlayerManager : CharacterManager
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
             playerLocomotion.lastMoveDirection, 10f, interactableLayers);
 
-        Debug.DrawRay(transform.position,
-            playerLocomotion.lastMoveDirection * 10f, Color.red);
+        /*Debug.DrawRay(transform.position,
+            playerLocomotion.lastMoveDirection * 10f, Color.red);*/
 
             if (hit)
             {
