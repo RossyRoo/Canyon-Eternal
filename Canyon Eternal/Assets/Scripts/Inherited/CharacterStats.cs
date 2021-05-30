@@ -11,14 +11,10 @@ public class CharacterStats : MonoBehaviour
     [Header("Data")]
     public CharacterSFXBank characterSFXBank;
 
-    [Header("Health and Stamina")]
+    [Header("Health")]
     public int maxHealth;
     public int currentHealth;
     public int healAmount;
-    public float maxStamina;
-    [HideInInspector]
-    public float currentStamina;
-
     public float hurtInvulnerabilityTime = 0.8f;
 
 

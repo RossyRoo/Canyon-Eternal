@@ -11,6 +11,12 @@ public class PlayerStats : CharacterStats
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
 
+    public ParticleSystem healVFX;
+
+    [Header("Stamina")]
+    public float maxStamina;
+    [HideInInspector]
+    public float currentStamina;
     public float staminaRecoverySpeed = 1.25f;
     [HideInInspector] public float staminaRecoveryTimer = 0;
     [HideInInspector] public float staminaRecoveryBuffer = 0.5f;
@@ -92,6 +98,9 @@ public class PlayerStats : CharacterStats
         if(!isFullHeal)
         {
             SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
+            
+            healVFX.Play();
+
             currentLunchBoxCapacity -= 1;
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
         }
