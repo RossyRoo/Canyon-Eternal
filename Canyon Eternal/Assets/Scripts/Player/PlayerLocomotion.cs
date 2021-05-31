@@ -194,7 +194,7 @@ public class PlayerLocomotion : MonoBehaviour
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
         GameObject dashParticleVFXGO = Instantiate(playerParticleHandler.dashVFX, dashFXTransform.position, rotation);
         dashParticleVFXGO.transform.parent = null;
-        Destroy(dashParticleVFXGO, dashParticleVFXGO.GetComponent<ParticleSystem>().duration);
+        Destroy(dashParticleVFXGO, dashParticleVFXGO.GetComponent<ParticleSystem>().main.duration);
         dashFXTriggered = true;
     }
 

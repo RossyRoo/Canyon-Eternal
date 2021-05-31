@@ -2,53 +2,134 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyHealthBarUI : MonoBehaviour
 {
-    Slider slider;
-    float timeUntilBarIsHidden = 0f;
+    public Slider healthSlider;
+    public Slider damageSlider;
+    public TextMeshProUGUI damageText;
+    public GameObject healthFill;
+    GenericAnimatorHandler damageTextAnimatorHandler;
+
+    public bool healthIsDecreasing = false;
+
+    public float timeUntilHealthBarDrains = 0.4f;
+    public float healthDecreaseRate = 20;
+    float timeUntilHealthBarIsHidden = 0f;
+    float timeUntilDamageTextIsHidden = 0f;
+    float timeUntilDestroyHealthBar = 0.5f;
+
+    public int currentHealth;
 
     private void Awake()
     {
-        slider = GetComponentInChildren<Slider>();
-    }
-
-    public void SetHealth(int health)
-    {
-        slider.value = health;
-        timeUntilBarIsHidden = 3f;
+        damageTextAnimatorHandler = damageText.GetComponent<GenericAnimatorHandler>();
     }
 
     public void SetMaxHealth(int maxHealth)
     {
-        slider.maxValue = maxHealth;
-        slider.value = maxHealth;
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
+        damageSlider.maxValue = maxHealth;
+        damageSlider.value = maxHealth;
+        currentHealth = maxHealth;
     }
+
+    private void DecreaseHealthOverTime()
+    {
+        if(healthIsDecreasing)
+        {
+            damageSlider.value -= Time.deltaTime * healthDecreaseRate;
+
+            if (damageSlider.value <= healthSlider.value)
+            {
+                healthIsDecreasing = false;
+                damageSlider.value = healthSlider.value;
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
+
 
     private void Update()
     {
-        if(slider != null)
+        if(healthSlider != null)
         {
-            timeUntilBarIsHidden = timeUntilBarIsHidden - Time.deltaTime;
+            timeUntilHealthBarIsHidden = timeUntilHealthBarIsHidden - Time.deltaTime;
+            timeUntilDamageTextIsHidden = timeUntilDamageTextIsHidden - Time.deltaTime;
 
-            if (timeUntilBarIsHidden <= 0)
-            {
-                timeUntilBarIsHidden = 0;
-                slider.gameObject.SetActive(false);
-            }
-            else
-            {
-                if (!slider.gameObject.activeInHierarchy)
-                {
-                    slider.gameObject.SetActive(true);
-                }
-            }
+            DisplayHealthBar();
+            DecreaseHealthOverTime();
 
-            if (slider.value <= 0)
+            DisplayDamageText();
+
+            if (damageSlider.value <= 0)
             {
-                Destroy(slider.gameObject);
+                DestroyCanvasCoroutine();
             }
         }
 
+    }
+
+    private void DisplayHealthBar()
+    {
+        if (timeUntilHealthBarIsHidden <= 0)
+        {
+            timeUntilHealthBarIsHidden = 0;
+            healthSlider.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (!healthSlider.gameObject.activeInHierarchy)
+            {
+                healthSlider.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void DisplayDamageText()
+    {
+        if (timeUntilDamageTextIsHidden <= 0)
+        {
+            timeUntilDamageTextIsHidden = 0;
+            damageText.gameObject.SetActive(false);
+        }
+        else
+        {
+            if (!damageText.gameObject.activeInHierarchy)
+            {
+                damageText.gameObject.SetActive(true);
+                damageTextAnimatorHandler.PlayTargetAnimation("TextShake");
+            }
+        }
+    }
+
+    public IEnumerator SetHealthCoroutine(int health, int damage)
+    {
+        damageText.text = damage.ToString();
+        timeUntilHealthBarIsHidden = 3f;
+        timeUntilDamageTextIsHidden = 0.8f;
+
+        damageSlider.value = currentHealth;
+        currentHealth = health;
+        healthSlider.value = currentHealth;
+
+        yield return new WaitForSeconds(timeUntilHealthBarDrains);
+
+        healthIsDecreasing = true;
+    }
+
+    private IEnumerator DestroyCanvasCoroutine()
+    {
+        Destroy(healthFill);
+
+        yield return new WaitForSeconds(timeUntilDestroyHealthBar);
+
+        Destroy(healthSlider.gameObject);
+        Destroy(damageText.gameObject);
     }
 }

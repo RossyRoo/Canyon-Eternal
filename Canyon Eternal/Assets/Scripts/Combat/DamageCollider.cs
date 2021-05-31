@@ -7,8 +7,6 @@ public class DamageCollider : MonoBehaviour
     [Tooltip("Assign if this damage collider belongs to a melee weapon")]
     public Card cardData;
     Collider2D damageCollider;
-    CharacterManager characterManager;
-
 
     int damage = 1;
 
@@ -38,7 +36,6 @@ public class DamageCollider : MonoBehaviour
 
         if (cardData != null)
         {
-            damage = cardData.damage;
             knockbackForce = cardData.cardKnockback;
         }
 
@@ -49,6 +46,7 @@ public class DamageCollider : MonoBehaviour
     private void Update()
     {
         HandleKnockback();
+
     }
 
     public void EnableDamageCollider()
@@ -67,15 +65,12 @@ public class DamageCollider : MonoBehaviour
         knockbackTarget = characterCollision;
 
         CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
-
         knockbackDirection = myCharacterManager.facingDirection;
 
 
         if (characterCollision != null)
         {
             targetIsWithinRange = true;
-            knockbackFlag = true;
-            Invoke("ClearKnockbackTarget", 0.5f);
             StartCoroutine(DealDamage(collision.gameObject));
         }
     }
@@ -91,6 +86,8 @@ public class DamageCollider : MonoBehaviour
         {
             yield break;
         }
+
+        RollForCriticalHit();
 
         if (collision.tag == "Player")
         {
@@ -113,6 +110,9 @@ public class DamageCollider : MonoBehaviour
             }
         }
 
+        knockbackTime = startKnockbackTime;
+        knockbackFlag = true;
+
         yield return new WaitForFixedUpdate();
         StartCoroutine(DealDamage(collision));
     }
@@ -124,9 +124,9 @@ public class DamageCollider : MonoBehaviour
         {
             if (knockbackTime <= 0)
             {
-                knockbackTarget = null;
-                knockbackTime = startKnockbackTime;
                 knockbackFlag = false;
+                knockbackTime = startKnockbackTime;
+                knockbackTarget = null;
             }
             else
             {
@@ -138,9 +138,21 @@ public class DamageCollider : MonoBehaviour
 
     }
 
-    private void ClearKnockbackTarget()
+    private void RollForCriticalHit()
     {
-        //knockbackTarget = null;
-        //knockbackFlag = false;
+
+        if (cardData != null)
+        {
+            float randValue = Random.value;
+
+            if (randValue < 1 - cardData.criticalChance)
+            {
+                damage = Random.Range(cardData.minDamage, cardData.maxDamage);
+            }
+            else
+            {
+                damage = cardData.criticalDamage;
+            }
+        }
     }
 }

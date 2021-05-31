@@ -34,7 +34,7 @@ public class EnemyStats : CharacterStats
         EnableInvulnerability(hurtInvulnerabilityTime);
         currentHealth -= damageHealth;
 
-        enemyHealthBarUI.SetHealth(currentHealth);
+        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(currentHealth, damageHealth));
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 

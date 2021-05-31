@@ -17,6 +17,11 @@ public class PlayerMeleeHandler : MonoBehaviour
     Transform parrentOverride;
     public DamageCollider meleeDamageCollider;
 
+    [Header("Combo Handling")]
+    public int comboNumber = 0;
+    public bool canContinueCombo = false;
+    public bool comboFlag;
+
 
     private void Awake()
     {
@@ -98,11 +103,16 @@ public class PlayerMeleeHandler : MonoBehaviour
         if (playerStats.currentStamina < activeMeleeCard.staminaCost)
             return;
 
-        playerStats.LoseStamina(activeMeleeCard.staminaCost);
-        currentMeleeModel.SetActive(true);
+        if (comboNumber==0)
+        {
+            playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
+            playerStats.LoseStamina(activeMeleeCard.staminaCost);
+            currentMeleeModel.SetActive(true);
+        }
+    }
 
-        playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
+    public void SetDamage()
+    {
 
-        //Play VFX
     }
 }

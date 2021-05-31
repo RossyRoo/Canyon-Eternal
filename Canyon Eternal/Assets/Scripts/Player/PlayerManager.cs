@@ -18,6 +18,7 @@ public class PlayerManager : CharacterManager
     //Game Components
     public bool dashFlag;
 
+
     public Vector3 nextSpawnPoint;
 
     private void Awake()
@@ -79,11 +80,9 @@ public class PlayerManager : CharacterManager
     {
         if (nextSpawnPoint == Vector3.zero)
         {
-            Debug.Log("NO SPAWN POINT FOUND - SPAWNING AT DEFAULT");
             nextSpawnPoint = currentRoom.spawnPoints[0];
         }
         transform.position = nextSpawnPoint;
-        Debug.Log("Spawning player at " + nextSpawnPoint);
 
 
         if(myWall != null)

@@ -881,6 +881,9 @@ MonoBehaviour:
   slashTransform: {fileID: 4970626563322260538}
   strikeTransform: {fileID: 131878944727133007}
   meleeDamageCollider: {fileID: 0}
+  comboNumber: 0
+  canContinueCombo: 0
+  comboFlag: 0
 --- !u!114 &4708498828894331879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,7 +1067,7 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000078711295
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}

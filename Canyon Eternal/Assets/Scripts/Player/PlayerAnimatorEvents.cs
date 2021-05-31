@@ -7,6 +7,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerParticleHandler playerParticleHandler;
+    Animator animator;
 
 
     private void Awake()
@@ -14,11 +15,17 @@ public class PlayerAnimatorEvents : MonoBehaviour
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
+        animator = GetComponent<Animator>();
     }
+
+    #region Handle Melee Animation Events
 
     public void DespawnMelee()
     {
-        playerMeleeHandler.currentMeleeModel.SetActive(false);
+        if(playerMeleeHandler.comboNumber==0)
+        {
+            playerMeleeHandler.currentMeleeModel.SetActive(false);
+        }
     }
 
     public void OpenDamageCollider()
@@ -35,6 +42,36 @@ public class PlayerAnimatorEvents : MonoBehaviour
     {
         SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
     }
+
+    public void EnableComboWindow()
+    {
+        playerMeleeHandler.canContinueCombo = true;
+    }
+
+    public void DisableComboWindow()
+    {
+        playerMeleeHandler.canContinueCombo = false;
+
+        if(playerMeleeHandler.comboNumber >= 2)
+        {
+            playerMeleeHandler.comboNumber = 0;
+            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
+            playerMeleeHandler.comboFlag = false;
+        }
+
+        if (playerMeleeHandler.comboFlag)
+        {
+            playerMeleeHandler.comboNumber++;
+            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
+            playerMeleeHandler.comboFlag = false;
+        }
+        else
+        {
+            playerMeleeHandler.comboNumber = 0;
+            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
+        }
+    }
+    #endregion
 
     public void Footstep()
     {
@@ -58,7 +95,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
             GameObject footstepVFXGO = Instantiate(playerParticleHandler.footstepVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
             footstepVFXGO.transform.parent = objectPool.transform;
             footstepVFXGO.name = "footstep_vfx";
-            Destroy(footstepVFXGO, footstepVFXGO.GetComponent<ParticleSystem>().duration);
+            Destroy(footstepVFXGO, footstepVFXGO.GetComponent<ParticleSystem>().main.duration);
         }
         else
         {

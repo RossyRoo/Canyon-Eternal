@@ -15,7 +15,7 @@ public class PursueState : EnemyStateMachine
 
     Path path;
     int currentWaypoint = 0;
-    bool reachedEndOfPath = false;
+    //bool reachedEndOfPath = false;
     bool pathfindingInitiated = false;
     [HideInInspector]
 
@@ -77,11 +77,10 @@ public class PursueState : EnemyStateMachine
 
     private void MoveTowardsTarget(EnemyManager enemyManager)
     {
-        Debug.Log("Move");
         if (path == null)
             return;
 
-        if(currentWaypoint >= path.vectorPath.Count)
+        /*if(currentWaypoint >= path.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
@@ -89,7 +88,7 @@ public class PursueState : EnemyStateMachine
         else
         {
             reachedEndOfPath = false;
-        }
+        }*/
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
         moveForce = direction * enemyManager.enemyStats.moveSpeed * Time.deltaTime;

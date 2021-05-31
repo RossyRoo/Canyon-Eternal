@@ -72,6 +72,11 @@ public class InputManager : MonoBehaviour
     {
         if(melee_Input)
         {
+            if(playerMeleeHandler.canContinueCombo)
+            {
+                playerMeleeHandler.comboFlag = true;
+            }
+
             if (playerManager.isInteracting)
                 return;
 

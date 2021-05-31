@@ -17,12 +17,15 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 1
-  damage: 5
+  minDamage: 5
+  maxDamage: 8
+  criticalChance: 0.1
+  criticalDamage: 14
   cardKnockback: 100
   isThrust: 1
   isSlash: 0
   isStrike: 0
   modelPrefab: {fileID: 8638964557053719766, guid: c680c1385ef0c453ab99fab41d178040,
     type: 3}
-  attackAnimation: Thrust
+  attackAnimation: Thrust_00
   meleeWeaponSFXBank: {fileID: 11400000, guid: 719c6c64bccb449858da048fa313cc9d, type: 2}
