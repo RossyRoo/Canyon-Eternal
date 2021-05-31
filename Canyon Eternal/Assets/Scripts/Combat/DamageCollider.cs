@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    [Tooltip("Assign if this damage collider belongs to a melee weapon")]
     public Card cardData;
     Collider2D damageCollider;
 
@@ -42,11 +41,18 @@ public class DamageCollider : MonoBehaviour
         knockbackTime = startKnockbackTime;
     }
 
+    private void OnEnable()
+    {
+        CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
+        if (myCharacterManager != null)
+        {
+            knockbackDirection = myCharacterManager.movingDirection;
+        }
+    }
 
     private void Update()
     {
         HandleKnockback();
-
     }
 
     public void EnableDamageCollider()
@@ -63,10 +69,6 @@ public class DamageCollider : MonoBehaviour
     {
         CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
         knockbackTarget = characterCollision;
-
-        CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
-        knockbackDirection = myCharacterManager.facingDirection;
-
 
         if (characterCollision != null)
         {
@@ -110,6 +112,12 @@ public class DamageCollider : MonoBehaviour
             }
         }
 
+        if (cardData == null)
+        {
+            CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
+            knockbackDirection = myCharacterManager.movingDirection;
+        }
+
         knockbackTime = startKnockbackTime;
         knockbackFlag = true;
 
@@ -147,7 +155,7 @@ public class DamageCollider : MonoBehaviour
 
             if (randValue < 1 - cardData.criticalChance)
             {
-                damage = Random.Range(cardData.minDamage, cardData.maxDamage);
+                damage = Random.Range(cardData.currentMinDamage, cardData.currentMaxDamage);
             }
             else
             {

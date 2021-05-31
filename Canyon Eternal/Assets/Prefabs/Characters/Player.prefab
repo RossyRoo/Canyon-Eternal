@@ -415,7 +415,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682047785}
-  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -784,6 +784,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   isInteracting: 0
   isInvulnerable: 0
+  isAttacking: 0
   isDead: 0
   isMoving: 0
   facingDirection: {x: 0, y: 0}
@@ -883,7 +884,9 @@ MonoBehaviour:
   meleeDamageCollider: {fileID: 0}
   comboNumber: 0
   canContinueCombo: 0
-  comboFlag: 0
+  comboWasHit: 0
+  comboWasMissed: 0
+  attackMomentumActivated: 0
 --- !u!114 &4708498828894331879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,6 +1005,8 @@ MonoBehaviour:
   footstepVFX: {fileID: 3801012901521723010, guid: a449f8b5790ec40418311efa6e29aafd,
     type: 3}
   dashVFX: {fileID: 3801012901521723010, guid: 9af8a132a18614e8aa7b44996539c87a, type: 3}
+  comboActivatedVFX: {fileID: 9209632101132400203, guid: 6698ca4765697467eb72ca0552a0f644,
+    type: 3}
 --- !u!1 &8816163690467745075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,17 +1067,17 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 4.747696e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.00000007869993
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 3.7364332e-22
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}

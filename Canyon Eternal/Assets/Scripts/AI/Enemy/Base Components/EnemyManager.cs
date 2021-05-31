@@ -49,7 +49,6 @@ public class EnemyManager : CharacterManager
         animator.SetBool("isDead", isDead);
 
         GetFacingDirection();
-        //UPDATE FACING DIRECTION
     }
 
 
@@ -136,14 +135,13 @@ public class EnemyManager : CharacterManager
     {
         if (movementDirection != Vector2.zero)
         {
-            //limit to one direction
-            facingDirection = movementDirection;
+            base.movingDirection = movementDirection;
 
             lastFacingDirection = movementDirection;
         }
         else
         {
-            facingDirection = lastFacingDirection;
+            base.movingDirection = lastFacingDirection;
         }
 
     }

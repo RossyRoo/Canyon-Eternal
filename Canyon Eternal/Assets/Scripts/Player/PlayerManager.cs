@@ -41,14 +41,12 @@ public class PlayerManager : CharacterManager
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
         CheckForInteractable();
-
-
     }
 
     private void FixedUpdate()
     {
         playerLocomotion.HandleMovement();
-        playerMeleeHandler.AddAttackMomentum();
+        playerMeleeHandler.HandleCombos();
 
         if(dashFlag)
         {
@@ -135,5 +133,6 @@ public class PlayerManager : CharacterManager
             }
 
     }
+
 
 }

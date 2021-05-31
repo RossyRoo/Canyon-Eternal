@@ -20,14 +20,11 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     [Header("Combo Handling")]
     public int comboNumber = 0;
-    public bool canContinueCombo = false;
+    public bool canContinueCombo;
     public bool comboWasHit;
-    public bool comboWasMissed = false;
-
-
-    [Header("Attack Momentum")]
-    public float attackMomentum;
+    public bool comboWasMissed;
     public bool attackMomentumActivated;
+
 
 
     private void Awake()
@@ -36,13 +33,11 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerStats = GetComponent<PlayerStats>();
         animator = GetComponentInChildren<Animator>();
-    }
 
-    private void Start()
-    {
         SetParentOverride();
         LoadMelee();
     }
+
 
     public void SetParentOverride()
     {
@@ -101,6 +96,10 @@ public class PlayerMeleeHandler : MonoBehaviour
             meleeModelPrefab.transform.localRotation = Quaternion.identity;
             meleeModelPrefab.transform.localScale = Vector3.one;
         }
+
+        activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage;
+        activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
+
         currentMeleeModel = meleeModelPrefab;
         meleeDamageCollider = currentMeleeModel.GetComponentInChildren<DamageCollider>();
         meleeModelPrefab.SetActive(false);
@@ -119,22 +118,51 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerStats.LoseStamina(activeMeleeCard.staminaCost);
     }
 
-    public void AddAttackMomentum()
+    public void HandleCombos()
+    {
+        AdjustAttackMomentum();
+    }
+
+    public void AddComboDamage()
+    {
+        if(comboNumber == 0)
+        {
+            activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage;
+            activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
+        }
+        else if(comboNumber == 1)
+        {
+            activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage + activeMeleeCard.comboDamageToAdd;
+            activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage + activeMeleeCard.comboDamageToAdd;
+        }
+        else if(comboNumber == 2)
+        {
+            activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage + (activeMeleeCard.comboDamageToAdd * 2);
+            activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage + (activeMeleeCard.comboDamageToAdd * 2);
+        }
+    }
+
+    public void RevertComboDamage()
+    {
+        activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage;
+        activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
+    }
+
+    private void AdjustAttackMomentum()
     {
         if (attackMomentumActivated)
         {
-            if(comboNumber == 0)
+
+            if (comboNumber == 1)
             {
-                playerManager.rb.AddForce(playerManager.facingDirection * activeMeleeCard.attackMomentum);
+                playerManager.rb.AddForce((playerManager.movingDirection * activeMeleeCard.attackMomentum) * 2);
             }
-            else if(comboNumber == 1)
+            else if (comboNumber == 2)
             {
-                playerManager.rb.AddForce((playerManager.facingDirection * activeMeleeCard.attackMomentum) * 2);
-            }
-            else
-            {
-                playerManager.rb.AddForce((playerManager.facingDirection * activeMeleeCard.attackMomentum) * 4);
+                playerManager.rb.AddForce((playerManager.movingDirection * activeMeleeCard.attackMomentum) * 4);
             }
         }
     }
+
+
 }

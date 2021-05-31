@@ -49,12 +49,12 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (moveDirection.x == 0 && moveDirection.y == 0)
         {
-            playerManager.facingDirection = lastMoveDirection;
+            playerManager.movingDirection = lastMoveDirection;
             playerAnimatorHandler.UpdateMoveAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);
         }
         else
         {
-            playerManager.facingDirection = moveDirection;
+            playerManager.movingDirection = moveDirection;
             playerAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, true);
         }
     }

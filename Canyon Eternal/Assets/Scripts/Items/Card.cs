@@ -8,10 +8,15 @@ public class Card : Item
     [Header("Card Information")]
 
     public int staminaCost = 1;
-    public int minDamage;
-    public int maxDamage;
+
+    [Header("Damage Stats")]
+    public int baseMinDamage;
+    public int baseMaxDamage;
+    public int currentMinDamage;
+    public int currentMaxDamage;
     [Range(0,1)]public float criticalChance;
     public int criticalDamage;
+    public int comboDamageToAdd;
 
     public float cardKnockback;
     public float attackMomentum;

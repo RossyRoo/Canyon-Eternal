@@ -17,10 +17,13 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 1
-  minDamage: 5
-  maxDamage: 8
+  baseMinDamage: 5
+  baseMaxDamage: 8
+  currentMinDamage: 5
+  currentMaxDamage: 8
   criticalChance: 0.1
   criticalDamage: 14
+  comboDamageToAdd: 1
   cardKnockback: 100
   attackMomentum: 800
   isThrust: 1

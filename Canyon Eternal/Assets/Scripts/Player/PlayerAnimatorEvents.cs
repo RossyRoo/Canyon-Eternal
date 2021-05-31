@@ -36,19 +36,20 @@ public class PlayerAnimatorEvents : MonoBehaviour
     {
         if(playerMeleeHandler.comboNumber==0)
         {
-            Debug.Log("Despawning Melee");
             playerMeleeHandler.currentMeleeModel.SetActive(false);
         }
     }
 
     public void OpenDamageCollider()
     {
+        playerMeleeHandler.AddComboDamage();
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
     }
 
     public void CloseDamageCollider()
     {
+        playerMeleeHandler.RevertComboDamage();
         playerMeleeHandler.meleeDamageCollider.DisableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = false;
     }
@@ -62,19 +63,18 @@ public class PlayerAnimatorEvents : MonoBehaviour
     {
         playerMeleeHandler.canContinueCombo = true;
 
-        if(playerMeleeHandler.comboNumber<2)
+        if(playerMeleeHandler.comboNumber != 2)
         {
             GameObject comboActivatedVFXGO =
                 Instantiate(playerParticleHandler.comboActivatedVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
-            comboActivatedVFXGO.transform.parent = objectPool.transform;
+
+            comboActivatedVFXGO.transform.parent = gameObject.transform;
             Destroy(comboActivatedVFXGO, comboActivatedVFXGO.GetComponent<ParticleSystem>().main.duration);
         }
     }
 
     public void DisableComboWindow()
     {
-        playerMeleeHandler.canContinueCombo = false;
-
         if(playerMeleeHandler.comboNumber >= 2)
         {
             playerMeleeHandler.comboNumber = 0;
@@ -92,6 +92,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
             animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
         }
 
+        playerMeleeHandler.canContinueCombo = false;
         playerMeleeHandler.comboWasHit = false;
         playerMeleeHandler.comboWasMissed = false;
     }

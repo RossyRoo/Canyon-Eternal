@@ -16,7 +16,7 @@ public class CharacterManager : MonoBehaviour
     public bool isAttacking;
     public bool isDead;
     public bool isMoving;
-    public Vector2 facingDirection;
+    public Vector2 movingDirection;
 
     public bool isConversing; //Used when conversation is happening on this character
     public bool isPerformingAction; //Character actions like performing attacks, healing, or evading
@@ -28,7 +28,7 @@ public class CharacterManager : MonoBehaviour
     {
         myWall = Instantiate<TrackingWall>(myWallPrefab);
         myWall.Init(transform);
-        myWall.transform.parent = FindObjectOfType<ObjectPool>().gameObject.transform;
+        myWall.transform.parent = GameObject.FindGameObjectWithTag("Tracking Walls").transform;
     }
 
 }
