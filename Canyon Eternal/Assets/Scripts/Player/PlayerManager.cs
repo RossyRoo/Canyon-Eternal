@@ -9,6 +9,7 @@ public class PlayerManager : CharacterManager
     PlayerLocomotion playerLocomotion;
     PlayerStats playerStats;
     Animator animator;
+    PlayerMeleeHandler playerMeleeHandler;
 
     public GameObject interactionPopupGO;
     public GameObject itemPopupGO;
@@ -23,6 +24,7 @@ public class PlayerManager : CharacterManager
 
     private void Awake()
     {
+        playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStats = GetComponent<PlayerStats>();
@@ -34,6 +36,7 @@ public class PlayerManager : CharacterManager
     private void Update()
     {
         isInteracting = animator.GetBool("isInteracting");
+        isAttacking = animator.GetBool("isAttacking");
 
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
@@ -45,6 +48,7 @@ public class PlayerManager : CharacterManager
     private void FixedUpdate()
     {
         playerLocomotion.HandleMovement();
+        playerMeleeHandler.AddAttackMomentum();
 
         if(dashFlag)
         {

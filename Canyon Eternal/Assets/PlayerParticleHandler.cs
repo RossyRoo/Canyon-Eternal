@@ -14,6 +14,7 @@ public class PlayerParticleHandler : MonoBehaviour
     public GameObject footstepVFX;
     public GameObject dashVFX;
 
-
+    [Header("COMBAT")]
+    public GameObject comboActivatedVFX;
 
 }

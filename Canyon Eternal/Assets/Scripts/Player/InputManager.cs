@@ -74,13 +74,22 @@ public class InputManager : MonoBehaviour
         {
             if(playerMeleeHandler.canContinueCombo)
             {
-                playerMeleeHandler.comboFlag = true;
+                playerMeleeHandler.comboWasHit = true;
+            }
+            else if(!playerMeleeHandler.canContinueCombo && playerManager.isAttacking)
+            {
+                playerMeleeHandler.comboWasMissed = true;
             }
 
             if (playerManager.isInteracting)
                 return;
 
-            playerMeleeHandler.HandleMeleeAttack();
+            if(playerMeleeHandler.comboWasMissed)
+            {
+                playerMeleeHandler.comboWasMissed = false;
+            }
+
+            playerMeleeHandler.BeginAttackChain();
         }
     }
 

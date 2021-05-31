@@ -7,6 +7,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerStats playerStats;
+    Animator animator;
 
     [Header("Weapon Loading")]
     public MeleeCard activeMeleeCard;
@@ -20,7 +21,13 @@ public class PlayerMeleeHandler : MonoBehaviour
     [Header("Combo Handling")]
     public int comboNumber = 0;
     public bool canContinueCombo = false;
-    public bool comboFlag;
+    public bool comboWasHit;
+    public bool comboWasMissed = false;
+
+
+    [Header("Attack Momentum")]
+    public float attackMomentum;
+    public bool attackMomentumActivated;
 
 
     private void Awake()
@@ -28,6 +35,7 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerStats = GetComponent<PlayerStats>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -98,21 +106,35 @@ public class PlayerMeleeHandler : MonoBehaviour
         meleeModelPrefab.SetActive(false);
     }
 
-    public void HandleMeleeAttack()
+    public void BeginAttackChain()
     {
         if (playerStats.currentStamina < activeMeleeCard.staminaCost)
             return;
 
-        if (comboNumber==0)
-        {
-            playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
-            playerStats.LoseStamina(activeMeleeCard.staminaCost);
-            currentMeleeModel.SetActive(true);
-        }
+        playerManager.isAttacking = true;
+        animator.SetBool("isAttacking", true);
+        
+
+        playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
+        playerStats.LoseStamina(activeMeleeCard.staminaCost);
     }
 
-    public void SetDamage()
+    public void AddAttackMomentum()
     {
-
+        if (attackMomentumActivated)
+        {
+            if(comboNumber == 0)
+            {
+                playerManager.rb.AddForce(playerManager.facingDirection * activeMeleeCard.attackMomentum);
+            }
+            else if(comboNumber == 1)
+            {
+                playerManager.rb.AddForce((playerManager.facingDirection * activeMeleeCard.attackMomentum) * 2);
+            }
+            else
+            {
+                playerManager.rb.AddForce((playerManager.facingDirection * activeMeleeCard.attackMomentum) * 4);
+            }
+        }
     }
 }

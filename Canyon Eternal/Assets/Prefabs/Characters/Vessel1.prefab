@@ -49,7 +49,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3db801edc987c4487b575e1306b2b1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -133,7 +133,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,7 +152,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3db801edc987c4487b575e1306b2b1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -214,7 +214,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,7 +233,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e5dd705e067144f16b988d410531797d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -360,7 +360,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -379,7 +379,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8a74f44c88de445d1870af758cf6c8ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -441,7 +441,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -460,7 +460,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8a74f44c88de445d1870af758cf6c8ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -687,21 +687,25 @@ MonoBehaviour:
   myWallPrefab: {fileID: 5838069692043969820, guid: e47193f2ff29e46bd887c6d39250dd6b,
     type: 3}
   myWall: {fileID: 0}
+  rb: {fileID: 0}
   isInteracting: 0
   isInvulnerable: 0
   isDead: 0
   isMoving: 0
+  facingDirection: {x: 0, y: 0}
   isConversing: 0
   isPerformingAction: 0
   deathTimeBuffer: 0.5
   enemyStats: {fileID: 0}
-  rb: {fileID: 0}
   seeker: {fileID: 0}
   currentState: {fileID: 2231658945502614938}
   currentTarget: {fileID: 0}
   maximumAttackRange: 1.5
+  blindDistance: 50
   currentRecoveryTime: 0
-  moveDirection: {x: 0, y: 0}
+  distanceFromTarget: 0
+  movementDirection: {x: 0, y: 0}
+  lastFacingDirection: {x: 0, y: -1}
 --- !u!114 &1586417207834823799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,14 +723,10 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   healAmount: 0
-  maxStamina: 4
-  currentStamina: 0
   hurtInvulnerabilityTime: 0.8
   fragmentDrop: 10
   rotationSpeed: 25
   detectionRadius: 20
-  maximumDetectionAngle: 50
-  minimumDetectionAngle: -50
 --- !u!114 &261286942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,10 +799,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoutState: {fileID: 2231658945502614938}
-  combatStanceState: {fileID: 2231658946551373533}
+  combatState: {fileID: 0}
   deathState: {fileID: 2231658945894252393}
   nextWaypointDistance: 3
-  blindDistance: 50
+  moveForce: {x: 0, y: 0}
 --- !u!1 &2231658945502614940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,3 +1021,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatStanceState: {fileID: 2231658946551373533}
   deathState: {fileID: 2231658945894252393}
+  enemyAttacks: []
+  currentAttack: {fileID: 0}

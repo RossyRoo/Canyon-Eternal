@@ -13,6 +13,7 @@ public class CharacterManager : MonoBehaviour
 
     public bool isInteracting;
     public bool isInvulnerable;
+    public bool isAttacking;
     public bool isDead;
     public bool isMoving;
     public Vector2 facingDirection;

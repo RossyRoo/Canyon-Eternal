@@ -6,24 +6,37 @@ public class PlayerAnimatorEvents : MonoBehaviour
 {
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
+    PlayerManager playerManager;
+
     PlayerParticleHandler playerParticleHandler;
     Animator animator;
+
+    ObjectPool objectPool;
+
 
 
     private void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
         animator = GetComponent<Animator>();
+        objectPool = FindObjectOfType<ObjectPool>();
     }
 
     #region Handle Melee Animation Events
+
+    public void SpawnMelee()
+    {
+        playerMeleeHandler.currentMeleeModel.SetActive(true);
+    }
 
     public void DespawnMelee()
     {
         if(playerMeleeHandler.comboNumber==0)
         {
+            Debug.Log("Despawning Melee");
             playerMeleeHandler.currentMeleeModel.SetActive(false);
         }
     }
@@ -31,11 +44,13 @@ public class PlayerAnimatorEvents : MonoBehaviour
     public void OpenDamageCollider()
     {
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
+        playerMeleeHandler.attackMomentumActivated = true;
     }
 
     public void CloseDamageCollider()
     {
         playerMeleeHandler.meleeDamageCollider.DisableDamageCollider();
+        playerMeleeHandler.attackMomentumActivated = false;
     }
 
     public void PlayWeaponSwingSFX()
@@ -46,6 +61,14 @@ public class PlayerAnimatorEvents : MonoBehaviour
     public void EnableComboWindow()
     {
         playerMeleeHandler.canContinueCombo = true;
+
+        if(playerMeleeHandler.comboNumber<2)
+        {
+            GameObject comboActivatedVFXGO =
+                Instantiate(playerParticleHandler.comboActivatedVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
+            comboActivatedVFXGO.transform.parent = objectPool.transform;
+            Destroy(comboActivatedVFXGO, comboActivatedVFXGO.GetComponent<ParticleSystem>().main.duration);
+        }
     }
 
     public void DisableComboWindow()
@@ -56,26 +79,26 @@ public class PlayerAnimatorEvents : MonoBehaviour
         {
             playerMeleeHandler.comboNumber = 0;
             animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
-            playerMeleeHandler.comboFlag = false;
         }
 
-        if (playerMeleeHandler.comboFlag)
+        if (playerMeleeHandler.comboWasHit && !playerMeleeHandler.comboWasMissed)
         {
             playerMeleeHandler.comboNumber++;
             animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
-            playerMeleeHandler.comboFlag = false;
         }
         else
         {
             playerMeleeHandler.comboNumber = 0;
             animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
         }
+
+        playerMeleeHandler.comboWasHit = false;
+        playerMeleeHandler.comboWasMissed = false;
     }
     #endregion
 
     public void Footstep()
     {
-        ObjectPool objectPool = FindObjectOfType<ObjectPool>();
         int instantiatedFootstepsCount = 0;
         ParticleSystem []instantiatedFootsteps = objectPool.GetComponentsInChildren<ParticleSystem>();
 
@@ -103,4 +126,6 @@ public class PlayerAnimatorEvents : MonoBehaviour
         }
 
     }
+
+
 }

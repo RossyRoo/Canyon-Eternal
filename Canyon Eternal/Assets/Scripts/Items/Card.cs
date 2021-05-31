@@ -14,4 +14,5 @@ public class Card : Item
     public int criticalDamage;
 
     public float cardKnockback;
+    public float attackMomentum;
 }
