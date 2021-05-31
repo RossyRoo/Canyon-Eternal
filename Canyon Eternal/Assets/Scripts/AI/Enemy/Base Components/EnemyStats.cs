@@ -6,6 +6,7 @@ public class EnemyStats : CharacterStats
 {
     EnemyManager enemyManager;
     EnemyAnimatorHandler enemyAnimatorHandler;
+    EnemyHealthBarUI enemyHealthBarUI;
 
     [Header("AI Settings")]
     public float rotationSpeed = 25;
@@ -16,12 +17,13 @@ public class EnemyStats : CharacterStats
     {
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
-        
+        enemyHealthBarUI = GetComponentInChildren<EnemyHealthBarUI>();
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
+        enemyHealthBarUI.SetMaxHealth(maxHealth);
     }
 
     public void LoseHealth(int damageHealth, string damageAnimation = "TakeDamage")
@@ -31,6 +33,8 @@ public class EnemyStats : CharacterStats
 
         EnableInvulnerability(hurtInvulnerabilityTime);
         currentHealth -= damageHealth;
+
+        enemyHealthBarUI.SetHealth(currentHealth);
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 
