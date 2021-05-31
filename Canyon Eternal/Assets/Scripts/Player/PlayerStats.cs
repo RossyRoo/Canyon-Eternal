@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +11,7 @@ public class PlayerStats : CharacterStats
 
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
-
-    public ParticleSystem healVFX;
+    PlayerParticleHandler playerParticleHandler;
 
     [Header("Stamina")]
     public float maxStamina;
@@ -33,6 +33,7 @@ public class PlayerStats : CharacterStats
         lunchboxMeter = FindObjectOfType<LunchboxMeter>();
         playerManager = GetComponent<PlayerManager>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
+        playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
     }
 
     private void Start()
@@ -97,9 +98,7 @@ public class PlayerStats : CharacterStats
 
         if(!isFullHeal)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
-            
-            healVFX.Play();
+            PlayHealFX();
 
             currentLunchBoxCapacity -= 1;
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
@@ -113,6 +112,18 @@ public class PlayerStats : CharacterStats
         {
             currentHealth = maxHealth;
         }
+    }
+
+    private void PlayHealFX()
+    {
+        SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
+
+        GameObject healVFXGO = Instantiate(playerParticleHandler.healVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
+        healVFXGO.GetComponent<ParticleSystemRenderer>().material = playerParticleHandler.healMats[currentLunchBoxCapacity - 1];
+        healVFXGO.transform.parent = FindObjectOfType<ObjectPool>().transform;
+
+        Debug.Log("HEAL VFX MATERIAL: " + healVFXGO.GetComponent<ParticleSystemRenderer>().material);
+        Destroy(healVFXGO, 2f);
     }
 
     public void SetStartingStats()

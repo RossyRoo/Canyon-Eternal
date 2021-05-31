@@ -6,15 +6,14 @@ public class PlayerAnimatorEvents : MonoBehaviour
 {
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
-
-    public GameObject footstepVFXPrefab;
-    public Transform trailPosition;
+    PlayerParticleHandler playerParticleHandler;
 
 
     private void Awake()
     {
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
+        playerParticleHandler = GetComponent<PlayerParticleHandler>();
     }
 
     public void DespawnMelee()
@@ -51,15 +50,15 @@ public class PlayerAnimatorEvents : MonoBehaviour
             }
         }
 
-        if(instantiatedFootstepsCount<=1)
+        if(instantiatedFootstepsCount <= 2)
         {
             SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.rockFootsteps
                 [Random.Range(0, characterSFXBank.rockFootsteps.Length)]);
 
-            GameObject footstepVFXGO = Instantiate(footstepVFXPrefab, trailPosition.position, Quaternion.identity);
+            GameObject footstepVFXGO = Instantiate(playerParticleHandler.footstepVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
             footstepVFXGO.transform.parent = objectPool.transform;
             footstepVFXGO.name = "footstep_vfx";
-            Destroy(footstepVFXGO, 0.4f);
+            Destroy(footstepVFXGO, footstepVFXGO.GetComponent<ParticleSystem>().duration);
         }
         else
         {

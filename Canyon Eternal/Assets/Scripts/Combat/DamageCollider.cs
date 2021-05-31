@@ -69,8 +69,6 @@ public class DamageCollider : MonoBehaviour
         CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
 
         knockbackDirection = myCharacterManager.facingDirection;
-        Debug.Log("KB Force: " + knockbackForce);
-        Debug.Log("KB targ: " + knockbackTarget);
 
 
         if (characterCollision != null)
@@ -135,7 +133,6 @@ public class DamageCollider : MonoBehaviour
                 knockbackTime -= Time.deltaTime;
 
                 knockbackTarget.rb.AddForce(knockbackDirection * knockbackForce);
-                Debug.Log("Knockback Force: " + knockbackDirection * knockbackForce);
             }
         }
 

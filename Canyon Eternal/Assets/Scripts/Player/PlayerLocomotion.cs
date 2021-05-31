@@ -8,6 +8,7 @@ public class PlayerLocomotion : MonoBehaviour
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerStats playerStats;
     PlayerManager playerManager;
+    PlayerParticleHandler playerParticleHandler;
     Rigidbody2D rb;
 
     [Header("Dash Settings")]
@@ -16,7 +17,6 @@ public class PlayerLocomotion : MonoBehaviour
     public float startDashTime;
     public int direction;
     public Transform dashFXTransform;
-    public GameObject dashParticleFXPrefab;
 
     private bool dashFXTriggered;
 
@@ -29,6 +29,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         inputManager = GetComponent<InputManager>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
+        playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
         playerStats = GetComponent<PlayerStats>();
         playerManager = GetComponent<PlayerManager>();
 
@@ -191,9 +192,9 @@ public class PlayerLocomotion : MonoBehaviour
         playerStats.EnableInvulnerability(startDashTime);
         playerAnimatorHandler.PlayTargetAnimation("Dash", false);
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
-        GameObject dashParticleFXGO = Instantiate(dashParticleFXPrefab, dashFXTransform.position, rotation);
-        dashParticleFXGO.transform.parent = null;
-        Destroy(dashParticleFXGO, 1f);
+        GameObject dashParticleVFXGO = Instantiate(playerParticleHandler.dashVFX, dashFXTransform.position, rotation);
+        dashParticleVFXGO.transform.parent = null;
+        Destroy(dashParticleVFXGO, dashParticleVFXGO.GetComponent<ParticleSystem>().duration);
         dashFXTriggered = true;
     }
 
