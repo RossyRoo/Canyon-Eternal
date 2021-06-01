@@ -10,7 +10,7 @@ public class EnemyHealthBarUI : MonoBehaviour
     public Slider damageSlider;
     public TextMeshProUGUI damageText;
     public GameObject healthFill;
-    GenericAnimatorHandler damageTextAnimatorHandler;
+    Animator damageTextAnimator;
 
     public bool healthIsDecreasing = false;
 
@@ -24,7 +24,7 @@ public class EnemyHealthBarUI : MonoBehaviour
 
     private void Awake()
     {
-        damageTextAnimatorHandler = damageText.GetComponent<GenericAnimatorHandler>();
+        damageTextAnimator = damageText.GetComponent<Animator>();
     }
 
     public void SetMaxHealth(int maxHealth)
@@ -103,7 +103,7 @@ public class EnemyHealthBarUI : MonoBehaviour
             if (!damageText.gameObject.activeInHierarchy)
             {
                 damageText.gameObject.SetActive(true);
-                damageTextAnimatorHandler.PlayTargetAnimation("TextShake");
+                damageTextAnimator.Play("TextShake");
             }
         }
     }

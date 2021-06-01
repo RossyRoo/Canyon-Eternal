@@ -7,17 +7,17 @@ public class PlayerAnimatorEvents : MonoBehaviour
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerManager playerManager;
+    PlayerStats playerStats;
 
     PlayerParticleHandler playerParticleHandler;
     Animator animator;
 
     ObjectPool objectPool;
 
-
-
     private void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
+        playerStats = GetComponentInParent<PlayerStats>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
@@ -30,6 +30,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
     public void SpawnMelee()
     {
         playerMeleeHandler.currentMeleeModel.SetActive(true);
+        GetPlayerAttackDirection();
     }
 
     public void DespawnMelee()
@@ -38,11 +39,16 @@ public class PlayerAnimatorEvents : MonoBehaviour
         {
             playerMeleeHandler.currentMeleeModel.SetActive(false);
         }
+        playerStats.isChainingInvulnerability = false;
     }
 
     public void OpenDamageCollider()
     {
         playerMeleeHandler.AddComboDamage();
+
+        playerStats.EnableInvulnerability(playerStats.hurtInvulnerabilityTime);
+        playerStats.isChainingInvulnerability = true;
+
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
     }
@@ -50,6 +56,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
     public void CloseDamageCollider()
     {
         playerMeleeHandler.RevertComboDamage();
+
         playerMeleeHandler.meleeDamageCollider.DisableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = false;
     }
@@ -66,7 +73,8 @@ public class PlayerAnimatorEvents : MonoBehaviour
         if(playerMeleeHandler.comboNumber != 2)
         {
             GameObject comboActivatedVFXGO =
-                Instantiate(playerParticleHandler.comboActivatedVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
+                Instantiate(playerParticleHandler.comboActivatedVFX,
+                new Vector2 (playerParticleHandler.critStarTransform.position.x + (playerManager.movingDirection.x * 2), playerParticleHandler.critStarTransform.position.y), Quaternion.identity);
 
             comboActivatedVFXGO.transform.parent = gameObject.transform;
             Destroy(comboActivatedVFXGO, comboActivatedVFXGO.GetComponent<ParticleSystem>().main.duration);
@@ -96,6 +104,17 @@ public class PlayerAnimatorEvents : MonoBehaviour
         playerMeleeHandler.comboWasHit = false;
         playerMeleeHandler.comboWasMissed = false;
     }
+
+    private void GetPlayerAttackDirection()
+    {
+        DamageCollider damageCollider = GetComponentInChildren<DamageCollider>();
+
+
+        if (damageCollider != null)
+        {
+            damageCollider.knockbackDirection = playerManager.movingDirection;
+        }
+    }
     #endregion
 
     public void Footstep()
@@ -116,7 +135,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
             SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.rockFootsteps
                 [Random.Range(0, characterSFXBank.rockFootsteps.Length)]);
 
-            GameObject footstepVFXGO = Instantiate(playerParticleHandler.footstepVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
+            GameObject footstepVFXGO = Instantiate(playerParticleHandler.footstepVFX, playerParticleHandler.mainParticleTransform.position, Quaternion.identity);
             footstepVFXGO.transform.parent = objectPool.transform;
             footstepVFXGO.name = "footstep_vfx";
             Destroy(footstepVFXGO, footstepVFXGO.GetComponent<ParticleSystem>().main.duration);

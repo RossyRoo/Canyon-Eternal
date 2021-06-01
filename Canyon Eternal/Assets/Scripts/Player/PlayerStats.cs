@@ -25,6 +25,9 @@ public class PlayerStats : CharacterStats
     public int maxLunchBoxCapacity = 5;
     public int currentLunchBoxCapacity;
 
+    [Header("I-Frames")]
+    public bool isChainingInvulnerability;
+
 
     private void Awake()
     {
@@ -118,7 +121,7 @@ public class PlayerStats : CharacterStats
     {
         SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
 
-        GameObject healVFXGO = Instantiate(playerParticleHandler.healVFX, playerParticleHandler.particleTransform.position, Quaternion.identity);
+        GameObject healVFXGO = Instantiate(playerParticleHandler.healVFX, playerParticleHandler.mainParticleTransform.position, Quaternion.identity);
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = playerParticleHandler.healMats[currentLunchBoxCapacity - 1];
         healVFXGO.transform.parent = FindObjectOfType<ObjectPool>().transform;
 
@@ -144,9 +147,12 @@ public class PlayerStats : CharacterStats
         Invoke("DisableInvulnerability", iFrames);
     }
 
-    private void DisableInvulnerability()
+    public void DisableInvulnerability()
     {
-        playerManager.isInvulnerable = false;
+        if(!isChainingInvulnerability)
+        {
+            playerManager.isInvulnerable = false;
+        }
     }
 
 

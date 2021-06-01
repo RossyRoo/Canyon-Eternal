@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerParticleHandler : MonoBehaviour
 {
-    public Transform particleTransform;
+    public Transform mainParticleTransform;
+    public Transform critStarTransform;
 
     [Header("HEALING")]
     public GameObject healVFX;

@@ -12,7 +12,7 @@ public class DamageCollider : MonoBehaviour
     [Header("Knockback Settings")]
     public float knockbackForce = 10f;
     public float knockbackTime;
-    private float startKnockbackTime = 0.1f;
+    private float startKnockbackTime = 0.02f;
     public Vector2 knockbackDirection;
     public bool knockbackFlag;
     public CharacterManager knockbackTarget;
@@ -39,15 +39,6 @@ public class DamageCollider : MonoBehaviour
         }
 
         knockbackTime = startKnockbackTime;
-    }
-
-    private void OnEnable()
-    {
-        CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
-        if (myCharacterManager != null)
-        {
-            knockbackDirection = myCharacterManager.movingDirection;
-        }
     }
 
     private void Update()
@@ -145,6 +136,7 @@ public class DamageCollider : MonoBehaviour
         }
 
     }
+
 
     private void RollForCriticalHit()
     {
