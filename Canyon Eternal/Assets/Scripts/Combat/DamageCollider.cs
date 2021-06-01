@@ -11,7 +11,7 @@ public class DamageCollider : MonoBehaviour
     bool criticalHitActivated;
 
     [Header("Knockback Settings")]
-    CharacterManager knockbackTarget;
+    public CharacterManager knockbackTarget;
     public Vector2 knockbackDirection;
     public float knockbackForce = 10f;
     private float knockbackTime;
@@ -21,7 +21,7 @@ public class DamageCollider : MonoBehaviour
 
     [Tooltip("Check this for traps and projectiles")]
     public bool dealsConstantDamage;
-    private bool targetIsWithinRange;
+    public bool targetIsWithinRange;
     [Tooltip("Uncheck if this is this is an object that can damage enemies")]
     public bool canDamageEnemy = true;
 

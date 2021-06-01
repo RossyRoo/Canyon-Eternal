@@ -42,13 +42,12 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
-
-        //ONLY PLAY MISS SFX IF YOU DONT HIT SOMETHING
-        SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.attacks[playerMeleeHandler.comboNumber]);
     }
 
     public void CloseDamageCollider()
     {
+        PlayMissedMeleeSFX();
+
         playerMeleeHandler.RevertComboDamage();
 
         playerMeleeHandler.meleeDamageCollider.DisableDamageCollider();
@@ -74,6 +73,15 @@ public class PlayerAnimatorEvents : MonoBehaviour
         playerMeleeHandler.canContinueCombo = false;
     }
 
+    private void PlayMissedMeleeSFX()
+    {
+        DamageCollider myMeleeCollider = GetComponentInChildren<DamageCollider>();
+
+        if (!myMeleeCollider.targetIsWithinRange)
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.attacks[playerMeleeHandler.comboNumber]);
+        }
+    }
 
     #endregion
 
@@ -93,7 +101,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
         if(instantiatedFootstepsCount <= 2)
         {
             SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.rockFootsteps
-                [Random.Range(0, characterSFXBank.rockFootsteps.Length)]);
+                [Random.Range(0, characterSFXBank.rockFootsteps.Length)], 0.1f);
 
             GameObject footstepVFXGO = Instantiate(playerParticleHandler.footstepVFX, playerParticleHandler.mainParticleTransform.position, Quaternion.identity);
             footstepVFXGO.transform.parent = objectPool.transform;
