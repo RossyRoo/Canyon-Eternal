@@ -7,6 +7,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerStats playerStats;
+    PlayerParticleHandler playerParticleHandler;
     Animator animator;
 
     [Header("Weapon Loading")]
@@ -21,9 +22,9 @@ public class PlayerMeleeHandler : MonoBehaviour
     [Header("Combo Handling")]
     public int comboNumber = 0;
     public bool canContinueCombo;
+    public bool attackMomentumActivated;
     public bool comboWasHit;
     public bool comboWasMissed;
-    public bool attackMomentumActivated;
     public AudioClip [] comboSFX;
 
     private void Awake()
@@ -31,6 +32,7 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerStats = GetComponent<PlayerStats>();
+        playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
         animator = GetComponentInChildren<Animator>();
 
         SetParentOverride();
@@ -104,23 +106,32 @@ public class PlayerMeleeHandler : MonoBehaviour
         meleeModelPrefab.SetActive(false);
     }
 
-    public void BeginAttackChain()
+    public void BeginNewAttackChain()
     {
         if (playerStats.currentStamina < activeMeleeCard.staminaCost)
             return;
 
-        playerManager.isAttacking = true;
-        animator.SetBool("isAttacking", true);
+        GetPlayerAttackDirection();
+
+        currentMeleeModel.SetActive(true);
         
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
-        playerStats.LoseStamina(activeMeleeCard.staminaCost);
+    }
+
+    public void GetPlayerAttackDirection()
+    {
+        DamageCollider damageCollider = GetComponentInChildren<DamageCollider>();
+
+        if (damageCollider != null)
+        {
+            damageCollider.knockbackDirection = playerManager.moveDirection;
+        }
     }
 
     public void AdjustAttackMomentum()
     {
         if (attackMomentumActivated)
         {
-
             if (comboNumber == 1)
             {
                 playerManager.rb.AddForce((playerManager.moveDirection * activeMeleeCard.attackMomentum) * 2);
@@ -156,9 +167,50 @@ public class PlayerMeleeHandler : MonoBehaviour
         activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
     }
 
-    public void PlayComboHitFX()
+    public void PlayComboHitSFX()
     {
         SFXPlayer.Instance.PlaySFXAudioClip(comboSFX[comboNumber], 0.3f, 0.2f);
+    }
+
+    public void HandleComboAttempt()
+    {
+        playerParticleHandler.ChangeStarToYellow();
+
+        if (playerManager.isAttacking)
+        {
+
+            if (!canContinueCombo && !comboWasHit && !comboWasMissed)
+            {
+                //MISS
+                canContinueCombo = false;
+                animator.SetBool("comboWasMissed", true);
+                animator.SetBool("comboWasHit", false);
+
+                if (comboNumber != 2)
+                {
+                    playerStats.LoseStamina(activeMeleeCard.staminaCost);
+                }
+
+                playerParticleHandler.ChangeStarToRed();
+            }
+            else if (canContinueCombo && !comboWasMissed)
+            {
+                //HIT
+                canContinueCombo = false;
+
+                animator.SetBool("comboWasHit", true);
+                GetPlayerAttackDirection();
+                playerParticleHandler.ChangeStarToGreen();
+                PlayComboHitSFX();
+            }
+
+            if(comboNumber == 2)
+            {
+                animator.SetBool("comboWasHit", true);
+                animator.SetBool("comboWasMissed", false);
+                playerParticleHandler.ChangeStarToYellow();
+            }
+        }
     }
 
 }

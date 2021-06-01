@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerParticleHandler : MonoBehaviour
 {
+    PlayerManager playerManager;
     PlayerMeleeHandler playerMeleeHandler;
 
     public Transform mainParticleTransform;
@@ -19,7 +20,7 @@ public class PlayerParticleHandler : MonoBehaviour
 
     [Header("COMBO STAR")]
     public GameObject comboStarVFX;
-    public GameObject currentComboStarGO;
+    GameObject currentComboStarGO;
 
     public Material yellowComboStarMat;
     public Material greenComboStarMat;
@@ -27,29 +28,37 @@ public class PlayerParticleHandler : MonoBehaviour
 
     private void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
     }
 
-    public void ChangeComboStarMat()
+    public void SpawnComboStar()
     {
-        if(currentComboStarGO != null)
-        {
-            if (playerMeleeHandler.comboWasHit)
-            {
-                currentComboStarGO.GetComponent<ParticleSystemRenderer>().material = greenComboStarMat;
-            }
-        }
-        else
-        {
-            if(playerMeleeHandler.comboWasMissed)
-            {
-                comboStarVFX.GetComponent<ParticleSystemRenderer>().material = redComboStarMat;
-            }
-        }
+        currentComboStarGO = Instantiate(comboStarVFX, new Vector2
+            (critStarTransform.position.x + (playerManager.moveDirection.x * 2), critStarTransform.position.y), Quaternion.identity);
+
+        currentComboStarGO.transform.parent = gameObject.transform;
+        Destroy(currentComboStarGO, currentComboStarGO.GetComponent<ParticleSystem>().main.duration);
     }
 
-    public void ResetComboStarMaterial()
+    public void ChangeStarToYellow()
     {
         comboStarVFX.GetComponent<ParticleSystemRenderer>().material = yellowComboStarMat;
+    }
+
+    public void ChangeStarToGreen()
+    {
+        currentComboStarGO.GetComponent<ParticleSystemRenderer>().material = greenComboStarMat;
+    }
+
+    public void ChangeStarToRed()
+    {
+
+        comboStarVFX.GetComponent<ParticleSystemRenderer>().material = redComboStarMat;
+
+        if (currentComboStarGO != null)
+        {
+            currentComboStarGO.GetComponent<ParticleSystemRenderer>().material = redComboStarMat;
+        }
     }
 }

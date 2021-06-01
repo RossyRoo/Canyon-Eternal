@@ -79,29 +79,12 @@ public class InputManager : MonoBehaviour
     {
         if(melee_Input)
         {
-            playerParticleHandler.ResetComboStarMaterial();
-
-            if(playerMeleeHandler.canContinueCombo)
-            {
-                playerMeleeHandler.comboWasHit = true;
-                playerMeleeHandler.PlayComboHitFX();
-                playerParticleHandler.ChangeComboStarMat();
-            }
-            else if(!playerMeleeHandler.canContinueCombo && playerManager.isAttacking)
-            {
-                playerMeleeHandler.comboWasMissed = true;
-                playerParticleHandler.ChangeComboStarMat();
-            }
+            playerMeleeHandler.HandleComboAttempt();
 
             if (playerManager.isInteracting)
                 return;
 
-            if(playerMeleeHandler.comboWasMissed)
-            {
-                playerMeleeHandler.comboWasMissed = false;
-            }
-
-            playerMeleeHandler.BeginAttackChain();
+            playerMeleeHandler.BeginNewAttackChain();
         }
     }
 

@@ -680,7 +680,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501304287400126204}
-  m_LocalRotation: {x: -4.102321e-15, y: -0.00000007869993, z: -3.2285237e-22, w: 1}
+  m_LocalRotation: {x: -2.0511606e-15, y: 0.00000003934829, z: 8.0709666e-23, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -834,12 +834,12 @@ PrefabInstance:
         type: 3}
       propertyPath: greenComboStarMat
       value: 
-      objectReference: {fileID: 2100000, guid: 43e24b99473f943428b5d94a7330ca89, type: 2}
+      objectReference: {fileID: 2100000, guid: 63749bc4d0d0b4211b294d941b758fa7, type: 2}
     - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: redComboStarMat
       value: 
-      objectReference: {fileID: 2100000, guid: d984c9876abde41a8abb60e20da44989, type: 2}
+      objectReference: {fileID: 2100000, guid: 1d174c007ba974bbc8b2cafba4e1b022, type: 2}
     - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: comboStarVFX
@@ -949,12 +949,17 @@ PrefabInstance:
     - target: {fileID: 5112973914046535493, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -4.102321e-15
+      value: -2.0511606e-15
       objectReference: {fileID: 0}
     - target: {fileID: 5112973914046535493, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.2285237e-22
+      value: 8.0709666e-23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112973914046535493, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00000003934829
       objectReference: {fileID: 0}
     - target: {fileID: 5280360952379046738, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
@@ -1241,6 +1246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Boss Slime Vessel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028267802662830801, guid: 8b75387fe2c334016b1e87af5d69ed0d,
+        type: 3}
+      propertyPath: maxHealth
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1028267802662830814, guid: 8b75387fe2c334016b1e87af5d69ed0d,
         type: 3}

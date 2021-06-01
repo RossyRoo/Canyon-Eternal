@@ -16,7 +16,6 @@ public class PlayerStats : CharacterStats
 
     [Header("Stamina")]
     public float maxStamina;
-    [HideInInspector]
     public float currentStamina;
     public float staminaRecoverySpeed = 1.25f;
     [HideInInspector] public float staminaRecoveryTimer = 0;
@@ -53,6 +52,17 @@ public class PlayerStats : CharacterStats
         if (currentStamina <= 0)
         {
             currentStamina = 0;
+        }
+    }
+
+    public void RecoverStamina(int recoverStamina)
+    {
+        currentStamina += recoverStamina;
+        staminaMeter.SetCurrentStamina(currentStamina);
+
+        if (currentStamina >= maxStamina)
+        {
+            currentStamina = maxStamina;
         }
     }
 

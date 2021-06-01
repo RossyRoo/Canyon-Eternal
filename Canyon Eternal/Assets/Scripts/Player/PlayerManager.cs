@@ -36,6 +36,10 @@ public class PlayerManager : CharacterManager
         isInteracting = animator.GetBool("isInteracting");
         isAttacking = animator.GetBool("isAttacking");
 
+        playerMeleeHandler.comboNumber = animator.GetInteger("comboNumber");
+        playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
+        playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
+
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
         CheckForInteractable();
@@ -54,10 +58,10 @@ public class PlayerManager : CharacterManager
 
     private void LateUpdate()
     {
-        ResetAllInputs();
+        ResetInputLate();
     }
 
-    private void ResetAllInputs()
+    private void ResetInputLate()
     {
         inputManager.melee_Input = false;
         inputManager.dash_Input = false;

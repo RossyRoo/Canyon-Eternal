@@ -6,42 +6,31 @@ public class PlayerAnimatorEvents : MonoBehaviour
 {
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
-    PlayerManager playerManager;
     PlayerStats playerStats;
 
     PlayerParticleHandler playerParticleHandler;
-    Animator animator;
 
     ObjectPool objectPool;
 
     private void Awake()
     {
-        playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
-        animator = GetComponent<Animator>();
 
         objectPool = FindObjectOfType<ObjectPool>();
     }
 
-    #region Handle Melee Animation Events
-
-    public void SpawnMelee()
-    {
-        playerMeleeHandler.currentMeleeModel.SetActive(true);
-        GetPlayerAttackDirection();
-    }
+    #region Melee Events
 
     public void DespawnMelee()
     {
-        if(playerMeleeHandler.comboNumber == 0)
+        if(!playerMeleeHandler.comboWasHit)
         {
             playerMeleeHandler.currentMeleeModel.SetActive(false);
+            playerStats.isChainingInvulnerability = false;
         }
-
-        playerStats.isChainingInvulnerability = false;
     }
 
     public void OpenDamageCollider()
@@ -54,6 +43,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
 
+        //ONLY PLAY MISS SFX IF YOU DONT HIT SOMETHING
         SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.attacks[playerMeleeHandler.comboNumber]);
     }
 
@@ -63,12 +53,6 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
         playerMeleeHandler.meleeDamageCollider.DisableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = false;
-
-        if (playerMeleeHandler.comboNumber >= 2)
-        {
-            playerMeleeHandler.comboNumber = 0;
-            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
-        }
     }
 
     public void EnableComboWindow()
@@ -77,44 +61,20 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
         if(playerMeleeHandler.comboNumber != 2)
         {
-            SpawnComboStar();
+            playerParticleHandler.SpawnComboStar();
         }
     }
 
     public void DisableComboWindow()
     {
-        if(playerMeleeHandler.comboNumber >= 2)
+        if(!playerMeleeHandler.comboWasHit)
         {
-            playerMeleeHandler.comboNumber = 0;
-            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
+            playerParticleHandler.ChangeStarToRed();
         }
-
-        if (playerMeleeHandler.comboWasHit && !playerMeleeHandler.comboWasMissed)
-        {
-            playerMeleeHandler.comboNumber++;
-            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
-        }
-        else
-        {
-            playerMeleeHandler.comboNumber = 0;
-            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
-        }
-
         playerMeleeHandler.canContinueCombo = false;
-        playerMeleeHandler.comboWasHit = false;
-        playerMeleeHandler.comboWasMissed = false;
     }
 
-    private void GetPlayerAttackDirection()
-    {
-        DamageCollider damageCollider = GetComponentInChildren<DamageCollider>();
 
-
-        if (damageCollider != null)
-        {
-            damageCollider.knockbackDirection = playerManager.moveDirection;
-        }
-    }
     #endregion
 
     public void Footstep()
@@ -145,16 +105,6 @@ public class PlayerAnimatorEvents : MonoBehaviour
             return;
         }
 
-    }
-
-    private void SpawnComboStar()
-    {
-        playerParticleHandler.currentComboStarGO =
-            Instantiate(playerParticleHandler.comboStarVFX,
-            new Vector2(playerParticleHandler.critStarTransform.position.x + (playerManager.moveDirection.x * 2), playerParticleHandler.critStarTransform.position.y), Quaternion.identity);
-
-        playerParticleHandler.currentComboStarGO.transform.parent = gameObject.transform;
-        Destroy(playerParticleHandler.currentComboStarGO, playerParticleHandler.currentComboStarGO.GetComponent<ParticleSystem>().main.duration);
     }
 
 }
