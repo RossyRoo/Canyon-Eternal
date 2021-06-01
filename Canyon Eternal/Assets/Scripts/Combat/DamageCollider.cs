@@ -10,21 +10,23 @@ public class DamageCollider : MonoBehaviour
     int damage = 1;
 
     [Header("Knockback Settings")]
-    public float knockbackForce = 10f;
-    public float knockbackTime;
-    private float startKnockbackTime = 0.02f;
+    CharacterManager knockbackTarget;
     public Vector2 knockbackDirection;
-    public bool knockbackFlag;
-    public CharacterManager knockbackTarget;
+    public float knockbackForce = 10f;
+    private float knockbackTime;
+    [Tooltip("The length of time a knockback occurs")]
+    public float startKnockbackTime = 0.02f;
+    private bool knockbackFlag;
 
+    [Tooltip("Check this for traps and projectiles")]
     public bool dealsConstantDamage;
-    public bool targetIsWithinRange;
+    private bool targetIsWithinRange;
+    [Tooltip("Uncheck if this is this is an object that can damage enemies")]
     public bool canDamageEnemy = true;
 
     private void Awake()
     {
         damageCollider = GetComponent<Collider2D>();
-        damageCollider.gameObject.SetActive(true);
         damageCollider.isTrigger = true;
         targetIsWithinRange = false;
 
@@ -46,6 +48,8 @@ public class DamageCollider : MonoBehaviour
         HandleKnockback();
     }
 
+    #region Enable/Disable Colliders
+
     public void EnableDamageCollider()
     {
         damageCollider.enabled = true;
@@ -55,11 +59,13 @@ public class DamageCollider : MonoBehaviour
     {
         damageCollider.enabled = false;
     }
+    #endregion
+
+    #region OnTrigger
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
-        knockbackTarget = characterCollision;
 
         if (characterCollision != null)
         {
@@ -72,6 +78,8 @@ public class DamageCollider : MonoBehaviour
     {
         targetIsWithinRange = false;
     }
+
+    #endregion
 
     private IEnumerator DealDamage(GameObject collision)
     {
@@ -106,10 +114,10 @@ public class DamageCollider : MonoBehaviour
         if (cardData == null)
         {
             CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
-            knockbackDirection = myCharacterManager.movingDirection;
+            knockbackDirection = myCharacterManager.moveDirection;
         }
 
-        knockbackTime = startKnockbackTime;
+        knockbackTarget = collision.GetComponent<CharacterManager>();
         knockbackFlag = true;
 
         yield return new WaitForFixedUpdate();
@@ -124,23 +132,20 @@ public class DamageCollider : MonoBehaviour
             if (knockbackTime <= 0)
             {
                 knockbackFlag = false;
-                knockbackTime = startKnockbackTime;
                 knockbackTarget = null;
+                knockbackTime = startKnockbackTime;
             }
             else
             {
                 knockbackTime -= Time.deltaTime;
-
                 knockbackTarget.rb.AddForce(knockbackDirection * knockbackForce);
             }
         }
-
     }
 
 
     private void RollForCriticalHit()
     {
-
         if (cardData != null)
         {
             float randValue = Random.value;
@@ -151,7 +156,7 @@ public class DamageCollider : MonoBehaviour
             }
             else
             {
-                damage = cardData.criticalDamage;
+                damage = cardData.currentMaxDamage * 2;
             }
         }
     }

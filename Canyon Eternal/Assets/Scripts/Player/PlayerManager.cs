@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-    //Player Components
     InputManager inputManager;
     PlayerLocomotion playerLocomotion;
     PlayerStats playerStats;
@@ -18,7 +17,6 @@ public class PlayerManager : CharacterManager
 
     //Game Components
     public bool dashFlag;
-
 
     public Vector3 nextSpawnPoint;
 
@@ -46,7 +44,7 @@ public class PlayerManager : CharacterManager
     private void FixedUpdate()
     {
         playerLocomotion.HandleMovement();
-        playerMeleeHandler.HandleCombos();
+        playerMeleeHandler.AdjustAttackMomentum();
 
         if(dashFlag)
         {
@@ -65,7 +63,7 @@ public class PlayerManager : CharacterManager
         inputManager.dash_Input = false;
         inputManager.heal_Input = false;
         inputManager.interact_Input = false;
-        //inputManager.guard_Input = false;
+        inputManager.guard_Input = false;
     }
 
     public IEnumerator HandleDeathCoroutine()
@@ -98,7 +96,7 @@ public class PlayerManager : CharacterManager
     private void CheckForInteractable()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
-            playerLocomotion.lastMoveDirection, 10f, interactableLayers);
+            lastMoveDirection, 10f, interactableLayers);
 
         /*Debug.DrawRay(transform.position,
             playerLocomotion.lastMoveDirection * 10f, Color.red);*/

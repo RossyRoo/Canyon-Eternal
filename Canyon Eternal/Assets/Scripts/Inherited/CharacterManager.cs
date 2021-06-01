@@ -16,13 +16,14 @@ public class CharacterManager : MonoBehaviour
     public bool isAttacking;
     public bool isDead;
     public bool isMoving;
-    public Vector2 movingDirection;
+
+    public Vector2 moveDirection;
+    public Vector2 lastMoveDirection = Vector2.down;
 
     public bool isConversing; //Used when conversation is happening on this character
     public bool isPerformingAction; //Character actions like performing attacks, healing, or evading
 
     public float deathTimeBuffer = 0.5f;
-
 
     public void GenerateTrackingWall()
     {

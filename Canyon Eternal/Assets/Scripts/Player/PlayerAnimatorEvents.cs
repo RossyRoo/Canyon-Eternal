@@ -22,6 +22,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
         characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
         animator = GetComponent<Animator>();
+
         objectPool = FindObjectOfType<ObjectPool>();
     }
 
@@ -51,6 +52,8 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
+
+        SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
     }
 
     public void CloseDamageCollider()
@@ -61,11 +64,6 @@ public class PlayerAnimatorEvents : MonoBehaviour
         playerMeleeHandler.attackMomentumActivated = false;
     }
 
-    public void PlayWeaponSwingSFX()
-    {
-        SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
-    }
-
     public void EnableComboWindow()
     {
         playerMeleeHandler.canContinueCombo = true;
@@ -74,7 +72,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
         {
             GameObject comboActivatedVFXGO =
                 Instantiate(playerParticleHandler.comboActivatedVFX,
-                new Vector2 (playerParticleHandler.critStarTransform.position.x + (playerManager.movingDirection.x * 2), playerParticleHandler.critStarTransform.position.y), Quaternion.identity);
+                new Vector2 (playerParticleHandler.critStarTransform.position.x + (playerManager.moveDirection.x * 2), playerParticleHandler.critStarTransform.position.y), Quaternion.identity);
 
             comboActivatedVFXGO.transform.parent = gameObject.transform;
             Destroy(comboActivatedVFXGO, comboActivatedVFXGO.GetComponent<ParticleSystem>().main.duration);
@@ -112,7 +110,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
         if (damageCollider != null)
         {
-            damageCollider.knockbackDirection = playerManager.movingDirection;
+            damageCollider.knockbackDirection = playerManager.moveDirection;
         }
     }
     #endregion

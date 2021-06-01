@@ -10,6 +10,7 @@ public class PlayerStats : CharacterStats
     public LunchboxMeter lunchboxMeter;
 
     PlayerManager playerManager;
+    PlayerMeleeHandler playerMelee;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
@@ -125,8 +126,7 @@ public class PlayerStats : CharacterStats
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = playerParticleHandler.healMats[currentLunchBoxCapacity - 1];
         healVFXGO.transform.parent = FindObjectOfType<ObjectPool>().transform;
 
-        Debug.Log("HEAL VFX MATERIAL: " + healVFXGO.GetComponent<ParticleSystemRenderer>().material);
-        Destroy(healVFXGO, 2f);
+        Destroy(healVFXGO, healVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
 
     public void SetStartingStats()

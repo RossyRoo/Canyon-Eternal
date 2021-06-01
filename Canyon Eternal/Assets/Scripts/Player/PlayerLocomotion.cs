@@ -9,7 +9,6 @@ public class PlayerLocomotion : MonoBehaviour
     PlayerStats playerStats;
     PlayerManager playerManager;
     PlayerParticleHandler playerParticleHandler;
-    Rigidbody2D rb;
 
     [Header("Dash Settings")]
     public float dashSpeed;
@@ -17,13 +16,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float startDashTime;
     public int direction;
     public Transform dashFXTransform;
-
     private bool dashFXTriggered;
-
-    public Vector2 moveDirection;
-    public Vector2 lastMoveDirection;
-    public bool isMoving;
-
 
     private void Awake()
     {
@@ -32,30 +25,27 @@ public class PlayerLocomotion : MonoBehaviour
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
         playerStats = GetComponent<PlayerStats>();
         playerManager = GetComponent<PlayerManager>();
-
-        rb = GetComponent<Rigidbody2D>();
     }
 
     public void HandleMovement()
     {
-        moveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
-        moveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
+        playerManager.moveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
+        playerManager.moveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
 
-        lastMoveDirection.x = Mathf.RoundToInt(inputManager.lastMoveInput.x);
-        lastMoveDirection.y = Mathf.RoundToInt(inputManager.lastMoveInput.y);
+        playerManager.lastMoveDirection.x = Mathf.RoundToInt(inputManager.lastMoveInput.x);
+        playerManager.lastMoveDirection.y = Mathf.RoundToInt(inputManager.lastMoveInput.y);
 
-        rb.MovePosition(rb.position + moveDirection.normalized * playerStats.moveSpeed * Time.fixedDeltaTime);
+        playerManager.rb.MovePosition(playerManager.rb.position + playerManager.moveDirection.normalized * playerStats.moveSpeed * Time.fixedDeltaTime);
 
 
-        if (moveDirection.x == 0 && moveDirection.y == 0)
+        if (playerManager.moveDirection.x == 0 && playerManager.moveDirection.y == 0)
         {
-            playerManager.movingDirection = lastMoveDirection;
-            playerAnimatorHandler.UpdateMoveAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);
+            playerManager.moveDirection = playerManager.lastMoveDirection;
+            playerAnimatorHandler.UpdateMoveAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
         }
         else
         {
-            playerManager.movingDirection = moveDirection;
-            playerAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, true);
+            playerAnimatorHandler.UpdateMoveAnimationValues(playerManager.moveDirection.x, playerManager.moveDirection.y, true);
         }
     }
 
@@ -67,59 +57,58 @@ public class PlayerLocomotion : MonoBehaviour
             return;
         }
 
-        //Pass through enemies
         ReverseDashThroughEnemies();
 
-        if (direction == 0 && moveDirection == Vector2.zero)
+        if (direction == 0 && playerManager.moveDirection == Vector2.zero)
         {
-            if(lastMoveDirection == new Vector2(0,1))
+            if(playerManager.lastMoveDirection == new Vector2(0,1))
             {
                 direction = 1;
             }
-            else if(lastMoveDirection == new Vector2(0,-1))
+            else if(playerManager.lastMoveDirection == new Vector2(0,-1))
             {
                 direction = 2;
             }
-            else if(lastMoveDirection == new Vector2(-1,0))
+            else if(playerManager.lastMoveDirection == new Vector2(-1,0))
             {
                 direction = 3;
             }
-            else if(lastMoveDirection == new Vector2(1,0))
+            else if(playerManager.lastMoveDirection == new Vector2(1,0))
             {
                 direction = 4;
             }
         }
-        else if (direction == 0 && moveDirection != Vector2.zero)
+        else if (direction == 0 && playerManager.moveDirection != Vector2.zero)
         {
-            if (moveDirection == new Vector2(0, 1))
+            if (playerManager.moveDirection == new Vector2(0, 1))
             {
                 direction = 1;
             }
-            else if (moveDirection == new Vector2(0,-1))
+            else if (playerManager.moveDirection == new Vector2(0,-1))
             {
                 direction = 2;
             }
-            else if (moveDirection == new Vector2(-1,0))
+            else if (playerManager.moveDirection == new Vector2(-1,0))
             {
                 direction = 3;
             }
-            else if (moveDirection == new Vector2(1,0))
+            else if (playerManager.moveDirection == new Vector2(1,0))
             {
                 direction = 4;
             }
-            if (moveDirection == new Vector2(1, -1))
+            if (playerManager.moveDirection == new Vector2(1, -1))
             {
                 direction = 5;
             }
-            else if (moveDirection == new Vector2(-1, -1))
+            else if (playerManager.moveDirection == new Vector2(-1, -1))
             {
                 direction = 6;
             }
-            else if (moveDirection == new Vector2(1, 1))
+            else if (playerManager.moveDirection == new Vector2(1, 1))
             {
                 direction = 7;
             }
-            else if (moveDirection == new Vector2(-1, 1))
+            else if (playerManager.moveDirection == new Vector2(-1, 1))
             {
                 direction = 8;
             }
@@ -131,7 +120,7 @@ public class PlayerLocomotion : MonoBehaviour
                 dashFXTriggered = false;
                 direction = 0;
                 dashTime = startDashTime;
-                rb.velocity = Vector2.zero;
+                playerManager.rb.velocity = Vector2.zero;
                 playerManager.dashFlag = false;
                 playerStats.currentStamina -= 1;
                 ReverseDashThroughEnemies();
@@ -142,42 +131,42 @@ public class PlayerLocomotion : MonoBehaviour
 
                 if(direction == 1)
                 {
-                    rb.AddForce(Vector2.up * dashSpeed);
+                    playerManager.rb.AddForce(Vector2.up * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
                 else if(direction == 2)
                 {
-                    rb.AddForce(Vector2.down * dashSpeed);
+                    playerManager.rb.AddForce(Vector2.down * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
                 else if(direction == 3)
                 {
-                    rb.AddForce(Vector2.left * dashSpeed);
+                    playerManager.rb.AddForce(Vector2.left * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
                 else if(direction == 4)
                 {
-                    rb.AddForce(Vector2.right * dashSpeed);
+                    playerManager.rb.AddForce(Vector2.right * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
                 if (direction == 5)
                 {
-                    rb.AddForce(new Vector2(1,-1) * dashSpeed);
+                    playerManager.rb.AddForce(new Vector2(1,-1) * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
                 else if (direction == 6)
                 {
-                    rb.AddForce(new Vector2(-1, -1) * dashSpeed);
+                    playerManager.rb.AddForce(new Vector2(-1, -1) * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
                 else if (direction == 7)
                 {
-                    rb.AddForce(new Vector2(1, 1) * dashSpeed);
+                    playerManager.rb.AddForce(new Vector2(1, 1) * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
                 else if (direction == 8)
                 {
-                    rb.AddForce(new Vector2(-1, 1) * dashSpeed);
+                    playerManager.rb.AddForce(new Vector2(-1, 1) * dashSpeed);
                     PlayDashFX(Quaternion.identity);
                 }
             }

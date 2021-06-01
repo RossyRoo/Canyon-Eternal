@@ -25,8 +25,6 @@ public class PlayerMeleeHandler : MonoBehaviour
     public bool comboWasMissed;
     public bool attackMomentumActivated;
 
-
-
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
@@ -113,22 +111,31 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerManager.isAttacking = true;
         animator.SetBool("isAttacking", true);
         
-
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
         playerStats.LoseStamina(activeMeleeCard.staminaCost);
     }
 
-    public void HandleCombos()
+    public void AdjustAttackMomentum()
     {
-        AdjustAttackMomentum();
+        if (attackMomentumActivated)
+        {
+
+            if (comboNumber == 1)
+            {
+                playerManager.rb.AddForce((playerManager.moveDirection * activeMeleeCard.attackMomentum) * 2);
+            }
+            else if (comboNumber == 2)
+            {
+                playerManager.rb.AddForce((playerManager.moveDirection * activeMeleeCard.attackMomentum) * 4);
+            }
+        }
     }
 
     public void AddComboDamage()
     {
         if(comboNumber == 0)
         {
-            activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage;
-            activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
+            RevertComboDamage();
         }
         else if(comboNumber == 1)
         {
@@ -146,22 +153,6 @@ public class PlayerMeleeHandler : MonoBehaviour
     {
         activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage;
         activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
-    }
-
-    private void AdjustAttackMomentum()
-    {
-        if (attackMomentumActivated)
-        {
-
-            if (comboNumber == 1)
-            {
-                playerManager.rb.AddForce((playerManager.movingDirection * activeMeleeCard.attackMomentum) * 2);
-            }
-            else if (comboNumber == 2)
-            {
-                playerManager.rb.AddForce((playerManager.movingDirection * activeMeleeCard.attackMomentum) * 4);
-            }
-        }
     }
 
 

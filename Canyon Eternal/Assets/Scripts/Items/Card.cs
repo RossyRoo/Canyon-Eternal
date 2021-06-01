@@ -15,9 +15,10 @@ public class Card : Item
     public int currentMinDamage;
     public int currentMaxDamage;
     [Range(0,1)]public float criticalChance;
-    public int criticalDamage;
     public int comboDamageToAdd;
 
+    [Tooltip("Force used to knock enemy back upon attacks")]
     public float cardKnockback;
+    [Tooltip("The force used to calculate forward momentum during combo attacks")]
     public float attackMomentum;
 }

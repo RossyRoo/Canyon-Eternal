@@ -22,9 +22,6 @@ public class EnemyManager : CharacterManager
     public float currentRecoveryTime;
     public float distanceFromTarget;
 
-    public Vector2 movementDirection;
-    public Vector2 lastFacingDirection = Vector2.down;
-
     private void Awake()
     {
         enemyStats = GetComponent<EnemyStats>();
@@ -95,31 +92,31 @@ public class EnemyManager : CharacterManager
 
         if (rawMoveDirection.x == 0)
         {
-            movementDirection.x = 0;
+            moveDirection.x = 0;
         }
         else if (rawMoveDirection.x > 0)
         {
-            movementDirection.x = 1;
+            moveDirection.x = 1;
         }
         else
         {
-            movementDirection.x = -1;
+            moveDirection.x = -1;
         }
 
         if (rawMoveDirection.y == 0)
         {
-            movementDirection.y = 0;
+            moveDirection.y = 0;
         }
         else if (rawMoveDirection.y > 0)
         {
-            movementDirection.y = 1;
+            moveDirection.y = 1;
         }
         else
         {
-            movementDirection.y = -1;
+            moveDirection.y = -1;
         }
 
-        if(movementDirection.x == 0 && movementDirection.y ==0)
+        if(moveDirection.x == 0 && moveDirection.y ==0)
         {
             isMoving = false;
         }
@@ -128,20 +125,20 @@ public class EnemyManager : CharacterManager
             isMoving = true;
         }
 
-        enemyAnimatorHandler.UpdateMoveAnimationValues(movementDirection.x, movementDirection.y, isMoving);
+        enemyAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, isMoving);
     }
 
     private void GetFacingDirection()
     {
-        if (movementDirection != Vector2.zero)
+        if (moveDirection != Vector2.zero)
         {
-            base.movingDirection = movementDirection;
+            base.moveDirection = moveDirection;
 
-            lastFacingDirection = movementDirection;
+            lastMoveDirection = moveDirection;
         }
         else
         {
-            base.movingDirection = lastFacingDirection;
+            base.moveDirection = lastMoveDirection;
         }
 
     }

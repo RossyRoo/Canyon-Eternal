@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
 
     public bool melee_Input;
     public bool dash_Input;
+    public bool guard_Input;
     public bool heal_Input;
     public bool interact_Input;
 
@@ -47,6 +48,9 @@ public class InputManager : MonoBehaviour
             //DASH
             playerControls.PlayerActions.Dash.performed += i => dash_Input = true;
 
+            //GUARD
+            playerControls.PlayerActions.Guard.performed += i => guard_Input = true;
+
             //HEAL
             playerControls.PlayerActions.Heal.performed += i => heal_Input = true;
 
@@ -65,6 +69,7 @@ public class InputManager : MonoBehaviour
     {
         HandleMeleeInput();
         HandleDashInput();
+        HandleGuardInput();
         HandleHealInput();
     }
 
@@ -101,6 +106,14 @@ public class InputManager : MonoBehaviour
                 return;
 
             playerManager.dashFlag = true;
+        }
+    }
+
+    private void HandleGuardInput()
+    {
+        if(guard_Input)
+        {
+            Debug.Log("Guard");
         }
     }
 
