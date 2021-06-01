@@ -9,7 +9,6 @@ public class EnemyStats : CharacterStats
     EnemyHealthBarUI enemyHealthBarUI;
 
     [Header("AI Settings")]
-    public float rotationSpeed = 25;
     public float detectionRadius = 20;
 
 
@@ -26,7 +25,7 @@ public class EnemyStats : CharacterStats
         enemyHealthBarUI.SetMaxHealth(maxHealth);
     }
 
-    public void LoseHealth(int damageHealth, string damageAnimation = "TakeDamage")
+    public void LoseHealth(int damageHealth, bool isCriticalHit, string damageAnimation = "TakeDamage")
     {
         if (enemyManager.isDead || enemyManager.isInvulnerable)
             return;
@@ -34,7 +33,7 @@ public class EnemyStats : CharacterStats
         EnableInvulnerability(hurtInvulnerabilityTime);
         currentHealth -= damageHealth;
 
-        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(currentHealth, damageHealth));
+        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(currentHealth, isCriticalHit, damageHealth));
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 

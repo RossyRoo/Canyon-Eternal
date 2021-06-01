@@ -13,6 +13,7 @@ public class EnemyHealthBarUI : MonoBehaviour
     Animator damageTextAnimator;
 
     public bool healthIsDecreasing = false;
+    public bool criticalHitActive;
 
     public float timeUntilHealthBarDrains = 0.4f;
     public float healthDecreaseRate = 20;
@@ -103,12 +104,19 @@ public class EnemyHealthBarUI : MonoBehaviour
             if (!damageText.gameObject.activeInHierarchy)
             {
                 damageText.gameObject.SetActive(true);
-                damageTextAnimator.Play("TextShake");
+                if (!criticalHitActive)
+                {
+                    damageTextAnimator.Play("DamageTextShake");
+                }
+                else
+                {
+                    damageTextAnimator.Play("CriticalTextShake");
+                }
             }
         }
     }
 
-    public IEnumerator SetHealthCoroutine(int health, int damage)
+    public IEnumerator SetHealthCoroutine(int health, bool isCriticalHit, int damage)
     {
         damageText.text = damage.ToString();
         timeUntilHealthBarIsHidden = 3f;
@@ -117,6 +125,8 @@ public class EnemyHealthBarUI : MonoBehaviour
         damageSlider.value = currentHealth;
         currentHealth = health;
         healthSlider.value = currentHealth;
+
+        criticalHitActive = isCriticalHit;
 
         yield return new WaitForSeconds(timeUntilHealthBarDrains);
 

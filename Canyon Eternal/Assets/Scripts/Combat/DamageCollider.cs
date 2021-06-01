@@ -8,6 +8,7 @@ public class DamageCollider : MonoBehaviour
     Collider2D damageCollider;
 
     int damage = 1;
+    bool criticalHitActivated;
 
     [Header("Knockback Settings")]
     CharacterManager knockbackTarget;
@@ -107,7 +108,7 @@ public class DamageCollider : MonoBehaviour
 
             if (enemyStats != null && !enemyManager.isDead)
             {
-                enemyStats.LoseHealth(damage);
+                enemyStats.LoseHealth(damage, criticalHitActivated);
             }
         }
 
@@ -153,10 +154,12 @@ public class DamageCollider : MonoBehaviour
             if (randValue < 1 - cardData.criticalChance)
             {
                 damage = Random.Range(cardData.currentMinDamage, cardData.currentMaxDamage);
+                criticalHitActivated = false;
             }
             else
             {
                 damage = cardData.currentMaxDamage * 2;
+                criticalHitActivated = true;
             }
         }
     }

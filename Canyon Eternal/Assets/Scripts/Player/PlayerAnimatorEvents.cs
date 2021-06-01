@@ -36,10 +36,11 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
     public void DespawnMelee()
     {
-        if(playerMeleeHandler.comboNumber==0)
+        if(playerMeleeHandler.comboNumber == 0)
         {
             playerMeleeHandler.currentMeleeModel.SetActive(false);
         }
+
         playerStats.isChainingInvulnerability = false;
     }
 
@@ -62,6 +63,12 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
         playerMeleeHandler.meleeDamageCollider.DisableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = false;
+
+        if (playerMeleeHandler.comboNumber >= 2)
+        {
+            playerMeleeHandler.comboNumber = 0;
+            animator.SetInteger("comboNumber", playerMeleeHandler.comboNumber);
+        }
     }
 
     public void EnableComboWindow()

@@ -126,7 +126,7 @@ public class PlayerMeleeHandler : MonoBehaviour
             }
             else if (comboNumber == 2)
             {
-                playerManager.rb.AddForce((playerManager.moveDirection * activeMeleeCard.attackMomentum) * 4);
+                playerManager.rb.AddForce((playerManager.moveDirection * activeMeleeCard.attackMomentum) * 3);
             }
         }
     }
