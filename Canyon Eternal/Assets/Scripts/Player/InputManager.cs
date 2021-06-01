@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     PlayerManager playerManager;
     PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
+    PlayerParticleHandler playerParticleHandler;
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
@@ -24,6 +25,7 @@ public class InputManager : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
+        playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
     }
 
     private void Start()
@@ -77,13 +79,18 @@ public class InputManager : MonoBehaviour
     {
         if(melee_Input)
         {
+            playerParticleHandler.ResetComboStarMaterial();
+
             if(playerMeleeHandler.canContinueCombo)
             {
                 playerMeleeHandler.comboWasHit = true;
+                playerMeleeHandler.PlayComboHitFX();
+                playerParticleHandler.ChangeComboStarMat();
             }
             else if(!playerMeleeHandler.canContinueCombo && playerManager.isAttacking)
             {
                 playerMeleeHandler.comboWasMissed = true;
+                playerParticleHandler.ChangeComboStarMat();
             }
 
             if (playerManager.isInteracting)

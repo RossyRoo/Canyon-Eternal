@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerParticleHandler : MonoBehaviour
 {
+    PlayerMeleeHandler playerMeleeHandler;
+
     public Transform mainParticleTransform;
     public Transform critStarTransform;
 
@@ -15,7 +17,39 @@ public class PlayerParticleHandler : MonoBehaviour
     public GameObject footstepVFX;
     public GameObject dashVFX;
 
-    [Header("COMBAT")]
-    public GameObject comboActivatedVFX;
+    [Header("COMBO STAR")]
+    public GameObject comboStarVFX;
+    public GameObject currentComboStarGO;
 
+    public Material yellowComboStarMat;
+    public Material greenComboStarMat;
+    public Material redComboStarMat;
+
+    private void Awake()
+    {
+        playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
+    }
+
+    public void ChangeComboStarMat()
+    {
+        if(currentComboStarGO != null)
+        {
+            if (playerMeleeHandler.comboWasHit)
+            {
+                currentComboStarGO.GetComponent<ParticleSystemRenderer>().material = greenComboStarMat;
+            }
+        }
+        else
+        {
+            if(playerMeleeHandler.comboWasMissed)
+            {
+                comboStarVFX.GetComponent<ParticleSystemRenderer>().material = redComboStarMat;
+            }
+        }
+    }
+
+    public void ResetComboStarMaterial()
+    {
+        comboStarVFX.GetComponent<ParticleSystemRenderer>().material = yellowComboStarMat;
+    }
 }

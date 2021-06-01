@@ -24,6 +24,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     public bool comboWasHit;
     public bool comboWasMissed;
     public bool attackMomentumActivated;
+    public AudioClip [] comboSFX;
 
     private void Awake()
     {
@@ -155,5 +156,9 @@ public class PlayerMeleeHandler : MonoBehaviour
         activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
     }
 
+    public void PlayComboHitFX()
+    {
+        SFXPlayer.Instance.PlaySFXAudioClip(comboSFX[comboNumber], 0.3f, 0.2f);
+    }
 
 }

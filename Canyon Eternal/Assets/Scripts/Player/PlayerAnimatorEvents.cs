@@ -54,7 +54,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
 
-        SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.swingWeapon);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.attacks[playerMeleeHandler.comboNumber]);
     }
 
     public void CloseDamageCollider()
@@ -77,12 +77,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
         if(playerMeleeHandler.comboNumber != 2)
         {
-            GameObject comboActivatedVFXGO =
-                Instantiate(playerParticleHandler.comboActivatedVFX,
-                new Vector2 (playerParticleHandler.critStarTransform.position.x + (playerManager.moveDirection.x * 2), playerParticleHandler.critStarTransform.position.y), Quaternion.identity);
-
-            comboActivatedVFXGO.transform.parent = gameObject.transform;
-            Destroy(comboActivatedVFXGO, comboActivatedVFXGO.GetComponent<ParticleSystem>().main.duration);
+            SpawnComboStar();
         }
     }
 
@@ -152,5 +147,14 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
     }
 
+    private void SpawnComboStar()
+    {
+        playerParticleHandler.currentComboStarGO =
+            Instantiate(playerParticleHandler.comboStarVFX,
+            new Vector2(playerParticleHandler.critStarTransform.position.x + (playerManager.moveDirection.x * 2), playerParticleHandler.critStarTransform.position.y), Quaternion.identity);
+
+        playerParticleHandler.currentComboStarGO.transform.parent = gameObject.transform;
+        Destroy(playerParticleHandler.currentComboStarGO, playerParticleHandler.currentComboStarGO.GetComponent<ParticleSystem>().main.duration);
+    }
 
 }

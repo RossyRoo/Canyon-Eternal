@@ -9,17 +9,14 @@ public class EnemyHealthBarUI : MonoBehaviour
     public Slider healthSlider;
     public Slider damageSlider;
     public TextMeshProUGUI damageText;
-    public GameObject healthFill;
     Animator damageTextAnimator;
 
-    public bool healthIsDecreasing = false;
-    public bool criticalHitActive;
+    bool healthIsDecreasing = false;
 
-    public float timeUntilHealthBarDrains = 0.4f;
-    public float healthDecreaseRate = 20;
+    float timeUntilHealthBarDrains = 0.4f;
+    float healthDecreaseRate = 20;
     float timeUntilHealthBarIsHidden = 0f;
     float timeUntilDamageTextIsHidden = 0f;
-    float timeUntilDestroyHealthBar = 0.5f;
 
     public int currentHealth;
 
@@ -70,10 +67,10 @@ public class EnemyHealthBarUI : MonoBehaviour
 
             if (damageSlider.value <= 0)
             {
-                DestroyCanvasCoroutine();
+                Destroy(healthSlider.gameObject);
+                Destroy(damageText.gameObject);
             }
         }
-
     }
 
     private void DisplayHealthBar()
@@ -99,21 +96,6 @@ public class EnemyHealthBarUI : MonoBehaviour
             timeUntilDamageTextIsHidden = 0;
             damageText.gameObject.SetActive(false);
         }
-        else
-        {
-            if (!damageText.gameObject.activeInHierarchy)
-            {
-                damageText.gameObject.SetActive(true);
-                if (!criticalHitActive)
-                {
-                    damageTextAnimator.Play("DamageTextShake");
-                }
-                else
-                {
-                    damageTextAnimator.Play("CriticalTextShake");
-                }
-            }
-        }
     }
 
     public IEnumerator SetHealthCoroutine(int health, bool isCriticalHit, int damage)
@@ -122,24 +104,22 @@ public class EnemyHealthBarUI : MonoBehaviour
         timeUntilHealthBarIsHidden = 3f;
         timeUntilDamageTextIsHidden = 0.8f;
 
+        damageText.gameObject.SetActive(true);
+        if (!isCriticalHit)
+        {
+            damageTextAnimator.Play("DamageTextShake");
+        }
+        else
+        {
+            damageTextAnimator.Play("CriticalTextShake");
+        }
+
         damageSlider.value = currentHealth;
         currentHealth = health;
         healthSlider.value = currentHealth;
 
-        criticalHitActive = isCriticalHit;
-
         yield return new WaitForSeconds(timeUntilHealthBarDrains);
 
         healthIsDecreasing = true;
-    }
-
-    private IEnumerator DestroyCanvasCoroutine()
-    {
-        Destroy(healthFill);
-
-        yield return new WaitForSeconds(timeUntilDestroyHealthBar);
-
-        Destroy(healthSlider.gameObject);
-        Destroy(damageText.gameObject);
     }
 }

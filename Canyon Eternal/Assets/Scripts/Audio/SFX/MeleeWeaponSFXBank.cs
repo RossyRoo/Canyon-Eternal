@@ -6,6 +6,6 @@ using UnityEngine;
 public class MeleeWeaponSFXBank : AudioBank
 {
     [Header("SFX")]
-    public AudioClip swingWeapon;
+    public AudioClip [] attacks;
     public AudioClip collideWithEnemy;
 }
