@@ -31,10 +31,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9067696907477780459}
@@ -79,7 +79,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDownRight
+  m_Name: ThrustDownRight_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -94,7 +94,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8d8532e78bd1f455d8738ba9641646ac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 16da1b6f916e04ed1982a0136a749835, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -170,10 +170,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7897110535677198578}
@@ -237,10 +237,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7377803163912811865}
@@ -545,7 +545,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUpRight 0
+  m_Name: ThrustUpRight_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -765,10 +765,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6545335722717300427}
@@ -819,7 +819,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4912267133448635416}
@@ -842,7 +842,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDown
+  m_Name: ThrustDown_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -946,7 +946,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDownRight 0
+  m_Name: ThrustDownRight_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -1168,8 +1168,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
+  - m_ConditionMode: 6
     m_ConditionEvent: moveY
+    m_EventTreshold: -1
+  - m_ConditionMode: 6
+    m_ConditionEvent: moveX
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7125634753306950997}
@@ -1194,10 +1197,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8073552227439616264}
@@ -1245,7 +1248,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustRight 0
+  m_Name: ThrustRight_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -1454,7 +1457,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1480636074412129226}
@@ -1477,7 +1480,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUpLeft
+  m_Name: ThrustUpLeft_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -1492,7 +1495,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c3afcd4a84c874196af4a7a070d6aa81, type: 2}
+  m_Motion: {fileID: 7400000, guid: 66656038c89a94b8295b462e7c338d36, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1605,7 +1608,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustLeft 0
+  m_Name: ThrustLeft_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -1633,7 +1636,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustLeft
+  m_Name: ThrustLeft_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -1662,12 +1665,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: moveX
-    m_EventTreshold: 0
-  - m_ConditionMode: 4
+    m_EventTreshold: 1
+  - m_ConditionMode: 6
     m_ConditionEvent: moveY
-    m_EventTreshold: 0
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8996305033784581889}
   m_Solo: 0
@@ -2045,7 +2048,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUp 0
+  m_Name: ThrustUp_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -2073,7 +2076,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDownLeft 0
+  m_Name: rustDownLeft_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -2178,7 +2181,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7860383889229877930}
@@ -2250,7 +2253,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUp
+  m_Name: ThrustUp_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -2657,9 +2660,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+  - m_ConditionMode: 6
+    m_ConditionEvent: moveX
     m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: moveY
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2778341432448308613}
   m_Solo: 0
@@ -2822,7 +2828,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDownLeft 0 0
+  m_Name: ThrustDownLeft_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2891,7 +2897,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7056761530969252490}
@@ -3010,10 +3016,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1311526432396547488}
@@ -3036,7 +3042,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUp 0 0
+  m_Name: ThrustUp_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3066,7 +3072,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4872594839602317546}
@@ -3169,55 +3175,67 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isInteracting
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Blend
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: moveX
+    m_Controller: {fileID: 0}
+  - m_Name: moveX_f
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: moveY
+    m_Controller: {fileID: 0}
+  - m_Name: moveY_f
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: comboWasMissed
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: comboWasHit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: comboNumber
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: moveX
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: moveY
+    m_Type: 3
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -3660,7 +3678,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3337796719676402945}
@@ -3757,7 +3775,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDown 0
+  m_Name: ThrustDown_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -3785,7 +3803,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustRight 0 0
+  m_Name: ThrustRight_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3838,7 +3856,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUpRight 0 0
+  m_Name: ThrustUpRight_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3867,8 +3885,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: moveX
+    m_EventTreshold: 1
+  - m_ConditionMode: 6
+    m_ConditionEvent: moveY
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6952227897799735502}
@@ -4000,7 +4021,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5698523986864789782}
@@ -4120,7 +4141,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7462652526028457496}
@@ -4183,10 +4204,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1066692410199894106}
@@ -4281,7 +4302,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUpLeft 0
+  m_Name: ThrustUpLeft_01
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -4514,7 +4535,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustLeft 0 0
+  m_Name: ThrustLeft_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -4644,7 +4665,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3666819965843953974}
@@ -4692,7 +4713,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDown 0 0
+  m_Name: ThrustDown_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -4809,10 +4830,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3158764053427402362}
@@ -4968,7 +4989,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUpRight
+  m_Name: ThrustUpRight_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -4983,7 +5004,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c3afcd4a84c874196af4a7a070d6aa81, type: 2}
+  m_Motion: {fileID: 7400000, guid: b82038f6488c2448281e36ecd5195f78, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -4997,12 +5018,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
+  - m_ConditionMode: 6
     m_ConditionEvent: moveX
-    m_EventTreshold: 0
-  - m_ConditionMode: 4
+    m_EventTreshold: -1
+  - m_ConditionMode: 6
     m_ConditionEvent: moveY
-    m_EventTreshold: 0
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7232205823652230828}
   m_Solo: 0
@@ -5073,10 +5094,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3026515796856674483}
@@ -5133,7 +5154,7 @@ AnimatorStateMachine:
     m_Position: {x: -300, y: -1250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5254575454035207718}
-    m_Position: {x: 330, y: -1310, z: 0}
+    m_Position: {x: 340, y: -1310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4994009403544594488}
     m_Position: {x: 330, y: -1250, z: 0}
@@ -5247,7 +5268,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 1a09cc623a6004972822807304a6b445, type: 2}
-    m_Threshold: 0.33333334
+    m_Threshold: 0.14285715
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -5255,7 +5276,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 4e60e522db8084690a94cd44db41f300, type: 2}
-    m_Threshold: 0.6666667
+    m_Threshold: 0.2857143
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -5263,14 +5284,46 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 987b724eb185b48b2b7a93558c54c2ae, type: 2}
-    m_Threshold: 1
+    m_Threshold: 0.42857143
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX
-  m_BlendParameterY: moveY
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 0b189e6887ba34c5c8b400518479dd88, type: 2}
+    m_Threshold: 0.5714286
+    m_Position: {x: -1, y: 1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 0f50dce017fe1470a9a5349e174455b3, type: 2}
+    m_Threshold: 0.71428573
+    m_Position: {x: 1, y: 1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: f6568976c96f34699a73f18365e0c6a7, type: 2}
+    m_Threshold: 0.85714287
+    m_Position: {x: -1, y: -1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 3819cc58232534cde894392e5cf79c6b, type: 2}
+    m_Threshold: 1
+    m_Position: {x: 1, y: -1}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: Blend
+    m_Mirror: 0
+  m_BlendParameter: moveX_f
+  m_BlendParameterY: moveY_f
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -5358,7 +5411,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1538916528347897783}
@@ -5574,8 +5627,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX
-  m_BlendParameterY: moveY
+  m_BlendParameter: moveX_f
+  m_BlendParameterY: moveY_f
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -5678,8 +5731,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX
-  m_BlendParameterY: moveY
+  m_BlendParameter: moveX_f
+  m_BlendParameterY: moveY_f
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -5843,7 +5896,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b36fe649aa20b438ead78277877b5892, type: 2}
+    m_Motion: {fileID: 7400000, guid: 1d15fda44baaf47a99ee62252ddc42cb, type: 2}
     m_Threshold: 0.5714286
     m_Position: {x: 1, y: 1}
     m_TimeScale: 1
@@ -5851,7 +5904,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b36fe649aa20b438ead78277877b5892, type: 2}
+    m_Motion: {fileID: 7400000, guid: 2e316cc765af34cc6bb325357fd8af3b, type: 2}
     m_Threshold: 0.71428573
     m_Position: {x: -1, y: 1}
     m_TimeScale: 1
@@ -5859,7 +5912,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 616edd52f188f4ddfb78c379d82ead04, type: 2}
+    m_Motion: {fileID: 7400000, guid: f342a19c51ea64b7fbea459ac84acbeb, type: 2}
     m_Threshold: 0.85714287
     m_Position: {x: -1, y: -1}
     m_TimeScale: 1
@@ -5867,15 +5920,15 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 616edd52f188f4ddfb78c379d82ead04, type: 2}
+    m_Motion: {fileID: 7400000, guid: 791d40a52cf274d53ae65d2982cc87a2, type: 2}
     m_Threshold: 1
     m_Position: {x: 1, y: -1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX
-  m_BlendParameterY: moveY
+  m_BlendParameter: moveX_f
+  m_BlendParameterY: moveY_f
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -6069,7 +6122,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4371110190326102102}
@@ -6114,7 +6167,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustRight
+  m_Name: ThrustRight_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -6194,10 +6247,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1799972330527196014}
@@ -6290,7 +6343,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDownLeft
+  m_Name: ThrustDownLeft_00
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -6305,7 +6358,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8d8532e78bd1f455d8738ba9641646ac, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7bdc76c3fd9ce48dd9a5618ed86f288a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -6364,10 +6417,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3719350355561549018}
@@ -6591,12 +6644,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: moveX
-    m_EventTreshold: 0
-  - m_ConditionMode: 3
+    m_EventTreshold: 1
+  - m_ConditionMode: 6
     m_ConditionEvent: moveY
-    m_EventTreshold: 0
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4994009403544594488}
   m_Solo: 0
@@ -6668,7 +6721,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustDownRight 0 0
+  m_Name: ThrustDownRight_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -6758,12 +6811,12 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
+  - m_ConditionMode: 6
     m_ConditionEvent: moveX
-    m_EventTreshold: 0
-  - m_ConditionMode: 3
+    m_EventTreshold: -1
+  - m_ConditionMode: 6
     m_ConditionEvent: moveY
-    m_EventTreshold: 0
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5254575454035207718}
   m_Solo: 0
@@ -6787,10 +6840,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_f
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6943969572540571299}
@@ -6946,8 +6999,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
+  - m_ConditionMode: 6
     m_ConditionEvent: moveX
+    m_EventTreshold: -1
+  - m_ConditionMode: 6
+    m_ConditionEvent: moveY
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4869168809941238885}
@@ -6970,7 +7026,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ThrustUpLeft 0 0
+  m_Name: ThrustUpLeft_02
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -7000,7 +7056,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_f
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -286320562944873875}

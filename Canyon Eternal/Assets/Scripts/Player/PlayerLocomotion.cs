@@ -34,20 +34,24 @@ public class PlayerLocomotion : MonoBehaviour
         playerManager.moveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
         playerManager.moveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
 
-        playerManager.lastMoveDirection.x = Mathf.RoundToInt(inputManager.lastMoveInput.x);
-        playerManager.lastMoveDirection.y = Mathf.RoundToInt(inputManager.lastMoveInput.y);
-
         playerManager.rb.MovePosition(playerManager.rb.position + playerManager.moveDirection.normalized * playerStats.moveSpeed * Time.fixedDeltaTime);
 
 
         if (playerManager.moveDirection.x == 0 && playerManager.moveDirection.y == 0)
         {
-            playerManager.moveDirection = playerManager.lastMoveDirection;
-            playerAnimatorHandler.UpdateMoveAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
+            //playerManager.moveDirX = playerManager.lastMoveDirX;
+            //playerManager.moveDirY = playerManager.lastMoveDirY;
+
+            //playerManager.moveDirection = playerManager.lastMoveDirection;
+
+            playerAnimatorHandler.UpdateIntAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
+            playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
         }
         else
         {
-            playerAnimatorHandler.UpdateMoveAnimationValues(playerManager.moveDirection.x, playerManager.moveDirection.y, true);
+            playerManager.lastMoveDirection = playerManager.moveDirection;
+            playerAnimatorHandler.UpdateIntAnimationValues(playerManager.moveDirection.x, playerManager.moveDirection.y, true);
+            playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.moveDirection.x, playerManager.moveDirection.y, true);
         }
     }
     #endregion

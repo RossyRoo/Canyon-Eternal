@@ -125,7 +125,7 @@ public class EnemyManager : CharacterManager
             isMoving = true;
         }
 
-        enemyAnimatorHandler.UpdateMoveAnimationValues(moveDirection.x, moveDirection.y, isMoving);
+        enemyAnimatorHandler.UpdateFloatAnimationValues(moveDirection.x, moveDirection.y, isMoving);
     }
 
     private void GetFacingDirection()

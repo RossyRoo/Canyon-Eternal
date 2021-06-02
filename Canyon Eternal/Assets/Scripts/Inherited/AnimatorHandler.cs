@@ -18,10 +18,17 @@ public class CharacterAnimatorHandler : MonoBehaviour
         animator.Play(targetAnim);
     }
 
-    public void UpdateMoveAnimationValues(float moveX, float moveY, bool isMoving)
+    public void UpdateFloatAnimationValues(float moveX, float moveY, bool isMoving)
     {
-        animator.SetFloat("moveX", moveX);
-        animator.SetFloat("moveY", moveY);
+        animator.SetFloat("moveX_f", moveX);
+        animator.SetFloat("moveY_f", moveY);
+        animator.SetBool("isMoving", isMoving);
+    }
+
+    public void UpdateIntAnimationValues(float moveX, float moveY, bool isMoving)
+    {
+        animator.SetInteger("moveX", Mathf.FloorToInt(moveX));
+        animator.SetInteger("moveY", Mathf.FloorToInt(moveY));
         animator.SetBool("isMoving", isMoving);
     }
 }

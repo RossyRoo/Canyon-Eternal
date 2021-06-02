@@ -12,7 +12,6 @@ public class InputManager : MonoBehaviour
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
-    public Vector2 lastMoveInput;
 
     public bool melee_Input;
     public bool dash_Input;
@@ -28,11 +27,6 @@ public class InputManager : MonoBehaviour
         playerBlockHandler = GetComponent<PlayerBlockHandler>();
     }
 
-    private void Start()
-    {
-        lastMoveInput = new Vector2(0, -1);
-    }
-
     private void OnEnable()
     {
         if(playerControls==null)
@@ -41,7 +35,6 @@ public class InputManager : MonoBehaviour
 
             //MOVEMENT
             playerControls.PlayerMovement.Move.performed += i => moveInput = i.ReadValue<Vector2>();
-            playerControls.PlayerMovement.Move.canceled += i => lastMoveInput = moveInput;
             playerControls.PlayerMovement.Move.canceled += i => moveInput = Vector2.zero;
 
             //ATTACKING
