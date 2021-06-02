@@ -208,6 +208,8 @@ public class PlayerMeleeHandler : MonoBehaviour
                 {
                     animator.SetBool("comboWasMissed", true);
                     playerStats.LoseStamina(activeMeleeCard.staminaCost);
+
+                    playerStats.BreakInvulnerability();
                 }
 
                 playerParticleHandler.ChangeStarToRed();

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fd18d497dc14534a920feecaaf8e2c, type: 3}
   m_Name: Slime Charge Attack
   m_EditorClassIdentifier: 
-  actionAnimation: Attacking
-  attackScore: 3
-  recoveryTime: 0.25
-  minimumDistanceNeededToAttack: 0
-  maximumDistanceNeededToAttack: 100
-  chargeForce: 4500
+  actionAnimation: Attack_00
+  attackScore: 1
+  recoveryTime: 0.75
+  spaceNeededToStartAttack: 0
+  shortestDistanceNeededToAttack: 25
+  chargeForce: 8500

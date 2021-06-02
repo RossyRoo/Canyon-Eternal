@@ -9,8 +9,10 @@ public class AttackState : EnemyStateMachine
     public DeathState deathState;
     public StunnedState stunnedState;
 
-    public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
+
+    [Tooltip("Use this until you add acceleration and deceleration to attacks")]
+    private float chargeForceMultiplier = 5000f;
 
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
@@ -28,33 +30,24 @@ public class AttackState : EnemyStateMachine
         #endregion
 
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
-        //float viewableAngle = Vector2.Angle(targetDirection, transform.forward);
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+        Debug.Log("Distance from target: " + distanceFromTarget);
 
-        
         if (enemyManager.isPerformingAction)
             return combatStanceState;
 
         if (currentAttack != null)
         {
-            if (distanceFromTarget < currentAttack.minimumDistanceNeededToAttack)
+            if (distanceFromTarget < currentAttack.spaceNeededToStartAttack)
             {
                 return this;
             }
-            else if (distanceFromTarget < currentAttack.maximumDistanceNeededToAttack)
+            else if (distanceFromTarget < currentAttack.shortestDistanceNeededToAttack)
             {
                 if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isPerformingAction == false)
                 {
-                    enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-                    enemyManager.isPerformingAction = true;
-                    enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+                    PerformAttack(enemyManager, enemyAnimatorHandler, targetDirection);
 
-                    if (currentAttack.chargeForce != 999f) //CHARGE ATTACKS ONLY
-                    {
-                        Vector2 force = targetDirection * currentAttack.chargeForce * Time.deltaTime;
-                        enemyManager.rb.AddForce(force);
-                    }
-                    currentAttack = null;
 
                     return combatStanceState;
                 }
@@ -67,7 +60,7 @@ public class AttackState : EnemyStateMachine
 
         return combatStanceState;
 
-        }
+    }
 
     private void GetNewAttack(EnemyManager enemyManager)
     {
@@ -75,12 +68,12 @@ public class AttackState : EnemyStateMachine
 
         int maxScore = 0;
 
-        for (int i = 0; i < enemyAttacks.Length; i++)
+        for (int i = 0; i < enemyManager.enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+            EnemyAttackAction enemyAttackAction = enemyManager.enemyAttacks[i];
 
-            if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
-                && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
+            if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
+                && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)
             {
                 maxScore += enemyAttackAction.attackScore;
             }
@@ -89,12 +82,12 @@ public class AttackState : EnemyStateMachine
         int randomValue = Random.Range(0, maxScore);
         int temporaryScore = 0;
 
-        for (int i = 0; i < enemyAttacks.Length; i++)
+        for (int i = 0; i < enemyManager.enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyAttacks[i];
+            EnemyAttackAction enemyAttackAction = enemyManager.enemyAttacks[i];
 
-            if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
-                && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
+            if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
+                && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)
             {
                 if (currentAttack != null)
                     return;
@@ -109,10 +102,22 @@ public class AttackState : EnemyStateMachine
         }
     }
 
+    private void PerformAttack(EnemyManager enemyManager, EnemyAnimatorHandler enemyAnimatorHandler, Vector2 targetDirection)
+    {
+        enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
+        enemyManager.isPerformingAction = true;
 
-}
+        if (currentAttack.chargeForce != 999f)
+        {
+            //APPLY ACCELERATION
+            Vector2 force = (targetDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
+            enemyManager.rb.AddForce(force);
+            Debug.Log("Performed " + currentAttack + " towards direction: " + targetDirection.normalized + " with force: " + force);
+        }
 
+        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
 
+        currentAttack = null;
+    }
 
-    
-       
+} 

@@ -17,9 +17,11 @@ public class EnemyManager : CharacterManager
     public PlayerStats currentTarget;
 
     public DamageCollider[] myDamageColliders;
+    public EnemyAttackAction[] enemyAttacks;
+
 
     [Header("Enemy Action Settings")]
-    public float maximumAttackRange = 1.5f;
+    public float maximumAttackRange = 0f;
     public float blindDistance = 50f;
     public float currentRecoveryTime;
     public float distanceFromTarget;
@@ -31,7 +33,6 @@ public class EnemyManager : CharacterManager
         seeker = GetComponent<Seeker>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         animator = GetComponentInChildren<Animator>();
-        myDamageColliders = GetComponentsInChildren<DamageCollider>();
     }
 
     private void Start()
@@ -39,6 +40,17 @@ public class EnemyManager : CharacterManager
         rb.isKinematic = false;
         GenerateTrackingWall();
         InvokeRepeating("HandleRotation", 0f, 1f);
+
+        myDamageColliders = GetComponentsInChildren<DamageCollider>();
+
+        for (int i = 0; i < enemyAttacks.Length; i++)
+        {
+            if(enemyAttacks[i].shortestDistanceNeededToAttack > maximumAttackRange)
+            {
+                maximumAttackRange = enemyAttacks[i].shortestDistanceNeededToAttack;
+            }
+        }
+
     }
 
     private void Update()
@@ -121,11 +133,11 @@ public class EnemyManager : CharacterManager
 
         if(moveDirection.x == 0 && moveDirection.y ==0)
         {
-            isMoving = false;
+            //isMoving = false;
         }
         else
         {
-            isMoving = true;
+            //isMoving = true;
         }
 
         enemyAnimatorHandler.UpdateFloatAnimationValues(moveDirection.x, moveDirection.y, isMoving);

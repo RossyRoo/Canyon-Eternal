@@ -43,6 +43,7 @@ public class ScoutState : EnemyStateMachine
 
         if (enemyManager.currentTarget != null)
         {
+            enemyManager.isMoving = true;
             return pursueTargetState;
         }
         else

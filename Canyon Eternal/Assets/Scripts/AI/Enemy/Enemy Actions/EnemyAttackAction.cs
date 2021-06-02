@@ -8,9 +8,9 @@ public class EnemyAttackAction : EnemyActions
     public int attackScore = 3;
     public float recoveryTime = 1f;
 
-    public float minimumDistanceNeededToAttack = 0;
-    public float maximumDistanceNeededToAttack = 3;
+    public float spaceNeededToStartAttack= 3;
+    public float shortestDistanceNeededToAttack = 5;
 
-    public float chargeForce = 999f;
+    [Range(1,100)]public float chargeForce = 999f;
 
 }

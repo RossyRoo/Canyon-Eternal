@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class EnemyAnimatorEvents : CharacterAnimatorEvents
 {
-    // Start is called before the first frame update
-    void Start()
+    EnemyManager enemyManager;
+
+
+    private void Awake()
     {
-        
+        enemyManager = GetComponentInParent<EnemyManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    #region Melee
+
+    public void OpenDamageCollider()
     {
-        
+        enemyManager.myDamageColliders[0].EnableDamageCollider();
+    }
+
+    public void CloseDamageCollider()
+    {
+        enemyManager.myDamageColliders[0].DisableDamageCollider();
+    }
+
+    #endregion
+
+    public void Footstep()
+    {
+
     }
 }

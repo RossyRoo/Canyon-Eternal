@@ -10,7 +10,6 @@ public class PlayerStats : CharacterStats
     public LunchboxMeter lunchboxMeter;
 
     PlayerManager playerManager;
-    PlayerMeleeHandler playerMelee;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
@@ -18,8 +17,8 @@ public class PlayerStats : CharacterStats
     public float maxStamina;
     public float currentStamina;
     public float staminaRecoverySpeed = 1.25f;
-    [HideInInspector] public float staminaRecoveryTimer = 0;
-    [HideInInspector] public float staminaRecoveryBuffer = 0.5f;
+    public float staminaRecoveryTimer = 0;
+    public float staminaRecoveryBuffer = 0.5f;
 
     [Header("Lunchbox")]
     public int maxLunchBoxCapacity = 5;
@@ -68,7 +67,7 @@ public class PlayerStats : CharacterStats
 
     public void RegenerateStamina()
     {
-        if (playerManager.isInteracting)
+        if (playerManager.isInteracting || playerManager.isDashing)
         {
             staminaRecoveryTimer = 0;
         }
@@ -163,6 +162,13 @@ public class PlayerStats : CharacterStats
         {
             playerManager.isInvulnerable = false;
         }
+    }
+
+    public void BreakInvulnerability()
+    {
+        Debug.Log("Breaking invulnerability");
+        playerManager.isInvulnerable = false;
+        isChainingInvulnerability = false;
     }
 
 

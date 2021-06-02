@@ -55,6 +55,7 @@ public class PursueState : EnemyStateMachine
         }
         else if(enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
         {
+            enemyManager.isMoving = false;
             return combatState;
         }
         else
@@ -66,7 +67,7 @@ public class PursueState : EnemyStateMachine
 
     private IEnumerator InitiatePathfinding(EnemyManager enemyManager)
     {
-        if(enemyManager.seeker.IsDone() && enemyManager.currentTarget != null)
+        if (enemyManager.seeker.IsDone() && enemyManager.currentTarget != null)
         {
             enemyManager.seeker.StartPath(enemyManager.rb.position, enemyManager.currentTarget.transform.position, OnPathComplete);
         }
@@ -102,6 +103,7 @@ public class PursueState : EnemyStateMachine
         moveForce = direction * enemyManager.enemyStats.moveSpeed * Time.deltaTime;
 
         enemyManager.rb.AddForce(moveForce);
+
 
         float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
 

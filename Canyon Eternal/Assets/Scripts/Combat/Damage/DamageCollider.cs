@@ -54,13 +54,11 @@ public class DamageCollider : MonoBehaviour
     public void EnableDamageCollider()
     {
         damageCollider.enabled = true;
-        Debug.Log("Damage collider ENABLED");
     }
 
     public void DisableDamageCollider()
     {
         damageCollider.enabled = false;
-        Debug.Log("Damage collider DISABLED");
     }
     #endregion
 

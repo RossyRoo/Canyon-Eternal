@@ -1239,8 +1239,6 @@ MonoBehaviour:
   combatStanceState: {fileID: 3538717597360276473}
   deathState: {fileID: 3538717597237797453}
   stunnedState: {fileID: 87832879}
-  enemyAttacks:
-  - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
   currentAttack: {fileID: 0}
 --- !u!1 &3538717597360276475
 GameObject:
@@ -1384,7 +1382,8 @@ MonoBehaviour:
   currentState: {fileID: 3538717596244281534}
   currentTarget: {fileID: 0}
   myDamageColliders: []
-  maximumAttackRange: 25
+  enemyAttacks: []
+  maximumAttackRange: 0
   blindDistance: 50
   currentRecoveryTime: 0
   distanceFromTarget: 0
@@ -1566,3 +1565,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe88d7adcec14a7889be093a1f3c8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterManager: {fileID: 4170450973767946576}

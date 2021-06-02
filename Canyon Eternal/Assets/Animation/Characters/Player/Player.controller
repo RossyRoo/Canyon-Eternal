@@ -31,10 +31,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9067696907477780459}
@@ -170,10 +170,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7897110535677198578}
@@ -223,10 +223,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7377803163912811865}
@@ -817,10 +817,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6545335722717300427}
@@ -871,10 +871,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4912267133448635416}
@@ -1210,10 +1210,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7125634753306950997}
@@ -1238,10 +1238,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8073552227439616264}
@@ -1433,8 +1433,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: moveX_f
     m_Mirror: 0
-  m_BlendParameter: moveX_f
-  m_BlendParameterY: moveY_f
+  m_BlendParameter: moveX_Float
+  m_BlendParameterY: moveY_Float
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -1577,10 +1577,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1480636074412129226}
@@ -1789,10 +1789,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8996305033784581889}
@@ -2324,10 +2324,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7860383889229877930}
@@ -2812,10 +2812,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2778341432448308613}
@@ -3048,10 +3048,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7056761530969252490}
@@ -3170,10 +3170,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1311526432396547488}
@@ -3226,10 +3226,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4872594839602317546}
@@ -3334,12 +3334,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isDashing
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: isInteracting
     m_Type: 4
     m_DefaultFloat: 0
@@ -3352,14 +3346,8 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: moveX_f
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: moveY_f
-    m_Type: 1
+  - m_Name: isDashing
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -3382,13 +3370,25 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: moveX
+  - m_Name: moveX_Float
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: moveY_Float
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: moveX_Int
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: moveY
+  - m_Name: moveY_Int
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -3837,10 +3837,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3337796719676402945}
@@ -4048,10 +4048,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6952227897799735502}
@@ -4161,10 +4161,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5698523986864789782}
@@ -4309,10 +4309,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7462652526028457496}
@@ -4375,10 +4375,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1066692410199894106}
@@ -4866,10 +4866,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3666819965843953974}
@@ -5034,10 +5034,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3158764053427402362}
@@ -5223,10 +5223,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7232205823652230828}
@@ -5323,10 +5323,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3026515796856674483}
@@ -5551,8 +5551,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX_f
-  m_BlendParameterY: moveY_f
+  m_BlendParameter: moveX_Float
+  m_BlendParameterY: moveY_Float
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -5640,10 +5640,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1538916528347897783}
@@ -5859,8 +5859,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX_f
-  m_BlendParameterY: moveY_f
+  m_BlendParameter: moveX_Float
+  m_BlendParameterY: moveY_Float
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -5963,8 +5963,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX_f
-  m_BlendParameterY: moveY_f
+  m_BlendParameter: moveX_Float
+  m_BlendParameterY: moveY_Float
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -6159,8 +6159,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
-  m_BlendParameter: moveX_f
-  m_BlendParameterY: moveY_f
+  m_BlendParameter: moveX_Float
+  m_BlendParameterY: moveY_Float
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -6354,10 +6354,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4371110190326102102}
@@ -6482,10 +6482,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1799972330527196014}
@@ -6652,10 +6652,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3719350355561549018}
@@ -6853,10 +6853,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4994009403544594488}
@@ -7045,10 +7045,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5254575454035207718}
@@ -7073,10 +7073,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6943969572540571299}
@@ -7233,10 +7233,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: -1
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4869168809941238885}
@@ -7289,10 +7289,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: moveX
+    m_ConditionEvent: moveX_Int
     m_EventTreshold: 0
   - m_ConditionMode: 6
-    m_ConditionEvent: moveY
+    m_ConditionEvent: moveY_Int
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -286320562944873875}

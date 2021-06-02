@@ -125,7 +125,7 @@ public class PlayerLocomotion : MonoBehaviour
                 dashTime = startDashTime;
                 playerManager.rb.velocity = Vector2.zero;
                 playerManager.isDashing = false;
-                playerStats.currentStamina -= 1;
+                playerStats.LoseStamina(1);
                 ReverseDashThroughEnemies();
             }
             else
