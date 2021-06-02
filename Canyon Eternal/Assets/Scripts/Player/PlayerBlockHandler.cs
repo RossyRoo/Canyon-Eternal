@@ -5,17 +5,34 @@ using UnityEngine;
 public class PlayerBlockHandler : MonoBehaviour
 {
     PlayerAnimatorHandler playerAnimatorHandler;
+    PlayerManager playerManager;
 
     public GameObject shieldModel;
 
     private void Awake()
     {
+        playerManager = GetComponent<PlayerManager>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
     }
 
-    public void StartBlocking()
+    public void HandleBlocking()
     {
-        playerAnimatorHandler.PlayTargetAnimation("Block", true);
+        playerManager.isBlocking = true;
+
+        if (playerManager.isInteracting)
+        {
+
+        }
+        else
+        {
+            playerAnimatorHandler.PlayTargetAnimation("Block", true);
+            Invoke("SpawnShieldModel", 0.1f);
+        }
+
+    }
+
+    private void SpawnShieldModel()
+    {
         shieldModel.SetActive(true);
     }
 

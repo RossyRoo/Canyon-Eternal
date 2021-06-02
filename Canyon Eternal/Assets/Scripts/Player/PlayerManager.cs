@@ -16,7 +16,7 @@ public class PlayerManager : CharacterManager
     public LayerMask interactableLayers;
 
     //Game Components
-    public bool dashFlag;
+    public bool isDashing;
 
     public Vector3 nextSpawnPoint;
 
@@ -40,6 +40,8 @@ public class PlayerManager : CharacterManager
         playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
         playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
 
+        animator.SetBool("isDashing", isDashing);
+
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
         CheckForInteractable();
@@ -50,7 +52,7 @@ public class PlayerManager : CharacterManager
         playerLocomotion.HandleMovement();
         playerMeleeHandler.AdjustAttackMomentum();
 
-        if(dashFlag)
+        if(isDashing)
         {
             playerLocomotion.HandleDash();
         }

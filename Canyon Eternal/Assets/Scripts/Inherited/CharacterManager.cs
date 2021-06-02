@@ -16,6 +16,8 @@ public class CharacterManager : MonoBehaviour
     public bool isAttacking;
     public bool isDead;
     public bool isMoving;
+    public bool isBlocking;
+    //public bool isVulnerableToBlock;
 
     public Vector2 moveDirection;
     public Vector2 lastMoveDirection = Vector2.down;

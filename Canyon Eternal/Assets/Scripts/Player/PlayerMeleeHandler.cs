@@ -113,9 +113,15 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         GetPlayerAttackDirection();
 
-        currentMeleeModel.SetActive(true);
+        Invoke("SpawnMeleeWeapon", 0.1f);
         
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
+    }
+
+    private void SpawnMeleeWeapon()
+    {
+        //Do Particle FX
+        currentMeleeModel.SetActive(true);
     }
 
     public void GetPlayerAttackDirection()

@@ -72,6 +72,11 @@ public class InputManager : MonoBehaviour
     {
         if(melee_Input)
         {
+            if(playerManager.isDashing)
+            {
+                return;
+            }
+
             playerMeleeHandler.HandleComboAttempt();
 
             if (playerManager.isInteracting)
@@ -88,7 +93,7 @@ public class InputManager : MonoBehaviour
             if (playerManager.isInteracting)
                 return;
 
-            playerManager.dashFlag = true;
+            playerManager.isDashing = true;
         }
     }
 
@@ -96,7 +101,7 @@ public class InputManager : MonoBehaviour
     {
         if(block_Input)
         {
-            playerBlockHandler.StartBlocking();
+            playerBlockHandler.HandleBlocking();
         }
     }
 

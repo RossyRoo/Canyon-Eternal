@@ -39,11 +39,6 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (playerManager.moveDirection.x == 0 && playerManager.moveDirection.y == 0)
         {
-            //playerManager.moveDirX = playerManager.lastMoveDirX;
-            //playerManager.moveDirY = playerManager.lastMoveDirY;
-
-            //playerManager.moveDirection = playerManager.lastMoveDirection;
-
             playerAnimatorHandler.UpdateIntAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
             playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
         }
@@ -61,7 +56,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (playerStats.currentStamina < 1 || playerManager.isInteracting)
         {
-            playerManager.dashFlag = false;
+            playerManager.isDashing = false;
             return;
         }
 
@@ -129,7 +124,7 @@ public class PlayerLocomotion : MonoBehaviour
                 direction = 0;
                 dashTime = startDashTime;
                 playerManager.rb.velocity = Vector2.zero;
-                playerManager.dashFlag = false;
+                playerManager.isDashing = false;
                 playerStats.currentStamina -= 1;
                 ReverseDashThroughEnemies();
             }
@@ -186,19 +181,19 @@ public class PlayerLocomotion : MonoBehaviour
         if (dashFXTriggered)
             return;
 
+        dashFXTriggered = true;
+
         playerStats.EnableInvulnerability(startDashTime);
-        playerAnimatorHandler.PlayTargetAnimation("Dash", false);
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
         GameObject dashParticleVFXGO = Instantiate(playerParticleHandler.dashVFX, dashFXTransform.position, rotation);
         dashParticleVFXGO.transform.parent = null;
         Destroy(dashParticleVFXGO, dashParticleVFXGO.GetComponent<ParticleSystem>().main.duration);
-        dashFXTriggered = true;
     }
 
     private void ReverseDashThroughEnemies()
     {
-        Physics2D.IgnoreLayerCollision(9, 10, playerManager.dashFlag);
-        Physics2D.IgnoreLayerCollision(8, 11, playerManager.dashFlag);
+        Physics2D.IgnoreLayerCollision(9, 10, playerManager.isDashing);
+        Physics2D.IgnoreLayerCollision(8, 11, playerManager.isDashing);
     }
     #endregion
 
