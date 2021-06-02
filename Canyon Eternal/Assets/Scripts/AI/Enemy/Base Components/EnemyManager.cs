@@ -16,6 +16,8 @@ public class EnemyManager : CharacterManager
     public EnemyStateMachine currentState;
     public PlayerStats currentTarget;
 
+    public DamageCollider[] myDamageColliders;
+
     [Header("Enemy Action Settings")]
     public float maximumAttackRange = 1.5f;
     public float blindDistance = 50f;
@@ -29,6 +31,7 @@ public class EnemyManager : CharacterManager
         seeker = GetComponent<Seeker>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         animator = GetComponentInChildren<Animator>();
+        myDamageColliders = GetComponentsInChildren<DamageCollider>();
     }
 
     private void Start()

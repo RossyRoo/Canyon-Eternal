@@ -16,8 +16,11 @@ public class CharacterManager : MonoBehaviour
     public bool isAttacking;
     public bool isDead;
     public bool isMoving;
+
     public bool isBlocking;
-    //public bool isVulnerableToBlock;
+    public bool isVulnerableToBlock;
+    public bool isStunned;
+    public float stunTime = 2f;
 
     public Vector2 moveDirection;
     public Vector2 lastMoveDirection = Vector2.down;

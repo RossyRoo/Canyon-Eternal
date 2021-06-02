@@ -20,4 +20,6 @@ public class CharacterSFXBank : AudioBank
     [Header("Healing")]
     public AudioClip[] consumeHealItem;
 
+    public AudioClip block;
+
 }

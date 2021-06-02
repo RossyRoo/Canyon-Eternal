@@ -215,7 +215,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957212773
   m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 8fc61fa65e2d746a285f587255e01251, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -296,7 +296,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957212773
   m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: fb122ea45ce36479696aae6b46b0314a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -380,7 +380,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957212773
   m_SortingLayer: 5
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8fc61fa65e2d746a285f587255e01251, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -421,7 +421,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1518488389}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
 --- !u!1 &1998093287
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ Transform:
   - {fileID: 1732863913663267056}
   m_Father: {fileID: 884914677}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
 --- !u!1 &2218863446239491919
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 2508996889107592589}
   - component: {fileID: 6712418072085086264}
   - component: {fileID: 2129872452629934231}
+  - component: {fileID: 6566091778781680203}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -821,7 +822,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957212773
   m_SortingLayer: 5
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: a39d71e2d6b234119997c70f5fbcf461, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -859,6 +860,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.729945, y: 5.12}
   m_EdgeRadius: 0
+--- !u!114 &6566091778781680203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473140102890026084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b350a3c4af8b4f59abb52c82fa37d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCharacter: {fileID: 0}
 --- !u!1 &8652666736338822588
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +972,10 @@ MonoBehaviour:
   isAttacking: 0
   isDead: 0
   isMoving: 0
+  isBlocking: 0
+  isVulnerableToBlock: 0
+  isStunned: 0
+  stunTime: 2
   moveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
   isConversing: 0
@@ -969,7 +987,7 @@ MonoBehaviour:
   interactableLayers:
     serializedVersion: 2
     m_Bits: 4096
-  dashFlag: 0
+  isDashing: 0
   nextSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &3785282042947835105
 MonoBehaviour:
@@ -1029,9 +1047,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d6c28e839904ac894fb5eb40ff67e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 5000
-  dashTime: 0.1
-  startDashTime: 0.1
+  dashSpeed: 4500
+  dashTime: 0.2
+  startDashTime: 0.2
   direction: 0
   dashFXTransform: {fileID: 104431047}
 --- !u!114 &1284162258
@@ -1072,6 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d812fadf955574bd1b3507cb3852e75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockCollider: {fileID: 0}
   shieldModel: {fileID: 8473140102890026084}
 --- !u!114 &4708498828894331879
 MonoBehaviour:
@@ -1259,17 +1278,17 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -2.0511606e-15
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000003934829
+      value: 0.000000039351445
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 8.0709666e-23
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}

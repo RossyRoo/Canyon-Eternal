@@ -7,15 +7,23 @@ public class ScoutState : EnemyStateMachine
     [Header("STATE TRANSITIONS")]
     public PursueState pursueTargetState;
     public DeathState deathState;
+    public StunnedState stunnedState;
 
     public LayerMask detectionLayer;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
+        #region Handle Death and Stun States
         if (enemyManager.isDead)
         {
             return deathState;
         }
+
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
+        #endregion
 
         #region Handle Target Detection
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), enemyStats.detectionRadius);

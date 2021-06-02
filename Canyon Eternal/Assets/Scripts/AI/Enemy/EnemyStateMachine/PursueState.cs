@@ -10,6 +10,7 @@ public class PursueState : EnemyStateMachine
     public ScoutState scoutState;
     public CombatState combatState;
     public DeathState deathState;
+    public StunnedState stunnedState;
 
     public float nextWaypointDistance = 3f;
 
@@ -25,12 +26,19 @@ public class PursueState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
+        #region Handle Death and Stun States
         if (enemyManager.isDead)
         {
             return deathState;
         }
 
-        if(!pathfindingInitiated)
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
+        #endregion
+
+        if (!pathfindingInitiated)
         {
             StartCoroutine(InitiatePathfinding(enemyManager));
             pathfindingInitiated = true;

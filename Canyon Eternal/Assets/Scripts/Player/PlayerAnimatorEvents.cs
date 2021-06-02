@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimatorEvents : MonoBehaviour
+public class PlayerAnimatorEvents : CharacterAnimatorEvents
 {
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;

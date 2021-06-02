@@ -7,6 +7,7 @@ public class AttackState : EnemyStateMachine
     [Header("STATE TRANSITIONS")]
     public CombatState combatStanceState;
     public DeathState deathState;
+    public StunnedState stunnedState;
 
     public EnemyAttackAction[] enemyAttacks;
     public EnemyAttackAction currentAttack;
@@ -14,10 +15,17 @@ public class AttackState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
+        #region Handle Death and Stun States
         if (enemyManager.isDead)
         {
             return deathState;
         }
+
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
+        #endregion
 
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
         //float viewableAngle = Vector2.Angle(targetDirection, transform.forward);
@@ -35,24 +43,20 @@ public class AttackState : EnemyStateMachine
             }
             else if (distanceFromTarget < currentAttack.maximumDistanceNeededToAttack)
             {
-                //if (viewableAngle <= currentAttack.maximumAttackAngle
-                //    && viewableAngle >= currentAttack.minimumAttackAngle)
+                if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isPerformingAction == false)
                 {
-                    if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isPerformingAction == false)
+                    enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
+                    enemyManager.isPerformingAction = true;
+                    enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+
+                    if (currentAttack.chargeForce != 999f) //CHARGE ATTACKS ONLY
                     {
-                        enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-                        enemyManager.isPerformingAction = true;
-                        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
-
-                        if (currentAttack.chargeForce != 999f) //CHARGE ATTACKS ONLY
-                        {
-                            Vector2 force = targetDirection * currentAttack.chargeForce * Time.deltaTime;
-                            enemyManager.rb.AddForce(force);
-                        }
-                        currentAttack = null;
-
-                        return combatStanceState;
+                        Vector2 force = targetDirection * currentAttack.chargeForce * Time.deltaTime;
+                        enemyManager.rb.AddForce(force);
                     }
+                    currentAttack = null;
+
+                    return combatStanceState;
                 }
             }
         }
@@ -67,8 +71,6 @@ public class AttackState : EnemyStateMachine
 
     private void GetNewAttack(EnemyManager enemyManager)
     {
-        //Vector2 targetsDirection = enemyManager.currentTarget.transform.position - transform.position;
-        //float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
 
         int maxScore = 0;
@@ -80,11 +82,7 @@ public class AttackState : EnemyStateMachine
             if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
             {
-                //if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                //    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
-                {
-                    maxScore += enemyAttackAction.attackScore;
-                }
+                maxScore += enemyAttackAction.attackScore;
             }
         }
 
@@ -98,18 +96,14 @@ public class AttackState : EnemyStateMachine
             if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
             {
-                //if (viewableAngle <= enemyAttackAction.maximumAttackAngle
-                //    && viewableAngle >= enemyAttackAction.minimumAttackAngle)
+                if (currentAttack != null)
+                    return;
+
+                temporaryScore += enemyAttackAction.attackScore;
+
+                if (temporaryScore > randomValue)
                 {
-                    if (currentAttack != null)
-                        return;
-
-                    temporaryScore += enemyAttackAction.attackScore;
-
-                    if (temporaryScore > randomValue)
-                    {
-                        currentAttack = enemyAttackAction;
-                    }
+                    currentAttack = enemyAttackAction;
                 }
             }
         }
