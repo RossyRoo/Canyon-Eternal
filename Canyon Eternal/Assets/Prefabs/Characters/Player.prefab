@@ -768,7 +768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2508996889107592589
 Transform:
   m_ObjectHideFlags: 0
@@ -984,7 +984,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveInput: {x: 0, y: 0}
-  lastMoveInput: {x: 0, y: 0}
   melee_Input: 0
   dash_Input: 0
   block_Input: 0
@@ -1196,6 +1195,7 @@ MonoBehaviour:
   dashVFX: {fileID: 3801012901521723010, guid: 9af8a132a18614e8aa7b44996539c87a, type: 3}
   comboStarVFX: {fileID: 9209632101132400203, guid: 6698ca4765697467eb72ca0552a0f644,
     type: 3}
+  currentComboStarGO: {fileID: 0}
   yellowComboStarMat: {fileID: 2100000, guid: 50b348e7aaa0641d9809bb148d0b4163, type: 2}
   greenComboStarMat: {fileID: 2100000, guid: 63749bc4d0d0b4211b294d941b758fa7, type: 2}
   redComboStarMat: {fileID: 2100000, guid: 1d174c007ba974bbc8b2cafba4e1b022, type: 2}

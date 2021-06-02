@@ -20,7 +20,7 @@ public class PlayerParticleHandler : MonoBehaviour
 
     [Header("COMBO STAR")]
     public GameObject comboStarVFX;
-    GameObject currentComboStarGO;
+    public GameObject currentComboStarGO;
 
     public Material yellowComboStarMat;
     public Material greenComboStarMat;
