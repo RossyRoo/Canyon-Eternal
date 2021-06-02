@@ -6,6 +6,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
 {
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
+    PlayerBlockHandler playerBlockHandler;
     PlayerStats playerStats;
 
     PlayerParticleHandler playerParticleHandler;
@@ -16,6 +17,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
     {
         playerStats = GetComponentInParent<PlayerStats>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
+        playerBlockHandler = GetComponentInParent<PlayerBlockHandler>();
         characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
 
@@ -80,6 +82,15 @@ public class PlayerAnimatorEvents : MonoBehaviour
         {
             SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.attacks[playerMeleeHandler.comboNumber]);
         }
+    }
+
+    #endregion
+
+    #region Blocking
+
+    public void DespawnShield()
+    {
+        playerBlockHandler.shieldModel.SetActive(false);
     }
 
     #endregion

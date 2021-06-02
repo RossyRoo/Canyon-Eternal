@@ -103,7 +103,7 @@ public class InputManager : MonoBehaviour
     {
         if(block_Input)
         {
-            playerBlockHandler.HandleBlock();
+            playerBlockHandler.StartBlocking();
         }
     }
 
