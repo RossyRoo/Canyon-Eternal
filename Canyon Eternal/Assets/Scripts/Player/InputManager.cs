@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour
     PlayerManager playerManager;
     PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
-    PlayerParticleHandler playerParticleHandler;
+    PlayerBlockHandler playerBlockHandler;
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
 
     public bool melee_Input;
     public bool dash_Input;
-    public bool guard_Input;
+    public bool block_Input;
     public bool heal_Input;
     public bool interact_Input;
 
@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
-        playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
+        playerBlockHandler = GetComponent<PlayerBlockHandler>();
     }
 
     private void Start()
@@ -50,8 +50,8 @@ public class InputManager : MonoBehaviour
             //DASH
             playerControls.PlayerActions.Dash.performed += i => dash_Input = true;
 
-            //GUARD
-            playerControls.PlayerActions.Guard.performed += i => guard_Input = true;
+            //BLOCK
+            playerControls.PlayerActions.Block.performed += i => block_Input = true;
 
             //HEAL
             playerControls.PlayerActions.Heal.performed += i => heal_Input = true;
@@ -71,7 +71,7 @@ public class InputManager : MonoBehaviour
     {
         HandleMeleeInput();
         HandleDashInput();
-        HandleGuardInput();
+        HandleBlockInput();
         HandleHealInput();
     }
 
@@ -99,11 +99,11 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleGuardInput()
+    private void HandleBlockInput()
     {
-        if(guard_Input)
+        if(block_Input)
         {
-            Debug.Log("Guard");
+            playerBlockHandler.HandleBlock();
         }
     }
 

@@ -53,12 +53,13 @@ public class PlayerParticleHandler : MonoBehaviour
 
     public void ChangeStarToRed()
     {
-
-        comboStarVFX.GetComponent<ParticleSystemRenderer>().material = redComboStarMat;
-
         if (currentComboStarGO != null)
         {
             currentComboStarGO.GetComponent<ParticleSystemRenderer>().material = redComboStarMat;
+        }
+        else
+        {
+            comboStarVFX.GetComponent<ParticleSystemRenderer>().material = redComboStarMat;
         }
     }
 }

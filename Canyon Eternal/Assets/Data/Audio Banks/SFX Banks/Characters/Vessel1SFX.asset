@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Vessel1SFX
   m_EditorClassIdentifier: 
   defaultAttack: {fileID: 8300000, guid: 3975cc4ca1d783e42956d92e3600d7fc, type: 3}
+  rockFootsteps: []
   dash: {fileID: 8300000, guid: b553b1aca5893c846b1f45bb2a6ea76b, type: 3}
-  takeDamage: {fileID: 8300000, guid: 5edea32ab246b004582ba21116f07ac2, type: 3}
-  deathRattle: {fileID: 8300000, guid: 8985ac26b0978bc48acdea27f92f9885, type: 3}
+  takeNormalDamage: {fileID: 8300000, guid: eaf11141beb0a124f9314386233915a3, type: 3}
+  takeCriticalDamage: {fileID: 8300000, guid: 143505a29ac019f4abf825f9bcbba42e, type: 3}
+  deathRattle: {fileID: 8300000, guid: 9672839b4095b454da3dd4129c410e92, type: 3}
   consumeHealItem:
   - {fileID: 8300000, guid: 4f2315da0d20f5a4ba6c261c75dcca1e, type: 3}
   - {fileID: 8300000, guid: 4f2315da0d20f5a4ba6c261c75dcca1e, type: 3}

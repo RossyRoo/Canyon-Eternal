@@ -56,10 +56,9 @@ public class PlayerAnimatorEvents : MonoBehaviour
 
     public void EnableComboWindow()
     {
-        playerMeleeHandler.canContinueCombo = true;
-
-        if(playerMeleeHandler.comboNumber != 2)
+        if(!playerMeleeHandler.comboWasMissed)
         {
+            playerMeleeHandler.canContinueCombo = true;
             playerParticleHandler.SpawnComboStar();
         }
     }
@@ -67,7 +66,7 @@ public class PlayerAnimatorEvents : MonoBehaviour
     public void DisableComboWindow()
     {
         if(!playerMeleeHandler.comboWasHit)
-        {
+        { 
             playerParticleHandler.ChangeStarToRed();
         }
         playerMeleeHandler.canContinueCombo = false;

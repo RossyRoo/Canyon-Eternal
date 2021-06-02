@@ -13,7 +13,8 @@ public class CharacterSFXBank : AudioBank
     public AudioClip dash;
 
     [Header("Taking Damage")]
-    public AudioClip takeDamage;
+    public AudioClip takeNormalDamage;
+    public AudioClip takeCriticalDamage;
     public AudioClip deathRattle;
 
     [Header("Healing")]

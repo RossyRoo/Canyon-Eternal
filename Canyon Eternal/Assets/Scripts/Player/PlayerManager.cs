@@ -67,7 +67,7 @@ public class PlayerManager : CharacterManager
         inputManager.dash_Input = false;
         inputManager.heal_Input = false;
         inputManager.interact_Input = false;
-        inputManager.guard_Input = false;
+        inputManager.block_Input = false;
     }
 
     public IEnumerator HandleDeathCoroutine()

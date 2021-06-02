@@ -95,7 +95,7 @@ public class PlayerStats : CharacterStats
         heartMeter.SetCurrentHealth(currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
-        SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeDamage);
+        SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeNormalDamage);
         CinemachineShake.Instance.Shake(5f, 0.5f);
 
         if (currentHealth <= 0)

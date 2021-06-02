@@ -178,16 +178,15 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         if (playerManager.isAttacking)
         {
-
             if (!canContinueCombo && !comboWasHit && !comboWasMissed)
             {
                 //MISS
                 canContinueCombo = false;
-                animator.SetBool("comboWasMissed", true);
-                animator.SetBool("comboWasHit", false);
+                animator.SetBool("comboWasHit", true);
 
                 if (comboNumber != 2)
                 {
+                    animator.SetBool("comboWasMissed", true);
                     playerStats.LoseStamina(activeMeleeCard.staminaCost);
                 }
 
@@ -197,7 +196,6 @@ public class PlayerMeleeHandler : MonoBehaviour
             {
                 //HIT
                 canContinueCombo = false;
-
                 animator.SetBool("comboWasHit", true);
                 GetPlayerAttackDirection();
                 playerParticleHandler.ChangeStarToGreen();
@@ -207,9 +205,9 @@ public class PlayerMeleeHandler : MonoBehaviour
             if(comboNumber == 2)
             {
                 animator.SetBool("comboWasHit", true);
-                animator.SetBool("comboWasMissed", false);
-                playerParticleHandler.ChangeStarToYellow();
             }
+
+            playerParticleHandler.ChangeStarToYellow();
         }
     }
 

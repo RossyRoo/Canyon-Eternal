@@ -766,6 +766,7 @@ GameObject:
   - component: {fileID: 9008261327072951981}
   - component: {fileID: 8652666736338822579}
   - component: {fileID: 1284162258}
+  - component: {fileID: 4788685616039370079}
   - component: {fileID: 4708498828894331879}
   m_Layer: 8
   m_Name: Player
@@ -822,7 +823,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d5b4e6afcb2984a2c94b233ecf3ceff2, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -877,7 +878,7 @@ MonoBehaviour:
   lastMoveInput: {x: 0, y: 0}
   melee_Input: 0
   dash_Input: 0
-  guard_Input: 0
+  block_Input: 0
   heal_Input: 0
   interact_Input: 0
 --- !u!114 &9008261327072951981
@@ -945,12 +946,24 @@ MonoBehaviour:
   meleeDamageCollider: {fileID: 0}
   comboNumber: 0
   canContinueCombo: 0
+  attackMomentumActivated: 0
   comboWasHit: 0
   comboWasMissed: 0
-  attackMomentumActivated: 0
   comboSFX:
   - {fileID: 8300000, guid: 8bd108b299c8e7a42adbf774dae5112b, type: 3}
   - {fileID: 8300000, guid: 71927f57c10e656489aa70e070763a25, type: 3}
+--- !u!114 &4788685616039370079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652666736338822588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d812fadf955574bd1b3507cb3852e75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4708498828894331879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,7 +1086,6 @@ MonoBehaviour:
   dashVFX: {fileID: 3801012901521723010, guid: 9af8a132a18614e8aa7b44996539c87a, type: 3}
   comboStarVFX: {fileID: 9209632101132400203, guid: 6698ca4765697467eb72ca0552a0f644,
     type: 3}
-  currentComboStarGO: {fileID: 0}
   yellowComboStarMat: {fileID: 2100000, guid: 50b348e7aaa0641d9809bb148d0b4163, type: 2}
   greenComboStarMat: {fileID: 2100000, guid: 63749bc4d0d0b4211b294d941b758fa7, type: 2}
   redComboStarMat: {fileID: 2100000, guid: 1d174c007ba974bbc8b2cafba4e1b022, type: 2}
@@ -1137,7 +1149,7 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -2.0511606e-15
+      value: 2.0511606e-15
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
@@ -1147,7 +1159,7 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 8.0709666e-23
+      value: -8.0709666e-23
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}

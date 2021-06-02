@@ -27,6 +27,8 @@ public class PlayerLocomotion : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
     }
 
+    #region Movement
+
     public void HandleMovement()
     {
         playerManager.moveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
@@ -48,7 +50,9 @@ public class PlayerLocomotion : MonoBehaviour
             playerAnimatorHandler.UpdateMoveAnimationValues(playerManager.moveDirection.x, playerManager.moveDirection.y, true);
         }
     }
+    #endregion
 
+    #region Dash
     public void HandleDash()
     {
         if (playerStats.currentStamina < 1 || playerManager.isInteracting)
@@ -192,5 +196,7 @@ public class PlayerLocomotion : MonoBehaviour
         Physics2D.IgnoreLayerCollision(9, 10, playerManager.dashFlag);
         Physics2D.IgnoreLayerCollision(8, 11, playerManager.dashFlag);
     }
+    #endregion
+
 
 }

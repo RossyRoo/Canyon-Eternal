@@ -37,16 +37,22 @@ public class EnemyStats : CharacterStats
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 
+        if (!isCriticalHit)
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeNormalDamage);
+        }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeCriticalDamage);
+        }
+
         if (currentHealth <= 0)
         {
             enemyManager.isDead = true;
             currentHealth = 0;
             SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.deathRattle);
         }
-        else
-        {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeDamage);
-        }
+
     }
 
     public void EnableInvulnerability(float iFrames)

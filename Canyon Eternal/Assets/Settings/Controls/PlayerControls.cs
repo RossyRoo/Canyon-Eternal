@@ -122,7 +122,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Guard"",
+                    ""name"": ""Block"",
                     ""type"": ""Button"",
                     ""id"": ""a72f6c03-d39f-4ae1-b59d-e9b43224d22b"",
                     ""expectedControlType"": ""Button"",
@@ -182,7 +182,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Guard"",
+                    ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -200,7 +200,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Dash = m_PlayerActions.FindAction("Dash", throwIfNotFound: true);
         m_PlayerActions_Heal = m_PlayerActions.FindAction("Heal", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
-        m_PlayerActions_Guard = m_PlayerActions.FindAction("Guard", throwIfNotFound: true);
+        m_PlayerActions_Block = m_PlayerActions.FindAction("Block", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -287,7 +287,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Dash;
     private readonly InputAction m_PlayerActions_Heal;
     private readonly InputAction m_PlayerActions_Interact;
-    private readonly InputAction m_PlayerActions_Guard;
+    private readonly InputAction m_PlayerActions_Block;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -296,7 +296,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_PlayerActions_Dash;
         public InputAction @Heal => m_Wrapper.m_PlayerActions_Heal;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
-        public InputAction @Guard => m_Wrapper.m_PlayerActions_Guard;
+        public InputAction @Block => m_Wrapper.m_PlayerActions_Block;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -318,9 +318,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
-                @Guard.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnGuard;
-                @Guard.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnGuard;
-                @Guard.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnGuard;
+                @Block.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnBlock;
+                @Block.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnBlock;
+                @Block.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnBlock;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -337,9 +337,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @Guard.started += instance.OnGuard;
-                @Guard.performed += instance.OnGuard;
-                @Guard.canceled += instance.OnGuard;
+                @Block.started += instance.OnBlock;
+                @Block.performed += instance.OnBlock;
+                @Block.canceled += instance.OnBlock;
             }
         }
     }
@@ -354,6 +354,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnHeal(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnGuard(InputAction.CallbackContext context);
+        void OnBlock(InputAction.CallbackContext context);
     }
 }
