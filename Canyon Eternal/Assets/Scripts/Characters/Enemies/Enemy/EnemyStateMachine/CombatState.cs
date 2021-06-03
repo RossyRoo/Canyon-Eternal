@@ -9,23 +9,13 @@ public class CombatState : EnemyStateMachine
     public PursueState pursueTargetState;
     public DeathState deathState;
     public StunnedState stunnedState;
+    public EvadeState evadeState;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+        enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
 
         #region Handle State Switching
-
-        if (enemyManager.currentRecoveryTime <= 0 && distanceFromTarget <= enemyManager.maximumAttackRange)
-        {
-            return attackState;
-        }
-
-        if (distanceFromTarget > enemyManager.maximumAttackRange)
-        {
-            enemyManager.isMoving = true;
-            return pursueTargetState;
-        }
 
         if (enemyManager.isDead)
         {
@@ -35,6 +25,22 @@ public class CombatState : EnemyStateMachine
         if (enemyManager.isStunned)
         {
             return stunnedState;
+        }
+
+        if (enemyManager.distanceFromTarget > enemyManager.attackRange)
+        {
+            return pursueTargetState;
+        }
+
+        if(enemyManager.distanceFromTarget < enemyManager.evadeRange)
+        {
+            //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
+            return evadeState;
+        }
+
+        if (enemyManager.currentRecoveryTime <= 0 && enemyManager.distanceFromTarget <= enemyManager.attackRange)
+        {
+            return attackState;
         }
 
         return this;

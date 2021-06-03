@@ -16,18 +16,14 @@ public class PursueState : EnemyStateMachine
 
     Path path;
     int currentWaypoint = 0;
-    //bool reachedEndOfPath = false;
     bool pathfindingInitiated = false;
     [HideInInspector]
 
     public Vector2 moveForce;
 
 
-
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-
-
         if (!pathfindingInitiated)
         {
             StartCoroutine(InitiatePathfinding(enemyManager));
@@ -56,7 +52,7 @@ public class PursueState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
+        if (enemyManager.distanceFromTarget <= enemyManager.attackRange)
         {
             enemyManager.isMoving = false;
             return combatState;
@@ -92,16 +88,6 @@ public class PursueState : EnemyStateMachine
     {
         if (path == null)
             return;
-
-        /*if(currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }*/
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
         moveForce = direction * enemyManager.enemyStats.moveSpeed * Time.deltaTime;

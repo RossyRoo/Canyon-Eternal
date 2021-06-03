@@ -965,8 +965,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayerID: -959509495
+  m_SortingLayer: 4
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 3db801edc987c4487b575e1306b2b1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1034,7 +1034,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8042637254294942633}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.52, y: 2.65, z: 0}
+  m_LocalPosition: {x: 0.19, y: 2.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1131211498997103602}
@@ -1822,6 +1822,7 @@ MonoBehaviour:
   pursueTargetState: {fileID: 8513535680646333515}
   deathState: {fileID: 8513535679513748796}
   stunnedState: {fileID: 5132462553342131806}
+  fleeState: {fileID: 2627831007360578965}
 --- !u!1 &8513535680233957035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,10 +1866,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c2e39776151449d8ade1b424108940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatStanceState: {fileID: 8513535680198657160}
+  combatState: {fileID: 8513535680198657160}
+  pursueState: {fileID: 8513535680646333515}
   deathState: {fileID: 8513535679513748796}
   stunnedState: {fileID: 5132462553342131806}
-  fleeState: {fileID: 2627831007360578965}
   currentAttack: {fileID: 0}
 --- !u!1 &8513535680646333525
 GameObject:
@@ -2119,23 +2120,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bca72872ce46cc954fb5caae1a9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myWallPrefab: {fileID: 5838069692043969820, guid: dd653c5d2327c4c20a53609f190220d3,
+  myWallPrefab: {fileID: 5838069692043969820, guid: e47193f2ff29e46bd887c6d39250dd6b,
     type: 3}
   myWall: {fileID: 0}
   rb: {fileID: 0}
+  isDead: 0
   isInteracting: 0
   isInvulnerable: 0
-  isAttacking: 0
-  isDead: 0
   isMoving: 0
+  isAttacking: 0
   isBlocking: 0
   isVulnerableToBlock: 0
   isStunned: 0
-  stunTime: 10
-  moveDirection: {x: 0, y: 0}
+  isDashing: 0
+  currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
-  isConversing: 0
-  isPerformingAction: 0
+  stunTime: 2
   deathTimeBuffer: 0.5
   enemyStats: {fileID: 0}
   seeker: {fileID: 0}
@@ -2143,9 +2143,9 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   myDamageColliders: []
   enemyAttacks:
-  - {fileID: 11400000, guid: 4059a9c7ddf1e49c09d637e3a5fecb53, type: 2}
-  maximumAttackRange: 0
-  blindDistance: 150
+  - {fileID: 11400000, guid: 47a0bf721e2fd4f4e8be6ea256b06739, type: 2}
+  attackRange: 0
+  blindDistance: 50
   currentRecoveryTime: 0
   distanceFromTarget: 0
 --- !u!114 &9140689240719447586

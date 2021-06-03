@@ -126,9 +126,9 @@ public class PlayerMeleeHandler : MonoBehaviour
         {
             if (comboNumber == 1)
             {
-                if(playerManager.moveDirection != Vector2.zero)
+                if(playerManager.currentMoveDirection != Vector2.zero)
                 {
-                    playerManager.rb.AddForce((playerManager.moveDirection * activeMeleeCard.attackMomentum) * 2);
+                    playerManager.rb.AddForce((playerManager.currentMoveDirection * activeMeleeCard.attackMomentum) * 2);
                 }
                 else
                 {
@@ -137,9 +137,9 @@ public class PlayerMeleeHandler : MonoBehaviour
             }
             else if (comboNumber == 2)
             {
-                if (playerManager.moveDirection != Vector2.zero)
+                if (playerManager.currentMoveDirection != Vector2.zero)
                 {
-                    playerManager.rb.AddForce((playerManager.moveDirection * activeMeleeCard.attackMomentum) * 3);
+                    playerManager.rb.AddForce((playerManager.currentMoveDirection * activeMeleeCard.attackMomentum) * 3);
                 }
                 else
                 {

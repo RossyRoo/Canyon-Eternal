@@ -43,7 +43,7 @@ public class PlayerParticleHandler : MonoBehaviour
     public void SpawnComboStar()
     {
         currentComboStarGO = Instantiate(comboStarVFX, new Vector2
-            (critStarTransform.position.x + (playerManager.moveDirection.x * 2), critStarTransform.position.y), Quaternion.identity);
+            (critStarTransform.position.x + (playerManager.currentMoveDirection.x * 2), critStarTransform.position.y), Quaternion.identity);
 
         currentComboStarGO.transform.parent = gameObject.transform;
         Destroy(currentComboStarGO, currentComboStarGO.GetComponent<ParticleSystem>().main.duration);

@@ -13,7 +13,6 @@ public class CharacterManager : MonoBehaviour
 
     public bool isDead;
     public bool isInteracting;
-    public bool isPerformingAction;
     public bool isInvulnerable;
     public bool isMoving;
 
@@ -24,8 +23,8 @@ public class CharacterManager : MonoBehaviour
     public bool isStunned;
     public bool isDashing;
 
-    public Vector2 moveDirection;
-    public Vector2 lastMoveDirection = Vector2.down;
+    public Vector2 currentMoveDirection;
+    public Vector2 lastMoveDirection;
 
     public float stunTime = 2f;
     public float deathTimeBuffer = 0.5f;
@@ -36,5 +35,4 @@ public class CharacterManager : MonoBehaviour
         myWall.Init(transform);
         myWall.transform.parent = GameObject.FindGameObjectWithTag("Tracking Walls").transform;
     }
-
 }

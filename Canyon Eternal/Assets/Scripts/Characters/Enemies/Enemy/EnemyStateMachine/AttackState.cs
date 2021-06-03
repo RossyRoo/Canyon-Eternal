@@ -5,10 +5,11 @@ using UnityEngine;
 public class AttackState : EnemyStateMachine
 {
     [Header("STATE TRANSITIONS")]
-    public CombatState combatStanceState;
+    public CombatState combatState;
+    public PursueState pursueState;
     public DeathState deathState;
     public StunnedState stunnedState;
-    public FleeState fleeState;
+    public EvadeState evadeState;
 
     public EnemyAttackAction currentAttack;
 
@@ -18,25 +19,30 @@ public class AttackState : EnemyStateMachine
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+        enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
 
-        float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+        if (enemyManager.isInteracting)
+            return combatState;
 
-        if (enemyManager.isPerformingAction)
-            return combatStanceState;
+        if (enemyManager.distanceFromTarget < enemyManager.evadeRange)
+        {
+            //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
+            return evadeState;
+        }
 
         if (currentAttack != null)
         {
-            if (distanceFromTarget < currentAttack.spaceNeededToStartAttack)
+            if (enemyManager.distanceFromTarget < currentAttack.spaceNeededToStartAttack
+                || enemyManager.distanceFromTarget > currentAttack.shortestDistanceNeededToAttack)
             {
-                return fleeState;
+                return combatState;
             }
-            else if (distanceFromTarget < currentAttack.shortestDistanceNeededToAttack)
+            else if (enemyManager.distanceFromTarget < currentAttack.shortestDistanceNeededToAttack)
             {
-                if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isPerformingAction == false)
+                if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isInteracting == false)
                 {
                     PerformAttack(enemyManager, enemyAnimatorHandler, targetDirection);
-
-                    return combatStanceState;
+                    return combatState;
                 }
             }
         }
@@ -57,7 +63,7 @@ public class AttackState : EnemyStateMachine
             return stunnedState;
         }
 
-        return combatStanceState;
+        return combatState;
 
         #endregion
 
@@ -106,7 +112,7 @@ public class AttackState : EnemyStateMachine
     private void PerformAttack(EnemyManager enemyManager, EnemyAnimatorHandler enemyAnimatorHandler, Vector2 targetDirection)
     {
         enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-        enemyManager.isPerformingAction = true;
+        enemyManager.isInteracting = true;
 
         enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
 

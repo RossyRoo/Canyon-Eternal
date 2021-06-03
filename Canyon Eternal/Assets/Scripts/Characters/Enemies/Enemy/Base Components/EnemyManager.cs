@@ -9,7 +9,6 @@ public class EnemyManager : CharacterManager
     [HideInInspector]
     public EnemyStats enemyStats;
     EnemyAnimatorHandler enemyAnimatorHandler;
-    Animator animator;
     [HideInInspector]
     public Seeker seeker;
 
@@ -17,12 +16,16 @@ public class EnemyManager : CharacterManager
     public PlayerStats currentTarget;
 
     public DamageCollider[] myDamageColliders;
-    public EnemyAttackAction[] enemyAttacks;
 
     [Header("Enemy Action Settings")]
-    public float maximumAttackRange = 0f;
+    public EnemyAttackAction[] enemyAttacks;
+    public float attackRange = 0f;
+    [Tooltip("The distance at which the enemy will back off target")]
+    public float evadeRange = 5f;
     public float blindDistance = 50f;
     public float currentRecoveryTime;
+
+    [Header("Targeting")]
     public float distanceFromTarget;
 
     private void Awake()
@@ -31,21 +34,19 @@ public class EnemyManager : CharacterManager
         rb = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
-        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
     {
         GenerateTrackingWall();
-        InvokeRepeating("HandleRotation", 0f, 1f);
 
         myDamageColliders = GetComponentsInChildren<DamageCollider>();
 
         for (int i = 0; i < enemyAttacks.Length; i++)
         {
-            if(enemyAttacks[i].shortestDistanceNeededToAttack > maximumAttackRange)
+            if(enemyAttacks[i].shortestDistanceNeededToAttack > attackRange)
             {
-                maximumAttackRange = enemyAttacks[i].shortestDistanceNeededToAttack;
+                attackRange = enemyAttacks[i].shortestDistanceNeededToAttack;
             }
         }
     }
@@ -54,13 +55,14 @@ public class EnemyManager : CharacterManager
     {
         HandleRecoveryTimer();
         HandleStateMachine();
-
-        isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
-        //animator.SetBool("isDead", isDead);
-
-        UpdateDirection();
     }
 
+    private void FixedUpdate()
+    {
+        UpdateRotationByVelocity();
+    }
+
+    #region State Machine
 
     private void HandleStateMachine()
     {
@@ -87,16 +89,18 @@ public class EnemyManager : CharacterManager
             currentRecoveryTime -= Time.deltaTime;
         }
 
-        if (isPerformingAction)
+        if (isInteracting)
         {
             if (currentRecoveryTime <= 0)
             {
-                isPerformingAction = false;
+                isInteracting = false;
             }
         }
     }
 
-    private void HandleRotation()
+    #endregion
+
+    private void UpdateRotationByVelocity()
     {
         Vector2 rawMoveDirection;
 
@@ -105,43 +109,41 @@ public class EnemyManager : CharacterManager
 
         if (rawMoveDirection.x == 0)
         {
-            moveDirection.x = 0;
+            currentMoveDirection.x = 0;
         }
         else if (rawMoveDirection.x > 0)
         {
-            moveDirection.x = 1;
+            currentMoveDirection.x = 1;
         }
         else
         {
-            moveDirection.x = -1;
+            currentMoveDirection.x = -1;
         }
 
         if (rawMoveDirection.y == 0)
         {
-            moveDirection.y = 0;
+            currentMoveDirection.y = 0;
         }
         else if (rawMoveDirection.y > 0)
         {
-            moveDirection.y = 1;
+            currentMoveDirection.y = 1;
         }
         else
         {
-            moveDirection.y = -1;
+            currentMoveDirection.y = -1;
         }
-    }
 
-    private void UpdateDirection()
-    {
-        if (moveDirection != Vector2.zero)
+        if (currentMoveDirection != Vector2.zero)
         {
-            lastMoveDirection = moveDirection;
-            enemyAnimatorHandler.UpdateFloatAnimationValues(moveDirection.x, moveDirection.y, isMoving);
+            lastMoveDirection = currentMoveDirection;
+            enemyAnimatorHandler.UpdateFloatAnimationValues(currentMoveDirection.x, currentMoveDirection.y, isMoving);
+            isMoving = true;
         }
         else
         {
             enemyAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, isMoving);
+            isMoving = false;
         }
-
     }
 
 }

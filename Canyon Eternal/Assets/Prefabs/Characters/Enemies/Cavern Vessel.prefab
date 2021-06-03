@@ -232,7 +232,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -4.8, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -306,7 +306,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -4.8, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -924,7 +924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6967108430681476081
 Transform:
   m_ObjectHideFlags: 0
@@ -975,23 +975,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bca72872ce46cc954fb5caae1a9f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myWallPrefab: {fileID: 5838069692043969820, guid: dd653c5d2327c4c20a53609f190220d3,
+  myWallPrefab: {fileID: 5838069692043969820, guid: e47193f2ff29e46bd887c6d39250dd6b,
     type: 3}
   myWall: {fileID: 0}
   rb: {fileID: 0}
+  isDead: 0
   isInteracting: 0
   isInvulnerable: 0
-  isAttacking: 0
-  isDead: 0
   isMoving: 0
+  isAttacking: 0
   isBlocking: 0
   isVulnerableToBlock: 0
   isStunned: 0
-  stunTime: 10
-  moveDirection: {x: 0, y: 0}
+  isDashing: 0
+  currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
-  isConversing: 0
-  isPerformingAction: 0
+  stunTime: 2
   deathTimeBuffer: 0.5
   enemyStats: {fileID: 0}
   seeker: {fileID: 0}
@@ -1000,7 +999,7 @@ MonoBehaviour:
   myDamageColliders: []
   enemyAttacks:
   - {fileID: 11400000, guid: 4059a9c7ddf1e49c09d637e3a5fecb53, type: 2}
-  maximumAttackRange: 0
+  attackRange: 0
   blindDistance: 150
   currentRecoveryTime: 0
   distanceFromTarget: 0
@@ -1232,6 +1231,7 @@ MonoBehaviour:
   pursueTargetState: {fileID: 7515456384091986327}
   deathState: {fileID: 7515456382992169184}
   stunnedState: {fileID: 6435730887236969346}
+  fleeState: {fileID: 0}
 --- !u!1 &7515456383974783863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,10 +1275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c2e39776151449d8ade1b424108940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatStanceState: {fileID: 7515456383944071508}
+  combatState: {fileID: 0}
+  pursueState: {fileID: 0}
   deathState: {fileID: 7515456382992169184}
   stunnedState: {fileID: 6435730887236969346}
-  fleeState: {fileID: 4187655218060372041}
   currentAttack: {fileID: 0}
 --- !u!1 &7515456384091986313
 GameObject:
