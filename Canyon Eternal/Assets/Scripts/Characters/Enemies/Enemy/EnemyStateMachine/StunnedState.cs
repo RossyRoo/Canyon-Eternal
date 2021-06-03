@@ -24,12 +24,9 @@ public class StunnedState : EnemyStateMachine
         }
         #endregion
 
-
-
         if (!runningStunnedCoroutine)
         {
-            Debug.Log("Stun Time Over");
-            StartCoroutine(StunTimer(enemyManager));
+            StartCoroutine(StunTimer(enemyStats, enemyAnimatorHandler));
         }
 
         if(finishedStunnedCoroutine)
@@ -37,10 +34,9 @@ public class StunnedState : EnemyStateMachine
             finishedStunnedCoroutine = false;
             runningStunnedCoroutine = false;
 
-            for (int i = 0; i < enemyManager.myDamageColliders.Length; i++)
-            {
-                enemyManager.myDamageColliders[i].EnableDamageCollider();
-            }
+            enemyStats.EnableAllDamageColliders();
+
+            enemyManager.isInteracting = false;
 
             return pursueState;
         }
@@ -50,19 +46,16 @@ public class StunnedState : EnemyStateMachine
         }
     }
 
-    private IEnumerator StunTimer(EnemyManager enemyManager)
+    private IEnumerator StunTimer(EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
         runningStunnedCoroutine = true;
 
-        for (int i = 0; i < enemyManager.myDamageColliders.Length; i++)
-        {
-            enemyManager.myDamageColliders[i].DisableDamageCollider();
-        }
+        enemyAnimatorHandler.PlayTargetAnimation("Stunned", true);
 
-        yield return new WaitForSeconds(enemyManager.stunTime);
+        enemyStats.DisableAllDamageColliders();
+
+        yield return new WaitForSeconds(2f);
 
         finishedStunnedCoroutine = true;
-
-        Debug.Log("Stun Time Over");
     }
 }

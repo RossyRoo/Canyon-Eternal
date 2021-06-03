@@ -69,7 +69,7 @@ public class PlayerManager : CharacterManager
 
     public IEnumerator HandleDeathCoroutine()
     {
-        yield return new WaitForSeconds(deathTimeBuffer);
+        yield return new WaitForSeconds(2f);
         //Death Anim
         //Drop fragments
         //Reload from fort

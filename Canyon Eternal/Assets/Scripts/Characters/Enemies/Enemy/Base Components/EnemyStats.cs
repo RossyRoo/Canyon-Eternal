@@ -9,8 +9,12 @@ public class EnemyStats : CharacterStats
     EnemyHealthBarUI enemyHealthBarUI;
 
     [Header("AI Settings")]
-    public float detectionRadius = 20;
-
+    public EnemyAttackAction[] enemyAttacks; //Attacks enemy can use
+    public DamageCollider[] myDamageColliders; //Damage colliders on enemy
+    public float detectionRadius = 20;      //Distance at which enemy can spot the player
+    public float attackRange = 0f;          //Distance enemy needs to enter attack state
+    public float evadeRange = 5f;           //Distance enemy will back off target
+    public float blindDistance = 50f;       //Distance when enemy loses its target
 
     private void Awake()
     {
@@ -23,6 +27,17 @@ public class EnemyStats : CharacterStats
     {
         currentHealth = maxHealth;
         enemyHealthBarUI.SetMaxHealth(maxHealth);
+
+        myDamageColliders = GetComponentsInChildren<DamageCollider>();
+
+        for (int i = 0; i < enemyAttacks.Length; i++)
+        {
+            if (enemyAttacks[i].shortestDistanceNeededToAttack > attackRange)
+            {
+                Debug.Log("SEARCHING ATTACK: " + enemyAttacks[i].name);
+                attackRange = enemyAttacks[i].shortestDistanceNeededToAttack;
+            }
+        }
     }
 
     public void LoseHealth(int damageHealth, bool isCriticalHit, string damageAnimation = "TakeDamage")
@@ -68,4 +83,20 @@ public class EnemyStats : CharacterStats
         enemyManager.isInvulnerable = false;
     }
     #endregion
+
+    public void DisableAllDamageColliders()
+    {
+        for (int i = 0; i < myDamageColliders.Length; i++)
+        {
+            myDamageColliders[i].DisableDamageCollider();
+        }
+    }
+
+    public void EnableAllDamageColliders()
+    {
+        for (int i = 0; i < myDamageColliders.Length; i++)
+        {
+            myDamageColliders[i].EnableDamageCollider();
+        }
+    }
 }

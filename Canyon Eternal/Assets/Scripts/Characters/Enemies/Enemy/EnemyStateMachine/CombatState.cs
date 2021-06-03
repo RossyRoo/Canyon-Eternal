@@ -27,18 +27,18 @@ public class CombatState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.distanceFromTarget > enemyManager.attackRange)
+        if (enemyManager.distanceFromTarget > enemyStats.attackRange)
         {
             return pursueTargetState;
         }
 
-        if(enemyManager.distanceFromTarget < enemyManager.evadeRange)
+        if(enemyManager.distanceFromTarget < enemyStats.evadeRange)
         {
             //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
             return evadeState;
         }
 
-        if (enemyManager.currentRecoveryTime <= 0 && enemyManager.distanceFromTarget <= enemyManager.attackRange)
+        if (enemyManager.currentRecoveryTime <= 0 && enemyManager.distanceFromTarget <= enemyStats.attackRange)
         {
             return attackState;
         }

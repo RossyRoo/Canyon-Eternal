@@ -391,14 +391,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 0}
+  dealsConstantDamage: 1
+  targetIsWithinRange: 0
+  canDamageEnemy: 1
   knockbackTarget: {fileID: 0}
   knockbackDirection: {x: 0, y: 0}
   knockbackForce: 500
   startKnockbackTime: 0.02
-  dealsConstantDamage: 1
-  targetIsWithinRange: 0
-  canDamageEnemy: 1
+  cardData: {fileID: 0}
 --- !u!1 &1164396353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,9 +1236,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c2e39776151449d8ade1b424108940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatStanceState: {fileID: 3538717597360276473}
+  combatState: {fileID: 3538717597360276473}
+  pursueState: {fileID: 3538717596105196346}
   deathState: {fileID: 3538717597237797453}
   stunnedState: {fileID: 87832879}
+  evadeState: {fileID: 0}
   currentAttack: {fileID: 0}
 --- !u!1 &3538717597360276475
 GameObject:
@@ -1287,6 +1289,7 @@ MonoBehaviour:
   pursueTargetState: {fileID: 3538717596105196346}
   deathState: {fileID: 3538717597237797453}
   stunnedState: {fileID: 87832879}
+  evadeState: {fileID: 0}
 --- !u!1 &4170450973767946578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,30 +1366,30 @@ MonoBehaviour:
     type: 3}
   myWall: {fileID: 0}
   rb: {fileID: 0}
+  isDead: 0
   isInteracting: 0
   isInvulnerable: 0
-  isAttacking: 0
-  isDead: 0
   isMoving: 0
+  isAttacking: 0
   isBlocking: 0
   isVulnerableToBlock: 0
   isStunned: 0
-  stunTime: 10
-  moveDirection: {x: 0, y: 0}
+  isDashing: 0
+  currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
-  isConversing: 0
-  isPerformingAction: 0
+  stunTime: 3
   deathTimeBuffer: 0.5
-  enemyStats: {fileID: 0}
   seeker: {fileID: 0}
   currentState: {fileID: 3538717596244281534}
-  currentTarget: {fileID: 0}
+  enemyAttacks:
+  - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
   myDamageColliders: []
-  enemyAttacks: []
-  maximumAttackRange: 0
+  currentTarget: {fileID: 0}
+  distanceFromTarget: 0
+  attackRange: 0
+  evadeRange: 5
   blindDistance: 50
   currentRecoveryTime: 0
-  distanceFromTarget: 0
 --- !u!114 &4170450973767946579
 MonoBehaviour:
   m_ObjectHideFlags: 0

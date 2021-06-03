@@ -5,23 +5,25 @@ using UnityEngine;
 public class EnemyAnimatorEvents : CharacterAnimatorEvents
 {
     EnemyManager enemyManager;
+    EnemyStats enemyStats;
 
 
     private void Awake()
     {
         enemyManager = GetComponentInParent<EnemyManager>();
+        enemyStats = GetComponentInParent<EnemyStats>();
     }
 
     #region Melee
 
     public void OpenDamageCollider()
     {
-        enemyManager.myDamageColliders[0].EnableDamageCollider();
+        enemyStats.myDamageColliders[0].EnableDamageCollider();
     }
 
     public void CloseDamageCollider()
     {
-        enemyManager.myDamageColliders[0].DisableDamageCollider();
+        enemyStats.myDamageColliders[0].DisableDamageCollider();
     }
 
     #endregion

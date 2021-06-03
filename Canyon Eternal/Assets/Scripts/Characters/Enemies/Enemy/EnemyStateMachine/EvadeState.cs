@@ -27,7 +27,7 @@ public class EvadeState : EnemyStateMachine
             evadeRecoveryTime -= Time.deltaTime;
         }
 
-        if (enemyManager.distanceFromTarget > enemyManager.attackRange + safeDistanceBuffer)
+        if (enemyManager.distanceFromTarget > enemyStats.attackRange + safeDistanceBuffer)
         {
             reachedEvadeDistance = true;
 

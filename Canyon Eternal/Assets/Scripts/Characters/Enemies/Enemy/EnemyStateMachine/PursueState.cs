@@ -30,13 +30,13 @@ public class PursueState : EnemyStateMachine
             pathfindingInitiated = true;
         }
 
-        MoveTowardsTarget(enemyManager);
+        MoveTowardsTarget(enemyManager, enemyStats);
 
         enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
 
         #region Handle State Switching
 
-        if (enemyManager.distanceFromTarget > enemyManager.blindDistance)
+        if (enemyManager.distanceFromTarget > enemyStats.blindDistance)
         {
             enemyManager.currentTarget = null;
             return scoutState;
@@ -52,7 +52,7 @@ public class PursueState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.distanceFromTarget <= enemyManager.attackRange)
+        if (enemyManager.distanceFromTarget <= enemyStats.attackRange)
         {
             enemyManager.isMoving = false;
             return combatState;
@@ -84,13 +84,13 @@ public class PursueState : EnemyStateMachine
         }
     }
 
-    private void MoveTowardsTarget(EnemyManager enemyManager)
+    private void MoveTowardsTarget(EnemyManager enemyManager, EnemyStats enemyStats)
     {
         if (path == null)
             return;
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
-        moveForce = direction * enemyManager.enemyStats.moveSpeed * Time.deltaTime;
+        moveForce = direction * enemyStats.moveSpeed * Time.deltaTime;
 
         enemyManager.rb.AddForce(moveForce);
 

@@ -5,18 +5,18 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public TrackingWall myWallPrefab;
+
     [HideInInspector]
     public TrackingWall myWall;
 
     [HideInInspector]
     public Rigidbody2D rb;
 
+    [Header("Character States")]
     public bool isDead;
     public bool isInteracting;
     public bool isInvulnerable;
     public bool isMoving;
-
-    [Header("Combat States")]
     public bool isAttacking;
     public bool isBlocking;
     public bool isVulnerableToBlock;
@@ -25,9 +25,6 @@ public class CharacterManager : MonoBehaviour
 
     public Vector2 currentMoveDirection;
     public Vector2 lastMoveDirection;
-
-    public float stunTime = 2f;
-    public float deathTimeBuffer = 0.5f;
 
     public void GenerateTrackingWall()
     {

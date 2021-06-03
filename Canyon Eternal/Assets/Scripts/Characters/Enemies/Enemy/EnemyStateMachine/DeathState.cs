@@ -19,9 +19,13 @@ public class DeathState : EnemyStateMachine
     private IEnumerator DeathCoroutine(EnemyManager enemyManager, EnemyStats enemyStats)
     {
         runningDeathCoroutine = true;
+
+        enemyStats.DisableAllDamageColliders();
+
         FindObjectOfType<PlayerInventory>().AdjustFragmentInventory(enemyStats.fragmentDrop);
+
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSeconds(enemyManager.deathTimeBuffer);
+        yield return new WaitForSeconds(2f);
         Destroy(enemyManager.myWall.gameObject);
         Destroy(enemyManager.gameObject);
     }

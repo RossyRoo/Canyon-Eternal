@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 8754513802359879573}
   - component: {fileID: 2627831007360578965}
   m_Layer: 0
-  m_Name: Flee State
+  m_Name: Evade State
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,7 +867,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdf297acbc6d4d219cc36ffbbd82411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leapForceMultiplier: 10
+  combatState: {fileID: 8513535680198657160}
+  leapForceMultiplier: 250
+  safeDistanceBuffer: 0
+  evadeRecoveryTime: 0.5
+  evadeRecoveryStartTime: 0.5
+  reachedEvadeDistance: 0
 --- !u!1 &8042637253913174772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e5dd705e067144f16b988d410531797d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1389,7 +1394,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 8a74f44c88de445d1870af758cf6c8ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1473,7 +1478,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3db801edc987c4487b575e1306b2b1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1682,7 +1687,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -959509495
   m_SortingLayer: 4
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 8a74f44c88de445d1870af758cf6c8ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1822,7 +1827,7 @@ MonoBehaviour:
   pursueTargetState: {fileID: 8513535680646333515}
   deathState: {fileID: 8513535679513748796}
   stunnedState: {fileID: 5132462553342131806}
-  fleeState: {fileID: 2627831007360578965}
+  evadeState: {fileID: 2627831007360578965}
 --- !u!1 &8513535680233957035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,6 +1875,7 @@ MonoBehaviour:
   pursueState: {fileID: 8513535680646333515}
   deathState: {fileID: 8513535679513748796}
   stunnedState: {fileID: 5132462553342131806}
+  evadeState: {fileID: 2627831007360578965}
   currentAttack: {fileID: 0}
 --- !u!1 &8513535680646333525
 GameObject:
@@ -2135,19 +2141,17 @@ MonoBehaviour:
   isDashing: 0
   currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
-  stunTime: 2
-  deathTimeBuffer: 0.5
-  enemyStats: {fileID: 0}
   seeker: {fileID: 0}
   currentState: {fileID: 8513535681314623439}
-  currentTarget: {fileID: 0}
-  myDamageColliders: []
   enemyAttacks:
   - {fileID: 11400000, guid: 47a0bf721e2fd4f4e8be6ea256b06739, type: 2}
-  attackRange: 0
-  blindDistance: 50
-  currentRecoveryTime: 0
+  myDamageColliders: []
+  currentTarget: {fileID: 0}
   distanceFromTarget: 0
+  attackRange: 0
+  evadeRange: 4.8
+  blindDistance: 150
+  currentRecoveryTime: 0
 --- !u!114 &9140689240719447586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2258,7 +2262,7 @@ PrefabInstance:
     - target: {fileID: 55337193229753064, guid: 3afea6df9a7654197bb419278028d9d3,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 55337193229753064, guid: 3afea6df9a7654197bb419278028d9d3,
         type: 3}

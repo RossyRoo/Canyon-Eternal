@@ -24,7 +24,7 @@ public class AttackState : EnemyStateMachine
         if (enemyManager.isInteracting)
             return combatState;
 
-        if (enemyManager.distanceFromTarget < enemyManager.evadeRange)
+        if (enemyManager.distanceFromTarget < enemyStats.evadeRange)
         {
             //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
             return evadeState;
@@ -48,7 +48,7 @@ public class AttackState : EnemyStateMachine
         }
         else
         {
-            GetNewAttack(enemyManager);
+            GetNewAttack(enemyManager, enemyStats);
         }
 
         #region Handle State Switching
@@ -69,15 +69,15 @@ public class AttackState : EnemyStateMachine
 
     }
 
-    private void GetNewAttack(EnemyManager enemyManager)
+    private void GetNewAttack(EnemyManager enemyManager, EnemyStats enemyStats)
     {
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
 
         int maxScore = 0;
 
-        for (int i = 0; i < enemyManager.enemyAttacks.Length; i++)
+        for (int i = 0; i < enemyStats.enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyManager.enemyAttacks[i];
+            EnemyAttackAction enemyAttackAction = enemyStats.enemyAttacks[i];
 
             if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)
@@ -89,9 +89,9 @@ public class AttackState : EnemyStateMachine
         int randomValue = Random.Range(0, maxScore);
         int temporaryScore = 0;
 
-        for (int i = 0; i < enemyManager.enemyAttacks.Length; i++)
+        for (int i = 0; i < enemyStats.enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyManager.enemyAttacks[i];
+            EnemyAttackAction enemyAttackAction = enemyStats.enemyAttacks[i];
 
             if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)

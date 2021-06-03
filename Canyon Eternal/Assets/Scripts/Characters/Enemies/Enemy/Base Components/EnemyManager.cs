@@ -6,27 +6,18 @@ using Pathfinding;
 
 public class EnemyManager : CharacterManager
 {
-    [HideInInspector]
-    public EnemyStats enemyStats;
+    EnemyStats enemyStats;
     EnemyAnimatorHandler enemyAnimatorHandler;
+
     [HideInInspector]
     public Seeker seeker;
 
+    [Header("State Settings")]
     public EnemyStateMachine currentState;
     public PlayerStats currentTarget;
-
-    public DamageCollider[] myDamageColliders;
-
-    [Header("Enemy Action Settings")]
-    public EnemyAttackAction[] enemyAttacks;
-    public float attackRange = 0f;
-    [Tooltip("The distance at which the enemy will back off target")]
-    public float evadeRange = 5f;
-    public float blindDistance = 50f;
+    public float distanceFromTarget;
     public float currentRecoveryTime;
 
-    [Header("Targeting")]
-    public float distanceFromTarget;
 
     private void Awake()
     {
@@ -40,15 +31,7 @@ public class EnemyManager : CharacterManager
     {
         GenerateTrackingWall();
 
-        myDamageColliders = GetComponentsInChildren<DamageCollider>();
 
-        for (int i = 0; i < enemyAttacks.Length; i++)
-        {
-            if(enemyAttacks[i].shortestDistanceNeededToAttack > attackRange)
-            {
-                attackRange = enemyAttacks[i].shortestDistanceNeededToAttack;
-            }
-        }
     }
 
     private void Update()
