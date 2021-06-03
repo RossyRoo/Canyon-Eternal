@@ -99,7 +99,7 @@ public class InputManager : MonoBehaviour
     {
         if(block_Input)
         {
-            if (playerStats.currentHealth < 1)
+            if (playerStats.characterData.currentHealth < 1)
                 return;
 
             StartCoroutine(playerBlockHandler.HandleBlocking());
@@ -110,9 +110,9 @@ public class InputManager : MonoBehaviour
     {
         if(heal_Input)
         {
-            if (playerStats.currentLunchBoxCapacity > 0 && playerStats.currentHealth < playerStats.maxHealth)
+            if (playerStats.currentLunchBoxCapacity > 0 && playerStats.characterData.currentHealth < playerStats.characterData.maxHealth)
             {
-                playerStats.RecoverHealth(playerStats.healAmount, false);
+                playerStats.RecoverHealth(playerStats.characterData.healAmount, false);
             }
         }
 

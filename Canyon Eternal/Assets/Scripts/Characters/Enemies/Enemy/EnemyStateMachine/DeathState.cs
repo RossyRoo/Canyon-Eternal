@@ -22,7 +22,7 @@ public class DeathState : EnemyStateMachine
 
         enemyStats.DisableAllDamageColliders();
 
-        FindObjectOfType<PlayerInventory>().AdjustFragmentInventory(enemyStats.fragmentDrop);
+        FindObjectOfType<PlayerInventory>().AdjustFragmentInventory(enemyStats.characterData.fragmentDrop);
 
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         yield return new WaitForSeconds(2f);

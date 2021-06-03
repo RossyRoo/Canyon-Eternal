@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAnimatorEvents : CharacterAnimatorEvents
 {
-    CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerBlockHandler playerBlockHandler;
     PlayerStats playerStats;
@@ -18,7 +17,6 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
         playerStats = GetComponentInParent<PlayerStats>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         playerBlockHandler = GetComponentInParent<PlayerBlockHandler>();
-        characterSFXBank = GetComponentInParent<PlayerStats>().characterSFXBank;
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
 
         objectPool = FindObjectOfType<ObjectPool>();
@@ -30,7 +28,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
     {
         playerMeleeHandler.AddComboDamage();
 
-        playerStats.EnableInvulnerability(playerStats.hurtInvulnerabilityTime);
+        playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
 
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
@@ -101,8 +99,8 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
         if(instantiatedFootstepsCount <= 2)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.rockFootsteps
-                [Random.Range(0, characterSFXBank.rockFootsteps.Length)], 0.1f);
+            SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.characterSFXBank.rockFootsteps
+                [Random.Range(0, playerStats.characterData.characterSFXBank.rockFootsteps.Length)], 0.1f);
 
             playerParticleHandler.SpawnFootstepCloudVFX();
         }

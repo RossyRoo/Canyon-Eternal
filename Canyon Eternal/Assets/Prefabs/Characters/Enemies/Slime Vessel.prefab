@@ -1377,18 +1377,10 @@ MonoBehaviour:
   isDashing: 0
   currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
-  stunTime: 3
-  deathTimeBuffer: 0.5
   seeker: {fileID: 0}
   currentState: {fileID: 3538717596244281534}
-  enemyAttacks:
-  - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
-  myDamageColliders: []
   currentTarget: {fileID: 0}
   distanceFromTarget: 0
-  attackRange: 0
-  evadeRange: 5
-  blindDistance: 50
   currentRecoveryTime: 0
 --- !u!114 &4170450973767946579
 MonoBehaviour:
@@ -1409,7 +1401,12 @@ MonoBehaviour:
   healAmount: 0
   hurtInvulnerabilityTime: 0.25
   fragmentDrop: 10
-  detectionRadius: 20
+  enemyAttacks:
+  - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
+  enemyWeapons: []
+  detectionRadius: 35
+  attackRange: 0
+  evadeRange: 5
 --- !u!114 &3451020769818308922
 MonoBehaviour:
   m_ObjectHideFlags: 0

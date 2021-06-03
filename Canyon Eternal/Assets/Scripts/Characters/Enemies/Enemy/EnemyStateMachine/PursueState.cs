@@ -12,15 +12,12 @@ public class PursueState : EnemyStateMachine
     public DeathState deathState;
     public StunnedState stunnedState;
 
+    [Header("Pathfinding Data")]
     public float nextWaypointDistance = 3f;
-
     Path path;
     int currentWaypoint = 0;
     bool pathfindingInitiated = false;
-    [HideInInspector]
-
     public Vector2 moveForce;
-
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
@@ -36,7 +33,7 @@ public class PursueState : EnemyStateMachine
 
         #region Handle State Switching
 
-        if (enemyManager.distanceFromTarget > enemyStats.blindDistance)
+        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 2f)
         {
             enemyManager.currentTarget = null;
             return scoutState;
@@ -52,7 +49,7 @@ public class PursueState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.distanceFromTarget <= enemyStats.attackRange)
+        if (enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange)
         {
             enemyManager.isMoving = false;
             return combatState;
@@ -89,11 +86,11 @@ public class PursueState : EnemyStateMachine
         if (path == null)
             return;
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
-        moveForce = direction * enemyStats.moveSpeed * Time.deltaTime;
+        Vector2 targetDirection = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
 
-        enemyManager.rb.AddForce(moveForce);
+        enemyManager.rb.AddForce(targetDirection * enemyStats.characterData.moveSpeed * Time.deltaTime);
 
+        //enemyManager.rb.MovePosition(enemyManager.rb.position + targetDirection * Time.fixedDeltaTime);
 
         float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
 

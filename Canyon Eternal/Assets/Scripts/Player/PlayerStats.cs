@@ -13,6 +13,9 @@ public class PlayerStats : CharacterStats
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
+    [HideInInspector] public float playerMoveSpeed = 20f;
+    [HideInInspector] public int playerMaxHealth = 4;
+
     [Header("Stamina")]
     public float maxStamina;
     public float currentStamina;
@@ -36,13 +39,16 @@ public class PlayerStats : CharacterStats
 
     private void Start()
     {
+        characterData.moveSpeed = playerMoveSpeed;
+        characterData.maxHealth = playerMaxHealth;
+
         SetStartingStats();
     }
 
     public void SetStartingStats()
     {
-        currentHealth = maxHealth;
-        heartMeter.SetMaxHearts(maxHealth);
+        characterData.currentHealth = characterData.maxHealth;
+        heartMeter.SetMaxHearts(characterData.maxHealth);
 
         currentStamina = maxStamina;
         staminaMeter.SetMaxStamina(maxStamina);
@@ -101,25 +107,25 @@ public class PlayerStats : CharacterStats
             || playerManager.isDead)
             return;
 
-        EnableInvulnerability(hurtInvulnerabilityTime);
-        currentHealth -= damageHealth;
-        heartMeter.SetCurrentHealth(currentHealth);
+        EnableInvulnerability(characterData.invulnerabilityFrames);
+        characterData.currentHealth -= damageHealth;
+        heartMeter.SetCurrentHealth(characterData.currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
-        SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeNormalDamage);
+        SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeNormalDamage);
         CinemachineShake.Instance.Shake(5f, 0.5f);
 
-        if (currentHealth <= 0)
+        if (characterData.currentHealth <= 0)
         {
-            currentHealth = 0;
+            characterData.currentHealth = 0;
             StartCoroutine(playerManager.HandleDeathCoroutine());
         }
     }
 
     public void RecoverHealth(int recoveryHealth, bool isFullHeal)
     {
-        currentHealth += recoveryHealth;
-        heartMeter.SetCurrentHealth(currentHealth);
+        characterData.currentHealth += recoveryHealth;
+        heartMeter.SetCurrentHealth(characterData.currentHealth);
 
         if(!isFullHeal)
         {
@@ -129,9 +135,9 @@ public class PlayerStats : CharacterStats
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
         }
 
-        if (currentHealth >= maxHealth)
+        if (characterData.currentHealth >= characterData.maxHealth)
         {
-            currentHealth = maxHealth;
+            characterData.currentHealth = characterData.maxHealth;
         }
     }
     #endregion

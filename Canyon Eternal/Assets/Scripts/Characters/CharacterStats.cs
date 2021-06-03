@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    public float moveSpeed = 12f;
-
-    [Header("Data")]
-    public CharacterSFXBank characterSFXBank;
-
-    [Header("Health")]
-    public int maxHealth;
-    public int currentHealth;
-    public int healAmount;
-    public float hurtInvulnerabilityTime = 0.8f;
-
-    [Header("Loot Drops")]
-    public int fragmentDrop; //THIS SHOULD GO IN CHARACTER INVENTORY
+    [Header("CHARACTER DATA CARD")]
+    public CharacterData characterData;
 
 }

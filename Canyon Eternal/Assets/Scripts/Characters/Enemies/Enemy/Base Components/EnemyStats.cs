@@ -8,35 +8,27 @@ public class EnemyStats : CharacterStats
     EnemyAnimatorHandler enemyAnimatorHandler;
     EnemyHealthBarUI enemyHealthBarUI;
 
-    [Header("AI Settings")]
+    [Header("Weapons And Attacks")]
     public EnemyAttackAction[] enemyAttacks; //Attacks enemy can use
-    public DamageCollider[] myDamageColliders; //Damage colliders on enemy
-    public float detectionRadius = 20;      //Distance at which enemy can spot the player
-    public float attackRange = 0f;          //Distance enemy needs to enter attack state
-    public float evadeRange = 5f;           //Distance enemy will back off target
-    public float blindDistance = 50f;       //Distance when enemy loses its target
+    public DamageCollider[] enemyWeapons;   //Damage colliders on enemy
 
     private void Awake()
     {
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         enemyHealthBarUI = GetComponentInChildren<EnemyHealthBarUI>();
+        enemyWeapons = GetComponentsInChildren<DamageCollider>();
     }
 
     private void Start()
     {
-        currentHealth = maxHealth;
-        enemyHealthBarUI.SetMaxHealth(maxHealth);
+        characterData.currentHealth = characterData.maxHealth;
+        enemyHealthBarUI.SetMaxHealth(characterData.maxHealth);
 
-        myDamageColliders = GetComponentsInChildren<DamageCollider>();
-
-        for (int i = 0; i < enemyAttacks.Length; i++)
+        foreach (var attack in enemyAttacks)
         {
-            if (enemyAttacks[i].shortestDistanceNeededToAttack > attackRange)
-            {
-                Debug.Log("SEARCHING ATTACK: " + enemyAttacks[i].name);
-                attackRange = enemyAttacks[i].shortestDistanceNeededToAttack;
-            }
+            if (attack.shortestDistanceNeededToAttack > characterData.attackRange)
+                characterData.attackRange = attack.shortestDistanceNeededToAttack;
         }
     }
 
@@ -45,28 +37,28 @@ public class EnemyStats : CharacterStats
         if (enemyManager.isDead || enemyManager.isInvulnerable)
             return;
 
-        EnableInvulnerability(hurtInvulnerabilityTime);
+        EnableInvulnerability(characterData.invulnerabilityFrames);
 
-        currentHealth -= damageHealth;
+        characterData.currentHealth -= damageHealth;
 
-        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(currentHealth, isCriticalHit, damageHealth));
+        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(characterData.currentHealth, isCriticalHit, damageHealth));
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 
         if (!isCriticalHit)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeNormalDamage);
+            SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeNormalDamage);
         }
         else
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.takeCriticalDamage);
+            SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeCriticalDamage);
         }
 
-        if (currentHealth <= 0)
+        if (characterData.currentHealth <= 0)
         {
             enemyManager.isDead = true;
-            currentHealth = 0;
-            SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.deathRattle);
+            characterData.currentHealth = 0;
+            SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.deathRattle);
         }
 
     }
@@ -84,19 +76,22 @@ public class EnemyStats : CharacterStats
     }
     #endregion
 
+    #region Enable/Disable Damage Colliders
+
     public void DisableAllDamageColliders()
     {
-        for (int i = 0; i < myDamageColliders.Length; i++)
+        for (int i = 0; i < enemyWeapons.Length; i++)
         {
-            myDamageColliders[i].DisableDamageCollider();
+            enemyWeapons[i].DisableDamageCollider();
         }
     }
 
     public void EnableAllDamageColliders()
     {
-        for (int i = 0; i < myDamageColliders.Length; i++)
+        for (int i = 0; i < enemyWeapons.Length; i++)
         {
-            myDamageColliders[i].EnableDamageCollider();
+            enemyWeapons[i].EnableDamageCollider();
         }
     }
+    #endregion
 }

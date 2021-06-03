@@ -24,7 +24,7 @@ public class AttackState : EnemyStateMachine
         if (enemyManager.isInteracting)
             return combatState;
 
-        if (enemyManager.distanceFromTarget < enemyStats.evadeRange)
+        if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange)
         {
             //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
             return evadeState;

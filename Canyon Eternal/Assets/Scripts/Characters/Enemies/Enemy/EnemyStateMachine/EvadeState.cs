@@ -10,10 +10,10 @@ public class EvadeState : EnemyStateMachine
     public CombatState combatState;
     public float leapForceMultiplier = 200;
 
-    public float safeDistanceBuffer = 5f; //Add this to the attack range to determine distance enemy needs to start their evade recovery timer
-    public float evadeRecoveryTime = 0.5f;
-    public float evadeRecoveryStartTime = 0.5f;
-    public bool reachedEvadeDistance = false;
+    float safeDistanceBuffer = 5f;
+    float evadeRecoveryTime = 0.5f;
+    float evadeRecoveryStartTime = 0.5f;
+    bool reachedEvadeDistance = false;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
@@ -27,7 +27,7 @@ public class EvadeState : EnemyStateMachine
             evadeRecoveryTime -= Time.deltaTime;
         }
 
-        if (enemyManager.distanceFromTarget > enemyStats.attackRange + safeDistanceBuffer)
+        if (enemyManager.distanceFromTarget > enemyStats.characterData.attackRange + safeDistanceBuffer)
         {
             reachedEvadeDistance = true;
 
@@ -40,7 +40,6 @@ public class EvadeState : EnemyStateMachine
         }
         else
         {
-            //Play leap back animation and update animator
             enemyManager.rb.AddForce(force);
         }
         return this;

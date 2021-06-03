@@ -9,9 +9,9 @@ public class PlayerInventory : MonoBehaviour
     public int fragmentInventory;
 
 
-    public MeleeCard heldThrustCard;
-    public MeleeCard heldSlashCard;
-    public MeleeCard heldStrikeCard;
+    public MeleeWeapon heldThrustCard;
+    public MeleeWeapon heldSlashCard;
+    public MeleeWeapon heldStrikeCard;
 
 
     private void Awake()

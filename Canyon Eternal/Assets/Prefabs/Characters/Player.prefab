@@ -508,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3110123363958530780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.32, z: 0}
+  m_LocalPosition: {x: 0, y: 3.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6106953423410550109}
@@ -764,6 +764,8 @@ GameObject:
   - component: {fileID: 2129872452629934231}
   - component: {fileID: 6566091778781680203}
   - component: {fileID: 1738156887217532371}
+  - component: {fileID: 1629453409487091329}
+  - component: {fileID: 6687831457414197984}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -887,6 +889,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCharacter: {fileID: 0}
+--- !u!114 &1629453409487091329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473140102890026084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b350a3c4af8b4f59abb52c82fa37d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCharacter: {fileID: 0}
+--- !u!114 &6687831457414197984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473140102890026084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b350a3c4af8b4f59abb52c82fa37d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCharacter: {fileID: 0}
 --- !u!1 &8652666736338822588
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,27 +1009,23 @@ MonoBehaviour:
     type: 3}
   myWall: {fileID: 0}
   rb: {fileID: 0}
+  isDead: 0
   isInteracting: 0
   isInvulnerable: 0
-  isAttacking: 0
-  isDead: 0
   isMoving: 0
+  isAttacking: 0
   isBlocking: 0
   isVulnerableToBlock: 0
   isStunned: 0
-  stunTime: 2
-  moveDirection: {x: 0, y: 0}
+  isDashing: 0
+  currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
-  isConversing: 0
-  isPerformingAction: 0
-  deathTimeBuffer: 0.5
   interactionPopupGO: {fileID: 0}
   itemPopupGO: {fileID: 0}
   interactableUI: {fileID: 0}
   interactableLayers:
     serializedVersion: 2
     m_Bits: 4096
-  isDashing: 0
   nextSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &3785282042947835105
 MonoBehaviour:
@@ -1033,14 +1057,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7050b041d934e7d89a2a37bed1c01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 17
-  characterSFXBank: {fileID: 11400000, guid: 01e60f2d09f354b70b9d8c6eea2f0644, type: 2}
-  maxHealth: 4
-  currentHealth: 0
-  healAmount: 2
-  hurtInvulnerabilityTime: 0.8
-  fragmentDrop: 0
+  characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   lunchboxMeter: {fileID: 0}
+  playerMoveSpeed: 20
+  playerMaxHealth: 4
   maxStamina: 4
   currentStamina: 0
   staminaRecoverySpeed: 1.25
@@ -1048,7 +1068,6 @@ MonoBehaviour:
   staminaRecoveryBuffer: 0.5
   maxLunchBoxCapacity: 5
   currentLunchBoxCapacity: 0
-  isChainingInvulnerability: 0
 --- !u!114 &8652666736338822579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,12 +1246,17 @@ MonoBehaviour:
   footstepVFX: {fileID: 3801012901521723010, guid: a449f8b5790ec40418311efa6e29aafd,
     type: 3}
   dashVFX: {fileID: 3801012901521723010, guid: 9af8a132a18614e8aa7b44996539c87a, type: 3}
+  dashFXTransform: {fileID: 104431047}
   comboStarVFX: {fileID: 9209632101132400203, guid: 6698ca4765697467eb72ca0552a0f644,
     type: 3}
   currentComboStarGO: {fileID: 0}
   yellowComboStarMat: {fileID: 2100000, guid: 50b348e7aaa0641d9809bb148d0b4163, type: 2}
   greenComboStarMat: {fileID: 2100000, guid: 63749bc4d0d0b4211b294d941b758fa7, type: 2}
   redComboStarMat: {fileID: 2100000, guid: 1d174c007ba974bbc8b2cafba4e1b022, type: 2}
+  comboStarMats:
+  - {fileID: 2100000, guid: 50b348e7aaa0641d9809bb148d0b4163, type: 2}
+  - {fileID: 2100000, guid: 63749bc4d0d0b4211b294d941b758fa7, type: 2}
+  - {fileID: 2100000, guid: 1d174c007ba974bbc8b2cafba4e1b022, type: 2}
 --- !u!1 &8816163690467745075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,7 +1322,7 @@ PrefabInstance:
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000039351445
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4954675157396860692, guid: 84a83826c9b1a48cf9f37e4c1fa7d592,
         type: 3}

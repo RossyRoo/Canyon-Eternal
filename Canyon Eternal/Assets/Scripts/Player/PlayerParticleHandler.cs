@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerParticleHandler : MonoBehaviour
 {
     PlayerManager playerManager;
-    PlayerMeleeHandler playerMeleeHandler;
 
     ObjectPool objectPool; 
 
@@ -33,8 +32,6 @@ public class PlayerParticleHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
-        playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
-
         objectPool = FindObjectOfType<ObjectPool>();
     }
 
@@ -86,7 +83,7 @@ public class PlayerParticleHandler : MonoBehaviour
     {
         PlayerStats playerStats = GetComponentInParent<PlayerStats>();
 
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.consumeHealItem[playerStats.currentLunchBoxCapacity - 1]);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.characterSFXBank.consumeHealItem[playerStats.currentLunchBoxCapacity - 1]);
 
         GameObject healVFXGO = Instantiate(healVFX, mainParticleTransform.position, Quaternion.identity);
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = healMats[playerStats.currentLunchBoxCapacity - 1];

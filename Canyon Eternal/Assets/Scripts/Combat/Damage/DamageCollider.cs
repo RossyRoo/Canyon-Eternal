@@ -20,7 +20,7 @@ public class DamageCollider : MonoBehaviour
     private bool knockbackFlag;
 
     [Header("Damage Stats")]
-    public Card cardData;
+    public Weapon cardData;
     int damage = 1;
     bool criticalHitActivated;
 

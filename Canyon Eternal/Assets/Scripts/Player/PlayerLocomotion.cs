@@ -34,8 +34,7 @@ public class PlayerLocomotion : MonoBehaviour
         playerManager.currentMoveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
         playerManager.currentMoveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
 
-        playerManager.rb.MovePosition(playerManager.rb.position + playerManager.currentMoveDirection.normalized * playerStats.moveSpeed * Time.fixedDeltaTime);
-
+        playerManager.rb.MovePosition(playerManager.rb.position + playerManager.currentMoveDirection.normalized * playerStats.characterData.moveSpeed * Time.fixedDeltaTime);
 
         if (playerManager.currentMoveDirection.x == 0 && playerManager.currentMoveDirection.y == 0)
         {
@@ -86,7 +85,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         dashFXTriggered = true;
         playerStats.EnableInvulnerability(startDashTime);
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.characterSFXBank.dash);
         playerParticleHandler.SpawnDashCloudVFX();
     }
 

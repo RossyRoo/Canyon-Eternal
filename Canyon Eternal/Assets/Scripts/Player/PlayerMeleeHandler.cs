@@ -11,7 +11,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     Animator animator;
 
     [Header("Weapon Loading")]
-    public MeleeCard activeMeleeCard;
+    public MeleeWeapon activeMeleeCard;
     public GameObject currentMeleeModel;
     public Transform thrustTransform;
     public Transform slashTransform;
