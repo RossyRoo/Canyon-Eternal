@@ -24,6 +24,8 @@ public class BlockCollider : MonoBehaviour
             {
                 characterCollision.isStunned = true;
 
+                Debug.Log("Collided with enemy");
+
                 SFXPlayer.Instance.PlaySFXAudioClip(myCharacter.GetComponent<CharacterStats>().characterSFXBank.block);
             }
         }

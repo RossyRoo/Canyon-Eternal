@@ -19,7 +19,6 @@ public class EnemyManager : CharacterManager
     public DamageCollider[] myDamageColliders;
     public EnemyAttackAction[] enemyAttacks;
 
-
     [Header("Enemy Action Settings")]
     public float maximumAttackRange = 0f;
     public float blindDistance = 50f;
@@ -37,7 +36,6 @@ public class EnemyManager : CharacterManager
 
     private void Start()
     {
-        rb.isKinematic = false;
         GenerateTrackingWall();
         InvokeRepeating("HandleRotation", 0f, 1f);
 
@@ -50,17 +48,17 @@ public class EnemyManager : CharacterManager
                 maximumAttackRange = enemyAttacks[i].shortestDistanceNeededToAttack;
             }
         }
-
     }
 
     private void Update()
     {
         HandleRecoveryTimer();
         HandleStateMachine();
-        isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
-        animator.SetBool("isDead", isDead);
 
-        GetFacingDirection();
+        isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
+        //animator.SetBool("isDead", isDead);
+
+        UpdateDirection();
     }
 
 
@@ -130,30 +128,18 @@ public class EnemyManager : CharacterManager
         {
             moveDirection.y = -1;
         }
-
-        if(moveDirection.x == 0 && moveDirection.y ==0)
-        {
-            //isMoving = false;
-        }
-        else
-        {
-            //isMoving = true;
-        }
-
-        enemyAnimatorHandler.UpdateFloatAnimationValues(moveDirection.x, moveDirection.y, isMoving);
     }
 
-    private void GetFacingDirection()
+    private void UpdateDirection()
     {
         if (moveDirection != Vector2.zero)
         {
-            base.moveDirection = moveDirection;
-
             lastMoveDirection = moveDirection;
+            enemyAnimatorHandler.UpdateFloatAnimationValues(moveDirection.x, moveDirection.y, isMoving);
         }
         else
         {
-            base.moveDirection = lastMoveDirection;
+            enemyAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, isMoving);
         }
 
     }

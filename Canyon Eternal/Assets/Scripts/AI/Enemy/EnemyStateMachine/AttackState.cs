@@ -8,30 +8,18 @@ public class AttackState : EnemyStateMachine
     public CombatState combatStanceState;
     public DeathState deathState;
     public StunnedState stunnedState;
+    public FleeState fleeState;
 
     public EnemyAttackAction currentAttack;
 
     [Tooltip("Use this until you add acceleration and deceleration to attacks")]
     private float chargeForceMultiplier = 5000f;
 
-
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        #region Handle Death and Stun States
-        if (enemyManager.isDead)
-        {
-            return deathState;
-        }
-
-        if (enemyManager.isStunned)
-        {
-            return stunnedState;
-        }
-        #endregion
-
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
-        Debug.Log("Distance from target: " + distanceFromTarget);
 
         if (enemyManager.isPerformingAction)
             return combatStanceState;
@@ -40,14 +28,13 @@ public class AttackState : EnemyStateMachine
         {
             if (distanceFromTarget < currentAttack.spaceNeededToStartAttack)
             {
-                return this;
+                return fleeState;
             }
             else if (distanceFromTarget < currentAttack.shortestDistanceNeededToAttack)
             {
                 if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isPerformingAction == false)
                 {
                     PerformAttack(enemyManager, enemyAnimatorHandler, targetDirection);
-
 
                     return combatStanceState;
                 }
@@ -58,7 +45,21 @@ public class AttackState : EnemyStateMachine
             GetNewAttack(enemyManager);
         }
 
+        #region Handle State Switching
+
+        if (enemyManager.isDead)
+        {
+            return deathState;
+        }
+
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
+
         return combatStanceState;
+
+        #endregion
 
     }
 
@@ -106,6 +107,8 @@ public class AttackState : EnemyStateMachine
     {
         enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
         enemyManager.isPerformingAction = true;
+
+        enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
 
         if (currentAttack.chargeForce != 999f)
         {

@@ -16,11 +16,14 @@ public class CharacterAnimatorEvents : MonoBehaviour
     {
         //Do this right as enemy's attack opens its damage collider
         characterManager.isVulnerableToBlock = true;
+        Debug.Log("Vulnerable");
     }
 
     public void DisableVulnerabilityToBlock()
     {
         //Do this right as enemy's attack is at its apex
         characterManager.isVulnerableToBlock = false;
+        Debug.Log("Not Vulnerable");
+
     }
 }

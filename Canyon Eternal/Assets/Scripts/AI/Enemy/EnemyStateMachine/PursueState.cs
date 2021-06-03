@@ -26,17 +26,7 @@ public class PursueState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        #region Handle Death and Stun States
-        if (enemyManager.isDead)
-        {
-            return deathState;
-        }
 
-        if (enemyManager.isStunned)
-        {
-            return stunnedState;
-        }
-        #endregion
 
         if (!pathfindingInitiated)
         {
@@ -48,12 +38,25 @@ public class PursueState : EnemyStateMachine
 
         enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
 
+        #region Handle State Switching
+
         if (enemyManager.distanceFromTarget > enemyManager.blindDistance)
         {
             enemyManager.currentTarget = null;
             return scoutState;
         }
-        else if(enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
+
+        if (enemyManager.isDead)
+        {
+            return deathState;
+        }
+
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
+
+        if (enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
         {
             enemyManager.isMoving = false;
             return combatState;
@@ -62,6 +65,7 @@ public class PursueState : EnemyStateMachine
         {
             return this;
         }
+        #endregion
 
     }
 

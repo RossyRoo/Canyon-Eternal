@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 6712418072085086264}
   - component: {fileID: 2129872452629934231}
   - component: {fileID: 6566091778781680203}
+  - component: {fileID: 1738156887217532371}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -861,6 +862,19 @@ BoxCollider2D:
   m_Size: {x: 3.729945, y: 5.12}
   m_EdgeRadius: 0
 --- !u!114 &6566091778781680203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473140102890026084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b350a3c4af8b4f59abb52c82fa37d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCharacter: {fileID: 0}
+--- !u!114 &1738156887217532371
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1031,7 +1045,7 @@ MonoBehaviour:
   currentStamina: 0
   staminaRecoverySpeed: 1.25
   staminaRecoveryTimer: 0
-  staminaRecoveryBuffer: 0.25
+  staminaRecoveryBuffer: 0.5
   maxLunchBoxCapacity: 5
   currentLunchBoxCapacity: 0
   isChainingInvulnerability: 0
@@ -1188,6 +1202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f60e8d9fa5249f296994b721b48cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterManager: {fileID: 0}
 --- !u!114 &8438966244246089476
 MonoBehaviour:
   m_ObjectHideFlags: 0

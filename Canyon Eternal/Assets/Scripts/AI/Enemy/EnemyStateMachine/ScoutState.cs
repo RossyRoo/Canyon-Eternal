@@ -13,18 +13,6 @@ public class ScoutState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        #region Handle Death and Stun States
-        if (enemyManager.isDead)
-        {
-            return deathState;
-        }
-
-        if (enemyManager.isStunned)
-        {
-            return stunnedState;
-        }
-        #endregion
-
         #region Handle Target Detection
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), enemyStats.detectionRadius);
 
@@ -40,6 +28,16 @@ public class ScoutState : EnemyStateMachine
         #endregion
 
         #region Handle Switch State
+
+        if (enemyManager.isDead)
+        {
+            return deathState;
+        }
+
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
 
         if (enemyManager.currentTarget != null)
         {

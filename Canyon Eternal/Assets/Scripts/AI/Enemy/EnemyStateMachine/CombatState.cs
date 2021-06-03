@@ -14,19 +14,7 @@ public class CombatState : EnemyStateMachine
     {
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
 
-        
-
-        #region Handle Death and Stun States
-        if (enemyManager.isDead)
-        {
-            return deathState;
-        }
-
-        if (enemyManager.isStunned)
-        {
-            return stunnedState;
-        }
-        #endregion
+        #region Handle State Switching
 
         if (enemyManager.currentRecoveryTime <= 0 && distanceFromTarget <= enemyManager.maximumAttackRange)
         {
@@ -39,7 +27,20 @@ public class CombatState : EnemyStateMachine
             return pursueTargetState;
         }
 
+        if (enemyManager.isDead)
+        {
+            return deathState;
+        }
+
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
+
         return this;
+        #endregion
+
+
     }
 
 }
