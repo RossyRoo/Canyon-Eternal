@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    public Card cardData;
     Collider2D damageCollider;
 
-    int damage = 1;
-    bool criticalHitActivated;
+    [Header("Collider Type")]
+    public bool dealsConstantDamage;
+    public bool targetIsWithinRange;
+    public bool canDamageEnemy = true;
 
     [Header("Knockback Settings")]
     public CharacterManager knockbackTarget;
     public Vector2 knockbackDirection;
     public float knockbackForce = 10f;
     private float knockbackTime;
-    [Tooltip("The length of time a knockback occurs")]
     public float startKnockbackTime = 0.02f;
     private bool knockbackFlag;
 
-    [Tooltip("Check this for traps and projectiles")]
-    public bool dealsConstantDamage;
-    public bool targetIsWithinRange;
-    [Tooltip("Uncheck if this is this is an object that can damage enemies")]
-    public bool canDamageEnemy = true;
+    [Header("Damage Stats")]
+    public Card cardData;
+    int damage = 1;
+    bool criticalHitActivated;
+
 
     private void Awake()
     {
@@ -84,45 +84,41 @@ public class DamageCollider : MonoBehaviour
 
     private IEnumerator DealDamage(GameObject collision)
     {
-        if(!targetIsWithinRange)
+        if (targetIsWithinRange)
         {
-            yield break;
-        }
+            RollForCriticalHit();
 
-        RollForCriticalHit();
-
-        if (collision.tag == "Player")
-        {
-            PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-
-            if (playerStats != null)
+            if (collision.tag == "Player")
             {
-                playerStats.LoseHealth(damage);
+                PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+
+                if (playerStats != null)
+                {
+                    playerStats.LoseHealth(damage);
+                }
             }
-        }
 
-        if (collision.tag == "Enemy" && canDamageEnemy)
-        {
-            EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
-            EnemyManager enemyManager = collision.GetComponent<EnemyManager>();
-
-            if (enemyStats != null && !enemyManager.isDead)
+            if (collision.tag == "Enemy" && canDamageEnemy)
             {
-                enemyStats.LoseHealth(damage, criticalHitActivated);
-            }
-        }
+                EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
 
-        if (cardData == null)
-        {
+                if (enemyStats != null)
+                {
+                    enemyStats.LoseHealth(damage, criticalHitActivated);
+                }
+            }
+
             CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
-            knockbackDirection = myCharacterManager.moveDirection;
+            knockbackDirection = myCharacterManager.lastMoveDirection;
+
+            knockbackTarget = collision.GetComponent<CharacterManager>();
+            knockbackFlag = true;
+
+            yield return new WaitForFixedUpdate();
+            StartCoroutine(DealDamage(collision));
         }
-
-        knockbackTarget = collision.GetComponent<CharacterManager>();
-        knockbackFlag = true;
-
-        yield return new WaitForFixedUpdate();
-        StartCoroutine(DealDamage(collision));
+        else
+            yield break;
     }
 
 
@@ -143,7 +139,6 @@ public class DamageCollider : MonoBehaviour
             }
         }
     }
-
 
     private void RollForCriticalHit()
     {

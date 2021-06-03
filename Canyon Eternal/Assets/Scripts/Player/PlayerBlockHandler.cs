@@ -6,6 +6,7 @@ public class PlayerBlockHandler : MonoBehaviour
 {
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerManager playerManager;
+    PlayerStats playerStats;
     public BlockCollider blockCollider;
 
     public GameObject shieldModel;
@@ -13,28 +14,29 @@ public class PlayerBlockHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerStats = GetComponent<PlayerStats>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         blockCollider = GetComponentInChildren<BlockCollider>();
     }
 
-    public void HandleBlocking()
+    public IEnumerator HandleBlocking()
     {
         playerManager.isBlocking = true;
 
         if (playerManager.isInteracting)
         {
-
+            yield break;
         }
         else
         {
             playerAnimatorHandler.PlayTargetAnimation("Block", true);
-            Invoke("SpawnShieldModel", 0.1f);
+
+            yield return new WaitForSeconds(0.1f);
+
+            shieldModel.SetActive(true);
         }
 
+        playerStats.LoseStamina(1);
     }
 
-    private void SpawnShieldModel()
-    {
-        shieldModel.SetActive(true);
-    }
 }

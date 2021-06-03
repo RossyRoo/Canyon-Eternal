@@ -24,7 +24,6 @@ public class PlayerStats : CharacterStats
     public int maxLunchBoxCapacity = 5;
     public int currentLunchBoxCapacity;
 
-
     private void Awake()
     {
         heartMeter = FindObjectOfType<HeartMeter>();
@@ -39,6 +38,20 @@ public class PlayerStats : CharacterStats
     {
         SetStartingStats();
     }
+
+    public void SetStartingStats()
+    {
+        currentHealth = maxHealth;
+        heartMeter.SetMaxHearts(maxHealth);
+
+        currentStamina = maxStamina;
+        staminaMeter.SetMaxStamina(maxStamina);
+
+        currentLunchBoxCapacity = maxLunchBoxCapacity;
+        lunchboxMeter.SetMaxLunchbox(maxLunchBoxCapacity);
+    }
+
+    #region Stamina
 
     public void LoseStamina(int damageStamina)
     {
@@ -79,12 +92,14 @@ public class PlayerStats : CharacterStats
         }
     }
 
+    #endregion
+
+    #region Health
     public void LoseHealth(int damageHealth, string damageAnimation = "TakeDamage")
     {
         if (playerManager.isInvulnerable
             || playerManager.isDead)
             return;
-
 
         EnableInvulnerability(hurtInvulnerabilityTime);
         currentHealth -= damageHealth;
@@ -108,14 +123,10 @@ public class PlayerStats : CharacterStats
 
         if(!isFullHeal)
         {
-            PlayHealFX();
+            playerParticleHandler.SpawnHealVFX();
 
             currentLunchBoxCapacity -= 1;
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
-        }
-        else
-        {
-            //Do full heal animation and SFX
         }
 
         if (currentHealth >= maxHealth)
@@ -123,29 +134,9 @@ public class PlayerStats : CharacterStats
             currentHealth = maxHealth;
         }
     }
+    #endregion
 
-    private void PlayHealFX()
-    {
-        SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.consumeHealItem[currentLunchBoxCapacity - 1]);
-
-        GameObject healVFXGO = Instantiate(playerParticleHandler.healVFX, playerParticleHandler.mainParticleTransform.position, Quaternion.identity);
-        healVFXGO.GetComponent<ParticleSystemRenderer>().material = playerParticleHandler.healMats[currentLunchBoxCapacity - 1];
-        healVFXGO.transform.parent = FindObjectOfType<ObjectPool>().transform;
-
-        Destroy(healVFXGO, healVFXGO.GetComponent<ParticleSystem>().main.duration);
-    }
-
-    public void SetStartingStats()
-    {
-        currentHealth = maxHealth;
-        heartMeter.SetMaxHearts(maxHealth);
-
-        currentStamina = maxStamina;
-        staminaMeter.SetMaxStamina(maxStamina);
-
-        currentLunchBoxCapacity = maxLunchBoxCapacity;
-        lunchboxMeter.SetMaxLunchbox(maxLunchBoxCapacity);
-    }
+    #region Invulnerability
 
     public void EnableInvulnerability(float iFrames)
     {
@@ -160,4 +151,6 @@ public class PlayerStats : CharacterStats
             playerManager.isInvulnerable = false;
         }
     }
+
+    #endregion
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    CharacterManager characterManager;
-
     public float moveSpeed = 12f;
 
     [Header("Data")]
@@ -17,15 +15,7 @@ public class CharacterStats : MonoBehaviour
     public int healAmount;
     public float hurtInvulnerabilityTime = 0.8f;
 
-
-
     [Header("Loot Drops")]
     public int fragmentDrop; //THIS SHOULD GO IN CHARACTER INVENTORY
-
-    private void Awake()
-    {
-        characterManager = GetComponent<CharacterManager>();
-    }
-
 
 }

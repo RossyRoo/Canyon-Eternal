@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAnimatorEvents : CharacterAnimatorEvents
 {
-    PlayerManager playerManager;
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerBlockHandler playerBlockHandler;
@@ -16,7 +15,6 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
     private void Awake()
     {
-        playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         playerBlockHandler = GetComponentInParent<PlayerBlockHandler>();
@@ -26,9 +24,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
         objectPool = FindObjectOfType<ObjectPool>();
     }
 
-    #region Melee Events
-
-
+    #region Melee/Blocking
 
     public void OpenDamageCollider()
     {
@@ -81,10 +77,6 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
             SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.attacks[playerMeleeHandler.comboNumber]);
         }
     }
-
-    #endregion
-
-    #region Blocking
 
     public void DespawnShield()
     {

@@ -31,6 +31,7 @@ public class EnemyStats : CharacterStats
             return;
 
         EnableInvulnerability(hurtInvulnerabilityTime);
+
         currentHealth -= damageHealth;
 
         StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(currentHealth, isCriticalHit, damageHealth));
@@ -55,6 +56,7 @@ public class EnemyStats : CharacterStats
 
     }
 
+    #region Invulnerability
     public void EnableInvulnerability(float iFrames)
     {
         enemyManager.isInvulnerable = true;
@@ -65,4 +67,5 @@ public class EnemyStats : CharacterStats
     {
         enemyManager.isInvulnerable = false;
     }
+    #endregion
 }

@@ -54,10 +54,6 @@ public class PlayerMeleeHandler : MonoBehaviour
         {
             parrentOverride = strikeTransform;
         }
-        else
-        {
-            Debug.LogWarning("You do not have a melee weapon assigned to the player.");
-        }
     }
 
     public void UnloadMelee()
@@ -118,23 +114,10 @@ public class PlayerMeleeHandler : MonoBehaviour
     {
         playerParticleHandler.ChangeComboStarColor(0);
 
-        GetPlayerAttackDirection();
-
         yield return new WaitForSeconds(0.1f);
         currentMeleeModel.SetActive(true);
 
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
-    }
-
-
-    public void GetPlayerAttackDirection()
-    {
-        DamageCollider damageCollider = GetComponentInChildren<DamageCollider>();
-
-        if (damageCollider != null)
-        {
-            damageCollider.knockbackDirection = playerManager.moveDirection;
-        }
     }
 
     public void AdjustAttackMomentum()
@@ -211,8 +194,6 @@ public class PlayerMeleeHandler : MonoBehaviour
             }
             else if (canContinueCombo && !comboWasMissed)
             {
-                GetPlayerAttackDirection();
-
                 playerParticleHandler.ChangeComboStarColor(1);
                 SFXPlayer.Instance.PlaySFXAudioClip(comboSFX[comboNumber], 0.3f, 0.2f);
             }

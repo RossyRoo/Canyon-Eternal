@@ -115,7 +115,6 @@ public class AttackState : EnemyStateMachine
             //APPLY ACCELERATION
             Vector2 force = (targetDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
             enemyManager.rb.AddForce(force);
-            Debug.Log("Performed " + currentAttack + " towards direction: " + targetDirection.normalized + " with force: " + force);
         }
 
         enemyManager.currentRecoveryTime = currentAttack.recoveryTime;

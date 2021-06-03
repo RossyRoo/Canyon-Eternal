@@ -99,7 +99,10 @@ public class InputManager : MonoBehaviour
     {
         if(block_Input)
         {
-            playerBlockHandler.HandleBlocking();
+            if (playerStats.currentHealth < 1)
+                return;
+
+            StartCoroutine(playerBlockHandler.HandleBlocking());
         }
     }
 
