@@ -74,6 +74,14 @@ public class PlayerMeleeHandler : MonoBehaviour
         currentMeleeModel = null;
     }
 
+    public void CheckToDespawnMelee()
+    {
+        if (!playerManager.isAttacking && currentMeleeModel.activeInHierarchy)
+        {
+            currentMeleeModel.SetActive(false);
+        }
+    }
+
     public void LoadMelee()
     {
         if (activeMeleeCard == null)
@@ -106,23 +114,18 @@ public class PlayerMeleeHandler : MonoBehaviour
         meleeModelPrefab.SetActive(false);
     }
 
-    public void BeginNewAttackChain()
+    public IEnumerator BeginNewAttackChain()
     {
-        if (playerStats.currentStamina < activeMeleeCard.staminaCost)
-            return;
+        playerParticleHandler.ChangeComboStarColor(0);
 
         GetPlayerAttackDirection();
 
-        Invoke("SpawnMeleeWeapon", 0.1f);
-        
+        yield return new WaitForSeconds(0.1f);
+        currentMeleeModel.SetActive(true);
+
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
     }
 
-    private void SpawnMeleeWeapon()
-    {
-        //Do Particle FX
-        currentMeleeModel.SetActive(true);
-    }
 
     public void GetPlayerAttackDirection()
     {
@@ -187,50 +190,34 @@ public class PlayerMeleeHandler : MonoBehaviour
         activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
     }
 
-    public void PlayComboHitSFX()
-    {
-        SFXPlayer.Instance.PlaySFXAudioClip(comboSFX[comboNumber], 0.3f, 0.2f);
-    }
 
     public void HandleComboAttempt()
     {
-        playerParticleHandler.ChangeStarToYellow();
+        playerParticleHandler.ChangeComboStarColor(0);
 
-        if (playerManager.isAttacking)
+        if (!comboWasHit && !comboWasMissed)
         {
-            if (!canContinueCombo && !comboWasHit && !comboWasMissed)
-            {
-                //MISS
-                canContinueCombo = false;
-                animator.SetBool("comboWasHit", true);
+            animator.SetBool("comboWasHit", true);
 
+            if (!canContinueCombo)
+            {
                 if (comboNumber != 2)
                 {
                     animator.SetBool("comboWasMissed", true);
                     playerStats.LoseStamina(activeMeleeCard.staminaCost);
-
-                    playerStats.BreakInvulnerability();
                 }
 
-                playerParticleHandler.ChangeStarToRed();
+                playerParticleHandler.ChangeComboStarColor(2);
             }
             else if (canContinueCombo && !comboWasMissed)
             {
-                //HIT
-                canContinueCombo = false;
-                animator.SetBool("comboWasHit", true);
                 GetPlayerAttackDirection();
-                playerParticleHandler.ChangeStarToGreen();
-                PlayComboHitSFX();
+
+                playerParticleHandler.ChangeComboStarColor(1);
+                SFXPlayer.Instance.PlaySFXAudioClip(comboSFX[comboNumber], 0.3f, 0.2f);
             }
 
-            if(comboNumber == 2)
-            {
-                animator.SetBool("comboWasHit", true);
-            }
-
-            playerParticleHandler.ChangeStarToYellow();
+            canContinueCombo = false;
         }
     }
-
 }

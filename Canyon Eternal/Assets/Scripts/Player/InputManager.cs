@@ -67,22 +67,20 @@ public class InputManager : MonoBehaviour
         HandleBlockInput();
         HandleHealInput();
     }
-
+    #region Handle Combat Input
     private void HandleMeleeInput()
     {
         if(melee_Input)
         {
-            if(playerManager.isDashing)
+            if(playerManager.isAttacking)
             {
-                return;
+                playerMeleeHandler.HandleComboAttempt();
             }
 
-            playerMeleeHandler.HandleComboAttempt();
-
-            if (playerManager.isInteracting)
+            if (playerManager.isInteracting || playerStats.currentStamina < playerMeleeHandler.activeMeleeCard.staminaCost)
                 return;
 
-            playerMeleeHandler.BeginNewAttackChain();
+            StartCoroutine(playerMeleeHandler.BeginNewAttackChain());
         }
     }
 
@@ -90,7 +88,7 @@ public class InputManager : MonoBehaviour
     {
         if(dash_Input)
         {
-            if (playerManager.isInteracting)
+            if (playerManager.isInteracting || playerStats.currentStamina < 1)
                 return;
 
             playerManager.isDashing = true;
@@ -107,14 +105,14 @@ public class InputManager : MonoBehaviour
 
     private void HandleHealInput()
     {
-        if (playerStats.currentLunchBoxCapacity > 0
-            && playerStats.currentHealth < playerStats.maxHealth)
+        if(heal_Input)
         {
-            if (heal_Input)
+            if (playerStats.currentLunchBoxCapacity > 0 && playerStats.currentHealth < playerStats.maxHealth)
             {
                 playerStats.RecoverHealth(playerStats.healAmount, false);
             }
         }
-    }
 
+    }
+    #endregion
 }

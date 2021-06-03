@@ -24,9 +24,6 @@ public class PlayerStats : CharacterStats
     public int maxLunchBoxCapacity = 5;
     public int currentLunchBoxCapacity;
 
-    [Header("I-Frames")]
-    public bool isChainingInvulnerability;
-
 
     private void Awake()
     {
@@ -158,18 +155,9 @@ public class PlayerStats : CharacterStats
 
     public void DisableInvulnerability()
     {
-        if(!isChainingInvulnerability)
+        if(!playerManager.isAttacking)
         {
             playerManager.isInvulnerable = false;
         }
     }
-
-    public void BreakInvulnerability()
-    {
-        Debug.Log("Breaking invulnerability");
-        playerManager.isInvulnerable = false;
-        isChainingInvulnerability = false;
-    }
-
-
 }

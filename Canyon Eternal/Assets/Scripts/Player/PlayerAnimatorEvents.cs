@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimatorEvents : CharacterAnimatorEvents
 {
+    PlayerManager playerManager;
     CharacterSFXBank characterSFXBank;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerBlockHandler playerBlockHandler;
@@ -15,6 +16,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
     private void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         playerBlockHandler = GetComponentInParent<PlayerBlockHandler>();
@@ -26,21 +28,13 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
     #region Melee Events
 
-    public void DespawnMelee()
-    {
-        if(!playerMeleeHandler.comboWasHit)
-        {
-            playerMeleeHandler.currentMeleeModel.SetActive(false);
-            playerStats.isChainingInvulnerability = false;
-        }
-    }
+
 
     public void OpenDamageCollider()
     {
         playerMeleeHandler.AddComboDamage();
 
         playerStats.EnableInvulnerability(playerStats.hurtInvulnerabilityTime);
-        playerStats.isChainingInvulnerability = true;
 
         playerMeleeHandler.meleeDamageCollider.EnableDamageCollider();
         playerMeleeHandler.attackMomentumActivated = true;
@@ -56,6 +50,8 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
         playerMeleeHandler.attackMomentumActivated = false;
     }
 
+    #region Enable/Disable Combo Windows
+
     public void EnableComboWindow()
     {
         if(!playerMeleeHandler.comboWasMissed)
@@ -69,10 +65,12 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
     {
         if(!playerMeleeHandler.comboWasHit)
         { 
-            playerParticleHandler.ChangeStarToRed();
+            playerParticleHandler.ChangeComboStarColor(2);
         }
         playerMeleeHandler.canContinueCombo = false;
     }
+
+    #endregion
 
     private void PlayMissedMeleeSFX()
     {
@@ -98,6 +96,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
     public void Footstep()
     {
         int instantiatedFootstepsCount = 0;
+
         ParticleSystem []instantiatedFootsteps = objectPool.GetComponentsInChildren<ParticleSystem>();
 
         for (int i = 0; i < instantiatedFootsteps.Length; i++)
@@ -113,10 +112,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
             SFXPlayer.Instance.PlaySFXAudioClip(characterSFXBank.rockFootsteps
                 [Random.Range(0, characterSFXBank.rockFootsteps.Length)], 0.1f);
 
-            GameObject footstepVFXGO = Instantiate(playerParticleHandler.footstepVFX, playerParticleHandler.mainParticleTransform.position, Quaternion.identity);
-            footstepVFXGO.transform.parent = objectPool.transform;
-            footstepVFXGO.name = "footstep_vfx";
-            Destroy(footstepVFXGO, footstepVFXGO.GetComponent<ParticleSystem>().main.duration);
+            playerParticleHandler.SpawnFootstepCloudVFX();
         }
         else
         {

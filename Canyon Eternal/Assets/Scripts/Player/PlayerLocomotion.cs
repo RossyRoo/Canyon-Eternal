@@ -54,73 +54,14 @@ public class PlayerLocomotion : MonoBehaviour
     #region Dash
     public void HandleDash()
     {
-        if (playerStats.currentStamina < 1 || playerManager.isInteracting)
-        {
-            playerManager.isDashing = false;
-            return;
-        }
+        playerAnimatorHandler.PlayTargetAnimation("Dash", false);
 
         ReverseDashThroughEnemies();
 
-        if (direction == 0 && playerManager.moveDirection == Vector2.zero)
-        {
-            if(playerManager.lastMoveDirection == new Vector2(0,1))
-            {
-                direction = 1;
-            }
-            else if(playerManager.lastMoveDirection == new Vector2(0,-1))
-            {
-                direction = 2;
-            }
-            else if(playerManager.lastMoveDirection == new Vector2(-1,0))
-            {
-                direction = 3;
-            }
-            else if(playerManager.lastMoveDirection == new Vector2(1,0))
-            {
-                direction = 4;
-            }
-        }
-        else if (direction == 0 && playerManager.moveDirection != Vector2.zero)
-        {
-            if (playerManager.moveDirection == new Vector2(0, 1))
-            {
-                direction = 1;
-            }
-            else if (playerManager.moveDirection == new Vector2(0,-1))
-            {
-                direction = 2;
-            }
-            else if (playerManager.moveDirection == new Vector2(-1,0))
-            {
-                direction = 3;
-            }
-            else if (playerManager.moveDirection == new Vector2(1,0))
-            {
-                direction = 4;
-            }
-            if (playerManager.moveDirection == new Vector2(1, -1))
-            {
-                direction = 5;
-            }
-            else if (playerManager.moveDirection == new Vector2(-1, -1))
-            {
-                direction = 6;
-            }
-            else if (playerManager.moveDirection == new Vector2(1, 1))
-            {
-                direction = 7;
-            }
-            else if (playerManager.moveDirection == new Vector2(-1, 1))
-            {
-                direction = 8;
-            }
-        }
-        else
-        {
             if(dashTime <= 0)
             {
                 dashFXTriggered = false;
+
                 direction = 0;
                 dashTime = startDashTime;
                 playerManager.rb.velocity = Vector2.zero;
@@ -132,62 +73,21 @@ public class PlayerLocomotion : MonoBehaviour
             {
                 dashTime -= Time.deltaTime;
 
-                if(direction == 1)
+                if(!dashFXTriggered)
                 {
-                    playerManager.rb.AddForce(Vector2.up * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
+                    PlayDashFX();
                 }
-                else if(direction == 2)
-                {
-                    playerManager.rb.AddForce(Vector2.down * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
-                }
-                else if(direction == 3)
-                {
-                    playerManager.rb.AddForce(Vector2.left * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
-                }
-                else if(direction == 4)
-                {
-                    playerManager.rb.AddForce(Vector2.right * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
-                }
-                if (direction == 5)
-                {
-                    playerManager.rb.AddForce(new Vector2(1,-1) * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
-                }
-                else if (direction == 6)
-                {
-                    playerManager.rb.AddForce(new Vector2(-1, -1) * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
-                }
-                else if (direction == 7)
-                {
-                    playerManager.rb.AddForce(new Vector2(1, 1) * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
-                }
-                else if (direction == 8)
-                {
-                    playerManager.rb.AddForce(new Vector2(-1, 1) * dashSpeed);
-                    PlayDashFX(Quaternion.identity);
-                }
-            }
+
+                playerManager.rb.AddForce(playerManager.lastMoveDirection * dashSpeed);
         }
     }
 
-    private void PlayDashFX(Quaternion rotation)
+    private void PlayDashFX()
     {
-        if (dashFXTriggered)
-            return;
-
         dashFXTriggered = true;
-
         playerStats.EnableInvulnerability(startDashTime);
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterSFXBank.dash);
-        GameObject dashParticleVFXGO = Instantiate(playerParticleHandler.dashVFX, dashFXTransform.position, rotation);
-        dashParticleVFXGO.transform.parent = null;
-        Destroy(dashParticleVFXGO, dashParticleVFXGO.GetComponent<ParticleSystem>().main.duration);
+        playerParticleHandler.SpawnDashCloudVFX();
     }
 
     private void ReverseDashThroughEnemies()

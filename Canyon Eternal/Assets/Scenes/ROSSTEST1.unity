@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &380604510 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8652666736292925395, guid: c2dad1bee05724b268c0c22616a6c40a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1501304287799033183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &449352664
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +524,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501304287400126204}
-  m_LocalRotation: {x: 0, y: 0.000000039351445, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -668,6 +674,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: comboStarMats.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: currentComboStarGO
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: dashFXTransform
+      value: 
+      objectReference: {fileID: 380604510}
+    - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: comboStarMats.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 50b348e7aaa0641d9809bb148d0b4163, type: 2}
+    - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: comboStarMats.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 63749bc4d0d0b4211b294d941b758fa7, type: 2}
+    - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: comboStarMats.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1d174c007ba974bbc8b2cafba4e1b022, type: 2}
     - target: {fileID: 1882935357957997550, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_Name
@@ -727,6 +763,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112973914046535493, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112973914046535493, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5112973914046535493, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195981417556593416, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2dad1bee05724b268c0c22616a6c40a, type: 3}

@@ -15,9 +15,6 @@ public class PlayerManager : CharacterManager
     public InteractableUI interactableUI;
     public LayerMask interactableLayers;
 
-    //Game Components
-    public bool isDashing;
-
     public Vector3 nextSpawnPoint;
 
     private void Awake()
@@ -30,7 +27,6 @@ public class PlayerManager : CharacterManager
         rb = GetComponent<Rigidbody2D>();
     }
 
-
     private void Update()
     {
         isInteracting = animator.GetBool("isInteracting");
@@ -40,11 +36,10 @@ public class PlayerManager : CharacterManager
         playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
         playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
 
-        animator.SetBool("isDashing", isDashing);
-
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
         CheckForInteractable();
+        playerMeleeHandler.CheckToDespawnMelee();
     }
 
     private void FixedUpdate()
