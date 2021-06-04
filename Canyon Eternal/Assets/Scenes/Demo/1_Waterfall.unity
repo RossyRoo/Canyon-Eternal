@@ -152,27 +152,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &183300301 stripped
+--- !u!1 &191431575 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 100472744, guid: c2dad1bee05724b268c0c22616a6c40a,
+  m_CorrespondingSourceObject: {fileID: 6155581725501680673, guid: c2dad1bee05724b268c0c22616a6c40a,
     type: 3}
   m_PrefabInstance: {fileID: 1501304287799033183}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &183300312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183300301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e0166e6dfaf414493cce0077f408cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeSpell: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
-  currentSpellChargeTime: 0
-  startSpellChargeTime: 3
 --- !u!1 &208878117
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +526,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 939362931200597264, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: currentChargeVFXGO
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007576086279413953, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: projectilePointerVFXGO
+      value: 
+      objectReference: {fileID: 191431575}
     - target: {fileID: 1882935357957997550, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_Name
@@ -625,6 +620,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155581725501680673, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155581725501680676, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2dad1bee05724b268c0c22616a6c40a, type: 3}

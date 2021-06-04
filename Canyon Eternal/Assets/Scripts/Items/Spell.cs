@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Weapons/Spell")]
 public class Spell : Weapon
 {
+    [Header("SPELL TYPE")]
+    public bool isProjectile;
+
     [Header("ANIMATIONS")]
     public string chargeAnimation;
     public string chargeCompleteAnimation;

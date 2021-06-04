@@ -113,7 +113,7 @@ public class InputManager : MonoBehaviour
             if(playerManager.isCastingSpell)
             {
                 Debug.Log("INPUT: Cast Spell");
-                playerSpellHandler.CastProjectileSpell();
+                playerSpellHandler.HandleAllSpellCasting();
             }
             else
             {

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//The main change I want to make to this class is to allow it to additionally play the SFX in the function by accessing the character data in PlayerStats
+
 public class PlayerParticleHandler : MonoBehaviour
 {
     PlayerManager playerManager;
