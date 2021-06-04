@@ -121,12 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}
-  knockbackForce: 10
-  knockbackTime: 0
-  knockbackDirection: {x: 0, y: 0}
-  knockbackFlag: 0
-  knockbackTarget: {fileID: 0}
   dealsConstantDamage: 0
   targetIsWithinRange: 0
   canDamageEnemy: 1
+  knockbackTarget: {fileID: 0}
+  knockbackDirection: {x: 0, y: 0}
+  knockbackForce: 10
+  startKnockbackTime: 0.02
+  weaponData: {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}

@@ -107,13 +107,20 @@ public class PlayerStats : CharacterStats
             || playerManager.isDead)
             return;
 
+        TimeStop timeStop = FindObjectOfType<TimeStop>();
+
+
         EnableInvulnerability(characterData.invulnerabilityFrames);
         characterData.currentHealth -= damageHealth;
+        Debug.Log("Lose Health");
         heartMeter.SetCurrentHealth(characterData.currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
         SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeNormalDamage);
         CinemachineShake.Instance.Shake(5f, 0.5f);
+
+        playerParticleHandler.SpawnImpactVFX();
+        timeStop.StopTime(0.005f, 10, 0.1f);
 
         if (characterData.currentHealth <= 0)
         {

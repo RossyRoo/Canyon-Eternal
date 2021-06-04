@@ -20,10 +20,9 @@ public class DamageCollider : MonoBehaviour
     private bool knockbackFlag;
 
     [Header("Damage Stats")]
-    public Weapon cardData;
+    public Weapon weaponData;
     int damage = 1;
     bool criticalHitActivated;
-
 
     private void Awake()
     {
@@ -36,9 +35,9 @@ public class DamageCollider : MonoBehaviour
             damageCollider.enabled = false;
         }
 
-        if (cardData != null)
+        if (weaponData != null)
         {
-            knockbackForce = cardData.cardKnockback;
+            knockbackForce = weaponData.weaponKnockback;
         }
 
         knockbackTime = startKnockbackTime;
@@ -149,20 +148,21 @@ public class DamageCollider : MonoBehaviour
 
     private void RollForCriticalHit()
     {
-        if (cardData != null)
+        if (weaponData != null)
         {
             float randValue = Random.value;
 
-            if (randValue < 1 - cardData.criticalChance)
+            if (randValue < 1 - weaponData.criticalChance)
             {
-                damage = Random.Range(cardData.currentMinDamage, cardData.currentMaxDamage);
+                damage = Random.Range(weaponData.currentMinDamage, weaponData.currentMaxDamage);
                 criticalHitActivated = false;
             }
             else
             {
-                damage = cardData.currentMaxDamage * 2;
+                damage = weaponData.currentMaxDamage * 2;
                 criticalHitActivated = true;
             }
+            Debug.Log("Damage: " + damage);
         }
     }
 }

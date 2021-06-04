@@ -18,7 +18,7 @@ public class Weapon : Item
     public int comboDamageToAdd;
 
     [Tooltip("Force used to knock enemy back upon attacks")]
-    public float cardKnockback;
+    public float weaponKnockback;
     [Tooltip("The force used to calculate forward momentum during combo attacks")]
     public float attackMomentum;
 }

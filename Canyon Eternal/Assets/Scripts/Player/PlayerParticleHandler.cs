@@ -20,6 +20,9 @@ public class PlayerParticleHandler : MonoBehaviour
     public GameObject dashVFX;
     public Transform dashFXTransform;
 
+    [Header("IMPACT")]
+    public GameObject impactVFXPrefab;
+
     [Header("COMBO STAR")]
     public GameObject comboStarVFX;
     public GameObject currentComboStarGO;
@@ -87,8 +90,15 @@ public class PlayerParticleHandler : MonoBehaviour
 
         GameObject healVFXGO = Instantiate(healVFX, mainParticleTransform.position, Quaternion.identity);
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = healMats[playerStats.currentLunchBoxCapacity - 1];
-        healVFXGO.transform.parent = FindObjectOfType<ObjectPool>().transform;
+        healVFXGO.transform.parent = objectPool.transform;
 
         Destroy(healVFXGO, healVFXGO.GetComponent<ParticleSystem>().main.duration);
+    }
+
+    public void SpawnImpactVFX()
+    {
+        GameObject impactVFXGO = Instantiate(impactVFXPrefab, mainParticleTransform.position, Quaternion.identity);
+        impactVFXGO.transform.parent = mainParticleTransform;
+        Destroy(impactVFXGO, impactVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
 }

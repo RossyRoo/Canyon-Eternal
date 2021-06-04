@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
 {
     public string interactableText;
 
-    public virtual void Interact(PlayerManager playerManager)
+    public virtual void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
         Debug.Log("Player interacted with " + gameObject.name);
     }

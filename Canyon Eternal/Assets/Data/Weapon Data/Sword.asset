@@ -17,8 +17,14 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 1
-  damage: 7
-  cardKnockback: 10
+  baseMinDamage: 7
+  baseMaxDamage: 10
+  currentMinDamage: 0
+  currentMaxDamage: 0
+  criticalChance: 0.106
+  comboDamageToAdd: 0
+  weaponKnockback: 0
+  attackMomentum: 0
   isThrust: 0
   isSlash: 1
   isStrike: 0

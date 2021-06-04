@@ -110,6 +110,9 @@ public class InputManager : MonoBehaviour
     {
         if(heal_Input)
         {
+            if (playerManager.isDead)
+                return;
+
             if (playerStats.currentLunchBoxCapacity > 0 && playerStats.characterData.currentHealth < playerStats.characterData.maxHealth)
             {
                 playerStats.RecoverHealth(playerStats.characterData.healAmount, false);

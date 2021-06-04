@@ -9,6 +9,7 @@ public class PlayerManager : CharacterManager
     PlayerStats playerStats;
     Animator animator;
     PlayerMeleeHandler playerMeleeHandler;
+    PlayerAnimatorHandler playerAnimatorHandler;
 
     public GameObject interactionPopupGO;
     public GameObject itemPopupGO;
@@ -19,6 +20,7 @@ public class PlayerManager : CharacterManager
 
     private void Awake()
     {
+        playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
@@ -29,14 +31,8 @@ public class PlayerManager : CharacterManager
 
     private void Update()
     {
-        isInteracting = animator.GetBool("isInteracting");
-        isAttacking = animator.GetBool("isAttacking");
-
-        playerMeleeHandler.comboNumber = animator.GetInteger("comboNumber");
-        playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
-        playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
-
         inputManager.HandleAllInputs();
+        UpdateAnimatorParameters();
         playerStats.RegenerateStamina();
         CheckForInteractable();
         playerMeleeHandler.CheckToDespawnMelee();
@@ -44,18 +40,27 @@ public class PlayerManager : CharacterManager
 
     private void FixedUpdate()
     {
-        playerLocomotion.HandleMovement();
-        playerMeleeHandler.AdjustAttackMomentum();
-
-        if(isDashing)
+        if (isDashing)
         {
             playerLocomotion.HandleDash();
         }
+        playerLocomotion.HandleMovement();
+        playerMeleeHandler.AdjustAttackMomentum();
     }
 
     private void LateUpdate()
     {
         ResetInputLate();
+    }
+
+    private void UpdateAnimatorParameters()
+    {
+        isInteracting = animator.GetBool("isInteracting");
+        isAttacking = animator.GetBool("isAttacking");
+
+        playerMeleeHandler.comboNumber = animator.GetInteger("comboNumber");
+        playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
+        playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
     }
 
     private void ResetInputLate()
@@ -69,8 +74,11 @@ public class PlayerManager : CharacterManager
 
     public IEnumerator HandleDeathCoroutine()
     {
+        isDead = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        playerAnimatorHandler.PlayTargetAnimation("Death", true);
         yield return new WaitForSeconds(2f);
-        //Death Anim
+        isDead = false;
         //Drop fragments
         //Reload from fort
         playerStats.SetStartingStats();
@@ -79,6 +87,9 @@ public class PlayerManager : CharacterManager
 
     public void OnLoadScene(RoomData currentRoom)
     {
+        animator.SetBool("isInteracting", false);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         if (nextSpawnPoint == Vector3.zero)
         {
             nextSpawnPoint = currentRoom.spawnPoints[0];
@@ -97,7 +108,7 @@ public class PlayerManager : CharacterManager
     private void CheckForInteractable()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
-            lastMoveDirection, 10f, interactableLayers);
+            lastMoveDirection, 5f, interactableLayers);
 
         /*Debug.DrawRay(transform.position,
             playerLocomotion.lastMoveDirection * 10f, Color.red);*/
@@ -114,7 +125,7 @@ public class PlayerManager : CharacterManager
 
                     if (inputManager.interact_Input)
                     {
-                        hit.collider.GetComponent<Interactable>().Interact(this);
+                        hit.collider.GetComponent<Interactable>().Interact(this, playerStats);
                     }
                 }
             }

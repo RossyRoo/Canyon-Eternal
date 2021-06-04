@@ -10,9 +10,9 @@ public class CardBook : Interactable
 
     public GameObject cardbookUI;
 
-    public override void Interact(PlayerManager playerManager)
+    public override void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
-        base.Interact(playerManager);
+        base.Interact(playerManager, playerStats);
         DisplayEquipmentChangingUI();
     }
 
