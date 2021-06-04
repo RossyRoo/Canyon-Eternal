@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class Weapon : Item
 {
-    [Header("Card Information")]
-
+    [Header("Weapon Information")]
     public int staminaCost = 1;
 
     [Header("Damage Stats")]
@@ -15,10 +14,9 @@ public class Weapon : Item
     public int currentMinDamage;
     public int currentMaxDamage;
     [Range(0,1)]public float criticalChance;
-    public int comboDamageToAdd;
 
     [Tooltip("Force used to knock enemy back upon attacks")]
-    public float weaponKnockback;
+    public float knockbackForce;
     [Tooltip("The force used to calculate forward momentum during combo attacks")]
     public float attackMomentum;
 }

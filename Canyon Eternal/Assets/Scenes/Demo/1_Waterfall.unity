@@ -152,6 +152,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &183300301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100472744, guid: c2dad1bee05724b268c0c22616a6c40a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1501304287799033183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &183300312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183300301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e0166e6dfaf414493cce0077f408cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeSpell: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  currentSpellChargeTime: 0
+  startSpellChargeTime: 3
 --- !u!1 &208878117
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,22 +263,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1134303067, guid: aa94564c5a3c148f697d3708134a2668, type: 3}
-      propertyPath: knockbackForce
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 1164396354, guid: aa94564c5a3c148f697d3708134a2668, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1796070743, guid: aa94564c5a3c148f697d3708134a2668, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4170450973767946578, guid: aa94564c5a3c148f697d3708134a2668,
         type: 3}
       propertyPath: m_Name
       value: Slime Vessel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4170450973767946578, guid: aa94564c5a3c148f697d3708134a2668,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4170450973767946588, guid: aa94564c5a3c148f697d3708134a2668,
         type: 3}
@@ -579,10 +601,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5112973914046535493, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000078711295
+      objectReference: {fileID: 0}
     - target: {fileID: 5280360952379046738, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_AmplitudeGain
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011695132328386941, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011695132328386941, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011695132328386941, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2dad1bee05724b268c0c22616a6c40a, type: 3}
@@ -69467,7 +69509,7 @@ PrefabInstance:
     - target: {fileID: 8109413375619013443, guid: 216b7be9d05c747fcab4dd5a660f8446,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000000078711295
       objectReference: {fileID: 0}
     - target: {fileID: 8109413375619013443, guid: 216b7be9d05c747fcab4dd5a660f8446,
         type: 3}
@@ -69502,7 +69544,7 @@ PrefabInstance:
     - target: {fileID: 8109413375619013565, guid: 216b7be9d05c747fcab4dd5a660f8446,
         type: 3}
       propertyPath: m_IgnoreTimeScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8109413375619013567, guid: 216b7be9d05c747fcab4dd5a660f8446,
         type: 3}

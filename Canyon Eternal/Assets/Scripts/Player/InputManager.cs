@@ -8,12 +8,15 @@ public class InputManager : MonoBehaviour
     PlayerManager playerManager;
     PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
+    PlayerSpellHandler playerSpellHandler;
     PlayerBlockHandler playerBlockHandler;
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
 
     public bool melee_Input;
+    public bool chargeSpell_Input;
+    public bool castSpell_Input;
     public bool dash_Input;
     public bool block_Input;
     public bool heal_Input;
@@ -24,6 +27,7 @@ public class InputManager : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
+        playerSpellHandler = GetComponent<PlayerSpellHandler>();
         playerBlockHandler = GetComponent<PlayerBlockHandler>();
     }
 
@@ -37,8 +41,12 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerMovement.Move.performed += i => moveInput = i.ReadValue<Vector2>();
             playerControls.PlayerMovement.Move.canceled += i => moveInput = Vector2.zero;
 
-            //ATTACKING
+            //MELEE
             playerControls.PlayerActions.Melee.performed += i => melee_Input = true;
+
+            //SPELL
+            playerControls.PlayerActions.Spell.performed += i => chargeSpell_Input = true;
+            playerControls.PlayerActions.Spell.canceled += i => castSpell_Input = true;
 
             //DASH
             playerControls.PlayerActions.Dash.performed += i => dash_Input = true;
@@ -63,6 +71,8 @@ public class InputManager : MonoBehaviour
     public void HandleAllInputs()
     {
         HandleMeleeInput();
+        HandleChargeSpellInput();
+        HandleCastSpellInput();
         HandleDashInput();
         HandleBlockInput();
         HandleHealInput();
@@ -84,6 +94,35 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void HandleChargeSpellInput()
+    {
+        if(chargeSpell_Input)
+        {
+            if (playerManager.isInteracting)
+                return;
+
+            Debug.Log("INPUT: Charge Spell");
+            playerSpellHandler.ChargeSpell();
+        }
+    }
+
+    private void HandleCastSpellInput()
+    {
+        if(castSpell_Input)
+        {
+            if(playerManager.isCastingSpell)
+            {
+                Debug.Log("INPUT: Cast Spell");
+                playerSpellHandler.CastProjectileSpell();
+            }
+            else
+            {
+                Debug.Log("INPUT: CANCEL SPELL");
+                playerSpellHandler.CancelSpell();
+            }
+        }
+    }
+
     private void HandleDashInput()
     {
         if(dash_Input)
@@ -99,7 +138,7 @@ public class InputManager : MonoBehaviour
     {
         if(block_Input)
         {
-            if (playerStats.characterData.currentHealth < 1)
+            if (playerStats.currentStamina < 1)
                 return;
 
             StartCoroutine(playerBlockHandler.HandleBlocking());

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/Cards/Melee Weapon")]
+[CreateAssetMenu(menuName = "Items/Weapons/Melee")]
 public class MeleeWeapon : Weapon
 {
     public bool isThrust;
     public bool isSlash;
     public bool isStrike;
 
+    public int comboDamageToAdd;
+
     public GameObject modelPrefab;
 
-    [Header("Attack Animations")]
     public string attackAnimation;
 
     public MeleeWeaponSFXBank meleeWeaponSFXBank;

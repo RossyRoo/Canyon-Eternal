@@ -6,10 +6,12 @@ public class CharacterAnimatorHandler : MonoBehaviour
 {
     [HideInInspector]
     public Animator animator;
+    public CharacterManager characterManager;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        characterManager = GetComponentInParent<CharacterManager>();
     }
 
     public void PlayTargetAnimation(string targetAnim, bool isInteracting)
@@ -20,15 +22,22 @@ public class CharacterAnimatorHandler : MonoBehaviour
 
     public void UpdateFloatAnimationValues(float moveX, float moveY, bool isMoving)
     {
-        animator.SetFloat("moveX_Float", moveX);
-        animator.SetFloat("moveY_Float", moveY);
-        animator.SetBool("isMoving", isMoving);
+        if(!characterManager.isChargingSpell)
+        {
+            animator.SetFloat("moveX_Float", moveX);
+            animator.SetFloat("moveY_Float", moveY);
+            animator.SetBool("isMoving", isMoving);
+        }
     }
 
     public void UpdateIntAnimationValues(float moveX, float moveY, bool isMoving)
     {
-        animator.SetInteger("moveX_Int", Mathf.FloorToInt(moveX));
-        animator.SetInteger("moveY_Int", Mathf.FloorToInt(moveY));
-        animator.SetBool("isMoving", isMoving);
+        if (!characterManager.isChargingSpell)
+        {
+            animator.SetInteger("moveX_Int", Mathf.FloorToInt(moveX));
+            animator.SetInteger("moveY_Int", Mathf.FloorToInt(moveY));
+            animator.SetBool("isMoving", isMoving);
+        }
+
     }
 }

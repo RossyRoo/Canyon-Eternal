@@ -115,6 +115,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Spell",
+                    "type": "Button",
+                    "id": "c48c0885-279b-4413-b6c0-f35b91f8955c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -170,6 +178,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "759c1545-3b1c-438c-ba47-601daa90f061",
+                    "path": "<Keyboard>/slash",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spell",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -9,6 +9,7 @@ public class PlayerManager : CharacterManager
     PlayerStats playerStats;
     Animator animator;
     PlayerMeleeHandler playerMeleeHandler;
+    PlayerSpellHandler playerSpellHandler;
     PlayerAnimatorHandler playerAnimatorHandler;
 
     public GameObject interactionPopupGO;
@@ -22,6 +23,7 @@ public class PlayerManager : CharacterManager
     {
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
+        playerSpellHandler = GetComponent<PlayerSpellHandler>();
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStats = GetComponent<PlayerStats>();
@@ -31,11 +33,12 @@ public class PlayerManager : CharacterManager
 
     private void Update()
     {
-        inputManager.HandleAllInputs();
         UpdateAnimatorParameters();
+        inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
         CheckForInteractable();
         playerMeleeHandler.CheckToDespawnMelee();
+        playerSpellHandler.TickSpellChargeTimer();
     }
 
     private void FixedUpdate()
@@ -70,6 +73,8 @@ public class PlayerManager : CharacterManager
         inputManager.heal_Input = false;
         inputManager.interact_Input = false;
         inputManager.block_Input = false;
+        inputManager.chargeSpell_Input = false;
+        inputManager.castSpell_Input = false;
     }
 
     public IEnumerator HandleDeathCoroutine()

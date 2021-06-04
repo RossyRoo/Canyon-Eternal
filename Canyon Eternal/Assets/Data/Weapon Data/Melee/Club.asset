@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a94a4eab3bdf84a699f635d07756d828, type: 3}
-  m_Name: Sword
+  m_Name: Club
   m_EditorClassIdentifier: 
-  itemName: Sword
-  itemDescription: The simplest of the slashing weapons.
+  itemName: Club
+  itemDescription: The simplest of the striking weapons.
   itemIcon: {fileID: 0}
   itemValue: 0
-  staminaCost: 1
-  baseMinDamage: 7
-  baseMaxDamage: 10
+  staminaCost: 2
+  attackAnimation: Strike
+  baseMinDamage: 0
+  baseMaxDamage: 0
   currentMinDamage: 0
   currentMaxDamage: 0
-  criticalChance: 0.106
+  criticalChance: 0
   comboDamageToAdd: 0
-  weaponKnockback: 0
+  knockbackForce: 0
   attackMomentum: 0
   isThrust: 0
-  isSlash: 1
-  isStrike: 0
-  modelPrefab: {fileID: 2745075400666053458, guid: 3823530369d444f3cb26f60baa3bbb04,
+  isSlash: 0
+  isStrike: 1
+  modelPrefab: {fileID: 2283583324346277011, guid: 12f11471289584a6da43ad02533c80e4,
     type: 3}
-  attackAnimation: Slash
-  meleeWeaponSFXBank: {fileID: 11400000, guid: 46a9a8de91580476989db420efc3ebd6, type: 2}
+  meleeWeaponSFXBank: {fileID: 11400000, guid: 7ba2eb6736f4c47a682a978c7f0f5054, type: 2}

@@ -351,9 +351,9 @@ MonoBehaviour:
   canDamageEnemy: 1
   knockbackTarget: {fileID: 0}
   knockbackDirection: {x: 0, y: 0}
-  knockbackForce: 500
+  knockbackForce: 100
   startKnockbackTime: 0.02
-  cardData: {fileID: 0}
+  weaponData: {fileID: 0}
 --- !u!1 &1164396353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1051,8 @@ MonoBehaviour:
   isInvulnerable: 0
   isMoving: 0
   isAttacking: 0
+  isChargingSpell: 0
+  isCastingSpell: 0
   isBlocking: 0
   isVulnerableToBlock: 0
   isStunned: 0

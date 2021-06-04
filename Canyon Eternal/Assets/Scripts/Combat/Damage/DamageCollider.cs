@@ -37,7 +37,7 @@ public class DamageCollider : MonoBehaviour
 
         if (weaponData != null)
         {
-            knockbackForce = weaponData.weaponKnockback;
+            knockbackForce = weaponData.knockbackForce;
         }
 
         knockbackTime = startKnockbackTime;
@@ -85,6 +85,8 @@ public class DamageCollider : MonoBehaviour
     {
         if (targetIsWithinRange)
         {
+            knockbackTarget = collision.GetComponent<CharacterManager>();
+
             RollForCriticalHit();
 
             if (collision.tag == "Player")
@@ -104,6 +106,7 @@ public class DamageCollider : MonoBehaviour
                 if (enemyStats != null)
                 {
                     enemyStats.LoseHealth(damage, criticalHitActivated);
+                    knockbackFlag = true;
                 }
             }
 
@@ -117,8 +120,6 @@ public class DamageCollider : MonoBehaviour
                 knockbackDirection = Vector2.zero;
             }
 
-            knockbackTarget = collision.GetComponent<CharacterManager>();
-            knockbackFlag = true;
 
             yield return new WaitForFixedUpdate();
             StartCoroutine(DealDamage(collision));

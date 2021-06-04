@@ -26,11 +26,10 @@ public class PlayerParticleHandler : MonoBehaviour
     [Header("COMBO STAR")]
     public GameObject comboStarVFX;
     public GameObject currentComboStarGO;
-    public Material yellowComboStarMat;
-    public Material greenComboStarMat;
-    public Material redComboStarMat;
-
     public Material[] comboStarMats;
+
+    [Header("SPELLS")]
+    public GameObject currentChargeVFXGO;
 
     private void Awake()
     {
@@ -98,7 +97,37 @@ public class PlayerParticleHandler : MonoBehaviour
     public void SpawnImpactVFX()
     {
         GameObject impactVFXGO = Instantiate(impactVFXPrefab, mainParticleTransform.position, Quaternion.identity);
-        impactVFXGO.transform.parent = mainParticleTransform;
+        impactVFXGO.transform.parent = objectPool.transform;
         Destroy(impactVFXGO, impactVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
+
+    #region Spells
+    public void SpawnChargeVFX(GameObject chargeVFXPrefab)
+    {
+        currentChargeVFXGO = Instantiate(chargeVFXPrefab, mainParticleTransform.position, Quaternion.identity);
+        currentChargeVFXGO.transform.parent = objectPool.transform;
+    }
+
+    public void SpawnChargeCompleteVFX(GameObject chargeCompleteVFXPrefab)
+    {
+        GameObject chargeCompleteVFXGO = Instantiate(chargeCompleteVFXPrefab, mainParticleTransform.position, Quaternion.identity);
+        chargeCompleteVFXGO.transform.parent = objectPool.transform;
+        Destroy(chargeCompleteVFXGO, chargeCompleteVFXGO.GetComponent<ParticleSystem>().main.duration);
+    }
+
+    public void SpawnCancelSpellVFX(GameObject cancelSpellVFXPrefab)
+    {
+        GameObject cancelSpellVFXGO = Instantiate(cancelSpellVFXPrefab, mainParticleTransform.position, Quaternion.identity);
+        cancelSpellVFXGO.transform.parent = objectPool.transform;
+        Destroy(cancelSpellVFXGO, cancelSpellVFXGO.GetComponent<ParticleSystem>().main.duration);
+    }
+
+    public void SpawnCastVFX(GameObject castVFXPrefab)
+    {
+        GameObject castVFXGO = Instantiate(castVFXPrefab, mainParticleTransform.position, Quaternion.identity);
+        castVFXGO.transform.parent = objectPool.transform;
+        Destroy(castVFXGO, castVFXGO.GetComponent<ParticleSystem>().main.duration);
+    }
+    #endregion
+
 }

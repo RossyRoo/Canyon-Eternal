@@ -14,7 +14,6 @@ public class PlayerLocomotion : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
     public float startDashTime;
-    public int direction;
     public Transform dashFXTransform;
     private bool dashFXTriggered;
 
@@ -61,7 +60,6 @@ public class PlayerLocomotion : MonoBehaviour
             {
                 dashFXTriggered = false;
 
-                direction = 0;
                 dashTime = startDashTime;
                 playerManager.rb.velocity = Vector2.zero;
                 playerManager.isDashing = false;

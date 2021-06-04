@@ -128,6 +128,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Spell"",
+                    ""type"": ""Button"",
+                    ""id"": ""c48c0885-279b-4413-b6c0-f35b91f8955c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -185,6 +193,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Block"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""759c1545-3b1c-438c-ba47-601daa90f061"",
+                    ""path"": ""<Keyboard>/slash"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -201,6 +220,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Heal = m_PlayerActions.FindAction("Heal", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Block = m_PlayerActions.FindAction("Block", throwIfNotFound: true);
+        m_PlayerActions_Spell = m_PlayerActions.FindAction("Spell", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,6 +308,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Heal;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Block;
+    private readonly InputAction m_PlayerActions_Spell;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -297,6 +318,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Heal => m_Wrapper.m_PlayerActions_Heal;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Block => m_Wrapper.m_PlayerActions_Block;
+        public InputAction @Spell => m_Wrapper.m_PlayerActions_Spell;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -321,6 +343,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Block.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnBlock;
                 @Block.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnBlock;
                 @Block.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnBlock;
+                @Spell.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
+                @Spell.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
+                @Spell.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -340,6 +365,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Block.started += instance.OnBlock;
                 @Block.performed += instance.OnBlock;
                 @Block.canceled += instance.OnBlock;
+                @Spell.started += instance.OnSpell;
+                @Spell.performed += instance.OnSpell;
+                @Spell.canceled += instance.OnSpell;
             }
         }
     }
@@ -355,5 +383,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnHeal(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnSpell(InputAction.CallbackContext context);
     }
 }

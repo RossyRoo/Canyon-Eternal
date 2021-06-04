@@ -117,10 +117,10 @@ public class PlayerStats : CharacterStats
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
         SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeNormalDamage);
-        CinemachineShake.Instance.Shake(5f, 0.5f);
 
         playerParticleHandler.SpawnImpactVFX();
         timeStop.StopTime(0.005f, 10, 0.1f);
+        CinemachineShake.Instance.Shake(10f, 0.5f);
 
         if (characterData.currentHealth <= 0)
         {

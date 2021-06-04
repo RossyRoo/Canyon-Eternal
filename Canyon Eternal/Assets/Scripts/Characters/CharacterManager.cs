@@ -12,12 +12,18 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rb;
 
-    [Header("Character States")]
+    [Header("CHARACTER BOOLS")]
+
+    [Header("General")]
     public bool isDead;
     public bool isInteracting;
     public bool isInvulnerable;
     public bool isMoving;
+
+    [Header("Combat")]
     public bool isAttacking;
+    public bool isChargingSpell;
+    public bool isCastingSpell;
     public bool isBlocking;
     public bool isVulnerableToBlock;
     public bool isStunned;
