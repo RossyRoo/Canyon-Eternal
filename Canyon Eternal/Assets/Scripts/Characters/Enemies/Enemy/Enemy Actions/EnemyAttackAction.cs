@@ -8,8 +8,8 @@ public class EnemyAttackAction : EnemyActions
     public int attackScore = 3;
     public float recoveryTime = 1f;
 
-    public float spaceNeededToStartAttack= 3;
-    public float shortestDistanceNeededToAttack = 5;
+    public float spaceNeededToStartAttack= 0;
+    public float shortestDistanceNeededToAttack = 10;
 
     [Range(1,100)]public float chargeForce = 999f;
 

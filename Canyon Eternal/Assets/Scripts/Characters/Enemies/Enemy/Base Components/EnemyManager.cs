@@ -31,6 +31,10 @@ public class EnemyManager : CharacterManager
     {
         GenerateTrackingWall();
 
+        if(currentState == null)
+        {
+            currentState = GetComponentInChildren<ScoutState>();
+        }
 
     }
 
@@ -38,6 +42,8 @@ public class EnemyManager : CharacterManager
     {
         HandleRecoveryTimer();
         HandleStateMachine();
+
+        enemyAnimatorHandler.animator.SetBool("isInteracting", isInteracting);
     }
 
     private void FixedUpdate()
@@ -74,7 +80,7 @@ public class EnemyManager : CharacterManager
 
         if (isInteracting)
         {
-            if (currentRecoveryTime <= 0)
+            if (currentRecoveryTime <= 0 && isStunned == false)
             {
                 isInteracting = false;
             }

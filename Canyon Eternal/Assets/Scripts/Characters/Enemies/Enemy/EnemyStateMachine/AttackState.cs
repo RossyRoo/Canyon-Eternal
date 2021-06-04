@@ -24,7 +24,8 @@ public class AttackState : EnemyStateMachine
         if (enemyManager.isInteracting)
             return combatState;
 
-        if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange)
+        if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange
+            && enemyStats.characterData.canEvade)
         {
             //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
             return evadeState;
@@ -75,9 +76,9 @@ public class AttackState : EnemyStateMachine
 
         int maxScore = 0;
 
-        for (int i = 0; i < enemyStats.enemyAttacks.Length; i++)
+        for (int i = 0; i < enemyStats.characterData.enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyStats.enemyAttacks[i];
+            EnemyAttackAction enemyAttackAction = enemyStats.characterData.enemyAttacks[i];
 
             if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)
@@ -89,9 +90,9 @@ public class AttackState : EnemyStateMachine
         int randomValue = Random.Range(0, maxScore);
         int temporaryScore = 0;
 
-        for (int i = 0; i < enemyStats.enemyAttacks.Length; i++)
+        for (int i = 0; i < enemyStats.characterData.enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyStats.enemyAttacks[i];
+            EnemyAttackAction enemyAttackAction = enemyStats.characterData.enemyAttacks[i];
 
             if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
                 && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)

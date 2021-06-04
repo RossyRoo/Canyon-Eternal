@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e89efed69f949b28f659ea0b1b0969, type: 3}
   m_Name: Vessel_Data
   m_EditorClassIdentifier: 
+  canPursue: 1
+  canAttack: 1
+  canEvade: 1
   moveSpeed: 5568
   maxHealth: 50
   currentHealth: 50
   healAmount: 1
   invulnerabilityFrames: 0.4
+  enemyAttacks:
+  - {fileID: 11400000, guid: 47a0bf721e2fd4f4e8be6ea256b06739, type: 2}
+  - {fileID: 11400000, guid: 4059a9c7ddf1e49c09d637e3a5fecb53, type: 2}
+  enemyWeapons: []
   fragmentDrop: 10
   characterSFXBank: {fileID: 11400000, guid: 4ee9bdd09fd5d4640bb2a7e84949534b, type: 2}
   detectionRadius: 35

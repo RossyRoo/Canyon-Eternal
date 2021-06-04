@@ -39,7 +39,7 @@ public class ScoutState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.currentTarget != null)
+        if (enemyManager.currentTarget != null && enemyStats.characterData.canPursue)
         {
             enemyManager.isMoving = true;
             return pursueTargetState;

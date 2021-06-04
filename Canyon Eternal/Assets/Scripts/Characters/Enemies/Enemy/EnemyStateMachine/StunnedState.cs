@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StunnedState : EnemyStateMachine
 {
-    public PursueState pursueState;
     public DeathState deathState;
+    public CombatState combatState;
 
     bool runningStunnedCoroutine;
     bool finishedStunnedCoroutine;
@@ -13,10 +13,6 @@ public class StunnedState : EnemyStateMachine
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
         #region Handle Death and Stun State
-        if (enemyManager.isStunned)
-        {
-            enemyManager.isStunned = false;
-        }
 
         if (enemyManager.isDead)
         {
@@ -36,9 +32,9 @@ public class StunnedState : EnemyStateMachine
 
             enemyStats.EnableAllDamageColliders();
 
-            enemyManager.isInteracting = false;
+            enemyManager.isStunned = false;
 
-            return pursueState;
+            return combatState;
         }
         else
         {

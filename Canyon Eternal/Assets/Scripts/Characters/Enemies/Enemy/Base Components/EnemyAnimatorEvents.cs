@@ -18,12 +18,12 @@ public class EnemyAnimatorEvents : CharacterAnimatorEvents
 
     public void OpenDamageCollider()
     {
-        enemyStats.enemyWeapons[0].EnableDamageCollider();
+        enemyStats.characterData.enemyWeapons[0].EnableDamageCollider();
     }
 
     public void CloseDamageCollider()
     {
-        enemyStats.enemyWeapons[0].DisableDamageCollider();
+        enemyStats.characterData.enemyWeapons[0].DisableDamageCollider();
     }
 
     #endregion

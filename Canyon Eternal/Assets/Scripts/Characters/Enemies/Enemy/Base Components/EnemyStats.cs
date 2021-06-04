@@ -8,16 +8,12 @@ public class EnemyStats : CharacterStats
     EnemyAnimatorHandler enemyAnimatorHandler;
     EnemyHealthBarUI enemyHealthBarUI;
 
-    [Header("Weapons And Attacks")]
-    public EnemyAttackAction[] enemyAttacks; //Attacks enemy can use
-    public DamageCollider[] enemyWeapons;   //Damage colliders on enemy
-
     private void Awake()
     {
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         enemyHealthBarUI = GetComponentInChildren<EnemyHealthBarUI>();
-        enemyWeapons = GetComponentsInChildren<DamageCollider>();
+        characterData.enemyWeapons = GetComponentsInChildren<DamageCollider>();
     }
 
     private void Start()
@@ -25,7 +21,7 @@ public class EnemyStats : CharacterStats
         characterData.currentHealth = characterData.maxHealth;
         enemyHealthBarUI.SetMaxHealth(characterData.maxHealth);
 
-        foreach (var attack in enemyAttacks)
+        foreach (var attack in characterData.enemyAttacks)
         {
             if (attack.shortestDistanceNeededToAttack > characterData.attackRange)
                 characterData.attackRange = attack.shortestDistanceNeededToAttack;
@@ -80,17 +76,17 @@ public class EnemyStats : CharacterStats
 
     public void DisableAllDamageColliders()
     {
-        for (int i = 0; i < enemyWeapons.Length; i++)
+        for (int i = 0; i < characterData.enemyWeapons.Length; i++)
         {
-            enemyWeapons[i].DisableDamageCollider();
+            characterData.enemyWeapons[i].DisableDamageCollider();
         }
     }
 
     public void EnableAllDamageColliders()
     {
-        for (int i = 0; i < enemyWeapons.Length; i++)
+        for (int i = 0; i < characterData.enemyWeapons.Length; i++)
         {
-            enemyWeapons[i].EnableDamageCollider();
+            characterData.enemyWeapons[i].EnableDamageCollider();
         }
     }
     #endregion

@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class CharacterData : ScriptableObject
 {
+    [Header("BEHAVIORS")]
+    public bool canPursue;
+    public bool canAttack;
+    public bool canEvade;
+
     [Header("MOVEMENT")]
     [Range(3000, 8000)] public float moveSpeed = 5000f;
 
@@ -14,6 +19,10 @@ public class CharacterData : ScriptableObject
     public int currentHealth;
     public int healAmount;
     public float invulnerabilityFrames = 0.4f;
+
+    [Header("Weapons And Attacks")]
+    public EnemyAttackAction[] enemyAttacks; //Attacks enemy can use
+    [HideInInspector] public DamageCollider[] enemyWeapons;   //Damage colliders on enemy
 
     [Header("DROPS")]
     public int fragmentDrop;

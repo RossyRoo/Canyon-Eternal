@@ -109,7 +109,14 @@ public class DamageCollider : MonoBehaviour
             }
 
             CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
-            knockbackDirection = myCharacterManager.lastMoveDirection;
+            if(myCharacterManager != null)
+            {
+                knockbackDirection = myCharacterManager.lastMoveDirection;
+            }
+            else
+            {
+                knockbackDirection = Vector2.zero;
+            }
 
             knockbackTarget = collision.GetComponent<CharacterManager>();
             knockbackFlag = true;

@@ -2154,19 +2154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d05b42790c4d480ba301dac36e0d04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3000
-  characterSFXBank: {fileID: 11400000, guid: 4ee9bdd09fd5d4640bb2a7e84949534b, type: 2}
-  maxHealth: 75
-  currentHealth: 0
-  healAmount: 0
-  hurtInvulnerabilityTime: 0.25
-  fragmentDrop: 10
+  characterData: {fileID: 11400000, guid: 1d89f55893d574f0694a2396c00bf67e, type: 2}
   enemyAttacks:
   - {fileID: 11400000, guid: 47a0bf721e2fd4f4e8be6ea256b06739, type: 2}
   enemyWeapons: []
-  detectionRadius: 35
-  attackRange: 0
-  evadeRange: 5
 --- !u!114 &7556572215732106827
 MonoBehaviour:
   m_ObjectHideFlags: 0

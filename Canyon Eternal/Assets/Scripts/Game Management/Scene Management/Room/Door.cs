@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : Interactable
 {
     public int sceneNum;
     public int doorNum = 0;
@@ -10,8 +10,22 @@ public class Door : MonoBehaviour
     public RoomData nextRoom;
     public Vector3 nextRoomSpawnPoint;
 
+    public override void Interact(PlayerManager playerManager)
+    {
+        base.Interact(playerManager);
+        TransitionScenes(playerManager);
+    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void TransitionScenes(PlayerManager playerManager)
+    {
+        nextRoomSpawnPoint = nextRoom.spawnPoints[doorNum];
+
+        playerManager.nextSpawnPoint = nextRoomSpawnPoint;
+
+        StartCoroutine(SceneChangeManager.Instance.ChangeScene(sceneNum));
+    }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
@@ -22,5 +36,5 @@ public class Door : MonoBehaviour
 
             StartCoroutine(SceneChangeManager.Instance.ChangeScene(sceneNum));
         }
-    }
+    }*/
 }

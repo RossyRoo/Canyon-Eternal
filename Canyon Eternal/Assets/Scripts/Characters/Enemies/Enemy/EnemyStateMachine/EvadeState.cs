@@ -8,9 +8,9 @@ public class EvadeState : EnemyStateMachine
     //We want the behavior to get the proper flee distance by hopping back, then determining whether its time to heal or return to combat state
 
     public CombatState combatState;
-    public float leapForceMultiplier = 200;
+    float leapForceMultiplier = 200f;
 
-    float safeDistanceBuffer = 5f;
+    float safeDistanceBuffer = 2f;
     float evadeRecoveryTime = 0.5f;
     float evadeRecoveryStartTime = 0.5f;
     bool reachedEvadeDistance = false;

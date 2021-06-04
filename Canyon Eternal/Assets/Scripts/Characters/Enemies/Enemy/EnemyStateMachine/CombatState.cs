@@ -27,7 +27,8 @@ public class CombatState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.distanceFromTarget > enemyStats.characterData.attackRange)
+        if (enemyManager.distanceFromTarget > enemyStats.characterData.attackRange
+            && enemyStats.characterData.canPursue)
         {
             return pursueTargetState;
         }
@@ -38,7 +39,9 @@ public class CombatState : EnemyStateMachine
             return evadeState;
         }
 
-        if (enemyManager.currentRecoveryTime <= 0 && enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange)
+        if (enemyManager.currentRecoveryTime <= 0
+            && enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange
+            && enemyStats.characterData.canAttack)
         {
             return attackState;
         }
