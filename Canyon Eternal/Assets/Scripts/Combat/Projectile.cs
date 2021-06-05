@@ -48,4 +48,11 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void SetSpeedAndDirection(float newSpeed, Vector2 newDirection)
+    {
+        speed = newSpeed;
+        direction = newDirection;
+        damageCollider.knockbackDirection = direction;
+    }
 }

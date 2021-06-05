@@ -116,11 +116,6 @@ public class DamageCollider : MonoBehaviour
             {
                 knockbackDirection = myCharacterManager.lastMoveDirection;
             }
-            else
-            {
-                knockbackDirection = Vector2.zero;
-            }
-
 
             yield return new WaitForFixedUpdate();
             StartCoroutine(DealDamage(collision));
@@ -158,7 +153,6 @@ public class DamageCollider : MonoBehaviour
             {
                 damage = Random.Range(weaponData.currentMinDamage, weaponData.currentMaxDamage);
                 criticalHitActivated = false;
-                Debug.Log("Damage: " + damage);
             }
             else
             {

@@ -16,7 +16,7 @@ public class Weapon : Item
     [Range(0,1)]public float criticalChance;
 
     [Tooltip("Force used to knock enemy back upon attacks")]
-    public float knockbackForce;
+    [Range(200,800)]public float knockbackForce;
     [Tooltip("The force used to calculate forward momentum during combo attacks")]
-    public float attackMomentum;
+    [Range(0, 800)]public float attackMomentum;
 }

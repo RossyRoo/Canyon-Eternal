@@ -154,6 +154,7 @@ public class PlayerSpellHandler : MonoBehaviour
                 CastProjectile();
             }
 
+            playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
             playerManager.isCastingSpell = false;
         }
     }
@@ -168,7 +169,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
         currentSpellGO = Instantiate(activeSpell.spellDamageColliderPrefab, transform.position, Quaternion.identity);
         currentSpellGO.transform.parent = objectPool.transform;
-        currentSpellGO.GetComponent<Projectile>().direction = playerManager.lastMoveDirection;
+        currentSpellGO.GetComponent<Projectile>().SetSpeedAndDirection(activeSpell.castSpeed, playerManager.lastMoveDirection);
     }
 
 }

@@ -19,13 +19,14 @@ MonoBehaviour:
   staminaCost: 1
   baseMinDamage: 20
   baseMaxDamage: 30
-  currentMinDamage: 0
-  currentMaxDamage: 0
+  currentMinDamage: 20
+  currentMaxDamage: 30
   criticalChance: 0.223
-  knockbackForce: 0
-  attackMomentum: 0
+  knockbackForce: 500
+  attackMomentum: 200
   isProjectile: 1
-  chargeTime: 1
+  chargeTime: 0.5
+  castSpeed: 100
   spellDamageColliderPrefab: {fileID: 2204171353132637292, guid: ac4ae8557494f46a2929866257811fa2,
     type: 3}
   chargeAnimation: Charge

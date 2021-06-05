@@ -17,18 +17,18 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 1
-  attackAnimation: Thrust
   baseMinDamage: 5
   baseMaxDamage: 8
   currentMinDamage: 5
   currentMaxDamage: 8
   criticalChance: 0.1
-  comboDamageToAdd: 1
-  knockbackForce: 0
-  attackMomentum: 400
+  knockbackForce: 500
+  attackMomentum: 500
   isThrust: 1
   isSlash: 0
   isStrike: 0
+  comboDamageToAdd: 1
   modelPrefab: {fileID: 8638964557053719766, guid: c680c1385ef0c453ab99fab41d178040,
     type: 3}
+  attackAnimation: Thrust
   meleeWeaponSFXBank: {fileID: 11400000, guid: 719c6c64bccb449858da048fa313cc9d, type: 2}
