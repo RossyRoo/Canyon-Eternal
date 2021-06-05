@@ -101,7 +101,6 @@ public class InputManager : MonoBehaviour
             if (playerManager.isInteracting)
                 return;
 
-            Debug.Log("INPUT: Charge Spell");
             playerSpellHandler.ChargeSpell();
         }
     }
@@ -112,13 +111,14 @@ public class InputManager : MonoBehaviour
         {
             if(playerManager.isCastingSpell)
             {
-                Debug.Log("INPUT: Cast Spell");
                 playerSpellHandler.HandleAllSpellCasting();
             }
             else
             {
-                Debug.Log("INPUT: CANCEL SPELL");
-                playerSpellHandler.CancelSpell();
+                if(playerManager.isChargingSpell)
+                {
+                    playerSpellHandler.CancelSpell();
+                }
             }
         }
     }

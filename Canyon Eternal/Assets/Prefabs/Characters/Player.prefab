@@ -494,7 +494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543461032310389020}
   m_Layer: 0
-  m_Name: Crit Star Transform
+  m_Name: Overhead Particle Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,6 +575,36 @@ Transform:
   m_Father: {fileID: 1518488389}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 11.455001}
+--- !u!1 &4359620684256101221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9028362729387164514}
+  m_Layer: 0
+  m_Name: Feet Particle Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9028362729387164514
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359620684256101221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6106953423410550109}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5378531244884160853
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +686,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5609094477027953675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6531612157814739411}
+  m_Layer: 0
+  m_Name: Torso Particle Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6531612157814739411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5609094477027953675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6106953423410550109}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5629949608812370067
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +777,8 @@ Transform:
   m_Children:
   - {fileID: 104431047}
   - {fileID: 543461032310389020}
+  - {fileID: 6531612157814739411}
+  - {fileID: 9028362729387164514}
   m_Father: {fileID: 8652666736507707589}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -770,6 +832,7 @@ GameObject:
   - component: {fileID: 5016296795947127419}
   - component: {fileID: 6327201864997442882}
   - component: {fileID: 6573645158751350102}
+  - component: {fileID: 7389079911817734337}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -959,6 +1022,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCharacter: {fileID: 0}
 --- !u!114 &6573645158751350102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473140102890026084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b350a3c4af8b4f59abb52c82fa37d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCharacter: {fileID: 0}
+--- !u!114 &7389079911817734337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1216,8 +1292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeSpell: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
   currentSpellChargeTime: 0
-  startSpellChargeTime: 3
   projectilePointerVFXGO: {fileID: 3276780473346727477}
+  currentSpellGO: {fileID: 0}
 --- !u!1 &8652666736507707591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,8 +1388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24f7f9518b3d4823a72eac724b8f86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainParticleTransform: {fileID: 104431047}
-  critStarTransform: {fileID: 543461032310389020}
+  overheadParticleTransform: {fileID: 543461032310389020}
+  torsoParticleTransform: {fileID: 6531612157814739411}
+  feetParticleTransform: {fileID: 9028362729387164514}
   healVFX: {fileID: 3378999829773542753, guid: 4b82bffe487944f7db107672c2dc3e22, type: 3}
   healMats:
   - {fileID: 2100000, guid: d984c9876abde41a8abb60e20da44989, type: 2}

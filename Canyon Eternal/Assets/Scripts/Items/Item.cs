@@ -10,4 +10,6 @@ public class Item : ScriptableObject
     public Sprite itemIcon;
 
     public int itemValue;
+
+    public ItemSFXBank itemSFXBank;
 }

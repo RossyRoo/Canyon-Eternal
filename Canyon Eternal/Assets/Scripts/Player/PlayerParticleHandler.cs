@@ -7,11 +7,13 @@ using UnityEngine;
 public class PlayerParticleHandler : MonoBehaviour
 {
     PlayerManager playerManager;
+    PlayerSpellHandler playerSpellHandler;
 
-    ObjectPool objectPool; 
+    ObjectPool objectPool;
 
-    public Transform mainParticleTransform;
-    public Transform critStarTransform;
+    public Transform overheadParticleTransform;
+    public Transform torsoParticleTransform;
+    public Transform feetParticleTransform;
 
     [Header("HEALING")]
     public GameObject healVFX;
@@ -36,6 +38,7 @@ public class PlayerParticleHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
+        playerSpellHandler = GetComponentInParent<PlayerSpellHandler>();
         objectPool = FindObjectOfType<ObjectPool>();
     }
 
@@ -44,7 +47,7 @@ public class PlayerParticleHandler : MonoBehaviour
     public void SpawnComboStar()
     {
         currentComboStarGO = Instantiate(comboStarVFX, new Vector2
-            (critStarTransform.position.x + (playerManager.currentMoveDirection.x * 2), critStarTransform.position.y), Quaternion.identity);
+            (overheadParticleTransform.position.x + (playerManager.currentMoveDirection.x * 2), overheadParticleTransform.position.y), Quaternion.identity);
 
         currentComboStarGO.transform.parent = gameObject.transform;
         Destroy(currentComboStarGO, currentComboStarGO.GetComponent<ParticleSystem>().main.duration);
@@ -75,7 +78,7 @@ public class PlayerParticleHandler : MonoBehaviour
 
     public void SpawnFootstepCloudVFX()
     {
-        GameObject footstepVFXGO = Instantiate(footstepVFX, mainParticleTransform.position, Quaternion.identity);
+        GameObject footstepVFXGO = Instantiate(footstepVFX, torsoParticleTransform.position, Quaternion.identity);
         footstepVFXGO.transform.parent = objectPool.transform;
         footstepVFXGO.name = "footstep_vfx";
         Destroy(footstepVFXGO, footstepVFXGO.GetComponent<ParticleSystem>().main.duration);
@@ -89,7 +92,7 @@ public class PlayerParticleHandler : MonoBehaviour
 
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.characterSFXBank.consumeHealItem[playerStats.currentLunchBoxCapacity - 1]);
 
-        GameObject healVFXGO = Instantiate(healVFX, mainParticleTransform.position, Quaternion.identity);
+        GameObject healVFXGO = Instantiate(healVFX, torsoParticleTransform.position, Quaternion.identity);
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = healMats[playerStats.currentLunchBoxCapacity - 1];
         healVFXGO.transform.parent = objectPool.transform;
 
@@ -98,7 +101,7 @@ public class PlayerParticleHandler : MonoBehaviour
 
     public void SpawnImpactVFX()
     {
-        GameObject impactVFXGO = Instantiate(impactVFXPrefab, mainParticleTransform.position, Quaternion.identity);
+        GameObject impactVFXGO = Instantiate(impactVFXPrefab, torsoParticleTransform.position, Quaternion.identity);
         impactVFXGO.transform.parent = objectPool.transform;
         Destroy(impactVFXGO, impactVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
@@ -106,29 +109,28 @@ public class PlayerParticleHandler : MonoBehaviour
     #region Spells
     public void SpawnChargeVFX(GameObject chargeVFXPrefab)
     {
-        currentChargeVFXGO = Instantiate(chargeVFXPrefab, mainParticleTransform.position, Quaternion.identity);
+        currentChargeVFXGO = Instantiate(chargeVFXPrefab, torsoParticleTransform.position, Quaternion.identity);
         currentChargeVFXGO.transform.parent = objectPool.transform;
     }
 
     public void SpawnChargeCompleteVFX(GameObject chargeCompleteVFXPrefab)
     {
-        GameObject chargeCompleteVFXGO = Instantiate(chargeCompleteVFXPrefab, mainParticleTransform.position, Quaternion.identity);
-        chargeCompleteVFXGO.transform.parent = objectPool.transform;
+        GameObject chargeCompleteVFXGO = Instantiate(chargeCompleteVFXPrefab, torsoParticleTransform.position, Quaternion.identity);
+        chargeCompleteVFXGO.transform.parent = playerManager.transform;
         Destroy(chargeCompleteVFXGO, chargeCompleteVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
 
     public void SpawnCancelSpellVFX(GameObject cancelSpellVFXPrefab)
     {
-        GameObject cancelSpellVFXGO = Instantiate(cancelSpellVFXPrefab, mainParticleTransform.position, Quaternion.identity);
-        cancelSpellVFXGO.transform.parent = objectPool.transform;
+        GameObject cancelSpellVFXGO = Instantiate(cancelSpellVFXPrefab, torsoParticleTransform.position, Quaternion.identity);
+        cancelSpellVFXGO.transform.parent = playerManager.transform;
         Destroy(cancelSpellVFXGO, cancelSpellVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
 
     public void SpawnCastVFX(GameObject castVFXPrefab)
     {
-        GameObject castVFXGO = Instantiate(castVFXPrefab, mainParticleTransform.position, Quaternion.identity);
-        castVFXGO.transform.parent = objectPool.transform;
-        Destroy(castVFXGO, castVFXGO.GetComponent<ParticleSystem>().main.duration);
+        playerSpellHandler.currentSpellGO = Instantiate(castVFXPrefab, torsoParticleTransform.position, Quaternion.identity);
+        playerSpellHandler.currentSpellGO.transform.parent = playerManager.transform;
     }
     #endregion
 

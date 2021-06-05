@@ -31,7 +31,7 @@ public class Spell : Weapon
     public AudioClip chargeSFX;
     public AudioClip chargeCompleteSFX;
     public AudioClip cancelSFX;
-    public AudioClip castSFX;
+    //public AudioClip castSFX;
     public AudioClip collisionSFX;
 
 }

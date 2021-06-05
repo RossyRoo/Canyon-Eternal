@@ -8,7 +8,6 @@ public class PlayerSpellHandler : MonoBehaviour
     PlayerStats playerStats;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
-    ObjectPool objectPool;
 
     public Spell activeSpell;
 
@@ -25,7 +24,6 @@ public class PlayerSpellHandler : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
-        objectPool = FindObjectOfType<ObjectPool>();
     }
 
     private void Start()
@@ -36,6 +34,9 @@ public class PlayerSpellHandler : MonoBehaviour
 
     public void ChargeSpell()
     {
+        if (playerStats.currentStamina < activeSpell.staminaCost)
+            return;
+
         playerAnimatorHandler.animator.SetBool("isMoving", false);
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.chargeAnimation, true);
         playerParticleHandler.SpawnChargeVFX(activeSpell.chargeVFX);
@@ -88,6 +89,8 @@ public class PlayerSpellHandler : MonoBehaviour
 
         if (activeSpell.isProjectile)
         {
+            playerParticleHandler.SpawnCastVFX(activeSpell.spellDamageColliderPrefab);
+
             projectilePointerVFXGO.SetActive(true);
             StartCoroutine(RotatePointer());
         }
@@ -162,14 +165,10 @@ public class PlayerSpellHandler : MonoBehaviour
     private void CastProjectile()
     {
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.castAnimation, false);
-        playerParticleHandler.SpawnCastVFX(activeSpell.castVFX);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.castSFX);
-
+        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.itemSFXBank.useItem);
         projectilePointerVFXGO.SetActive(false);
 
-        currentSpellGO = Instantiate(activeSpell.spellDamageColliderPrefab, transform.position, Quaternion.identity);
-        currentSpellGO.transform.parent = objectPool.transform;
-        currentSpellGO.GetComponent<Projectile>().SetSpeedAndDirection(activeSpell.castSpeed, playerManager.lastMoveDirection);
+        currentSpellGO.GetComponent<Projectile>().LaunchProjectileAsSpell(activeSpell.castSpeed, playerManager.lastMoveDirection);
     }
 
 }

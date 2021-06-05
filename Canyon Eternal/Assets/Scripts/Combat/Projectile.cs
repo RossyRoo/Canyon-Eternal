@@ -9,30 +9,33 @@ public class Projectile : MonoBehaviour
 
     public ItemSFXBank itemSFXBank;
 
+    public bool isHeld;
     public float speed = 100f;
     public Vector2 direction;
 
     private void Awake()
     {
-
         damageCollider = GetComponent<DamageCollider>();
         rb = GetComponent<Rigidbody2D>();
 
-        SFXPlayer.Instance.PlaySFXAudioClip(itemSFXBank.useItem, 0.1f);
+        if(GetComponentInParent<PlayerManager>())
+        {
+            isHeld = true;
+        }
     }
 
-    private void Start()
-    {
-        damageCollider.EnableDamageCollider();
-    }
 
     private void FixedUpdate()
     {
-        FlyStraight();
+        if(!isHeld)
+        {
+            FlyStraight();
+        }
     }
 
     private void FlyStraight()
     {
+        damageCollider.EnableDamageCollider();
         rb.velocity = direction * speed;
     }
 
@@ -47,12 +50,16 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //Play Collision SFX
     }
 
-    public void SetSpeedAndDirection(float newSpeed, Vector2 newDirection)
+    public void LaunchProjectileAsSpell(float newSpeed, Vector2 newDirection)
     {
         speed = newSpeed;
         direction = newDirection;
         damageCollider.knockbackDirection = direction;
+        isHeld = false;
+        transform.parent = FindObjectOfType<ObjectPool>().transform;
     }
 }
