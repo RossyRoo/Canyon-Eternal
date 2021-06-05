@@ -8,6 +8,10 @@ public class Spell : Weapon
     [Header("SPELL TYPE")]
     public bool isProjectile;
 
+    public float chargeTime;
+
+    public GameObject spellDamageColliderPrefab;
+
     [Header("ANIMATIONS")]
     public string chargeAnimation;
     public string chargeCompleteAnimation;

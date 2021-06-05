@@ -92,6 +92,7 @@ public class PlayerManager : CharacterManager
 
     public void OnLoadScene(RoomData currentRoom)
     {
+        
         animator.SetBool("isInteracting", false);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 

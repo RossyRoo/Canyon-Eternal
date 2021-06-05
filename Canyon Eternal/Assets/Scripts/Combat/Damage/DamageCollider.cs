@@ -10,6 +10,7 @@ public class DamageCollider : MonoBehaviour
     public bool dealsConstantDamage;
     public bool targetIsWithinRange;
     public bool canDamageEnemy = true;
+    public bool canDamagePlayer = true;
 
     [Header("Knockback Settings")]
     public CharacterManager knockbackTarget;
@@ -89,7 +90,7 @@ public class DamageCollider : MonoBehaviour
 
             RollForCriticalHit();
 
-            if (collision.tag == "Player")
+            if (collision.tag == "Player" && canDamagePlayer)
             {
                 PlayerStats playerStats = collision.GetComponent<PlayerStats>();
 
@@ -157,13 +158,13 @@ public class DamageCollider : MonoBehaviour
             {
                 damage = Random.Range(weaponData.currentMinDamage, weaponData.currentMaxDamage);
                 criticalHitActivated = false;
+                Debug.Log("Damage: " + damage);
             }
             else
             {
                 damage = weaponData.currentMaxDamage * 2;
                 criticalHitActivated = true;
             }
-            Debug.Log("Damage: " + damage);
         }
     }
 }

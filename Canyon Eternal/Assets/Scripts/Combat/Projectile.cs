@@ -9,10 +9,12 @@ public class Projectile : MonoBehaviour
 
     public ItemSFXBank itemSFXBank;
 
-    public float force = 100f;
+    public float speed = 100f;
+    public Vector2 direction;
 
     private void Awake()
     {
+
         damageCollider = GetComponent<DamageCollider>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -31,7 +33,7 @@ public class Projectile : MonoBehaviour
 
     private void FlyStraight()
     {
-        rb.velocity = transform.up * force;
+        rb.velocity = direction * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
