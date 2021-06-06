@@ -94,7 +94,7 @@ public class PlayerParticleHandler : MonoBehaviour
 
         GameObject healVFXGO = Instantiate(healVFX, torsoParticleTransform.position, Quaternion.identity);
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = healMats[playerStats.currentLunchBoxCapacity - 1];
-        healVFXGO.transform.parent = objectPool.transform;
+        healVFXGO.transform.parent = playerManager.transform;
 
         Destroy(healVFXGO, healVFXGO.GetComponent<ParticleSystem>().main.duration);
     }

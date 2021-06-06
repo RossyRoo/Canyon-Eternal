@@ -31,6 +31,7 @@ public class CharacterData : ScriptableObject
     [Header("movement")]
     public AudioClip[] rockFootsteps;
     public AudioClip dash;
+    public AudioClip hardCollision;
 
     [Header("combat")]
     public AudioClip[] consumeHealItem;

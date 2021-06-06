@@ -62,6 +62,15 @@ public class PlayerManager : CharacterManager
         playerMeleeHandler.comboNumber = animator.GetInteger("comboNumber");
         playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
         playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
+
+        if(isChargingSpell || isFalling)
+        {
+            isLockedInPlace = true;
+        }
+        else
+        {
+            isLockedInPlace = false;
+        }
     }
 
     private void ResetInputLate()
@@ -80,12 +89,12 @@ public class PlayerManager : CharacterManager
         isDead = true;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         playerAnimatorHandler.PlayTargetAnimation("Death", true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         isDead = false;
         //Drop fragments
         //Reload from fort
         playerStats.SetStartingStats();
-        SceneChangeManager.Instance.LoadOutsideLastFort();
+        StartCoroutine(SceneChangeManager.Instance.LoadOutsideLastFort(this));
     }
 
     public void OnLoadScene(Room currentRoom)

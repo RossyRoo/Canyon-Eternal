@@ -16,6 +16,6 @@ public class Weapon : Item
     [Range(0,1)]public float criticalChance;
 
     [Tooltip("Force used to knock enemy back upon attacks")]
-    [Range(200,800)]public float knockbackForce;
+    [HideInInspector]public float knockbackForce = 100f;
 
 }

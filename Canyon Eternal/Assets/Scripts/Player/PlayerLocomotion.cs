@@ -52,39 +52,42 @@ public class PlayerLocomotion : MonoBehaviour
     #region Dash
     public void HandleDash()
     {
-        playerAnimatorHandler.PlayTargetAnimation("Dash", false);
-
-        ReverseDashThroughEnemies();
-
             if(dashTime <= 0)
             {
-                dashFXTriggered = false;
-
-                dashTime = startDashTime;
-                playerManager.rb.velocity = Vector2.zero;
-                playerManager.isDashing = false;
-                playerStats.LoseStamina(1);
-                ReverseDashThroughEnemies();
+                StopDash();
             }
             else
             {
-                dashTime -= Time.deltaTime;
-
                 if(!dashFXTriggered)
                 {
-                    PlayDashFX();
+                    StartDash();
                 }
 
+                dashTime -= Time.deltaTime;
                 playerManager.rb.AddForce(playerManager.lastMoveDirection * dashSpeed);
         }
     }
 
-    private void PlayDashFX()
+    private void StartDash()
     {
         dashFXTriggered = true;
+
+        playerAnimatorHandler.PlayTargetAnimation("Dash", false);
+        ReverseDashThroughEnemies();
+        playerStats.LoseStamina(1);
         playerStats.EnableInvulnerability(startDashTime);
+
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.dash);
         playerParticleHandler.SpawnDashCloudVFX();
+    }
+
+    private void StopDash()
+    {
+        dashFXTriggered = false;
+        playerManager.isDashing = false;
+
+        dashTime = startDashTime;
+        ReverseDashThroughEnemies();
     }
 
     private void ReverseDashThroughEnemies()
@@ -92,7 +95,59 @@ public class PlayerLocomotion : MonoBehaviour
         Physics2D.IgnoreLayerCollision(9, 10, playerManager.isDashing);
         Physics2D.IgnoreLayerCollision(8, 11, playerManager.isDashing);
     }
+
     #endregion
 
+    #region Handle Ground Layers
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (playerManager.isDashing)
+        {
+            if (collision.gameObject.layer == 13)
+            {
+                dashTime = 0;
+                SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.hardCollision, 0.4f);
+                CinemachineShake.Instance.Shake(12, 0.35f);
+            }
+        }
+    }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 14 && !playerManager.isDashing)
+        {
+            if(!playerManager.isFalling)
+            {
+                StartCoroutine(HandleFalling());
+            }
+        }
+    }
+
+    private IEnumerator HandleFalling()
+    {
+        playerManager.isFalling = true;
+        CinemachineShake.Instance.SwitchToFallCam();
+        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        playerAnimatorHandler.UpdateFloatAnimationValues(0, -1, false);
+
+        yield return new WaitForSeconds(0.4f);
+
+        InvokeRepeating("ApplyFallForce", 0.6f, 0.0001f);
+
+        yield return new WaitForSeconds(0.65f);
+
+        CancelInvoke("ApplyFallForce");
+        playerManager.isFalling = false;
+        StartCoroutine(playerManager.HandleDeathCoroutine());
+    }
+
+    private void ApplyFallForce()
+    {
+        playerParticleHandler.SpawnDashCloudVFX();
+        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        playerManager.rb.AddForce(Vector2.down * 20000f);
+    }
+
+    #endregion
 }

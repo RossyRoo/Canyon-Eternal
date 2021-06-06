@@ -48,4 +48,18 @@ public class CinemachineShake : MonoBehaviour
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0f;
         }
     }
+
+    public void SwitchToFallCam()
+    {
+        cinemachineVirtualCamera.Follow = null;
+        cinemachineVirtualCamera.LookAt = null;
+        cinemachineVirtualCamera.transform.parent = null;
+    }
+
+    public void SwitchToPlayer(PlayerManager playerManager)
+    {
+        cinemachineVirtualCamera.Follow = playerManager.transform;
+        cinemachineVirtualCamera.LookAt = playerManager.transform;
+        cinemachineVirtualCamera.transform.parent = playerManager.transform;
+    }
 }

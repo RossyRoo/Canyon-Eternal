@@ -47,8 +47,13 @@ public class SceneChangeManager : MonoBehaviour
         }
     }
 
-    public void LoadOutsideLastFort()
+    public IEnumerator LoadOutsideLastFort(PlayerManager playerManager)
     {
+        blackFaderAnimatorHandler.PlayTargetAnimation("FadeToBlack");
+
+        yield return new WaitForSeconds(1f);
+
+        CinemachineShake.Instance.SwitchToPlayer(playerManager);
         SceneManager.LoadScene(dontDestroy.currentBuildIndex);
     }
 

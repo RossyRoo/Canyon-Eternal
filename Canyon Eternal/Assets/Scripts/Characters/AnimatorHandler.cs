@@ -22,22 +22,22 @@ public class CharacterAnimatorHandler : MonoBehaviour
 
     public void UpdateFloatAnimationValues(float moveX, float moveY, bool isMoving)
     {
-        if(!characterManager.isChargingSpell)
+        if(!characterManager.isLockedInPlace)
         {
             animator.SetFloat("moveX_Float", moveX);
             animator.SetFloat("moveY_Float", moveY);
             animator.SetBool("isMoving", isMoving);
         }
+
     }
 
     public void UpdateIntAnimationValues(float moveX, float moveY, bool isMoving)
     {
-        if (!characterManager.isChargingSpell)
+        if (!characterManager.isLockedInPlace)
         {
             animator.SetInteger("moveX_Int", Mathf.FloorToInt(moveX));
             animator.SetInteger("moveY_Int", Mathf.FloorToInt(moveY));
             animator.SetBool("isMoving", isMoving);
         }
-
     }
 }

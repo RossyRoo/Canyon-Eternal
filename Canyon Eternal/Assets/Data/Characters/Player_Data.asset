@@ -17,16 +17,16 @@ MonoBehaviour:
   canEvade: 0
   moveSpeed: 20
   maxHealth: 4
-  currentHealth: 5
+  currentHealth: 4
   healAmount: 2
   invulnerabilityFrames: 1
   enemyAttacks: []
   enemyWeapons: []
   fragmentDrop: 0
   rockFootsteps:
-  - {fileID: 8300000, guid: 43b088fb24582f44293cf58465f52139, type: 3}
   - {fileID: 8300000, guid: 7e05e7e9554edff4ebf0eeee083cc3de, type: 3}
   dash: {fileID: 8300000, guid: 5062dea39f7daa94b8184b6e984e14bd, type: 3}
+  hardCollision: {fileID: 8300000, guid: ed451b18ef0dc8d4692175cbd845831c, type: 3}
   consumeHealItem:
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
