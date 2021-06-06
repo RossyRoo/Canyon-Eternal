@@ -28,10 +28,12 @@ public class CharacterData : ScriptableObject
     public int fragmentDrop;
 
     [Header("SFX")]
+
     [Header("movement")]
     public AudioClip[] rockFootsteps;
     public AudioClip dash;
     public AudioClip hardCollision;
+    public AudioClip falling;
 
     [Header("combat")]
     public AudioClip[] consumeHealItem;

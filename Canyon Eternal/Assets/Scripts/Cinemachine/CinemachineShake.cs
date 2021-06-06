@@ -8,8 +8,9 @@ public class CinemachineShake : MonoBehaviour
     public static CinemachineShake Instance { get; private set; }
 
     private CinemachineVirtualCamera cinemachineVirtualCamera;
-    private float shakeTimer;
+    private CinemachineConfiner cinemachineConfiner;
 
+    private float shakeTimer;
 
     public void OnLoadScene()
     {
@@ -17,7 +18,11 @@ public class CinemachineShake : MonoBehaviour
         {
             Instance = this;
         }
+
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        cinemachineConfiner = GetComponent<CinemachineConfiner>();
+
+        cinemachineConfiner.m_BoundingShape2D = GameObject.FindGameObjectWithTag("Boundaries").GetComponent<PolygonCollider2D>();
 
         cinemachineVirtualCamera.enabled = false;
         cinemachineVirtualCamera.enabled = true;

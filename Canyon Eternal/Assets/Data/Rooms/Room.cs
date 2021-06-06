@@ -10,7 +10,7 @@ public class Room : ScriptableObject
     [Header("SPAWN POINTS")]
     public Vector3[] spawnPoints;
 
-    [Header("Audio")]
+    [Header("AUDIO")]
     public AudioClip autoMusic;
     public bool isInterruptingTrack = true;
 }

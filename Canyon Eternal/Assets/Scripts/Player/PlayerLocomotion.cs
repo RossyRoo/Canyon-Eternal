@@ -129,6 +129,7 @@ public class PlayerLocomotion : MonoBehaviour
         CinemachineShake.Instance.SwitchToFallCam();
         playerManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
+        playerAnimatorHandler.PlayTargetAnimation("Fall", true);
         playerAnimatorHandler.UpdateFloatAnimationValues(0, -1, false);
 
         yield return new WaitForSeconds(0.4f);
@@ -136,6 +137,8 @@ public class PlayerLocomotion : MonoBehaviour
         InvokeRepeating("ApplyFallForce", 0.4f, 0.0001f);
 
         yield return new WaitForSeconds(0.45f);
+
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.falling, 0.5f);
 
         CancelInvoke("ApplyFallForce");
         playerManager.isFalling = false;

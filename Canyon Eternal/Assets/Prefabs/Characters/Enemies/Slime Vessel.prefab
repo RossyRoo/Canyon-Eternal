@@ -1107,7 +1107,6 @@ GameObject:
   - component: {fileID: 2115533161}
   - component: {fileID: 4170450973767946576}
   - component: {fileID: 4170450973767946579}
-  - component: {fileID: 1583171644255585466}
   - component: {fileID: 3451020769818308922}
   m_Layer: 9
   m_Name: Slime Vessel
@@ -1167,7 +1166,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.028086662, y: 0.0655365}
+  m_Offset: {x: 0.0227108, y: 0.08885002}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1178,7 +1177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.636259, y: 4.426697}
+  m_Size: {x: 6.6641197, y: 4.473324}
   m_EdgeRadius: 0
 --- !u!114 &4170450973767946576
 MonoBehaviour:
@@ -1228,18 +1227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: c32b177921b704a2dab08254aa6764b3, type: 2}
---- !u!114 &1583171644255585466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4170450973767946578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89a7f1cc2c1c49adbf2a63c99a54e3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3451020769818308922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,7 +1267,6 @@ GameObject:
   - component: {fileID: 4170450973869724712}
   - component: {fileID: 4170450973869724718}
   - component: {fileID: 653695476}
-  - component: {fileID: 985940758}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1350,23 +1336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterManager: {fileID: 4170450973767946576}
---- !u!114 &985940758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4170450973869724713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff2b6bb830143466a93ae4c8c423060b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  overheadParticleTransform: {fileID: 172737358}
-  torsoParticleTransform: {fileID: 863577815}
-  feetParticleTransform: {fileID: 1293849861}
-  bigDustVFX: {fileID: 3801012901521723010, guid: 9af8a132a18614e8aa7b44996539c87a,
-    type: 3}
 --- !u!1 &4533758731703217542
 GameObject:
   m_ObjectHideFlags: 0

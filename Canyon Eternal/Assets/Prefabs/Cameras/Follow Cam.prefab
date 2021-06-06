@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4954675157396860692}
   - component: {fileID: 7560709639479523168}
   - component: {fileID: 560728591049190220}
+  - component: {fileID: 8737184475125424793}
   m_Layer: 0
   m_Name: Follow Cam
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 24
+    OrthographicSize: 22
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -80,6 +81,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ef0b9a9c2c7a4a8892226946e80d17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8737184475125424793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793944086748755211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 0}
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1 &4918781104007208389
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +162,7 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
-  m_ScreenX: 0.5
+  m_ScreenX: 0.5014205
   m_ScreenY: 0.5
   m_DeadZoneWidth: 2
   m_DeadZoneHeight: 2
