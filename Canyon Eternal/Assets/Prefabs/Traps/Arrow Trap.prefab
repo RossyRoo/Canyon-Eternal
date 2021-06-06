@@ -98,7 +98,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -68160189
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6b5fbfc052c0548fbb4ccd796b41039e, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 3030020879042331459}
   m_Layer: 13
   m_Name: Arrow Trap
-  m_TagString: Environment
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -68160189
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6b5fbfc052c0548fbb4ccd796b41039e, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -208,8 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6b39d3dd9d04b378683b0d95ca09a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2386400630290685019, guid: 866f12829c0b34def84d739683786bc7,
-    type: 3}
+  projectile: {fileID: 11400000, guid: bf2b1af708e034b45a57e2ea1c355966, type: 2}
   firingPoint: {fileID: 2586447538854513604}
   rateOfFireOffset: 0.5
   rateOfFire: 2

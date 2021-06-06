@@ -27,8 +27,6 @@ public class PlayerManager : CharacterManager
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStats = GetComponent<PlayerStats>();
-        animator = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -90,9 +88,11 @@ public class PlayerManager : CharacterManager
         SceneChangeManager.Instance.LoadOutsideLastFort();
     }
 
-    public void OnLoadScene(RoomData currentRoom)
+    public void OnLoadScene(Room currentRoom)
     {
-        
+        animator = GetComponentInChildren<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+
         animator.SetBool("isInteracting", false);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
@@ -116,8 +116,7 @@ public class PlayerManager : CharacterManager
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
             lastMoveDirection, 5f, interactableLayers);
 
-        /*Debug.DrawRay(transform.position,
-            playerLocomotion.lastMoveDirection * 10f, Color.red);*/
+
 
             if (hit)
             {

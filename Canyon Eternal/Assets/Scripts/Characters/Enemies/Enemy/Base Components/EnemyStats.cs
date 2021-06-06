@@ -43,18 +43,18 @@ public class EnemyStats : CharacterStats
 
         if (!isCriticalHit)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeNormalDamage);
+            SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeNormalDamage);
         }
         else
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeCriticalDamage);
+            SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeCriticalDamage);
         }
 
         if (characterData.currentHealth <= 0)
         {
             enemyManager.isDead = true;
             characterData.currentHealth = 0;
-            SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.deathRattle);
+            SFXPlayer.Instance.PlaySFXAudioClip(characterData.deathRattle);
         }
 
     }

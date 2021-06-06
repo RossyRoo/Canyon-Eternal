@@ -83,7 +83,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         dashFXTriggered = true;
         playerStats.EnableInvulnerability(startDashTime);
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.characterSFXBank.dash);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.dash);
         playerParticleHandler.SpawnDashCloudVFX();
     }
 

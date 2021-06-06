@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    public int sceneNum;
+    public Room nextRoom;
     public int doorNum = 0;
-
-    public RoomData nextRoom;
     public Vector3 nextRoomSpawnPoint;
+
 
     public override void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
@@ -24,6 +23,6 @@ public class Door : Interactable
 
         playerStats.EnableInvulnerability(1.5f);
 
-        StartCoroutine(SceneChangeManager.Instance.ChangeScene(sceneNum));
+        StartCoroutine(SceneChangeManager.Instance.ChangeScene(nextRoom.sceneNum));
     }
 }

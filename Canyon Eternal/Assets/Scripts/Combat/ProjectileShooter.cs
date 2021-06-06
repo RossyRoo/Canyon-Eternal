@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
 {
-    public GameObject projectilePrefab;
+    public Projectile projectile;
     public Transform firingPoint;
+
     public float rateOfFireOffset = 0f;
     public float rateOfFire = 1f;
     public bool canFire;
@@ -28,9 +29,8 @@ public class ProjectileShooter : MonoBehaviour
 
         if(canFire)
         {
-            GameObject projectile = Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
-            projectile.transform.parent = gameObject.transform;
-            Destroy(projectile, 5f);
+            GameObject projectileGO = Instantiate(projectile.GOPrefab, firingPoint.position, firingPoint.rotation);
+            projectileGO.GetComponent<ProjectilePhysics>().Launch(projectile.launchForce, Vector2.up);
         }
 
         StartCoroutine(FireProjectileCoroutine());

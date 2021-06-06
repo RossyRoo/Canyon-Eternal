@@ -144,8 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20529c31cb55434ebc6af49e05dc58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSFXBank: {fileID: 11400000, guid: 6c4b8ba6c9fb4408a9ab9633efa22442, type: 2}
-  force: 40
+  projectileData: {fileID: 11400000, guid: bf2b1af708e034b45a57e2ea1c355966, type: 2}
+  isFired: 1
+  speed: 100
+  direction: {x: 0, y: 0}
 --- !u!114 &-7072923029392143523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,12 +160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardData: {fileID: 0}
-  knockbackForce: 10
-  knockbackTime: 0
-  knockbackDirection: {x: 0, y: 0}
-  knockbackFlag: 0
-  knockbackTarget: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 0
+  canDamagePlayer: 1
+  knockbackTarget: {fileID: 0}
+  knockbackDirection: {x: 0, y: 0}
+  knockbackForce: 10
+  startKnockbackTime: 0.02
+  weaponData: {fileID: 11400000, guid: bf2b1af708e034b45a57e2ea1c355966, type: 2}

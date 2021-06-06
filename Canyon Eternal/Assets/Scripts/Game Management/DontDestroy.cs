@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class DontDestroy : MonoBehaviour
     CinemachineShake cinemachineShake;
     SceneChangeManager sceneChangeManager;
 
-    public RoomData currentRoom;
+    [Header("Scene")]
+    public int currentBuildIndex;
+    public Room currentRoom;
+    public List<Room> allRoomsInOrder = new List<Room>();
+
 
     private void Awake()
     {
-        currentRoom = FindObjectOfType<RoomDataHolder>().thisRoom;
+        currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        currentRoom = allRoomsInOrder[currentBuildIndex];
         DontDestroyOnLoad(transform.gameObject);
         HandleDuplicates();
     }
@@ -37,10 +43,8 @@ public class DontDestroy : MonoBehaviour
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
             cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
 
-            if(dontDestroyDuplicate.currentRoom == null) //destroyed GO passes off its room data to the persistant game objects
-            {
-                dontDestroyDuplicate.currentRoom = currentRoom;
-            }
+            dontDestroyDuplicate.currentRoom = currentRoom;
+
 
             HandleOnLoadSceneFunctions();
         }

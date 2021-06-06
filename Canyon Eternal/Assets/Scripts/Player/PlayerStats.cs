@@ -116,7 +116,7 @@ public class PlayerStats : CharacterStats
         heartMeter.SetCurrentHealth(characterData.currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
-        SFXPlayer.Instance.PlaySFXAudioClip(characterData.characterSFXBank.takeNormalDamage);
+        SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeNormalDamage);
 
         playerParticleHandler.SpawnImpactVFX();
         timeStop.StopTime(0.005f, 10, 0.1f);

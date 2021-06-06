@@ -72,7 +72,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
         if (!myMeleeCollider.targetIsWithinRange)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.meleeWeaponSFXBank.attacks[playerMeleeHandler.comboNumber]);
+            SFXPlayer.Instance.PlaySFXAudioClip(playerMeleeHandler.activeMeleeCard.attackSFX[playerMeleeHandler.comboNumber]);
         }
     }
 
@@ -99,8 +99,8 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
         if(instantiatedFootstepsCount <= 2)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.characterSFXBank.rockFootsteps
-                [Random.Range(0, playerStats.characterData.characterSFXBank.rockFootsteps.Length)], 0.1f);
+            SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.rockFootsteps
+                [Random.Range(0, playerStats.characterData.rockFootsteps.Length)], 0.1f);
 
             playerParticleHandler.SpawnFootstepCloudVFX();
         }

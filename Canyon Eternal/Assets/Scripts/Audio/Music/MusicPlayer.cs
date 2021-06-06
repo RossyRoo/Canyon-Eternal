@@ -12,14 +12,14 @@ public class MusicPlayer : MonoBehaviour
     {
         if(!GetComponentInParent<DontDestroy>())
         {
-            RoomData currentRoom = FindObjectOfType<RoomData>();
+            Room currentRoom = FindObjectOfType<Room>();
 
             audioSource = GetComponent<AudioSource>();
             PlaySceneMusic(currentRoom);
         }
     }
 
-    public void OnLoadScene(RoomData currentRoom)
+    public void OnLoadScene(Room currentRoom)
     {
         if (Instance == null)
         {
@@ -30,17 +30,17 @@ public class MusicPlayer : MonoBehaviour
         PlaySceneMusic(currentRoom);
     }
 
-    private void PlaySceneMusic(RoomData currentRoom)
+    private void PlaySceneMusic(Room currentRoom)
     {
-        if (currentRoom.sceneMusicBank.autoMusic != null
-            && currentRoom.sceneMusicBank.isInterruptingTrack
+        if (currentRoom.autoMusic != null
+            && currentRoom.isInterruptingTrack
             || !audioSource.isPlaying)
         {
             //Check to see if this scene's music is supposed to override the other scene's
 
             audioSource.Stop();
-            audioSource.clip = currentRoom.sceneMusicBank.autoMusic;
-            PlayMusicClip(currentRoom.sceneMusicBank.autoMusic);
+            audioSource.clip = currentRoom.autoMusic;
+            PlayMusicClip(currentRoom.autoMusic);
         }
     }
 

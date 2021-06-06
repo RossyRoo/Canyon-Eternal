@@ -89,7 +89,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
         if (activeSpell.isProjectile)
         {
-            playerParticleHandler.SpawnCastVFX(activeSpell.spellDamageColliderPrefab);
+            playerParticleHandler.SpawnCastVFX(activeSpell.GOPrefab);
 
             projectilePointerVFXGO.SetActive(true);
             StartCoroutine(RotatePointer());
@@ -165,10 +165,10 @@ public class PlayerSpellHandler : MonoBehaviour
     private void CastProjectile()
     {
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.castAnimation, false);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.itemSFXBank.useItem);
+        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.launchSFX);
         projectilePointerVFXGO.SetActive(false);
 
-        currentSpellGO.GetComponent<Projectile>().LaunchProjectileAsSpell(activeSpell.castSpeed, playerManager.lastMoveDirection);
+        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
     }
 
 }
