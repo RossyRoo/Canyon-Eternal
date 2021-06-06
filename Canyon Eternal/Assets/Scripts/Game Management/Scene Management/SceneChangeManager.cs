@@ -53,7 +53,9 @@ public class SceneChangeManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        CinemachineShake.Instance.SwitchToPlayer(playerManager);
+        playerManager.isDead = false;
+
+        CinemachineManager.Instance.FindPlayer(playerManager);
         SceneManager.LoadScene(dontDestroy.currentBuildIndex);
     }
 

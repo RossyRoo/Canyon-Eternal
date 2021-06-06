@@ -19,6 +19,10 @@ public class PlayerManager : CharacterManager
 
     public Vector3 nextSpawnPoint;
 
+    [Header("Camera States")]
+    public bool isInCombat;
+    public float searchDistance = 45;
+
     private void Awake()
     {
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
@@ -38,6 +42,7 @@ public class PlayerManager : CharacterManager
         CheckForInteractable();
         playerMeleeHandler.CheckToDespawnMelee();
         playerSpellHandler.TickSpellChargeTimer();
+        EnemyCheck();
     }
 
     private void FixedUpdate()
@@ -81,7 +86,7 @@ public class PlayerManager : CharacterManager
         isDead = true;
         playerAnimatorHandler.PlayTargetAnimation(deathAnimation, true);
         yield return new WaitForSeconds(1f);
-        isDead = false;
+        //isDead = false;
         //Drop fragments
         //Reload from fort
         playerStats.SetStartingStats();
@@ -114,8 +119,6 @@ public class PlayerManager : CharacterManager
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
             lastMoveDirection, 5f, interactableLayers);
 
-
-
             if (hit)
             {
                 Interactable interactableObject = hit.collider.GetComponent<Interactable>();
@@ -147,5 +150,28 @@ public class PlayerManager : CharacterManager
 
     }
 
+    private void EnemyCheck()
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, searchDistance);
+
+        int enemies = 0;
+
+        for (int i = 0; i < collider2Ds.Length; i++)
+        {
+            if (collider2Ds[i].GetComponent<EnemyManager>())
+                enemies++;
+        }
+
+        if (enemies > 0)
+        {
+            isInCombat = true;
+            Debug.Log("Enemy Count: " + enemies);
+        }
+        else
+        {
+            isInCombat = false;
+        }
+
+    }
 
 }

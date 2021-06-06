@@ -111,7 +111,7 @@ public class PlayerLocomotion : MonoBehaviour
             {
                 dashTime = 0;
                 SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.hardCollision, 0.4f);
-                CinemachineShake.Instance.Shake(12, 0.35f);
+                CinemachineManager.Instance.Shake(12, 0.35f);
             }
         }
     }
@@ -136,7 +136,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         yield return new WaitForSeconds(0.75f);
 
-        CinemachineShake.Instance.SwitchToFallCam();
+        CinemachineManager.Instance.LosePlayer();
 
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.falling, 0.5f);
         playerParticleHandler.SpawnBigDustCloudVFX();
@@ -145,6 +145,12 @@ public class PlayerLocomotion : MonoBehaviour
         CancelInvoke("ApplyFallForce");
         playerManager.isFalling = false;
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
+
 
     #endregion
 }

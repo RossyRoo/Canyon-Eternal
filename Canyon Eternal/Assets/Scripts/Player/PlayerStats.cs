@@ -120,7 +120,7 @@ public class PlayerStats : CharacterStats
 
         playerParticleHandler.SpawnImpactVFX();
         timeStop.StopTime(0.005f, 10, 0.1f);
-        CinemachineShake.Instance.Shake(10f, 0.5f);
+        CinemachineManager.Instance.Shake(10f, 0.5f);
 
         if (characterData.currentHealth <= 0)
         {

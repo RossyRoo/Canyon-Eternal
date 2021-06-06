@@ -43,7 +43,7 @@ public class CharacterData : ScriptableObject
     public AudioClip deathRattle;
 
     [Header("AI Detection")]
-    [HideInInspector] public float detectionRadius = 35f;      //Distance at which enemy can spot the player
+    public float detectionRadius = 25f;      //Distance at which enemy can spot the player
     [HideInInspector] public float attackRange = 0f;          //Distance enemy needs to enter attack state
     [HideInInspector] public float evadeRange = 5f;           //Distance enemy will back off target
 }

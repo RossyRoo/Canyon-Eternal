@@ -7,10 +7,10 @@ public class DontDestroy : MonoBehaviour
 {
     bool isPersistent;
 
-    PlayerManager playerManager;
+    public PlayerManager playerManager;
     SFXPlayer sFXPlayer;
     MusicPlayer musicPlayer;
-    CinemachineShake cinemachineShake;
+    CinemachineManager cinemachineManager;
     SceneChangeManager sceneChangeManager;
 
     [Header("Scene")]
@@ -41,7 +41,7 @@ public class DontDestroy : MonoBehaviour
             sFXPlayer = dontDestroyDuplicate.GetComponentInChildren<SFXPlayer>();
             musicPlayer = dontDestroyDuplicate.GetComponentInChildren<MusicPlayer>();
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
-            cinemachineShake = dontDestroyDuplicate.GetComponentInChildren<CinemachineShake>();
+            cinemachineManager = dontDestroyDuplicate.GetComponentInChildren<CinemachineManager>();
 
             dontDestroyDuplicate.currentRoom = currentRoom;
 
@@ -68,7 +68,7 @@ public class DontDestroy : MonoBehaviour
     {
         sFXPlayer.OnLoadScene();
         playerManager.OnLoadScene(currentRoom);
-        cinemachineShake.OnLoadScene();
+        cinemachineManager.OnLoadScene(playerManager);
         sceneChangeManager.OnLoadScene();
         musicPlayer.OnLoadScene(currentRoom);
     }
