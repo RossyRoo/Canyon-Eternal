@@ -27,6 +27,7 @@ public class PlayerManager : CharacterManager
         inputManager = GetComponent<InputManager>();
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStats = GetComponent<PlayerStats>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -75,11 +76,10 @@ public class PlayerManager : CharacterManager
         inputManager.castSpell_Input = false;
     }
 
-    public IEnumerator HandleDeathCoroutine()
+    public IEnumerator HandleDeathCoroutine(string deathAnimation = "Death")
     {
         isDead = true;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        playerAnimatorHandler.PlayTargetAnimation("Death", true);
+        playerAnimatorHandler.PlayTargetAnimation(deathAnimation, true);
         yield return new WaitForSeconds(1f);
         isDead = false;
         //Drop fragments
@@ -91,10 +91,8 @@ public class PlayerManager : CharacterManager
     public void OnLoadScene(Room currentRoom)
     {
         animator = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();
 
         animator.SetBool("isInteracting", false);
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         if (nextSpawnPoint == Vector3.zero)
         {

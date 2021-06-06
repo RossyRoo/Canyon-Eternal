@@ -30,22 +30,26 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleMovement()
     {
-        playerManager.currentMoveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
-        playerManager.currentMoveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
-
-        playerManager.rb.MovePosition(playerManager.rb.position + playerManager.currentMoveDirection.normalized * playerStats.characterData.moveSpeed * Time.fixedDeltaTime);
-
-        if (playerManager.currentMoveDirection.x == 0 && playerManager.currentMoveDirection.y == 0)
+        if(!playerManager.isDead && !playerManager.isFalling && !playerManager.isChargingSpell)
         {
-            playerAnimatorHandler.UpdateIntAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
-            playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
+            playerManager.currentMoveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
+            playerManager.currentMoveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
+
+            playerManager.rb.MovePosition(playerManager.rb.position + playerManager.currentMoveDirection.normalized * playerStats.characterData.moveSpeed * Time.fixedDeltaTime);
+
+            if (playerManager.currentMoveDirection.x == 0 && playerManager.currentMoveDirection.y == 0)
+            {
+                playerAnimatorHandler.UpdateIntAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
+                playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
+            }
+            else
+            {
+                playerManager.lastMoveDirection = playerManager.currentMoveDirection;
+                playerAnimatorHandler.UpdateIntAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
+                playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
+            }
         }
-        else
-        {
-            playerManager.lastMoveDirection = playerManager.currentMoveDirection;
-            playerAnimatorHandler.UpdateIntAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
-            playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
-        }
+
     }
     #endregion
 
@@ -116,7 +120,7 @@ public class PlayerLocomotion : MonoBehaviour
     {
         if (collision.gameObject.layer == 14 && !playerManager.isDashing)
         {
-            if(!playerManager.isFalling)
+            if(!playerManager.isFalling && !playerManager.isDead)
             {
                 StartCoroutine(HandleFalling());
             }
@@ -125,31 +129,21 @@ public class PlayerLocomotion : MonoBehaviour
 
     private IEnumerator HandleFalling()
     {
+        Debug.Log("Run Falling Coroutine");
         playerManager.isFalling = true;
-        CinemachineShake.Instance.SwitchToFallCam();
-        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-        playerAnimatorHandler.PlayTargetAnimation("Fall", true);
         playerAnimatorHandler.UpdateFloatAnimationValues(0, -1, false);
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.75f);
 
-        InvokeRepeating("ApplyFallForce", 0.4f, 0.0001f);
-
-        yield return new WaitForSeconds(0.45f);
+        CinemachineShake.Instance.SwitchToFallCam();
 
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.falling, 0.5f);
+        playerParticleHandler.SpawnBigDustCloudVFX();
 
+        StartCoroutine(playerManager.HandleDeathCoroutine("Fall"));
         CancelInvoke("ApplyFallForce");
         playerManager.isFalling = false;
-        StartCoroutine(playerManager.HandleDeathCoroutine());
-    }
-
-    private void ApplyFallForce()
-    {
-        playerParticleHandler.SpawnBigDustCloudVFX();
-        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        playerManager.rb.AddForce(Vector2.down * 20000f);
     }
 
     #endregion
