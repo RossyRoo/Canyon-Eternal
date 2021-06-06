@@ -22,7 +22,7 @@ public class CharacterAnimatorHandler : MonoBehaviour
 
     public void UpdateFloatAnimationValues(float moveX, float moveY, bool isMoving)
     {
-        if(!characterManager.isLockedInPlace)
+        if(!characterManager.isChargingSpell && !characterManager.isFalling)
         {
             animator.SetFloat("moveX_Float", moveX);
             animator.SetFloat("moveY_Float", moveY);
@@ -33,7 +33,7 @@ public class CharacterAnimatorHandler : MonoBehaviour
 
     public void UpdateIntAnimationValues(float moveX, float moveY, bool isMoving)
     {
-        if (!characterManager.isLockedInPlace)
+        if (!characterManager.isChargingSpell && !characterManager.isFalling)
         {
             animator.SetInteger("moveX_Int", Mathf.FloorToInt(moveX));
             animator.SetInteger("moveY_Int", Mathf.FloorToInt(moveY));

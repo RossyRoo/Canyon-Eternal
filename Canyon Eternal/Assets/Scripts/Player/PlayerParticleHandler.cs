@@ -20,9 +20,8 @@ public class PlayerParticleHandler : MonoBehaviour
     public Material[] healMats;
 
     [Header("DUST CLOUDS")]
-    public GameObject footstepVFX;
-    public GameObject dashVFX;
-    public Transform dashFXTransform;
+    public GameObject littleDustVFX;
+    public GameObject bigDustVFX;
 
     [Header("IMPACT")]
     public GameObject impactVFXPrefab;
@@ -69,16 +68,16 @@ public class PlayerParticleHandler : MonoBehaviour
 
     #region Dust Clouds
 
-    public void SpawnDashCloudVFX()
+    public void SpawnBigDustCloudVFX()
     {
-        GameObject dashParticleVFXGO = Instantiate(dashVFX, dashFXTransform.position, Quaternion.identity);
+        GameObject dashParticleVFXGO = Instantiate(bigDustVFX, feetParticleTransform.position, Quaternion.identity);
         dashParticleVFXGO.transform.parent = null;
         Destroy(dashParticleVFXGO, dashParticleVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
 
-    public void SpawnFootstepCloudVFX()
+    public void SpawnLittleDustCloudVFX()
     {
-        GameObject footstepVFXGO = Instantiate(footstepVFX, torsoParticleTransform.position, Quaternion.identity);
+        GameObject footstepVFXGO = Instantiate(littleDustVFX, torsoParticleTransform.position, Quaternion.identity);
         footstepVFXGO.transform.parent = objectPool.transform;
         footstepVFXGO.name = "footstep_vfx";
         Destroy(footstepVFXGO, footstepVFXGO.GetComponent<ParticleSystem>().main.duration);

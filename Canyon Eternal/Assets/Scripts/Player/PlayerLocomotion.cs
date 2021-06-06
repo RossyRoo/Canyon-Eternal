@@ -78,7 +78,7 @@ public class PlayerLocomotion : MonoBehaviour
         playerStats.EnableInvulnerability(startDashTime);
 
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.dash);
-        playerParticleHandler.SpawnDashCloudVFX();
+        playerParticleHandler.SpawnBigDustCloudVFX();
     }
 
     private void StopDash()
@@ -133,9 +133,9 @@ public class PlayerLocomotion : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
 
-        InvokeRepeating("ApplyFallForce", 0.6f, 0.0001f);
+        InvokeRepeating("ApplyFallForce", 0.4f, 0.0001f);
 
-        yield return new WaitForSeconds(0.65f);
+        yield return new WaitForSeconds(0.45f);
 
         CancelInvoke("ApplyFallForce");
         playerManager.isFalling = false;
@@ -144,7 +144,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void ApplyFallForce()
     {
-        playerParticleHandler.SpawnDashCloudVFX();
+        playerParticleHandler.SpawnBigDustCloudVFX();
         playerManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerManager.rb.AddForce(Vector2.down * 20000f);
     }

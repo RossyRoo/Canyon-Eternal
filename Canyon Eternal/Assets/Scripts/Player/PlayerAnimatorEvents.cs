@@ -102,7 +102,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
             SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.rockFootsteps
                 [Random.Range(0, playerStats.characterData.rockFootsteps.Length)], 0.1f);
 
-            playerParticleHandler.SpawnFootstepCloudVFX();
+            playerParticleHandler.SpawnLittleDustCloudVFX();
         }
         else
         {

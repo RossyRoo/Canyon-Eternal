@@ -343,6 +343,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d02fa1edd7abd40f0ab73e42519a3e12, type: 2}
   - {fileID: 11400000, guid: 496066dedf093405986d05e48d87eb5e, type: 2}
   - {fileID: 11400000, guid: bcb5f609f1a32478baf13a57a602ac0e, type: 2}
+  - {fileID: 11400000, guid: 698b5625a9efe471ab77bf46f645262f, type: 2}
 --- !u!114 &1761239226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,15 +1050,27 @@ PrefabInstance:
       propertyPath: feetParticleTransform
       value: 
       objectReference: {fileID: 1623891678}
+    - target: {fileID: 8438966244246089476, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
+        type: 3}
+      propertyPath: littleDustVFX
+      value: 
+      objectReference: {fileID: 3801012901521723010, guid: a449f8b5790ec40418311efa6e29aafd,
+        type: 3}
+    - target: {fileID: 8438966244246089476, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
+        type: 3}
+      propertyPath: bigDustVFX
+      value: 
+      objectReference: {fileID: 3801012901521723010, guid: 9af8a132a18614e8aa7b44996539c87a,
+        type: 3}
     - target: {fileID: 8652666736338822578, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 20.4
       objectReference: {fileID: 0}
     - target: {fileID: 8652666736338822578, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -37.3
       objectReference: {fileID: 0}
     - target: {fileID: 8652666736338822578, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}

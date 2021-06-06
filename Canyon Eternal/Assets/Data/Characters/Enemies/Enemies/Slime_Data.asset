@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e89efed69f949b28f659ea0b1b0969, type: 3}
   m_Name: Slime_Data
   m_EditorClassIdentifier: 
-  canPursue: 0
+  canPursue: 1
   canAttack: 1
   canEvade: 1
   moveSpeed: 4396
   maxHealth: 275
-  currentHealth: 208
+  currentHealth: 185
   healAmount: 1
   invulnerabilityFrames: 0.4
   enemyAttacks:
@@ -27,6 +27,7 @@ MonoBehaviour:
   fragmentDrop: 10
   rockFootsteps: []
   dash: {fileID: 0}
+  hardCollision: {fileID: 0}
   consumeHealItem: []
   block: {fileID: 0}
   takeNormalDamage: {fileID: 8300000, guid: 649d173ec78448d4baa761e2ae334743, type: 3}

@@ -62,15 +62,6 @@ public class PlayerManager : CharacterManager
         playerMeleeHandler.comboNumber = animator.GetInteger("comboNumber");
         playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
         playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
-
-        if(isChargingSpell || isFalling)
-        {
-            isLockedInPlace = true;
-        }
-        else
-        {
-            isLockedInPlace = false;
-        }
     }
 
     private void ResetInputLate()

@@ -20,7 +20,6 @@ public class CharacterManager : MonoBehaviour
     public bool isInvulnerable;
     public bool isMoving;
     public bool isFalling;
-    public bool isLockedInPlace;
 
     [Header("Combat")]
     public bool isAttacking;

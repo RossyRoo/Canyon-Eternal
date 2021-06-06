@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 55337193229753064}
   - component: {fileID: 5066127885147082450}
   - component: {fileID: 4018912612977305738}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   dealsConstantDamage: 0
   targetIsWithinRange: 0
   canDamageEnemy: 1
+  canDamagePlayer: 1
   knockbackTarget: {fileID: 0}
   knockbackDirection: {x: 0, y: 0}
   knockbackForce: 10
