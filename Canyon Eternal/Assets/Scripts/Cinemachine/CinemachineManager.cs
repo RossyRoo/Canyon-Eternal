@@ -8,7 +8,7 @@ public class CinemachineManager : MonoBehaviour
     public static CinemachineManager Instance { get; private set; }
 
     [Header("VCams")]
-    CinemachineStateDrivenCamera stateDrivenCamera;
+    public CinemachineStateDrivenCamera stateDrivenCamera;
     public CinemachineVirtualCamera activeCM;
     public CinemachineVirtualCamera followCM;
     public CinemachineVirtualCamera combatCM;
@@ -17,6 +17,7 @@ public class CinemachineManager : MonoBehaviour
     Animator animator;
 
     float shakeTimer;
+
 
     private void Awake()
     {
@@ -34,8 +35,6 @@ public class CinemachineManager : MonoBehaviour
         playerManager = _playerManager;
 
         FindPlayer(playerManager);
-
-        //GetComponent<CinemachineConfiner>().m_BoundingShape2D = GameObject.FindGameObjectWithTag("Boundaries").GetComponent<PolygonCollider2D>();
 
         activeCM = followCM;
     }
@@ -95,6 +94,7 @@ public class CinemachineManager : MonoBehaviour
     }
 
     #endregion
+
 
     private void Update()
     {

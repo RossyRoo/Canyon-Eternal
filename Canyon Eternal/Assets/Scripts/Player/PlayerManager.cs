@@ -21,7 +21,6 @@ public class PlayerManager : CharacterManager
 
     [Header("Camera States")]
     public bool isInCombat;
-    public float searchDistance = 45;
 
     private void Awake()
     {
@@ -152,7 +151,7 @@ public class PlayerManager : CharacterManager
 
     private void EnemyCheck()
     {
-        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, searchDistance);
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, playerStats.characterData.detectionRadius);
 
         int enemies = 0;
 

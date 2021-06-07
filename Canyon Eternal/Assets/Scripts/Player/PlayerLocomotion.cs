@@ -146,11 +146,5 @@ public class PlayerLocomotion : MonoBehaviour
         playerManager.isFalling = false;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log(collision.gameObject.name);
-    }
-
-
     #endregion
 }
