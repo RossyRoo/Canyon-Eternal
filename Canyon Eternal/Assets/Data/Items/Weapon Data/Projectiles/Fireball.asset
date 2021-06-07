@@ -23,14 +23,15 @@ MonoBehaviour:
   currentMaxDamage: 30
   criticalChance: 0.223
   knockbackForce: 200
-  attackMomentum: 200
   GOPrefab: {fileID: 2204171353132637292, guid: ac4ae8557494f46a2929866257811fa2,
     type: 3}
-  launchForce: 60
+  launchForce: 90
   launchSFX: {fileID: 8300000, guid: ed6a19813a5f2104c828fd0b0cd484a9, type: 3}
   collisionSFX: {fileID: 8300000, guid: ae55ec1ca66d0ab4385298ed5d2e1e55, type: 3}
+  collisionVFX: {fileID: 3142461857739340215, guid: bc50f557a3bba4d829eaaf7adf114137,
+    type: 3}
   isProjectile: 1
-  chargeTime: 0.75
+  chargeTime: 1
   chargeAnimation: Charge
   chargeCompleteAnimation: ChargeComplete
   castAnimation: Cast
@@ -40,9 +41,6 @@ MonoBehaviour:
   chargeCompleteVFX: {fileID: 4881746393167522150, guid: 797db4a05f18643939926c2e5785d8c5,
     type: 3}
   cancelVFX: {fileID: 3142461857739340215, guid: dd5f8af2918e848d39249ea17f311b79,
-    type: 3}
-  castVFX: {fileID: 1082406242470045132, guid: b3f936d879fa94fff9c75bd715fa0995, type: 3}
-  collisionVFX: {fileID: 1943639491929875827, guid: 2f1b8c90745ac4c5aab62a032da4d45b,
     type: 3}
   chargeSFX: {fileID: 8300000, guid: 51c228f8c07dbc64a9eb15b34f4f0788, type: 3}
   chargeCompleteSFX: {fileID: 8300000, guid: d4245b844365e1345aeb50e175e5b930, type: 3}

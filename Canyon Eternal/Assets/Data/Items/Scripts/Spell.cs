@@ -20,8 +20,6 @@ public class Spell : Projectile
     public GameObject chargeVFX;
     public GameObject chargeCompleteVFX;
     public GameObject cancelVFX;
-    public GameObject castVFX;
-    public GameObject collisionVFX;
 
     [Header("sfx")]
     public AudioClip chargeSFX;

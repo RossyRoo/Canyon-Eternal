@@ -164,7 +164,6 @@ public class PlayerManager : CharacterManager
         if (enemies > 0)
         {
             isInCombat = true;
-            Debug.Log("Enemy Count: " + enemies);
         }
         else
         {

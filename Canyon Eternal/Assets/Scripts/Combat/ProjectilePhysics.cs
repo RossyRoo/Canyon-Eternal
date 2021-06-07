@@ -36,18 +36,12 @@ public class ProjectilePhysics : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.transform == transform.parent)
+        if (isFired)
         {
-            return;
+            SFXPlayer.Instance.PlaySFXAudioClip(projectileData.collisionSFX);
+            SpawnCollisionVFX();
+            Destroy(gameObject, 0.01f);
         }
-
-        if (collision.gameObject.layer == 13)
-        {
-            Debug.Log("I hit an obstacle");
-            //Destroy(gameObject);
-        }
-
-        SFXPlayer.Instance.PlaySFXAudioClip(projectileData.collisionSFX);
     }
 
     public void Launch(float newSpeed, Vector2 newDirection)
@@ -57,5 +51,11 @@ public class ProjectilePhysics : MonoBehaviour
         damageCollider.knockbackDirection = direction;
         isFired = true;
         transform.parent = FindObjectOfType<ObjectPool>().transform;
+    }
+
+    private void SpawnCollisionVFX()
+    {
+        GameObject collisionVFXGO = Instantiate(projectileData.collisionVFX, transform.position, Quaternion.identity);
+        Destroy(collisionVFXGO, collisionVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
 }

@@ -112,7 +112,6 @@ public class PlayerStats : CharacterStats
 
         EnableInvulnerability(characterData.invulnerabilityFrames);
         characterData.currentHealth -= damageHealth;
-        Debug.Log("Lose Health");
         heartMeter.SetCurrentHealth(characterData.currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);

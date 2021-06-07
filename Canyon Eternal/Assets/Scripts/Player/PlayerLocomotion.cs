@@ -30,12 +30,21 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleMovement()
     {
-        if(!playerManager.isDead && !playerManager.isFalling && !playerManager.isChargingSpell)
+        if(!playerManager.isDead && !playerManager.isFalling)
         {
             playerManager.currentMoveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
             playerManager.currentMoveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
 
-            playerManager.rb.MovePosition(playerManager.rb.position + playerManager.currentMoveDirection.normalized * playerStats.characterData.moveSpeed * Time.fixedDeltaTime);
+            if(!playerManager.isChargingSpell && !playerManager.isCastingSpell)
+            {
+                playerManager.rb.MovePosition(playerManager.rb.position +
+                    playerManager.currentMoveDirection.normalized * playerStats.characterData.moveSpeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                playerManager.rb.MovePosition(playerManager.rb.position +
+                    playerManager.currentMoveDirection.normalized * (playerStats.characterData.moveSpeed / 2) * Time.fixedDeltaTime);
+            }
 
             if (playerManager.currentMoveDirection.x == 0 && playerManager.currentMoveDirection.y == 0)
             {

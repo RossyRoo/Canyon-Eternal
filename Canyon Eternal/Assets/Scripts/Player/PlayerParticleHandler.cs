@@ -109,7 +109,7 @@ public class PlayerParticleHandler : MonoBehaviour
     public void SpawnChargeVFX(GameObject chargeVFXPrefab)
     {
         currentChargeVFXGO = Instantiate(chargeVFXPrefab, torsoParticleTransform.position, Quaternion.identity);
-        currentChargeVFXGO.transform.parent = objectPool.transform;
+        currentChargeVFXGO.transform.parent = playerManager.transform;
     }
 
     public void SpawnChargeCompleteVFX(GameObject chargeCompleteVFXPrefab)

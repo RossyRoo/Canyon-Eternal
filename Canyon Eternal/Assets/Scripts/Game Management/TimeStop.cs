@@ -38,7 +38,6 @@ public class TimeStop : MonoBehaviour
 
     public void StopTime(float changeTime, int restoreSpeed, float delay)
     {
-        Debug.Log("Stopping time");
         speed = restoreSpeed;
 
         if(delay > 0)

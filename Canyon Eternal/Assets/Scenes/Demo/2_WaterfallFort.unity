@@ -121,6 +121,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &638832314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 300420567499085882, guid: c2dad1bee05724b268c0c22616a6c40a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1656141307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &638832315
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638832314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8018e4c7328c9453fa2257f1ec4809d5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &669218566
 Transform:
   m_ObjectHideFlags: 0
@@ -197,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: Enter [enter]
-  nextRoom: {fileID: 11400000, guid: 698b5625a9efe471ab77bf46f645262f, type: 2}
+  nextRoom: {fileID: 11400000, guid: 496066dedf093405986d05e48d87eb5e, type: 2}
   doorNum: 0
   nextRoomSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!61 &990247504
@@ -317,36 +342,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1603051857
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603051858}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1104438272008870828}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1603051858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1603051857}
-  m_Layer: 0
-  m_Name: Tracking Walls
-  m_TagString: Tracking Walls
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1001 &1656141307
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -439,6 +434,11 @@ PrefabInstance:
       propertyPath: m_BoundingShape2D
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7014302559639398394, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: m_ChildCameras.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8896529696580836040, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_BoundingShape2D
@@ -459,7 +459,7 @@ Transform:
   m_Children:
   - {fileID: 4576969212990607476}
   m_Father: {fileID: 1104438272008870828}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &614271758498281460
 GameObject:
@@ -561,7 +561,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1104438272008870828}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1104438271085003345
 GameObject:
@@ -1112,7 +1112,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1603051857}
   - {fileID: 427710491014317101}
   - {fileID: 1104438271043221899}
   - {fileID: 5901721365659132236}
@@ -1610,7 +1609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5728373791696202003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,7 +1655,7 @@ Transform:
   - {fileID: 8897558211719980640}
   - {fileID: 7570704011381702120}
   m_Father: {fileID: 1104438272008870828}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &6650108625675920685
 CanvasRenderer:

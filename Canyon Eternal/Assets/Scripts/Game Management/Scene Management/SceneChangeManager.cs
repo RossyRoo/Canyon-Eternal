@@ -7,22 +7,27 @@ public class SceneChangeManager : MonoBehaviour
 {
     public static SceneChangeManager Instance { get; private set; }
 
-    GenericAnimatorHandler blackFaderAnimatorHandler;
-    DontDestroy dontDestroy;
     public AudioClip transitionAudioClip;
 
+    [Header("Room Management")]
+    public Room currentRoom;
+    public List<Room> allRoomsInOrder = new List<Room>();
+
+    public int currentBuildIndex;
     public bool sceneChangeTriggered;
 
     public void OnLoadScene()
     {
-        dontDestroy = GetComponent<DontDestroy>();
-
         Instance = this;
 
         sceneChangeTriggered = false;
+    }
 
-        blackFaderAnimatorHandler = FindObjectOfType<GenericAnimatorHandler>();
-        blackFaderAnimatorHandler.PlayTargetAnimation("FadeFromBlack");
+    public void FindCurrentRoom(SceneChangeManager sceneChangeManager)
+    {
+        currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        currentRoom = allRoomsInOrder[currentBuildIndex];
+        sceneChangeManager.currentRoom = currentRoom;
     }
 
     public IEnumerator ChangeScene(int sceneNum = 999)
@@ -31,7 +36,8 @@ public class SceneChangeManager : MonoBehaviour
         {
             sceneChangeTriggered = true;
 
-            blackFaderAnimatorHandler.PlayTargetAnimation("FadeToBlack");
+            FindObjectOfType<ScreenFader>().FadeToBlack();
+
             SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 1f, 0.25f);
 
             yield return new WaitForSeconds(1f);
@@ -42,25 +48,26 @@ public class SceneChangeManager : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(dontDestroy.currentBuildIndex + 1);
+                SceneManager.LoadScene(currentBuildIndex + 1);
             }
         }
     }
 
     public IEnumerator LoadOutsideLastFort(PlayerManager playerManager)
     {
-        blackFaderAnimatorHandler.PlayTargetAnimation("FadeToBlack");
+
+        FindObjectOfType<ScreenFader>().FadeToBlack();
 
         yield return new WaitForSeconds(1f);
 
         playerManager.isDead = false;
 
         CinemachineManager.Instance.FindPlayer(playerManager);
-        SceneManager.LoadScene(dontDestroy.currentBuildIndex);
+        SceneManager.LoadScene(currentBuildIndex);
     }
 
     public void LoadSaveGame()
     {
-        SceneManager.LoadScene(dontDestroy.currentBuildIndex + 1);
+        SceneManager.LoadScene(currentBuildIndex);
     }
 }

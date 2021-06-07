@@ -45,7 +45,6 @@ public class PlayerSpellHandler : MonoBehaviour
 
         currentSpellChargeTime = activeSpell.chargeTime;
         playerManager.isChargingSpell = true;
-        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void CancelSpell()
@@ -55,8 +54,6 @@ public class PlayerSpellHandler : MonoBehaviour
         Destroy(playerParticleHandler.currentChargeVFXGO);
         SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.cancelSFX);
 
-
-        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         playerManager.isChargingSpell = false;
     }
 
@@ -80,7 +77,6 @@ public class PlayerSpellHandler : MonoBehaviour
         playerManager.isCastingSpell = true;
 
         playerStats.LoseStamina(activeSpell.staminaCost);
-        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.chargeCompleteAnimation, true);
         playerParticleHandler.SpawnChargeCompleteVFX(activeSpell.chargeCompleteVFX);

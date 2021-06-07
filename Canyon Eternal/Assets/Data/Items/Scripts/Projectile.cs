@@ -10,4 +10,6 @@ public class Projectile : Weapon
     public float launchForce;
     public AudioClip launchSFX;
     public AudioClip collisionSFX;
+    public GameObject collisionVFX;
+
 }

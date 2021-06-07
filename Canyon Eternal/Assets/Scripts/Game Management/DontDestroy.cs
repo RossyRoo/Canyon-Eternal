@@ -5,24 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
-    bool isPersistent;
-
-    public PlayerManager playerManager;
+    PlayerManager playerManager;
     SFXPlayer sFXPlayer;
     MusicPlayer musicPlayer;
     CinemachineManager cinemachineManager;
     SceneChangeManager sceneChangeManager;
+    ScreenFader screenFader;
 
-    [Header("Scene")]
-    public int currentBuildIndex;
-    public Room currentRoom;
-    public List<Room> allRoomsInOrder = new List<Room>();
-
+    bool isPersistent;
 
     private void Awake()
     {
-        currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        currentRoom = allRoomsInOrder[currentBuildIndex];
         DontDestroyOnLoad(transform.gameObject);
         HandleDuplicates();
     }
@@ -42,9 +35,9 @@ public class DontDestroy : MonoBehaviour
             musicPlayer = dontDestroyDuplicate.GetComponentInChildren<MusicPlayer>();
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
             cinemachineManager = dontDestroyDuplicate.GetComponentInChildren<CinemachineManager>();
+            screenFader = dontDestroyDuplicate.GetComponentInChildren<ScreenFader>();
 
-            dontDestroyDuplicate.currentRoom = currentRoom;
-
+            sceneChangeManager.FindCurrentRoom(dontDestroyDuplicate.sceneChangeManager);
 
             HandleOnLoadSceneFunctions();
         }
@@ -66,10 +59,11 @@ public class DontDestroy : MonoBehaviour
 
     private void HandleOnLoadSceneFunctions()
     {
-        sFXPlayer.OnLoadScene();
-        playerManager.OnLoadScene(currentRoom);
-        cinemachineManager.OnLoadScene(playerManager);
         sceneChangeManager.OnLoadScene();
-        musicPlayer.OnLoadScene(currentRoom);
+        playerManager.OnLoadScene(sceneChangeManager.currentRoom);
+        cinemachineManager.OnLoadScene(playerManager);
+        musicPlayer.OnLoadScene(sceneChangeManager.currentRoom);
+        sFXPlayer.OnLoadScene();
+        screenFader.OnLoadScene();
     }
 }
