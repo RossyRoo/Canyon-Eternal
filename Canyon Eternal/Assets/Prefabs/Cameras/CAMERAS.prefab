@@ -393,8 +393,8 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
-  m_ScreenX: 0.5014205
-  m_ScreenY: 0.5
+  m_ScreenX: 0.5030078
+  m_ScreenY: 0.5038143
   m_DeadZoneWidth: 2
   m_DeadZoneHeight: 2
   m_SoftZoneWidth: 2
@@ -451,7 +451,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3180111961629147933}
   - component: {fileID: 3420903421254364187}
-  - component: {fileID: 5683860963849239300}
   m_Layer: 0
   m_Name: Combat Cam
   m_TagString: Untagged
@@ -496,7 +495,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 26
+    OrthographicSize: 28
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -509,23 +508,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 3472537845216086684}
---- !u!114 &5683860963849239300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062929012099924117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!1 &8467465798682274485
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,8 +519,7 @@ GameObject:
   - component: {fileID: 8467465798682274491}
   - component: {fileID: 8467465798682274490}
   - component: {fileID: 2786656568526734149}
-  - component: {fileID: 6878326049515486296}
-  - component: {fileID: 3262471106115142962}
+  - component: {fileID: 3180951211320470540}
   m_Layer: 0
   m_Name: CAMERAS
   m_TagString: Untagged
@@ -583,7 +564,7 @@ MonoBehaviour:
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
-  m_AnimatedTarget: {fileID: 3262471106115142962}
+  m_AnimatedTarget: {fileID: 3180951211320470540}
   m_LayerIndex: 0
   m_ShowDebugText: 0
   m_ChildCameras:
@@ -625,28 +606,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64e05eb2a34a49f5849c69d28b60326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateDrivenCamera: {fileID: 0}
+  stateDrivenCamera: {fileID: 8467465798682274490}
   activeCM: {fileID: 3420903421254364187}
   followCM: {fileID: 7400969421758269441}
   combatCM: {fileID: 3420903421254364187}
---- !u!114 &6878326049515486296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467465798682274485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
---- !u!95 &3262471106115142962
+--- !u!95 &3180951211320470540
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
