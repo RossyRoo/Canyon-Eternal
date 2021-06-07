@@ -22,7 +22,6 @@ public class CharacterData : ScriptableObject
 
     [Header("Weapons And Attacks")]
     public EnemyAttackAction[] enemyAttacks; //Attacks enemy can use
-    [HideInInspector] public DamageCollider[] enemyWeapons;   //Damage colliders on enemy
 
     [Header("DROPS")]
     public int fragmentDrop;

@@ -8,12 +8,14 @@ public class EnemyStats : CharacterStats
     EnemyAnimatorHandler enemyAnimatorHandler;
     EnemyHealthBarUI enemyHealthBarUI;
 
+    [HideInInspector] public DamageCollider[] enemyWeapons;
+
     private void Awake()
     {
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         enemyHealthBarUI = GetComponentInChildren<EnemyHealthBarUI>();
-        characterData.enemyWeapons = GetComponentsInChildren<DamageCollider>();
+        enemyWeapons = GetComponentsInChildren<DamageCollider>();
     }
 
     private void Start()
@@ -76,17 +78,17 @@ public class EnemyStats : CharacterStats
 
     public void DisableAllDamageColliders()
     {
-        for (int i = 0; i < characterData.enemyWeapons.Length; i++)
+        for (int i = 0; i < enemyWeapons.Length; i++)
         {
-            characterData.enemyWeapons[i].DisableDamageCollider();
+            enemyWeapons[i].DisableDamageCollider();
         }
     }
 
     public void EnableAllDamageColliders()
     {
-        for (int i = 0; i < characterData.enemyWeapons.Length; i++)
+        for (int i = 0; i < enemyWeapons.Length; i++)
         {
-            characterData.enemyWeapons[i].EnableDamageCollider();
+            enemyWeapons[i].EnableDamageCollider();
         }
     }
     #endregion

@@ -10,13 +10,13 @@ public class DeathState : EnemyStateMachine
     {
         if (!runningDeathCoroutine)
         {
-            StartCoroutine(DeathCoroutine(enemyManager, enemyStats));
+            StartCoroutine(DeathCoroutine(enemyManager, enemyStats, enemyAnimatorHandler));
         }
 
         return this;
     }
 
-    private IEnumerator DeathCoroutine(EnemyManager enemyManager, EnemyStats enemyStats)
+    private IEnumerator DeathCoroutine(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
         runningDeathCoroutine = true;
 
@@ -25,7 +25,10 @@ public class DeathState : EnemyStateMachine
         FindObjectOfType<PlayerInventory>().AdjustFragmentInventory(enemyStats.characterData.fragmentDrop);
 
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSeconds(2f);
+
+        enemyAnimatorHandler.PlayTargetAnimation("Death", true);
+        
+        yield return new WaitForSeconds(1f);
         Destroy(enemyManager.myWall.gameObject);
         Destroy(enemyManager.gameObject);
     }
