@@ -35,7 +35,7 @@ public class PlayerLocomotion : MonoBehaviour
             playerManager.currentMoveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
             playerManager.currentMoveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
 
-            if(!playerManager.isChargingSpell && !playerManager.isCastingSpell)
+            if (!playerManager.isChargingSpell && !playerManager.isCastingSpell)
             {
                 playerManager.rb.MovePosition(playerManager.rb.position +
                     playerManager.currentMoveDirection.normalized * playerStats.characterData.moveSpeed * Time.fixedDeltaTime);
@@ -46,6 +46,7 @@ public class PlayerLocomotion : MonoBehaviour
                     playerManager.currentMoveDirection.normalized * (playerStats.characterData.moveSpeed / 2) * Time.fixedDeltaTime);
             }
 
+            //UPDATE ANIMS
             if (playerManager.currentMoveDirection.x == 0 && playerManager.currentMoveDirection.y == 0)
             {
                 playerAnimatorHandler.UpdateIntAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
@@ -112,11 +113,11 @@ public class PlayerLocomotion : MonoBehaviour
     #endregion
 
     #region Handle Ground Layers
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (playerManager.isDashing)
+        if (collision.gameObject.layer == 13)
         {
-            if (collision.gameObject.layer == 13)
+            if (playerManager.isDashing)
             {
                 dashTime = 0;
                 SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.hardCollision, 0.4f);

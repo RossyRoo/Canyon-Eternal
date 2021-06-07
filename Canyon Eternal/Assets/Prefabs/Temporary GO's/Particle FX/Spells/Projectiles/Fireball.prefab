@@ -4729,7 +4729,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2027116253
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4769,7 +4769,7 @@ GameObject:
   - component: {fileID: 2204171353132637288}
   - component: {fileID: 6298478432101528150}
   - component: {fileID: 4853769329492188880}
-  m_Layer: 15
+  m_Layer: 16
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4806,7 +4806,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!50 &2204171353132637289
 Rigidbody2D:
   serializedVersion: 4
@@ -4840,6 +4840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
@@ -9562,7 +9563,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_RenderMode: 0
   m_SortMode: 0

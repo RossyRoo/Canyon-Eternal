@@ -38,7 +38,7 @@ public class SceneChangeManager : MonoBehaviour
 
             FindObjectOfType<ScreenFader>().FadeToBlack();
 
-            SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 1f, 0.25f);
+            SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 0.02f, 0.25f);
 
             yield return new WaitForSeconds(1f);
 
@@ -68,6 +68,6 @@ public class SceneChangeManager : MonoBehaviour
 
     public void LoadSaveGame()
     {
-        SceneManager.LoadScene(currentBuildIndex);
+        SceneManager.LoadScene(currentBuildIndex + 1);
     }
 }

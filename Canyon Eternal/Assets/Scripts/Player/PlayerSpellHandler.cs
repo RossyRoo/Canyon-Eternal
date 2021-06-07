@@ -15,6 +15,7 @@ public class PlayerSpellHandler : MonoBehaviour
     public float currentSpellChargeTime;
 
     [Header("Projectiles")]
+    public GameObject projectilePointerVFXPrefab;
     public GameObject projectilePointerVFXGO;
     public GameObject currentSpellGO;
 
@@ -87,7 +88,8 @@ public class PlayerSpellHandler : MonoBehaviour
         {
             playerParticleHandler.SpawnCastVFX(activeSpell.GOPrefab);
 
-            projectilePointerVFXGO.SetActive(true);
+            projectilePointerVFXGO = Instantiate(projectilePointerVFXPrefab, transform.position, Quaternion.identity);
+            projectilePointerVFXGO.transform.parent = transform;
             StartCoroutine(RotatePointer());
         }
     }
@@ -160,9 +162,10 @@ public class PlayerSpellHandler : MonoBehaviour
 
     private void CastProjectile()
     {
+        Destroy(projectilePointerVFXGO);
+
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.castAnimation, false);
         SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.launchSFX);
-        projectilePointerVFXGO.SetActive(false);
 
         currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
     }

@@ -128,7 +128,7 @@ public class PlayerManager : CharacterManager
                     interactableUI.interactableText.text = interactableText;
                     interactionPopupGO.SetActive(true);
 
-                    if (inputManager.interact_Input)
+                    if (inputManager.interact_Input && !isInteracting)
                     {
                         hit.collider.GetComponent<Interactable>().Interact(this, playerStats);
                     }

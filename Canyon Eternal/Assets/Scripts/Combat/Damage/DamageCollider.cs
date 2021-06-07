@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    Collider2D damageCollider;
+    [HideInInspector]public Collider2D damageCollider;
 
     [Header("Collider Type")]
     public bool dealsConstantDamage;

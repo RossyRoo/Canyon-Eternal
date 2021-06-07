@@ -7,15 +7,14 @@ public class MusicPlayer : MonoBehaviour
     public static MusicPlayer Instance { get; private set; }
 
     AudioSource audioSource;
+    public Room backupRoom;
 
     private void Start()
     {
         if(!GetComponentInParent<DontDestroy>())
         {
-            Room currentRoom = FindObjectOfType<Room>();
-
             audioSource = GetComponent<AudioSource>();
-            PlaySceneMusic(currentRoom);
+            PlaySceneMusic(backupRoom);
         }
     }
 

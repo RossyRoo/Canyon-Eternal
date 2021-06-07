@@ -38,9 +38,15 @@ public class ProjectilePhysics : MonoBehaviour
     {
         if (isFired)
         {
+            if(projectileData.explostionRadius != 0)
+            {
+                GetComponent<CircleCollider2D>().radius = projectileData.explostionRadius;
+            }
+
             SFXPlayer.Instance.PlaySFXAudioClip(projectileData.collisionSFX);
             SpawnCollisionVFX();
-            Destroy(gameObject, 0.01f);
+
+            Destroy(gameObject, 0.1f);
         }
     }
 
