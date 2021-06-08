@@ -12,6 +12,7 @@ public class CinemachineManager : MonoBehaviour
     public CinemachineVirtualCamera activeCM;
     public CinemachineVirtualCamera followCM;
     public CinemachineVirtualCamera combatCM;
+    public CinemachineVirtualCamera dialogueCM;
 
     PlayerManager playerManager;
     Animator animator;
@@ -51,17 +52,22 @@ public class CinemachineManager : MonoBehaviour
         stateDrivenCamera.LookAt = playerManager.transform;
     }
 
-    public void SwitchStateCam()
+    public void SwitchCamerasByPlayerState()
     {
         if (playerManager.isInCombat || playerManager.isCastingSpell)
         {
             activeCM = combatCM;
             animator.Play("Combat State");
         }
-        else
+        else if(!playerManager.isInCombat && !playerManager.isCastingSpell && !playerManager.isConversing)
         {
             activeCM = followCM;
             animator.Play("Follow State");
+        }
+        else if(playerManager.isConversing)
+        {
+            activeCM = dialogueCM;
+            animator.Play("Dialogue State");
         }
     }
 
@@ -99,7 +105,7 @@ public class CinemachineManager : MonoBehaviour
     private void Update()
     {
         ShakeTimer();
-        SwitchStateCam();
+        SwitchCamerasByPlayerState();
     }
 
 

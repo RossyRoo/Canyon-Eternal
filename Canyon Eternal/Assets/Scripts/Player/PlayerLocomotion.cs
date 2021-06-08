@@ -30,7 +30,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleMovement()
     {
-        if(!playerManager.isDead && !playerManager.isFalling)
+        if(!playerManager.isDead && !playerManager.isFalling && !playerManager.isConversing)
         {
             playerManager.currentMoveDirection.x = Mathf.RoundToInt(inputManager.moveInput.x);
             playerManager.currentMoveDirection.y = Mathf.RoundToInt(inputManager.moveInput.y);
