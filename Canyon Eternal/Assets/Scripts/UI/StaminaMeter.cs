@@ -7,14 +7,12 @@ public class StaminaMeter : MonoBehaviour
 {
     public Image[] cards;
 
-    public Sprite fullCard;
-    public Sprite emptyCard;
-
     public void SetMaxStamina(float maxImagination)
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            cards[i].sprite = fullCard;
+            cards[i].GetComponent<Animator>().Play("StaminaIdle");
+
             if (i < maxImagination)
             {
                 cards[i].enabled = true;
@@ -32,11 +30,11 @@ public class StaminaMeter : MonoBehaviour
         {
             if (i < Mathf.Floor(currentImagination))
             {
-                cards[i].sprite = fullCard;
+                cards[i].GetComponent<Animator>().Play("StaminaIdle");
             }
             else
             {
-                cards[i].sprite = emptyCard;
+                cards[i].GetComponent<Animator>().Play("StaminaBreak");
             }
         }
     }

@@ -7,14 +7,12 @@ public class HeartMeter : MonoBehaviour
 {
     public Image[] hearts;
 
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
-
     public void SetMaxHearts(int maxHearts)
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            hearts[i].sprite = fullHeart;
+            hearts[i].GetComponent<Animator>().Play("HealthIdle");
+
             if (i < maxHearts)
             {
                 hearts[i].enabled = true;
@@ -32,11 +30,11 @@ public class HeartMeter : MonoBehaviour
         {
             if (i < currentHearts)
             {
-                hearts[i].sprite = fullHeart;
+                hearts[i].GetComponent<Animator>().Play("HealthIdle");
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                hearts[i].GetComponent<Animator>().Play("HealthBreak");
             }
         }
     }
