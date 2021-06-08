@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4059426414987419213}
   - component: {fileID: 4059426414987419210}
   m_Layer: 13
-  m_Name: Fort 1
+  m_Name: Fort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4059426414987419211}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.9, y: -28.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -45,7 +45,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 10.24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -58,8 +58,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 9.739761, y: -2.0931816}
-      - {x: 8.817303, y: -0.050340652}
-      - {x: -8.856227, y: -0.16087174}
+      - {x: 8.071011, y: 1.6080875}
+      - {x: -8.027013, y: 1.3593538}
       - {x: -9.790061, y: -2.1413097}
       - {x: -10.015539, y: -3.1081352}
       - {x: -9.924183, y: -7.005312}
@@ -139,9 +139,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2beac11ca1054affbcacfafc636d9cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17e935c7c2fdd4ca9be573873ce5242c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
