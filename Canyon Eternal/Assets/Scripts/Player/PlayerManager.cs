@@ -172,12 +172,18 @@ public class PlayerManager : CharacterManager
 
     }
 
-    public void SwitchIsConversing()
+    public void EnterConversationState()
     {
+        isConversing = true;
+        isInteracting = true;
         playerAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);
-        playerAnimatorHandler.PlayTargetAnimation("Idle", !isInteracting);
-        isConversing = !isConversing;
         //If in conversation, turn to face conversant
+    }
+
+    public void ExitConversationState()
+    {
+        isConversing = false;
+        isInteracting = false;
     }
 
 }
