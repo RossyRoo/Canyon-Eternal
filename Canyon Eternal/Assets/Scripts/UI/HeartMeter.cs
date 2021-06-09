@@ -30,7 +30,14 @@ public class HeartMeter : MonoBehaviour
         {
             if (i < currentHearts)
             {
-                hearts[i].GetComponent<Animator>().Play("HealthIdle");
+                if(hearts[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HealthIdle"))
+                {
+                    hearts[i].GetComponent<Animator>().Play("HealthIdle");
+                }
+                else
+                {
+                    hearts[i].GetComponent<Animator>().Play("HealthHeal");
+                }
             }
             else
             {

@@ -117,12 +117,6 @@ public class PlayerParticleHandler : MonoBehaviour
         Destroy(chargeCompleteVFXGO, chargeCompleteVFXGO.GetComponent<ParticleSystem>().main.duration);
     }
 
-    public void SpawnCancelSpellVFX(GameObject cancelSpellVFXPrefab)
-    {
-        GameObject cancelSpellVFXGO = Instantiate(cancelSpellVFXPrefab, cameraTarget.position, Quaternion.identity);
-        cancelSpellVFXGO.transform.parent = playerManager.transform;
-        Destroy(cancelSpellVFXGO, cancelSpellVFXGO.GetComponent<ParticleSystem>().main.duration);
-    }
 
     public void SpawnCastVFX(GameObject castVFXPrefab)
     {

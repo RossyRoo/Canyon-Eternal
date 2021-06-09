@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 579482404492704584}
   - component: {fileID: 579482404492749446}
   - component: {fileID: 579482404492702008}
-  - component: {fileID: 1504957487}
   m_Layer: 0
   m_Name: CE Dialogue Manager
   m_TagString: Untagged
@@ -86,7 +85,7 @@ MonoBehaviour:
       skipPCSubtitleAfterResponseMenu: 1
       subtitleCharsPerSecond: 30
       minSubtitleSeconds: 2
-      continueButton: 0
+      continueButton: 1
       richTextEmphases: 1
       informSequenceStartAndEnd: 0
     cameraSettings:
@@ -206,27 +205,3 @@ MonoBehaviour:
   onUseTouch:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1504957487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 579482404499999180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f9837a261a7d04ab92e117a5389cc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainGraphic: {fileID: 0}
-  nameText:
-    m_uiText: {fileID: 0}
-  useMessageText:
-    m_uiText: {fileID: 0}
-  inRangeColor: {r: 1, g: 0.9843137, b: 0.9411765, a: 1}
-  outOfRangeColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  reticleInRange: {fileID: 0}
-  reticleOutOfRange: {fileID: 0}
-  animationTransitions:
-    showTrigger: Show
-    hideTrigger: Hide

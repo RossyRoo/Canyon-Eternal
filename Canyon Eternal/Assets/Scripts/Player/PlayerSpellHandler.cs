@@ -16,8 +16,8 @@ public class PlayerSpellHandler : MonoBehaviour
 
     [Header("Projectiles")]
     public GameObject projectilePointerVFXPrefab;
-    public GameObject projectilePointerVFXGO;
-    public GameObject currentSpellGO;
+    GameObject projectilePointerVFXGO;
+    [HideInInspector]public GameObject currentSpellGO;
 
     private void Awake()
     {
@@ -51,9 +51,8 @@ public class PlayerSpellHandler : MonoBehaviour
     public void CancelSpell()
     {
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.cancelAnimation, false);
-        playerParticleHandler.SpawnCancelSpellVFX(activeSpell.cancelVFX);
         Destroy(playerParticleHandler.currentChargeVFXGO);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.cancelSFX);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.cancelSpell);
 
         playerManager.isChargingSpell = false;
     }
