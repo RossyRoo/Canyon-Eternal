@@ -723,6 +723,7 @@ GameObject:
   - component: {fileID: 5884834416927044559}
   - component: {fileID: 7831290879279973620}
   - component: {fileID: 5541490951994575188}
+  - component: {fileID: 1501304287799033188}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -1119,6 +1120,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCharacter: {fileID: 0}
+--- !u!114 &1501304287799033188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473140102890026084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b350a3c4af8b4f59abb52c82fa37d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCharacter: {fileID: 0}
 --- !u!1 &8652666736338822588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1289,7 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   lunchboxMeter: {fileID: 0}
   playerMoveSpeed: 20
-  maxStamina: 8
+  maxStamina: 4
   currentStamina: 0
   staminaRecoverySpeed: 1.25
   staminaRecoveryTimer: 0

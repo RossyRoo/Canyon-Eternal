@@ -82,6 +82,9 @@ public class InputManager : MonoBehaviour
     {
         if(melee_Input)
         {
+            if (playerManager.isConversing)
+                return;
+
             if(playerManager.isAttacking)
             {
                 playerMeleeHandler.HandleComboAttempt();
@@ -98,7 +101,7 @@ public class InputManager : MonoBehaviour
     {
         if(chargeSpell_Input)
         {
-            if (playerManager.isInteracting)
+            if (playerManager.isInteracting || playerManager.isConversing)
                 return;
 
             playerSpellHandler.ChargeSpell();
@@ -127,7 +130,7 @@ public class InputManager : MonoBehaviour
     {
         if(dash_Input)
         {
-            if (playerManager.isInteracting || playerStats.currentStamina < 1)
+            if (playerManager.isInteracting || playerStats.currentStamina < 1 || playerManager.isConversing)
                 return;
 
             playerManager.isDashing = true;
@@ -138,7 +141,7 @@ public class InputManager : MonoBehaviour
     {
         if(block_Input)
         {
-            if (playerStats.currentStamina < 1)
+            if (playerStats.currentStamina < 1 || playerManager.isConversing)
                 return;
 
             StartCoroutine(playerBlockHandler.HandleBlocking());
@@ -149,7 +152,7 @@ public class InputManager : MonoBehaviour
     {
         if(heal_Input)
         {
-            if (playerManager.isDead)
+            if (playerManager.isDead || playerManager.isConversing)
                 return;
 
             if (playerStats.currentLunchBoxCapacity > 0 && playerStats.characterData.currentHealth < playerStats.characterData.maxHealth)
