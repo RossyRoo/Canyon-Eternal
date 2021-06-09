@@ -14,6 +14,7 @@ public class SceneChangeManager : MonoBehaviour
     public List<Room> allRoomsInOrder = new List<Room>();
 
     public int currentBuildIndex;
+    public int currentCheckpoint;
     public bool sceneChangeTriggered;
 
     public void OnLoadScene()
@@ -28,6 +29,11 @@ public class SceneChangeManager : MonoBehaviour
         currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
         currentRoom = allRoomsInOrder[currentBuildIndex];
         sceneChangeManager.currentRoom = currentRoom;
+
+        if(currentRoom.isCheckpoint)
+        {
+            currentCheckpoint = currentBuildIndex;
+        }
     }
 
     public IEnumerator ChangeScene(int sceneNum = 999)
@@ -55,6 +61,7 @@ public class SceneChangeManager : MonoBehaviour
 
     public IEnumerator LoadOutsideLastFort(PlayerManager playerManager)
     {
+        sceneChangeTriggered = true;
 
         FindObjectOfType<ScreenFader>().FadeToBlack();
 
@@ -63,7 +70,8 @@ public class SceneChangeManager : MonoBehaviour
         playerManager.isDead = false;
 
         CinemachineManager.Instance.FindPlayer(playerManager);
-        SceneManager.LoadScene(currentBuildIndex);
+        playerManager.nextSpawnPoint = Vector3.zero;
+        SceneManager.LoadScene(currentCheckpoint);
     }
 
     public void LoadSaveGame()

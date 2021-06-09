@@ -38,6 +38,8 @@ public class CinemachineManager : MonoBehaviour
         FindPlayer(playerManager);
 
         activeCM = followCM;
+        activeCM.enabled = false;
+        activeCM.enabled = true;
     }
 
     public void LosePlayer()

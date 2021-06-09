@@ -13,4 +13,6 @@ public class Room : ScriptableObject
     [Header("AUDIO")]
     public AudioClip autoMusic;
     public bool isInterruptingTrack = true;
+
+    public bool isCheckpoint;
 }
