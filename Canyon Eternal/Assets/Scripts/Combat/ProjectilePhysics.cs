@@ -61,7 +61,8 @@ public class ProjectilePhysics : MonoBehaviour
 
     private void SpawnCollisionVFX()
     {
+        Debug.Log("Spawning Col FX");
         GameObject collisionVFXGO = Instantiate(projectileData.collisionVFX, transform.position, Quaternion.identity);
-        Destroy(collisionVFXGO, collisionVFXGO.GetComponent<ParticleSystem>().main.duration);
+        Destroy(collisionVFXGO, 3f);
     }
 }

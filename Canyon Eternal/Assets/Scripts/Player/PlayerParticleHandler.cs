@@ -106,7 +106,7 @@ public class PlayerParticleHandler : MonoBehaviour
     #region Spells
     public void SpawnChargeVFX(GameObject chargeVFXPrefab)
     {
-        currentChargeVFXGO = Instantiate(chargeVFXPrefab, cameraTarget.position, Quaternion.identity);
+        currentChargeVFXGO = Instantiate(chargeVFXPrefab, new Vector2(cameraTarget.position.x, cameraTarget.position.y - 2.7f), Quaternion.identity);
         currentChargeVFXGO.transform.parent = playerManager.transform;
     }
 
