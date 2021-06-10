@@ -18,4 +18,6 @@ public class Weapon : Item
     [Tooltip("Force used to knock enemy back upon attacks")]
     [HideInInspector]public float knockbackForce = 100f;
 
+    public GameObject collisionVFX;
+
 }

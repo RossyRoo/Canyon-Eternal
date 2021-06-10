@@ -6,6 +6,7 @@ public class PlayerSpellHandler : MonoBehaviour
 {
     PlayerManager playerManager;
     PlayerStats playerStats;
+    PlayerMeleeHandler playerMeleeHandler;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
@@ -23,6 +24,7 @@ public class PlayerSpellHandler : MonoBehaviour
     {
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
+        playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
     }
@@ -39,6 +41,8 @@ public class PlayerSpellHandler : MonoBehaviour
             return;
 
         playerAnimatorHandler.animator.SetBool("isMoving", false);
+        playerMeleeHandler.currentMeleeModel.SetActive(false);
+
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.chargeAnimation, true);
         playerParticleHandler.SpawnChargeVFX(activeSpell.chargeVFX);
         SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.chargeSFX);
@@ -55,6 +59,7 @@ public class PlayerSpellHandler : MonoBehaviour
         SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.cancelSpell);
 
         playerManager.isChargingSpell = false;
+        playerMeleeHandler.currentMeleeModel.SetActive(true);
     }
 
     public void TickSpellChargeTimer()
@@ -156,7 +161,9 @@ public class PlayerSpellHandler : MonoBehaviour
 
             playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
             playerManager.isCastingSpell = false;
+            playerMeleeHandler.currentMeleeModel.SetActive(true);
         }
+
     }
 
     private void CastProjectile()

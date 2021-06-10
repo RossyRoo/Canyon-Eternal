@@ -12,7 +12,7 @@ public class CharacterData : ScriptableObject
     public bool canEvade;
 
     [Header("MOVEMENT")]
-    [Range(3000, 8000)] public float moveSpeed = 5000f;
+    [Range(0, 8000)] public float moveSpeed = 5000f;
 
     [Header("HEALTH")]
     [Range(4, 2000)] public int maxHealth;

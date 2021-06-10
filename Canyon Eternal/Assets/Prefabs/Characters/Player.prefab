@@ -1289,9 +1289,9 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   lunchboxMeter: {fileID: 0}
   playerMoveSpeed: 20
-  maxStamina: 4
+  maxStamina: 5
   currentStamina: 0
-  staminaRecoverySpeed: 1.25
+  staminaRecoverySpeed: 1.75
   staminaRecoveryTimer: 0
   staminaRecoveryBuffer: 0.5
   maxLunchBoxCapacity: 5
@@ -1329,6 +1329,7 @@ MonoBehaviour:
   thrustTransform: {fileID: 1682047786}
   slashTransform: {fileID: 4970626563322260538}
   strikeTransform: {fileID: 131878944727133007}
+  parrentOverride: {fileID: 0}
   meleeDamageCollider: {fileID: 0}
   comboNumber: 0
   canContinueCombo: 0
@@ -1695,7 +1696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24f7f9518b3d4823a72eac724b8f86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTarget: {fileID: 104431047}
+  mainTarget: {fileID: 104431047}
+  meleeHand: {fileID: 1518488389}
   healVFX: {fileID: 3378999829773542753, guid: 4b82bffe487944f7db107672c2dc3e22, type: 3}
   healMats:
   - {fileID: 2100000, guid: d984c9876abde41a8abb60e20da44989, type: 2}
@@ -1709,9 +1711,6 @@ MonoBehaviour:
     type: 3}
   cardLightBurstVFX: {fileID: 3801012901521723010, guid: 9ae6527a492e14f4899894b65a92a2fa,
     type: 3}
-  cardLightCloudVFX: {fileID: 3801012901521723010, guid: fb50b77ac2cac46dba4cdeb41515422f,
-    type: 3}
-  currentCardLightCloudVFXGO: {fileID: 0}
   impactVFXPrefab: {fileID: 8808907300118772276, guid: 0476daec47705402ca275ee473218457,
     type: 3}
   comboStarVFX: {fileID: 9209632101132400203, guid: 6698ca4765697467eb72ca0552a0f644,

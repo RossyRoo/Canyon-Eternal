@@ -13,7 +13,6 @@ public class PlayerStats : CharacterStats
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
-    [HideInInspector] public float playerMoveSpeed = 20f;
 
     [Header("Stamina")]
     public float maxStamina;
@@ -38,8 +37,6 @@ public class PlayerStats : CharacterStats
 
     private void Start()
     {
-        characterData.moveSpeed = playerMoveSpeed;
-
         SetStartingStats();
     }
 

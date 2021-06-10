@@ -16,7 +16,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     public Transform thrustTransform;
     public Transform slashTransform;
     public Transform strikeTransform;
-    Transform parrentOverride;
+    public Transform parrentOverride;
     public DamageCollider meleeDamageCollider;
 
     [Header("Combo Handling")]
@@ -70,14 +70,6 @@ public class PlayerMeleeHandler : MonoBehaviour
         currentMeleeModel = null;
     }
 
-    public void CheckToDespawnMelee()
-    {
-        if (!playerManager.isAttacking && currentMeleeModel.activeInHierarchy)
-        {
-            currentMeleeModel.SetActive(false);
-            Destroy(playerParticleHandler.currentCardLightCloudVFXGO, 2f);
-        }
-    }
 
     public void LoadMelee()
     {
@@ -108,17 +100,15 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         currentMeleeModel = meleeModelPrefab;
         meleeDamageCollider = currentMeleeModel.GetComponentInChildren<DamageCollider>();
-        meleeModelPrefab.SetActive(false);
     }
 
     public IEnumerator BeginNewAttackChain()
     {
         playerParticleHandler.ChangeComboStarColor(0);
-        playerParticleHandler.SpawnCardLightBurst();
-        playerParticleHandler.SpawnCardLightCloud();
 
-        yield return new WaitForSeconds(0.1f);
-        currentMeleeModel.SetActive(true);
+        yield return new WaitForSeconds(0.01f);
+
+        currentMeleeModel.GetComponentInChildren<Animator>().Play("Spawn");
 
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
     }
@@ -204,4 +194,5 @@ public class PlayerMeleeHandler : MonoBehaviour
             canContinueCombo = false;
         }
     }
+
 }

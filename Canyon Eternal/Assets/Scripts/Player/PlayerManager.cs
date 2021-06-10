@@ -39,7 +39,6 @@ public class PlayerManager : CharacterManager
         inputManager.HandleAllInputs();
         playerStats.RegenerateStamina();
         CheckForInteractable();
-        playerMeleeHandler.CheckToDespawnMelee();
         playerSpellHandler.TickSpellChargeTimer();
         EnemyCheck();
     }

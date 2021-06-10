@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
+    ObjectPool objectPool;
+
     [HideInInspector]public Collider2D damageCollider;
+    public Transform collisionTransform;
 
     [Header("Collider Type")]
     public bool dealsConstantDamage;
@@ -27,6 +30,8 @@ public class DamageCollider : MonoBehaviour
 
     private void Awake()
     {
+        objectPool = FindObjectOfType<ObjectPool>();
+
         damageCollider = GetComponent<Collider2D>();
         damageCollider.isTrigger = true;
         targetIsWithinRange = false;
@@ -73,6 +78,14 @@ public class DamageCollider : MonoBehaviour
             targetIsWithinRange = true;
             StartCoroutine(DealDamage(collision.gameObject));
         }
+
+        if(collision.gameObject.transform != transform.parent)
+        {
+            GameObject collisionVFXGO = Instantiate(weaponData.collisionVFX, collisionTransform.position, Quaternion.identity);
+            collisionVFXGO.transform.parent = objectPool.transform;
+            Destroy(collisionVFXGO, 1f);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
