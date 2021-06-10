@@ -135,7 +135,7 @@ SpriteRenderer:
   m_SortingLayerID: -957212773
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dcccb980c4a1c4c49baa6bf7fb4db3e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a54a4774dd1bf4916934602e04821c3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,7 +216,7 @@ SpriteRenderer:
   m_SortingLayerID: -957212773
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 699c90bd4e9c14fc4b7c82c5af0bcc3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1366aca5847844d23a7abb7d8f2e8646, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -297,7 +297,7 @@ SpriteRenderer:
   m_SortingLayerID: -957212773
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dcccb980c4a1c4c49baa6bf7fb4db3e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a54a4774dd1bf4916934602e04821c3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -381,7 +381,7 @@ SpriteRenderer:
   m_SortingLayerID: -957212773
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 699c90bd4e9c14fc4b7c82c5af0bcc3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1366aca5847844d23a7abb7d8f2e8646, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -415,13 +415,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682047785}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1518488389}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1998093287
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +615,7 @@ SpriteRenderer:
   m_SortingLayerID: -957212773
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa9cfbe757817433b9b3d364029b1ecc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73f02998b9e7b45c58a1b977dbb19d3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1385,7 +1385,6 @@ MonoBehaviour:
   currentSpellChargeTime: 0
   projectilePointerVFXPrefab: {fileID: 630692850903603627, guid: e581584112d784a6bae4e1aa65e986d7,
     type: 3}
-  projectilePointerVFXGO: {fileID: 0}
   currentSpellGO: {fileID: 0}
 --- !u!114 &3903406275795144268
 MonoBehaviour:
@@ -1585,7 +1584,7 @@ MonoBehaviour:
   actor: Player
   persistentDataName: 
   portrait: {fileID: 0}
-  spritePortrait: {fileID: 21300000, guid: fa9cfbe757817433b9b3d364029b1ecc, type: 3}
+  spritePortrait: {fileID: 21300000, guid: d9b3701e9ce864cef909c0d3cf3938f4, type: 3}
   barkUISettings:
     barkUI: {fileID: 0}
     barkUIOffset: {x: 0, y: 2, z: 0}
@@ -1708,6 +1707,11 @@ MonoBehaviour:
     type: 3}
   bigDustVFX: {fileID: 3801012901521723010, guid: be8c4ba53932c454786def556cbe284f,
     type: 3}
+  cardLightBurstVFX: {fileID: 3801012901521723010, guid: 9ae6527a492e14f4899894b65a92a2fa,
+    type: 3}
+  cardLightCloudVFX: {fileID: 3801012901521723010, guid: fb50b77ac2cac46dba4cdeb41515422f,
+    type: 3}
+  currentCardLightCloudVFXGO: {fileID: 0}
   impactVFXPrefab: {fileID: 8808907300118772276, guid: 0476daec47705402ca275ee473218457,
     type: 3}
   comboStarVFX: {fileID: 9209632101132400203, guid: 6698ca4765697467eb72ca0552a0f644,
