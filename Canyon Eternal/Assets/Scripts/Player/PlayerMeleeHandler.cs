@@ -75,6 +75,7 @@ public class PlayerMeleeHandler : MonoBehaviour
         if (!playerManager.isAttacking && currentMeleeModel.activeInHierarchy)
         {
             currentMeleeModel.SetActive(false);
+            Destroy(playerParticleHandler.currentCardLightCloudVFXGO, 2f);
         }
     }
 
@@ -113,6 +114,8 @@ public class PlayerMeleeHandler : MonoBehaviour
     public IEnumerator BeginNewAttackChain()
     {
         playerParticleHandler.ChangeComboStarColor(0);
+        playerParticleHandler.SpawnCardLightBurst();
+        playerParticleHandler.SpawnCardLightCloud();
 
         yield return new WaitForSeconds(0.1f);
         currentMeleeModel.SetActive(true);

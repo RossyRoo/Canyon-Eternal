@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerParticleHandler : MonoBehaviour
 {
     PlayerManager playerManager;
+    PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
 
     ObjectPool objectPool;
@@ -20,6 +21,11 @@ public class PlayerParticleHandler : MonoBehaviour
     [Header("DUST CLOUDS")]
     public GameObject littleDustVFX;
     public GameObject bigDustVFX;
+
+    [Header("Card Light")]
+    public GameObject cardLightBurstVFX;
+    public GameObject cardLightCloudVFX;
+    public GameObject currentCardLightCloudVFXGO;
 
     [Header("IMPACT")]
     public GameObject impactVFXPrefab;
@@ -35,6 +41,7 @@ public class PlayerParticleHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
+        playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponentInParent<PlayerSpellHandler>();
         objectPool = FindObjectOfType<ObjectPool>();
     }
@@ -124,5 +131,18 @@ public class PlayerParticleHandler : MonoBehaviour
         playerSpellHandler.currentSpellGO.transform.parent = playerManager.transform;
     }
     #endregion
+
+    public void SpawnCardLightBurst()
+    {
+        GameObject cardLightBurstGO = Instantiate(cardLightBurstVFX, cameraTarget.position, Quaternion.identity);
+        cardLightBurstGO.transform.parent = null;
+        Destroy(cardLightBurstGO, cardLightBurstGO.GetComponent<ParticleSystem>().main.duration);
+    }
+
+    public void SpawnCardLightCloud()
+    {
+        currentCardLightCloudVFXGO = Instantiate(cardLightCloudVFX, playerMeleeHandler.currentMeleeModel.transform.position, Quaternion.identity);
+        currentCardLightCloudVFXGO.transform.parent = playerManager.transform;
+    }
 
 }

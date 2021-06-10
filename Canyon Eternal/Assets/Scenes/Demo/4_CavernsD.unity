@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -312,7 +312,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1, y: -4}
+  m_Offset: {x: 0.1, y: -4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -323,7 +323,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 1}
+  m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &378136445
 Transform:
@@ -584,7 +584,7 @@ MonoBehaviour:
   actor: Sign
   persistentDataName: 
   portrait: {fileID: 0}
-  spritePortrait: {fileID: 21300000, guid: 357511c5708a742e882f90e63b6d2a6a, type: 3}
+  spritePortrait: {fileID: 21300000, guid: 639ea3a78c8c84d85af0e64ce6fe2a60, type: 3}
   barkUISettings:
     barkUI: {fileID: 0}
     barkUIOffset: {x: 0, y: 2, z: 0}
@@ -720,7 +720,7 @@ MonoBehaviour:
   actor: Beebo
   persistentDataName: 
   portrait: {fileID: 0}
-  spritePortrait: {fileID: 21300000, guid: 6b88a8a3444e345e88b43878e19659a1, type: 3}
+  spritePortrait: {fileID: 21300000, guid: abe2e8f408f4946e981064af2d902b32, type: 3}
   barkUISettings:
     barkUI: {fileID: 0}
     barkUIOffset: {x: 0, y: 2, z: 0}
@@ -842,7 +842,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.42049217, y: -6.27565}
+  m_Offset: {x: 0.21683216, y: -3.9256458}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -853,7 +853,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.520985, y: 3.301529}
+  m_Size: {x: 15.38299, y: 8.001537}
   m_EdgeRadius: 0
 --- !u!61 &1207258568
 BoxCollider2D:
@@ -1008,7 +1008,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1, y: -6}
+  m_Offset: {x: 0.1, y: -4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1019,7 +1019,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 1}
+  m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1799835030
 GameObject:
