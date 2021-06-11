@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 378136443}
   - component: {fileID: 378136446}
   m_Layer: 12
-  m_Name: Door (Next)
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   leadsToNextRoom: 1
   leadsToPreviousRoom: 0
   otherRoom: {fileID: 0}
-  doorNum: 0
+  doorNum: 1
 --- !u!61 &378136444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -856,7 +856,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1950882681}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &378136446
 SpriteRenderer:
@@ -3129,7 +3129,7 @@ GameObject:
   - component: {fileID: 1780479657}
   - component: {fileID: 1780479656}
   m_Layer: 12
-  m_Name: Door (Previous)
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3147,7 +3147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1950882681}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!212 &1780479656
 SpriteRenderer:
@@ -3215,7 +3215,7 @@ MonoBehaviour:
   leadsToNextRoom: 0
   leadsToPreviousRoom: 1
   otherRoom: {fileID: 0}
-  doorNum: 1
+  doorNum: 2
 --- !u!61 &1780479658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3622,8 +3622,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 378136445}
   - {fileID: 1780479655}
+  - {fileID: 378136445}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

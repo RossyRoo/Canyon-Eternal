@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerParticleHandler : MonoBehaviour
 {
     PlayerManager playerManager;
-    PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
 
     ObjectPool objectPool;
@@ -23,8 +22,6 @@ public class PlayerParticleHandler : MonoBehaviour
     public GameObject littleDustVFX;
     public GameObject bigDustVFX;
 
-    [Header("Card Light")]
-    public GameObject cardLightBurstVFX;
 
     [Header("IMPACT")]
     public GameObject impactVFXPrefab;
@@ -40,7 +37,6 @@ public class PlayerParticleHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
-        playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponentInParent<PlayerSpellHandler>();
         objectPool = FindObjectOfType<ObjectPool>();
     }

@@ -21,6 +21,8 @@ public class CharacterManager : MonoBehaviour
     public bool isMoving;
     public bool isFalling;
     public bool isConversing;
+    public bool isInCombat;
+
 
     [Header("Combat")]
     public bool isAttacking;
@@ -38,6 +40,6 @@ public class CharacterManager : MonoBehaviour
     {
         myWall = Instantiate<TrackingWall>(myWallPrefab);
         myWall.Init(transform);
-        myWall.transform.parent = GameObject.FindGameObjectWithTag("Tracking Walls").transform;
+        myWall.transform.parent = FindObjectOfType<ObjectPool>().transform;
     }
 }

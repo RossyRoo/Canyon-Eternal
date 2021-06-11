@@ -1237,6 +1237,7 @@ MonoBehaviour:
   isMoving: 0
   isFalling: 0
   isConversing: 0
+  isInCombat: 0
   isAttacking: 0
   isChargingSpell: 0
   isCastingSpell: 0
@@ -1253,7 +1254,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   nextSpawnPoint: {x: 0, y: 0, z: 0}
-  isInCombat: 0
+  nextDoorNum: 1
 --- !u!114 &3785282042947835105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,7 +1289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   lunchboxMeter: {fileID: 0}
-  playerMoveSpeed: 20
   maxStamina: 5
   currentStamina: 0
   staminaRecoverySpeed: 1.75
@@ -1708,8 +1708,6 @@ MonoBehaviour:
   littleDustVFX: {fileID: 3801012901521723010, guid: ed93fd45169284e00b30c7df75c53ceb,
     type: 3}
   bigDustVFX: {fileID: 3801012901521723010, guid: be8c4ba53932c454786def556cbe284f,
-    type: 3}
-  cardLightBurstVFX: {fileID: 3801012901521723010, guid: 9ae6527a492e14f4899894b65a92a2fa,
     type: 3}
   impactVFXPrefab: {fileID: 8808907300118772276, guid: 0476daec47705402ca275ee473218457,
     type: 3}

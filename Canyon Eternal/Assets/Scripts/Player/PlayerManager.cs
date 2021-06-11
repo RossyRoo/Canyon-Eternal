@@ -18,9 +18,7 @@ public class PlayerManager : CharacterManager
     public LayerMask interactableLayers;
 
     public Vector3 nextSpawnPoint;
-
-    [Header("Camera States")]
-    public bool isInCombat;
+    public int nextDoorNum;
 
     private void Awake()
     {
@@ -31,6 +29,11 @@ public class PlayerManager : CharacterManager
         playerLocomotion = GetComponent<PlayerLocomotion>();
         playerStats = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        GenerateTrackingWall();
     }
 
     private void Update()
@@ -84,9 +87,7 @@ public class PlayerManager : CharacterManager
         isDead = true;
         playerAnimatorHandler.PlayTargetAnimation(deathAnimation, true);
         yield return new WaitForSeconds(1f);
-        //isDead = false;
         //Drop fragments
-        //Reload from fort
         playerStats.SetStartingStats();
         StartCoroutine(SceneChangeManager.Instance.LoadOutsideLastFort(this));
     }
@@ -97,20 +98,20 @@ public class PlayerManager : CharacterManager
 
         animator.SetBool("isInteracting", false);
 
-        if (nextSpawnPoint == Vector3.zero)
+
+        Door[] doorsInRoom = FindObjectsOfType<Door>();
+        for (int i = 0; i < doorsInRoom.Length; i++)
         {
-            nextSpawnPoint = currentRoom.spawnPoints[0];
-        }
-        transform.position = nextSpawnPoint;
-
-
-        if(myWall != null)
-        {
-            Destroy(myWall.gameObject);
+            if (int.Parse(doorsInRoom[i].name) == nextDoorNum)
+            {
+                Debug.Log("Found door # " + nextDoorNum);
+                transform.position = doorsInRoom[i].transform.position;
+            }
         }
 
-        GenerateTrackingWall();
     }
+
+    #region Area Checks
 
     private void CheckForInteractable()
     {
@@ -171,12 +172,15 @@ public class PlayerManager : CharacterManager
 
     }
 
+    #endregion
+
+    #region Handle Conversation
+
     public void EnterConversationState()
     {
         isConversing = true;
         isInteracting = true;
         playerAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);
-        //If in conversation, turn to face conversant
     }
 
     public void ExitConversationState()
@@ -184,5 +188,8 @@ public class PlayerManager : CharacterManager
         isConversing = false;
         isInteracting = false;
     }
+
+    #endregion
+
 
 }

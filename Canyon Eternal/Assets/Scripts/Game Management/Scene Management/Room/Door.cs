@@ -7,10 +7,7 @@ public class Door : Interactable
     public bool leadsToNextRoom;
     public bool leadsToPreviousRoom;
     public Room otherRoom;
-
     public int doorNum = 0;
-    Vector3 nextRoomSpawnPoint;
-
 
     public override void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
@@ -24,25 +21,22 @@ public class Door : Interactable
 
         if (leadsToNextRoom)
         {
-            Debug.Log("Going to next room # " + sceneChangeManager.roomList[sceneChangeManager.currentBuildIndex + 1]);
+            playerManager.nextDoorNum = doorNum;
 
-            nextRoomSpawnPoint = sceneChangeManager.roomList[sceneChangeManager.currentBuildIndex + 1].spawnPoints[doorNum];
-            playerManager.nextSpawnPoint = nextRoomSpawnPoint;
             StartCoroutine(SceneChangeManager.Instance.ChangeScene(sceneChangeManager.roomList[sceneChangeManager.currentBuildIndex + 1].sceneNum));
         }
         else if(leadsToPreviousRoom)
         {
-            nextRoomSpawnPoint = sceneChangeManager.roomList[sceneChangeManager.currentBuildIndex - 1].spawnPoints[doorNum];
-            playerManager.nextSpawnPoint = nextRoomSpawnPoint;
+            playerManager.nextDoorNum = doorNum;
+
             StartCoroutine(SceneChangeManager.Instance.ChangeScene(sceneChangeManager.roomList[sceneChangeManager.currentBuildIndex - 1].sceneNum));
-            Debug.Log("Going to last room");
         }
         else
         {
             if(otherRoom != null)
             {
-                nextRoomSpawnPoint = otherRoom.spawnPoints[doorNum];
-                playerManager.nextSpawnPoint = nextRoomSpawnPoint;
+                playerManager.nextDoorNum = doorNum;
+
                 StartCoroutine(SceneChangeManager.Instance.ChangeScene(otherRoom.sceneNum));
             }
         }
