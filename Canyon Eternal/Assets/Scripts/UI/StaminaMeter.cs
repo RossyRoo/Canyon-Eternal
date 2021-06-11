@@ -30,14 +30,11 @@ public class StaminaMeter : MonoBehaviour
         {
             if (i < Mathf.Floor(currentImagination))
             {
-                if(cards[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("StaminaIdle"))
-                {
-                    Debug.Log("This heart is idle");
-                }
-                else
+                if(!cards[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("StaminaIdle"))
                 {
                     cards[i].GetComponent<Animator>().Play("StaminaHeal");
                 }
+
             }
             else
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class SceneChangeManager : MonoBehaviour
 {
@@ -11,11 +12,17 @@ public class SceneChangeManager : MonoBehaviour
 
     [Header("Room Management")]
     public Room currentRoom;
-    public List<Room> allRoomsInOrder = new List<Room>();
+    public List<Room> roomList = new List<Room>();
+
 
     public int currentBuildIndex;
     public int currentCheckpoint;
     public bool sceneChangeTriggered;
+
+    private void Awake()
+    {
+        roomList = roomList.OrderBy(x => x.sceneNum).ToList();
+    }
 
     public void OnLoadScene()
     {
@@ -27,7 +34,7 @@ public class SceneChangeManager : MonoBehaviour
     public void FindCurrentRoom(SceneChangeManager sceneChangeManager)
     {
         currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        currentRoom = allRoomsInOrder[currentBuildIndex];
+        currentRoom = roomList[currentBuildIndex];
         sceneChangeManager.currentRoom = currentRoom;
 
         if(currentRoom.isCheckpoint)

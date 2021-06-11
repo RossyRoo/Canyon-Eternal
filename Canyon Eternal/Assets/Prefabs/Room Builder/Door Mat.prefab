@@ -72,9 +72,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  nextRoom: {fileID: 0}
-  doorNum: 1
-  nextRoomSpawnPoint: {x: 0, y: 0, z: 0}
+  leadsToNextRoom: 0
+  leadsToPreviousRoom: 0
+  otherRoom: {fileID: 0}
+  doorNum: 0
 --- !u!212 &92170801730248886
 SpriteRenderer:
   m_ObjectHideFlags: 0
