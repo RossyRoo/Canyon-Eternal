@@ -21,6 +21,10 @@ public class SceneChangeManager : MonoBehaviour
 
     private void Awake()
     {
+        for (int i = 0; i < roomList.Count; i++)
+        {
+            roomList[i].sceneNum = int.Parse(roomList[i].name);
+        }
         roomList = roomList.OrderBy(x => x.sceneNum).ToList();
     }
 

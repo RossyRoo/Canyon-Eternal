@@ -8,7 +8,8 @@ public class Room : ScriptableObject
     public string roomName;
     [TextArea]public string roomOverview;
 
-    public int sceneNum;
+
+    [HideInInspector]public int sceneNum;
 
     [Header("SPAWN POINTS")]
     public Vector3[] spawnPoints;
