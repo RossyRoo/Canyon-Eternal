@@ -42,7 +42,7 @@ public class PlayerStats : CharacterStats
 
     public void SetStartingStats()
     {
-        characterData.currentHealth = characterData.maxHealth;
+        currentHealth = characterData.maxHealth;
         heartMeter.SetMaxHearts(characterData.maxHealth);
 
         currentStamina = maxStamina;
@@ -106,8 +106,8 @@ public class PlayerStats : CharacterStats
 
 
         EnableInvulnerability(characterData.invulnerabilityFrames);
-        characterData.currentHealth -= damageHealth;
-        heartMeter.SetCurrentHealth(characterData.currentHealth);
+        currentHealth -= damageHealth;
+        heartMeter.SetCurrentHealth(currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
         SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeNormalDamage);
@@ -116,17 +116,17 @@ public class PlayerStats : CharacterStats
         timeStop.StopTime(0.005f, 10, 0.1f);
         CinemachineManager.Instance.Shake(10f, 0.5f);
 
-        if (characterData.currentHealth <= 0)
+        if (currentHealth <= 0)
         {
-            characterData.currentHealth = 0;
+            currentHealth = 0;
             StartCoroutine(playerManager.HandleDeathCoroutine());
         }
     }
 
     public void RecoverHealth(int recoveryHealth, bool isFullHeal)
     {
-        characterData.currentHealth += recoveryHealth;
-        heartMeter.SetCurrentHealth(characterData.currentHealth);
+        currentHealth += recoveryHealth;
+        heartMeter.SetCurrentHealth(currentHealth);
 
         if(!isFullHeal)
         {
@@ -136,9 +136,9 @@ public class PlayerStats : CharacterStats
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
         }
 
-        if (characterData.currentHealth >= characterData.maxHealth)
+        if (currentHealth >= characterData.maxHealth)
         {
-            characterData.currentHealth = characterData.maxHealth;
+            currentHealth = characterData.maxHealth;
         }
     }
     #endregion

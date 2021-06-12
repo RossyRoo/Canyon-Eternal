@@ -16,7 +16,6 @@ public class CharacterData : ScriptableObject
 
     [Header("HEALTH")]
     [Range(4, 2000)] public int maxHealth;
-    public int currentHealth;
     public int healAmount;
     public float invulnerabilityFrames = 0.4f;
 
@@ -44,7 +43,7 @@ public class CharacterData : ScriptableObject
     public AudioClip cancelSpell;
 
     [Header("AI Detection")]
-    public float detectionRadius = 25f;      //Distance at which enemy can spot the player
+    public float detectionRadius = 50f;      //Distance at which enemy can spot the player
     [HideInInspector] public float attackRange = 0f;          //Distance enemy needs to enter attack state
     [HideInInspector] public float evadeRange = 5f;           //Distance enemy will back off target
 }

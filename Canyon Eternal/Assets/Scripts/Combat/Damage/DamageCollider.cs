@@ -79,12 +79,15 @@ public class DamageCollider : MonoBehaviour
             StartCoroutine(DealDamage(collision.gameObject));
         }
 
-        if(collision.gameObject.transform != transform.parent)
+        if(collision.gameObject.transform != transform.parent
+            && weaponData != null)
         {
             GameObject collisionVFXGO = Instantiate(weaponData.collisionVFX, collisionTransform.position, Quaternion.identity);
             collisionVFXGO.transform.parent = objectPool.transform;
             Destroy(collisionVFXGO, 1f);
         }
+        Debug.Log("Collision: " + collision.gameObject.transform);
+        Debug.Log("Me: " + transform.parent);
 
     }
 

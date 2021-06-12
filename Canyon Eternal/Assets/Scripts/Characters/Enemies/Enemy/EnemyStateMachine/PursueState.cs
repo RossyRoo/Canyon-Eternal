@@ -33,7 +33,7 @@ public class PursueState : EnemyStateMachine
 
         #region Handle State Switching
 
-        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 2f)
+        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)
         {
             enemyManager.currentTarget = null;
             return scoutState;

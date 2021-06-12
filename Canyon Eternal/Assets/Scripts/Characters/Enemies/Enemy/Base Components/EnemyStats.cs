@@ -20,7 +20,7 @@ public class EnemyStats : CharacterStats
 
     private void Start()
     {
-        characterData.currentHealth = characterData.maxHealth;
+        currentHealth = characterData.maxHealth;
         enemyHealthBarUI.SetMaxHealth(characterData.maxHealth);
 
         foreach (var attack in characterData.enemyAttacks)
@@ -37,9 +37,9 @@ public class EnemyStats : CharacterStats
 
         EnableInvulnerability(characterData.invulnerabilityFrames);
 
-        characterData.currentHealth -= damageHealth;
+        currentHealth -= damageHealth;
 
-        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(characterData.currentHealth, isCriticalHit, damageHealth));
+        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(currentHealth, isCriticalHit, damageHealth));
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 
@@ -52,10 +52,10 @@ public class EnemyStats : CharacterStats
             SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeCriticalDamage);
         }
 
-        if (characterData.currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             enemyManager.isDead = true;
-            characterData.currentHealth = 0;
+            currentHealth = 0;
             SFXPlayer.Instance.PlaySFXAudioClip(characterData.deathRattle);
         }
 

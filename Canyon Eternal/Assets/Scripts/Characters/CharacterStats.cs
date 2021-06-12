@@ -7,4 +7,6 @@ public class CharacterStats : MonoBehaviour
     [Header("CHARACTER DATA CARD")]
     public CharacterData characterData;
 
+    public int currentHealth;
+
 }
