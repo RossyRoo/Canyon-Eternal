@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -121,7 +121,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &1462858957 stripped
+--- !u!114 &1077748765 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8241642506693674305, guid: c2dad1bee05724b268c0c22616a6c40a,
     type: 3}
@@ -237,7 +237,7 @@ PrefabInstance:
         type: 3}
       propertyPath: activeCM
       value: 
-      objectReference: {fileID: 1462858957}
+      objectReference: {fileID: 1077748765}
     - target: {fileID: 3777085953043486914, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_SizeDelta.x

@@ -66,11 +66,11 @@ public class CinemachineManager : MonoBehaviour
             activeCM = followCM;
             animator.Play("Follow State");
         }
-        else if(playerManager.isConversing)
+        /*else if(playerManager.isConversing)
         {
             activeCM = dialogueCM;
             animator.Play("Dialogue State");
-        }
+        }*/
     }
 
 
