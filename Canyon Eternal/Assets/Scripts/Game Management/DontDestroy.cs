@@ -11,12 +11,12 @@ public class DontDestroy : MonoBehaviour
     SceneChangeManager sceneChangeManager;
     ScreenFader screenFader;
 
-    bool isPersistent;
+    public bool isPersistent;
 
     private void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
         HandleDuplicates();
+        DontDestroyOnLoad(transform.gameObject);
     }
 
     private void HandleDuplicates()

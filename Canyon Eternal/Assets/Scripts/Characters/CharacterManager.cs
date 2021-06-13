@@ -6,7 +6,7 @@ public class CharacterManager : MonoBehaviour
 {
     public TrackingWall myWallPrefab;
 
-    [HideInInspector]
+    //[HideInInspector]
     public TrackingWall myWall;
 
     [HideInInspector]
@@ -40,6 +40,19 @@ public class CharacterManager : MonoBehaviour
     {
         myWall = Instantiate<TrackingWall>(myWallPrefab);
         myWall.Init(transform);
-        myWall.transform.parent = FindObjectOfType<ObjectPool>().transform;
+
+        DontDestroy[] dontDestroys = FindObjectsOfType<DontDestroy>();
+
+        for (int i = 0; i < dontDestroys.Length; i++)
+        {
+            if(dontDestroys[i].isPersistent)
+            {
+                Debug.Log("my object pool found");
+                ObjectPool myObjectPool = dontDestroys[i].GetComponentInChildren<ObjectPool>();
+
+                myWall.transform.parent = myObjectPool.transform;
+            }
+        }
+
     }
 }

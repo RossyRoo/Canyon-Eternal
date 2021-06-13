@@ -82,11 +82,19 @@ public class SceneChangeManager : MonoBehaviour
 
         CinemachineManager.Instance.FindPlayer(playerManager);
         playerManager.nextSpawnPoint = Vector3.zero;
+
+        if (currentCheckpoint == 0)
+        {
+            Destroy(GetComponentInParent<DontDestroy>().gameObject);
+        }
+
         SceneManager.LoadScene(currentCheckpoint);
+
     }
 
     public void LoadSaveGame()
     {
-        SceneManager.LoadScene(currentBuildIndex + 1);
+        //THIS should be the saved scene
+        SceneManager.LoadScene(16);
     }
 }

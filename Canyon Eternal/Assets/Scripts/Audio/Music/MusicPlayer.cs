@@ -31,15 +31,13 @@ public class MusicPlayer : MonoBehaviour
 
     private void PlaySceneMusic(Room currentRoom)
     {
-        if (currentRoom.autoMusic != null
-            && currentRoom.isInterruptingTrack
+        if (currentRoom.roomAudio != null
+            && currentRoom.roomAudio != audioSource.clip
             || !audioSource.isPlaying)
         {
-            //Check to see if this scene's music is supposed to override the other scene's
-
             audioSource.Stop();
-            audioSource.clip = currentRoom.autoMusic;
-            PlayMusicClip(currentRoom.autoMusic);
+            audioSource.clip = currentRoom.roomAudio;
+            PlayMusicClip(currentRoom.roomAudio);
         }
     }
 
