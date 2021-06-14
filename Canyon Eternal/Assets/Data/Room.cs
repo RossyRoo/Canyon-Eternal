@@ -1,0 +1,12 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(menuName = "Room Data")]
+public class Room : ScriptableObject
+{
+    [Header("INFO")]
+    public bool isCheckpoint;
+    [HideInInspector]public int sceneNum;
+    public AudioClip roomAudio;
+}

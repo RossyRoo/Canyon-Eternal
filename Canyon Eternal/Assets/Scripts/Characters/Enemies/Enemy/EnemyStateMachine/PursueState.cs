@@ -90,7 +90,6 @@ public class PursueState : EnemyStateMachine
 
         enemyManager.rb.AddForce(targetDirection * enemyStats.characterData.moveSpeed * Time.deltaTime);
 
-        //enemyManager.rb.MovePosition(enemyManager.rb.position + targetDirection * Time.fixedDeltaTime);
 
         float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
 

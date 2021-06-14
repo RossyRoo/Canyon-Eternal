@@ -17,21 +17,23 @@ MonoBehaviour:
   canEvade: 1
   moveSpeed: 5568
   maxHealth: 50
-  currentHealth: 50
   healAmount: 1
   invulnerabilityFrames: 0.4
   enemyAttacks:
   - {fileID: 11400000, guid: 47a0bf721e2fd4f4e8be6ea256b06739, type: 2}
   - {fileID: 11400000, guid: 4059a9c7ddf1e49c09d637e3a5fecb53, type: 2}
-  enemyWeapons: []
-  fragmentDrop: 10
+  fragmentDrop: 20
   rockFootsteps: []
   dash: {fileID: 0}
+  hardCollision: {fileID: 0}
+  falling: {fileID: 0}
   consumeHealItem: []
-  block: {fileID: 0}
+  blockCollision: {fileID: 0}
+  blockMissed: {fileID: 0}
   takeNormalDamage: {fileID: 8300000, guid: 649d173ec78448d4baa761e2ae334743, type: 3}
   takeCriticalDamage: {fileID: 8300000, guid: 017ef703d0a9ddf40bfc3889b2febcf9, type: 3}
   deathRattle: {fileID: 8300000, guid: 27c01c9102f2eb942871784cef13628f, type: 3}
-  detectionRadius: 35
+  cancelSpell: {fileID: 0}
+  detectionRadius: 30
   attackRange: 10
   evadeRange: 5

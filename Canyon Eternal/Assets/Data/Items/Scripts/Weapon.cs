@@ -11,8 +11,8 @@ public class Weapon : Item
     [Header("Damage Stats")]
     public int baseMinDamage;
     public int baseMaxDamage;
-    [HideInInspector] public int currentMinDamage;
-    [HideInInspector] public int currentMaxDamage;
+    public int currentMinDamage;
+    public int currentMaxDamage;
     [Range(0,1)]public float criticalChance;
 
     [Tooltip("Force used to knock enemy back upon attacks")]

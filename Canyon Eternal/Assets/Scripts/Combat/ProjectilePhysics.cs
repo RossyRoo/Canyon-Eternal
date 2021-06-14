@@ -38,15 +38,24 @@ public class ProjectilePhysics : MonoBehaviour
     {
         if (isFired)
         {
-            if(projectileData.explostionRadius != 0)
+            CharacterManager characterManager = collision.GetComponent<CharacterManager>();
+
+            if (characterManager != null)
+            {
+                if(characterManager.isInvulnerable)
+                {
+                    return;
+                }
+            }
+
+            if (projectileData.explostionRadius != 0)
             {
                 GetComponent<CircleCollider2D>().radius = projectileData.explostionRadius;
             }
 
-            SFXPlayer.Instance.PlaySFXAudioClip(projectileData.collisionSFX);
             SpawnCollisionVFX();
 
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject, 0.05f);
         }
     }
 
@@ -61,8 +70,11 @@ public class ProjectilePhysics : MonoBehaviour
 
     private void SpawnCollisionVFX()
     {
-        Debug.Log("Spawning Col FX");
-        GameObject collisionVFXGO = Instantiate(projectileData.collisionVFX, transform.position, Quaternion.identity);
-        Destroy(collisionVFXGO, 3f);
+        if(projectileData.collisionVFX != null)
+        {
+            GameObject collisionVFXGO = Instantiate(projectileData.collisionVFX, transform.position, Quaternion.identity);
+            Destroy(collisionVFXGO, 3f);
+        }
+
     }
 }

@@ -31,7 +31,6 @@ public class DamageCollider : MonoBehaviour
     private void Awake()
     {
         objectPool = FindObjectOfType<ObjectPool>();
-
         damageCollider = GetComponent<Collider2D>();
         damageCollider.isTrigger = true;
         targetIsWithinRange = false;
@@ -44,6 +43,8 @@ public class DamageCollider : MonoBehaviour
         if (weaponData != null)
         {
             knockbackForce = weaponData.knockbackForce;
+            weaponData.currentMinDamage = weaponData.baseMinDamage;
+            weaponData.currentMaxDamage = weaponData.baseMaxDamage;
         }
 
         knockbackTime = startKnockbackTime;
@@ -80,15 +81,13 @@ public class DamageCollider : MonoBehaviour
         }
 
         if(collision.gameObject.transform != transform.parent
-            && weaponData != null)
+            && weaponData != null
+            && weaponData.collisionVFX != null)
         {
             GameObject collisionVFXGO = Instantiate(weaponData.collisionVFX, collisionTransform.position, Quaternion.identity);
             collisionVFXGO.transform.parent = objectPool.transform;
             Destroy(collisionVFXGO, 1f);
         }
-        Debug.Log("Collision: " + collision.gameObject.transform);
-        Debug.Log("Me: " + transform.parent);
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

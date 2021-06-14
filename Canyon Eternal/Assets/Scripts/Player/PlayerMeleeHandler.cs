@@ -95,9 +95,6 @@ public class PlayerMeleeHandler : MonoBehaviour
             meleeModelPrefab.transform.localScale = Vector3.one;
         }
 
-        activeMeleeCard.currentMinDamage = activeMeleeCard.baseMinDamage;
-        activeMeleeCard.currentMaxDamage = activeMeleeCard.baseMaxDamage;
-
         currentMeleeModel = meleeModelPrefab;
         meleeDamageCollider = currentMeleeModel.GetComponentInChildren<DamageCollider>();
     }

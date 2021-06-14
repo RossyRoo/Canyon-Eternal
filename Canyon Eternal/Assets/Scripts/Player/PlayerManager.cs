@@ -104,7 +104,6 @@ public class PlayerManager : CharacterManager
         {
             if (int.Parse(doorsInRoom[i].name) == nextDoorNum)
             {
-                Debug.Log("Found door # " + nextDoorNum);
                 transform.position = doorsInRoom[i].transform.position;
             }
         }

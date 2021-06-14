@@ -47,7 +47,6 @@ public class CharacterManager : MonoBehaviour
         {
             if(dontDestroys[i].isPersistent)
             {
-                Debug.Log("my object pool found");
                 ObjectPool myObjectPool = dontDestroys[i].GetComponentInChildren<ObjectPool>();
 
                 myWall.transform.parent = myObjectPool.transform;

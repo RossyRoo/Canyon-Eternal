@@ -16,7 +16,7 @@ MonoBehaviour:
   canAttack: 1
   canEvade: 1
   moveSpeed: 3000
-  maxHealth: 50
+  maxHealth: 30
   healAmount: 1
   invulnerabilityFrames: 0.4
   enemyAttacks:
@@ -27,7 +27,8 @@ MonoBehaviour:
   hardCollision: {fileID: 0}
   falling: {fileID: 0}
   consumeHealItem: []
-  block: {fileID: 0}
+  blockCollision: {fileID: 0}
+  blockMissed: {fileID: 0}
   takeNormalDamage: {fileID: 8300000, guid: 649d173ec78448d4baa761e2ae334743, type: 3}
   takeCriticalDamage: {fileID: 8300000, guid: 017ef703d0a9ddf40bfc3889b2febcf9, type: 3}
   deathRattle: {fileID: 8300000, guid: 27c01c9102f2eb942871784cef13628f, type: 3}

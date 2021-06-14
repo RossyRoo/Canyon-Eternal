@@ -31,8 +31,6 @@ public class EnemyManager : CharacterManager
     {
         GenerateTrackingWall();
 
-        Debug.Log("Generating enemy tracking wall");
-
         if(currentState == null)
         {
             currentState = GetComponentInChildren<ScoutState>();
