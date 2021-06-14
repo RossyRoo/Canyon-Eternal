@@ -30,7 +30,7 @@ public class ProjectileShooter : MonoBehaviour
         if(canFire)
         {
             GameObject projectileGO = Instantiate(projectile.GOPrefab, firingPoint.position, firingPoint.rotation);
-            projectileGO.GetComponent<ProjectilePhysics>().Launch(projectile.launchForce, Vector2.left);
+            projectileGO.GetComponent<ProjectilePhysics>().Launch(projectile.launchForce, transform.up);
 
             SFXPlayer.Instance.PlaySFXAudioClip(projectile.launchSFX, 0.05f);
         }
