@@ -76,6 +76,16 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
         }
     }
 
+    public void PlayMissedBlockSFX()
+    {
+        BlockCollider blockCollider = GetComponentInChildren<BlockCollider>();
+
+        if(!blockCollider.targetIsWithinRange)
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.blockMissed);
+        }
+    }
+
     public void DespawnShield()
     {
         playerBlockHandler.shieldModel.SetActive(false);

@@ -130,7 +130,7 @@ public class InputManager : MonoBehaviour
     {
         if(dash_Input)
         {
-            if (playerManager.isInteracting || playerStats.currentStamina < 1 || playerManager.isConversing)
+            if (playerManager.isInteracting || playerStats.currentStamina < 1 || playerManager.isConversing || playerManager.isFalling)
                 return;
 
             playerManager.isDashing = true;

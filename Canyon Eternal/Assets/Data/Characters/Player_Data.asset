@@ -17,7 +17,6 @@ MonoBehaviour:
   canEvade: 0
   moveSpeed: 26
   maxHealth: 5
-  currentHealth: 5
   healAmount: 2
   invulnerabilityFrames: 1
   enemyAttacks: []
@@ -33,7 +32,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
-  block: {fileID: 8300000, guid: 902f9b84043369546906e0ffa7081104, type: 3}
+  blockCollision: {fileID: 8300000, guid: 84ae1e0aeff50d747aa4c2d2e5c060a0, type: 3}
+  blockMissed: {fileID: 8300000, guid: 1699a5a92a1300946bca50dddbb92fb7, type: 3}
   takeNormalDamage: {fileID: 8300000, guid: 812f8f76c01e6dc4bb653fa92f82d463, type: 3}
   takeCriticalDamage: {fileID: 8300000, guid: 6e95a12822c8cbb488d93ee5c5f796b8, type: 3}
   deathRattle: {fileID: 8300000, guid: adf62d865209a904696ade7f136d0268, type: 3}

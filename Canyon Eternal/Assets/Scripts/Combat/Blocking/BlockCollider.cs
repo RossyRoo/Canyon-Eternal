@@ -7,6 +7,8 @@ public class BlockCollider : MonoBehaviour
     public CharacterManager myCharacter;
     Collider2D blockCollider;
 
+    public bool targetIsWithinRange;
+
     private void Awake()
     {
         myCharacter = GetComponentInParent<CharacterManager>();
@@ -16,6 +18,8 @@ public class BlockCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        targetIsWithinRange = true;
+
         CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
 
         if (characterCollision != null && characterCollision.transform != myCharacter.transform)
@@ -24,8 +28,13 @@ public class BlockCollider : MonoBehaviour
             {
                 characterCollision.isStunned = true;
 
-                SFXPlayer.Instance.PlaySFXAudioClip(myCharacter.GetComponent<CharacterStats>().characterData.block);
+                SFXPlayer.Instance.PlaySFXAudioClip(myCharacter.GetComponent<CharacterStats>().characterData.blockCollision, 0.1f);
             }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        targetIsWithinRange = false;
     }
 }

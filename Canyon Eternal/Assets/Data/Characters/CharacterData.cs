@@ -35,7 +35,8 @@ public class CharacterData : ScriptableObject
 
     [Header("combat")]
     public AudioClip[] consumeHealItem;
-    public AudioClip block;
+    public AudioClip blockCollision;
+    public AudioClip blockMissed;
     public AudioClip takeNormalDamage;
     public AudioClip takeCriticalDamage;
     public AudioClip deathRattle;
