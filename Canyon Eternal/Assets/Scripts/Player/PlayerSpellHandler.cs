@@ -45,7 +45,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.chargeAnimation, true);
         playerParticleHandler.SpawnChargeVFX(activeSpell.chargeVFX);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.chargeSFX);
+        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.chargeSFX, 0.05f);
 
 
         currentSpellChargeTime = activeSpell.chargeTime;
@@ -56,7 +56,7 @@ public class PlayerSpellHandler : MonoBehaviour
     {
         playerAnimatorHandler.PlayTargetAnimation(activeSpell.cancelAnimation, false);
         Destroy(playerParticleHandler.currentChargeVFXGO);
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.cancelSpell);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.cancelSpell, 0.1f);
 
         playerManager.isChargingSpell = false;
         playerMeleeHandler.currentMeleeModel.SetActive(true);
