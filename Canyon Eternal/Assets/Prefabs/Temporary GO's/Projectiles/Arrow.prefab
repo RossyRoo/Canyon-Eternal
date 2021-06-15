@@ -69,18 +69,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009918451, y: 0}
+  m_Offset: {x: -0.009918451, y: 0.6277256}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.64, y: 7.44}
+    oldSize: {x: 5.12, y: 7.68}
     newSize: {x: 0.66, y: 1.86}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.28309298, y: 1.86}
+  m_Size: {x: 0.45625925, y: 5.77066}
   m_EdgeRadius: 0
 --- !u!212 &2386400630290685018
 SpriteRenderer:
@@ -121,8 +121,8 @@ SpriteRenderer:
   m_SortingLayerID: 673360681
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 58acdd1d0ca7d496c93f3c82ee96a870, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.91517925, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 497a99556248f48b5b17ca510bc86654, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,6 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
+  collisionTransform: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 0
