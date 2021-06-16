@@ -20,6 +20,9 @@ public class PlayerManager : CharacterManager
     public Vector3 nextSpawnPoint;
     public int nextDoorNum;
 
+    public List<EnemyManager> enemiesEngaged;
+
+
     private void Awake()
     {
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
@@ -152,15 +155,19 @@ public class PlayerManager : CharacterManager
     {
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, playerStats.characterData.detectionRadius);
 
-        int enemies = 0;
+        List<EnemyManager> enemiesEngaged = new List<EnemyManager>();
+
+        int enemiesDetected = 0;
 
         for (int i = 0; i < collider2Ds.Length; i++)
         {
             if (collider2Ds[i].GetComponent<EnemyManager>())
-                enemies++;
+            {
+                enemiesDetected++;
+            }
         }
 
-        if (enemies > 0)
+        if (enemiesDetected > 0 || enemiesEngaged.Count > 0)
         {
             isInCombat = true;
         }

@@ -35,6 +35,7 @@ public class PursueState : EnemyStateMachine
 
         if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)
         {
+            enemyManager.DisengagePlayer();
             enemyManager.currentTarget = null;
             return scoutState;
         }

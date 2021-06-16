@@ -136,4 +136,24 @@ public class EnemyManager : CharacterManager
         }
     }
 
+    public void EngagePlayer()
+    {
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+
+        if (!playerManager.enemiesEngaged.Contains(this))
+        {
+            playerManager.enemiesEngaged.Add(this);
+        }
+    }
+
+    public void DisengagePlayer()
+    {
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+
+        if (playerManager.enemiesEngaged.Contains(this))
+        {
+            playerManager.enemiesEngaged.Remove(this);
+        }
+    }
+
 }

@@ -21,6 +21,7 @@ public class DeathState : EnemyStateMachine
         runningDeathCoroutine = true;
 
         enemyStats.DisableAllDamageColliders();
+        enemyManager.DisengagePlayer();
 
         FindObjectOfType<PlayerInventory>().AdjustFragmentInventory(enemyStats.characterData.fragmentDrop);
 

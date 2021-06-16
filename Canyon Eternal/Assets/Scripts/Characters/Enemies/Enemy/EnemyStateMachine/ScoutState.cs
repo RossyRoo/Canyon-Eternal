@@ -41,6 +41,7 @@ public class ScoutState : EnemyStateMachine
 
         if (enemyManager.currentTarget != null && enemyStats.characterData.canPursue)
         {
+            enemyManager.EngagePlayer();
             enemyManager.isMoving = true;
             return pursueTargetState;
         }
