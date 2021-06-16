@@ -14,7 +14,7 @@ public class MusicPlayer : MonoBehaviour
         if(!GetComponentInParent<DontDestroy>())
         {
             audioSource = GetComponent<AudioSource>();
-            PlaySceneMusic(backupRoom);
+            PlayRoomMusic(backupRoom);
         }
     }
 
@@ -26,10 +26,10 @@ public class MusicPlayer : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
-        PlaySceneMusic(currentRoom);
+        PlayRoomMusic(currentRoom);
     }
 
-    private void PlaySceneMusic(Room currentRoom)
+    public void PlayRoomMusic(Room currentRoom)
     {
         if (currentRoom.roomAudio != null
             && currentRoom.roomAudio != audioSource.clip
