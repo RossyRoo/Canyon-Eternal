@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class GateController : MonoBehaviour
 {
+    [Header("ENCOUNTER")]
+    public EnemyManager[] encounterEnemies;
+    public AudioClip encounterMusic;
+
     [HideInInspector]
     public List<GameObject> gates;
     PlayerManager playerManager;
     public AudioClip gateSFX;
     bool gateTriggered;
     bool gateComplete;
-
-    [Header("Encounter")]
-    public EnemyManager[] enemiesWithinGates;
-    public AudioClip encounterMusic;
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public class GateController : MonoBehaviour
         if(!gateTriggered)
         {
             if (collision.GetComponent<PlayerManager>()
-                && enemiesWithinGates.Length > 0)
+                && encounterEnemies[0] != null)
             {
                 playerManager = collision.GetComponent<PlayerManager>();
                 CloseAllGates();
@@ -47,7 +47,7 @@ public class GateController : MonoBehaviour
     {
         if(gateTriggered)
         {
-            if (!playerManager.isInCombat)
+            if (encounterEnemies[0] == null)
             {
                 OpenAllGates();
             }

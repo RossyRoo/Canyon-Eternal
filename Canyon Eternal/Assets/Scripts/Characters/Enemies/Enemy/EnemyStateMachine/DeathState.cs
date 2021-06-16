@@ -23,7 +23,9 @@ public class DeathState : EnemyStateMachine
         enemyStats.DisableAllDamageColliders();
         enemyManager.DisengagePlayer();
 
-        FindObjectOfType<PlayerInventory>().AdjustFragmentInventory(enemyStats.characterData.fragmentDrop);
+        PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+        playerStats.bossesDefeated.Add(enemyStats.characterData.bossID);
+        playerStats.GetComponent<PlayerInventory>().AdjustFragmentInventory(enemyStats.characterData.fragmentDrop);
 
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
 

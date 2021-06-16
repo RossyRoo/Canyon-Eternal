@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CharacterData : ScriptableObject
 {
+    [Header("ID")]
+    public int bossID;
+
     [Header("BEHAVIORS")]
     public bool canPursue;
     public bool canAttack;

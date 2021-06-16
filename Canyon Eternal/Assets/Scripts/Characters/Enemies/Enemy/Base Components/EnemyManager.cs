@@ -22,6 +22,12 @@ public class EnemyManager : CharacterManager
     private void Awake()
     {
         enemyStats = GetComponent<EnemyStats>();
+
+        if (FindObjectOfType<PlayerStats>().bossesDefeated.Contains(enemyStats.characterData.bossID))
+        {
+            Destroy(gameObject);
+        }
+
         rb = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
@@ -152,6 +158,7 @@ public class EnemyManager : CharacterManager
 
         if (playerManager.enemiesEngaged.Contains(this))
         {
+            Debug.Log("Lost the player");
             playerManager.enemiesEngaged.Remove(this);
         }
     }

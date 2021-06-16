@@ -167,13 +167,13 @@ public class PlayerManager : CharacterManager
             }
         }
 
-        if (enemiesDetected > 0 || enemiesEngaged.Count > 0)
+        if (enemiesDetected < 1 && enemiesEngaged.Count < 1)
         {
-            isInCombat = true;
+            isInCombat = false;
         }
         else
         {
-            isInCombat = false;
+            isInCombat = true;
         }
 
     }

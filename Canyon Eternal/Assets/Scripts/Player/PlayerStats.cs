@@ -7,12 +7,11 @@ public class PlayerStats : CharacterStats
 {
     HeartMeter heartMeter;
     StaminaMeter staminaMeter;
-    public LunchboxMeter lunchboxMeter;
+    [HideInInspector]public LunchboxMeter lunchboxMeter;
 
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
-
 
     [Header("Stamina")]
     public float maxStamina;
@@ -24,6 +23,10 @@ public class PlayerStats : CharacterStats
     [Header("Lunchbox")]
     public int maxLunchBoxCapacity = 5;
     public int currentLunchBoxCapacity;
+
+    [Header("Completion")]
+    public List <int> bossesDefeated;
+
 
     private void Awake()
     {
