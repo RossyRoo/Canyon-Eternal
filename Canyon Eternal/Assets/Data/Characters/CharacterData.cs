@@ -7,7 +7,8 @@ using UnityEngine;
 public class CharacterData : ScriptableObject
 {
     [Header("ID")]
-    public int bossID;
+    public bool isBoss;
+    public int enemyID;
 
     [Header("BEHAVIORS")]
     public bool canPursue;

@@ -439,6 +439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
+  collisionTransform: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
@@ -1049,7 +1051,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -957212773
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1200,6 +1202,8 @@ MonoBehaviour:
   isInvulnerable: 0
   isMoving: 0
   isFalling: 0
+  isConversing: 0
+  isInCombat: 0
   isAttacking: 0
   isChargingSpell: 0
   isCastingSpell: 0
@@ -1227,6 +1231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: c32b177921b704a2dab08254aa6764b3, type: 2}
+  currentHealth: 0
   enemyWeapons: []
 --- !u!114 &3451020769818308922
 MonoBehaviour:
@@ -1375,11 +1380,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4170450973767946588}
     m_Modifications:
-    - target: {fileID: 6577152630831515639, guid: 09ac49d18c2b64f38bde87c7c8db6ac4,
-        type: 3}
-      propertyPath: combatState
-      value: 
-      objectReference: {fileID: 2927965634106033232}
     - target: {fileID: 7663633015135824942, guid: 09ac49d18c2b64f38bde87c7c8db6ac4,
         type: 3}
       propertyPath: m_Name
@@ -1448,15 +1448,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4825757241894599025}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2927965634106033232 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7663633014799498529, guid: 09ac49d18c2b64f38bde87c7c8db6ac4,
-    type: 3}
-  m_PrefabInstance: {fileID: 4825757241894599025}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa6e124d53b34edf8516d20b09ec137, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
