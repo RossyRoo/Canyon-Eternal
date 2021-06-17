@@ -47,12 +47,11 @@ MonoBehaviour:
   pursueState: {fileID: 7663633016329567714}
   deathState: {fileID: 7663633015214005397}
   stunnedState: {fileID: 6577152630831515639}
+  canPatrol: 1
   startPosition: {fileID: 5077056701552657523}
-  nextPosition: {x: 0, y: 0}
-  currentDistanceFromStartPosition: 0
-  maxDistanceFromStartPosition: 10
-  minIdleTime: 1
-  maxIdleTime: 3
+  maxDistanceFromStartPosition: 15
+  minIdleTime: 4
+  maxIdleTime: 10
   patrolPathfindingInitiated: 0
   isIdlingAtNextPosition: 0
   nextWaypointDistance: 3

@@ -11,9 +11,10 @@ public class PatrolState : EnemyStateMachine
     public StunnedState stunnedState;
 
     [Header("Patrol Parameters")]
+    public bool canPatrol;
     public Transform startPosition;
-    public Vector2 nextPosition;
-    public float currentDistanceFromStartPosition;
+    Vector2 nextPosition;
+    float currentDistanceFromStartPosition;
     public float maxDistanceFromStartPosition;
     public float minIdleTime = 0f;
     public float maxIdleTime = 0f;
@@ -58,6 +59,7 @@ public class PatrolState : EnemyStateMachine
 
         if (enemyManager.currentTarget != null && enemyStats.characterData.canPursue)
         {
+            StartCoroutine(enemyStats.characterBarkUI.DisplayBarkIcon(0));
             enemyManager.EngagePlayer();
             enemyManager.isMoving = true;
             return pursueState;
@@ -73,7 +75,7 @@ public class PatrolState : EnemyStateMachine
         }
 
 
-        if (!patrolPathfindingInitiated)
+        if (!patrolPathfindingInitiated && canPatrol)
         {
             StartCoroutine(InitiatePatrolPathfinding(enemyManager));
             patrolPathfindingInitiated = true;

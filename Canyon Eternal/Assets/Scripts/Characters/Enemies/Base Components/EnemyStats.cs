@@ -7,6 +7,7 @@ public class EnemyStats : CharacterStats
     EnemyManager enemyManager;
     EnemyAnimatorHandler enemyAnimatorHandler;
     EnemyHealthBarUI enemyHealthBarUI;
+    public CharacterBarkUI characterBarkUI;
 
     [HideInInspector] public DamageCollider[] enemyWeapons;
 
@@ -15,6 +16,7 @@ public class EnemyStats : CharacterStats
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         enemyHealthBarUI = GetComponentInChildren<EnemyHealthBarUI>();
+        characterBarkUI = GetComponentInChildren<CharacterBarkUI>();
         enemyWeapons = GetComponentsInChildren<DamageCollider>();
     }
 
