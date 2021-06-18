@@ -207,7 +207,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4757138668946452930}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.511902, y: -42.845047, z: 536.07086}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8467465798682274491}
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_Instructions:
   - m_FullHash: 871416714
     m_VirtualCamera: {fileID: 7400969421758269441}
-    m_ActivateAfter: 0
+    m_ActivateAfter: 4
     m_MinDuration: 0
   - m_FullHash: -1473180519
     m_VirtualCamera: {fileID: 9022647862250059482}
@@ -794,7 +794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateDrivenCamera: {fileID: 8467465798682274490}
-  activeCM: {fileID: 9022647862250059482}
+  activeCM: {fileID: 7400969421758269441}
   followCM: {fileID: 7400969421758269441}
   combatCM: {fileID: 9022647862250059482}
   dialogueCM: {fileID: 5016059642133505017}

@@ -34,7 +34,6 @@ public class EnemyManager : CharacterManager
         rb = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
-        GetComponentInChildren<PatrolState>().startPosition.parent = FindObjectOfType<ObjectPool>().transform;
     }
 
     private void Start()
@@ -43,7 +42,6 @@ public class EnemyManager : CharacterManager
 
         if(currentState == null)
         {
-            //currentState = GetComponentInChildren<ScoutState>();
             currentState = GetComponentInChildren<PatrolState>();
         }
 
@@ -55,8 +53,6 @@ public class EnemyManager : CharacterManager
         HandleStateMachine();
 
         enemyAnimatorHandler.animator.SetBool("isInteracting", isInteracting);
-
-        AvoidObstaclesWhilePatrolling();
     }
 
     private void FixedUpdate()
@@ -164,24 +160,9 @@ public class EnemyManager : CharacterManager
 
         if (playerManager.enemiesEngaged.Contains(this))
         {
-            Debug.Log("Lost the player");
             playerManager.enemiesEngaged.Remove(this);
         }
     }
 
-    public void AvoidObstaclesWhilePatrolling()
-    {
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 10f, lastMoveDirection, collisionLayers);
-
-        if (hit)
-        {
-            PatrolState patrolState = GetComponentInChildren<PatrolState>();
-
-            if (currentState == patrolState)
-            {
-                patrolState.FindNewPath();
-            }
-        }
-    }
 
 }

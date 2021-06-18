@@ -5,30 +5,42 @@ using Pathfinding;
 
 public class PatrolState : EnemyStateMachine
 {
+    public Transform startPosition;
+
     [Header("STATE TRANSITIONS")]
     public PursueState pursueState;
     public DeathState deathState;
     public StunnedState stunnedState;
 
-    [Header("Patrol Parameters")]
+    [Header("Behavior")]
     public bool canPatrol;
-    public Transform startPosition;
-    Vector2 nextPosition;
-    float currentDistanceFromStartPosition;
+    public Transform[] presetWaypoints;
+
+    [Header("Parameters")]
     public float maxDistanceFromStartPosition;
     public float minIdleTime = 0f;
     public float maxIdleTime = 0f;
 
-    [Header("Pathfinding")]
-    public bool patrolPathfindingInitiated;
-    public bool isIdlingAtNextPosition;
+    Vector2 nextDestination;
+    float currentDistanceFromStartPosition;
+    bool patrolPathfindingInitiated;
+    bool isIdling = false;
     Path path;
-    public float nextWaypointDistance = 3f;
-    public int currentWaypoint = 0;
+    float nextWaypointDistance = 3f;
+    int currentWaypoint = 0;
+    int presetWaypointIndex = 0;
 
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
+        if(startPosition.parent == transform)
+        {
+            startPosition.parent = null;
+            for (int i = 0; i < presetWaypoints.Length; i++)
+            {
+                presetWaypoints[i].parent = null;
+            }
+        }
 
         #region Handle Target Detection
 
@@ -67,21 +79,37 @@ public class PatrolState : EnemyStateMachine
 
         #endregion
 
-        float distanceFromNextPosition = Vector2.Distance(enemyManager.rb.position, nextPosition);
-
-        if (distanceFromNextPosition < 1 || nextPosition == Vector2.zero)
+        if(canPatrol)
         {
-            FindNewPath();
+            if (!patrolPathfindingInitiated)
+            {
+                if (presetWaypoints.Length == 0)
+                {
+                    StartCoroutine(FindDestination());
+                    StartCoroutine(InitiatePatrolPathfinding(enemyManager));
+                }
+                else
+                {
+                    StartCoroutine(FollowPresetWaypoints(enemyManager, enemyStats));
+                }
+                patrolPathfindingInitiated = true;
+            }
+            else
+            {
+                if (presetWaypoints.Length == 0)
+                {
+                    if (Vector2.Distance(enemyManager.rb.position, nextDestination) < 5)
+                    {
+                        StartCoroutine(FindDestination());
+                    }
+
+                    MoveTowardsPatrolPosition(enemyManager, enemyStats);
+                }
+            }
+
+
         }
 
-
-        if (!patrolPathfindingInitiated && canPatrol)
-        {
-            StartCoroutine(InitiatePatrolPathfinding(enemyManager));
-            patrolPathfindingInitiated = true;
-        }
-
-        MoveTowardsPatrolPosition(enemyManager, enemyStats);
 
 
         return this;
@@ -91,15 +119,9 @@ public class PatrolState : EnemyStateMachine
 
     private IEnumerator InitiatePatrolPathfinding(EnemyManager enemyManager)
     {
-        if(isIdlingAtNextPosition)
-        {
-            yield return new WaitForSeconds(Random.Range(minIdleTime, maxIdleTime));
-            isIdlingAtNextPosition = false;
-        }
-        
         if (enemyManager.seeker.IsDone())
         {
-            enemyManager.seeker.StartPath(enemyManager.rb.position, nextPosition, OnPathComplete);
+            enemyManager.seeker.StartPath(enemyManager.rb.position, nextDestination, OnPathComplete);
         }
         yield return new WaitForSeconds(0.3f);
         StartCoroutine(InitiatePatrolPathfinding(enemyManager));
@@ -116,12 +138,8 @@ public class PatrolState : EnemyStateMachine
 
     private void MoveTowardsPatrolPosition(EnemyManager enemyManager, EnemyStats enemyStats)
     {
-        if (path == null)
+        if (path == null || isIdling)
             return;
-
-        Vector2 patrolDirection = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
-
-        enemyManager.rb.AddForce(patrolDirection * (enemyStats.characterData.moveSpeed / 2) * Time.deltaTime); //I'm dividing movespeed here bc i dont think we need a variable for patrolling speed
 
         float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
 
@@ -129,33 +147,56 @@ public class PatrolState : EnemyStateMachine
         {
             currentWaypoint++;
         }
+
+        Vector2 patrolDirection = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
+
+        enemyManager.rb.AddForce(patrolDirection * (enemyStats.characterData.moveSpeed / 2) * Time.deltaTime); //I'm dividing movespeed here bc i dont think we need a variable for patrolling speed
     }
 
-    public void FindNewPath()
+    public IEnumerator FindDestination()
     {
-        isIdlingAtNextPosition = true;
-
         currentDistanceFromStartPosition = Vector2.Distance(transform.position, startPosition.position);
 
         if (currentDistanceFromStartPosition > maxDistanceFromStartPosition)
         {
-            nextPosition = startPosition.position;
+            nextDestination = startPosition.position;
         }
         else
         {
             Vector2 xLimits = new Vector2((startPosition.position.x - maxDistanceFromStartPosition), (startPosition.position.x + maxDistanceFromStartPosition));
             Vector2 yLimits = new Vector2((startPosition.position.y - maxDistanceFromStartPosition), (startPosition.position.y + maxDistanceFromStartPosition));
-            Vector2 tryPosition = new Vector2((Random.Range(xLimits.x, xLimits.y)), (Random.Range(yLimits.x, yLimits.y)));
 
-            if(Vector2.Distance(transform.position, tryPosition) > 10f)
+            nextDestination = new Vector2((Random.Range(xLimits.x, xLimits.y)), (Random.Range(yLimits.x, yLimits.y))); ;
+        }
+        isIdling = true;
+        yield return new WaitForSeconds(Random.Range(minIdleTime, maxIdleTime));
+        isIdling = false;
+    }
+
+    public IEnumerator FollowPresetWaypoints(EnemyManager enemyManager, EnemyStats enemyStats)
+    {
+
+        if (presetWaypointIndex <= presetWaypoints.Length - 1)
+        {
+            Vector2 patrolDirection = (presetWaypoints[presetWaypointIndex].position - transform.position).normalized;
+            enemyManager.rb.AddForce(patrolDirection * (enemyStats.characterData.moveSpeed / 2) * Time.deltaTime);
+
+
+            if (Vector2.Distance(transform.position, presetWaypoints[presetWaypointIndex].position) <= 1)
             {
-                nextPosition = tryPosition;
-            }
-            else
-            {
-                FindNewPath();
+                presetWaypointIndex++;
+
+                yield return new WaitForSeconds(Random.Range(minIdleTime, maxIdleTime));
             }
         }
+        else
+        {
+            System.Array.Reverse(presetWaypoints);
+            presetWaypointIndex = 1;
+        }
+        yield return new WaitForFixedUpdate();
+        StartCoroutine(FollowPresetWaypoints(enemyManager, enemyStats));
     }
+
 
 }
