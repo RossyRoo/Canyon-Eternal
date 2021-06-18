@@ -30,6 +30,18 @@ public class PursueState : EnemyStateMachine
 
         enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
 
+        #region Avoid Gates
+        /*Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+        RaycastHit2D[] raycastHit = Physics2D.RaycastAll(transform.position, targetDirection, enemyManager.distanceFromTarget); //Check if there is an obstacle between enemy and destination
+        for (int i = 0; i < raycastHit.Length; i++)
+        {
+            if (raycastHit[i].collider.gameObject.layer == LayerMask.NameToLayer("AggroWall"))
+            {
+                return patrolState;
+            }
+        }*/
+        #endregion
+
         #region Handle State Switching
 
         if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)

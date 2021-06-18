@@ -21,8 +21,9 @@ public class PatrolState : EnemyStateMachine
     public float minIdleTime = 0f;
     public float maxIdleTime = 0f;
 
+    [Header("Debugging")]
     public Vector2 nextDestination;
-    float currentDistanceFromStartPosition;
+
     bool patrolPathfindingInitiated;
     bool isIdling = false;
     Path path;
@@ -33,7 +34,8 @@ public class PatrolState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        if(startPosition.parent == transform)
+        #region Shed Start Position & Waypoints
+        if (startPosition.parent == transform)
         {
             startPosition.parent = null;
             for (int i = 0; i < presetWaypoints.Length; i++)
@@ -41,6 +43,7 @@ public class PatrolState : EnemyStateMachine
                 presetWaypoints[i].parent = null;
             }
         }
+        #endregion
 
         #region Handle Target Detection
 
@@ -79,13 +82,15 @@ public class PatrolState : EnemyStateMachine
 
         #endregion
 
-        if(canPatrol)
+        #region Handle Patrol
+
+        if (canPatrol)
         {
             if (!patrolPathfindingInitiated)
             {
                 if (presetWaypoints.Length == 0)
                 {
-                    StartCoroutine(FindDestination());
+                    StartCoroutine(FindDestination(enemyManager));
                     StartCoroutine(InitiatePatrolPathfinding(enemyManager));
                 }
                 else
@@ -101,11 +106,10 @@ public class PatrolState : EnemyStateMachine
                     if(nextDestination == Vector2.zero)
                     {
                         nextDestination = transform.position;
-                        Debug.Log("You were gonna start on vector zero ://");
                     }
                     if (Vector2.Distance(transform.position, nextDestination) < 7f)
                     {
-                        StartCoroutine(FindDestination());
+                        StartCoroutine(FindDestination(enemyManager));
                     }
 
                     MoveTowardsPatrolPosition(enemyManager, enemyStats);
@@ -114,7 +118,7 @@ public class PatrolState : EnemyStateMachine
             }
 
         }
-
+        #endregion
 
         return this;
 
@@ -142,7 +146,7 @@ public class PatrolState : EnemyStateMachine
 
     private void MoveTowardsPatrolPosition(EnemyManager enemyManager, EnemyStats enemyStats)
     {
-        if (path == null || isIdling)
+        if (isIdling)
             return;
 
         float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
@@ -157,15 +161,8 @@ public class PatrolState : EnemyStateMachine
         enemyManager.rb.AddForce(patrolDirection * (enemyStats.characterData.moveSpeed / 2) * Time.deltaTime); //I'm dividing movespeed here bc i dont think we need a variable for patrolling speed
     }
 
-    public IEnumerator FindDestination()
+    public IEnumerator FindDestination(EnemyManager enemyManager)
     {
-        currentDistanceFromStartPosition = Vector2.Distance(transform.position, startPosition.position);
-
-        if (currentDistanceFromStartPosition > maxDistanceFromStartPosition)
-        {
-            nextDestination = startPosition.position;
-        }
-        else
         {
             bool isLookingForDestination = true;
 
@@ -177,23 +174,19 @@ public class PatrolState : EnemyStateMachine
 
                 Vector2 tryDirection = (tryPosition - transform.position);
 
-                RaycastHit2D circleCastHit = Physics2D.CircleCast(tryPosition, 3f, Vector3.zero); //Check if destination is in an obstacle
-                RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, tryDirection, LayerMask.NameToLayer("Obstacle")); //Check if there is an obstacle between enemy and destination
-             
-                if (circleCastHit.collider.gameObject.layer != LayerMask.NameToLayer("Obstacle")
-                    && raycastHit.collider.gameObject.layer != LayerMask.NameToLayer("Obstacle"))
+                RaycastHit2D circleCastHit = Physics2D.CircleCast(tryPosition, 3f, Vector3.zero, enemyManager.collisionLayers); //Check if destination is in an obstacle
+                RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, tryDirection, enemyManager.collisionLayers); //Check if there is an obstacle between enemy and destination
+
+                if (circleCastHit.collider.gameObject.layer != enemyManager.collisionLayers
+                    && raycastHit.collider.gameObject.layer != enemyManager.collisionLayers)
                 {
                     isLookingForDestination = false;
+                    nextDestination = tryPosition;
                 }
-                else
-                {
-                    Debug.Log("Obstacle in the way: " + raycastHit.collider.gameObject.name);
-                }
-
-                nextDestination = tryPosition;
             }
 
         }
+
         isIdling = true;
         yield return new WaitForSeconds(Random.Range(minIdleTime, maxIdleTime));
         isIdling = false;
@@ -222,11 +215,6 @@ public class PatrolState : EnemyStateMachine
         }
         yield return new WaitForFixedUpdate();
         StartCoroutine(FollowPresetWaypoints(enemyManager, enemyStats));
-    }
-
-    private void OnDrawGizmos()
-    {
-
     }
 
 

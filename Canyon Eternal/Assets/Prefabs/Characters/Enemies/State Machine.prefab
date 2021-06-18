@@ -51,7 +51,10 @@ MonoBehaviour:
   stunnedState: {fileID: 6577152630831515639}
   canPatrol: 1
   presetWaypoints: []
-  maxDistanceFromStartPosition: 20
+  layersToAvoid:
+    serializedVersion: 2
+    m_Bits: 13312
+  maxDistanceFromStartPosition: 15
   minIdleTime: 0
   maxIdleTime: 0
   nextDestination: {x: 0, y: 0}

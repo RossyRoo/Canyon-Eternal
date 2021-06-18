@@ -8,7 +8,7 @@ public class GateController : MonoBehaviour
     public EnemyManager[] encounterEnemies;
     public AudioClip encounterMusic;
 
-    [HideInInspector]
+    //[HideInInspector]
     public List<GameObject> gates;
     PlayerManager playerManager;
     public AudioClip gateSFX;
@@ -21,7 +21,10 @@ public class GateController : MonoBehaviour
 
         for (int i = 0; i < children.Length; i++)
         {
-            gates.Add(children[i].gameObject);
+            if(children[i].gameObject.layer != LayerMask.NameToLayer("AggroWall"))
+            {
+                gates.Add(children[i].gameObject);
+            }
         }
     }
 
