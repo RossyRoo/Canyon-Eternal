@@ -11238,75 +11238,6 @@ Transform:
   m_Father: {fileID: 177906644}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1329607290
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7341693363058858888, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_Name
-      value: Gate Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -42.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -69.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70710695
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341693363058858891, guid: e71ab00264c3e4b66a1ebdf98bb02f1f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90.00001
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e71ab00264c3e4b66a1ebdf98bb02f1f, type: 3}
 --- !u!1001 &1443505183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12280,11 +12211,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4170450973767946576, guid: aa94564c5a3c148f697d3708134a2668,
-        type: 3}
-      propertyPath: collisionLayers.m_Bits
-      value: 271360
-      objectReference: {fileID: 0}
     - target: {fileID: 4170450973767946578, guid: aa94564c5a3c148f697d3708134a2668,
         type: 3}
       propertyPath: m_Name
@@ -12344,11 +12270,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4689796874102800712, guid: aa94564c5a3c148f697d3708134a2668,
-        type: 3}
-      propertyPath: layersToAvoid.m_Bits
-      value: 29696
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa94564c5a3c148f697d3708134a2668, type: 3}
@@ -41428,15 +41349,15 @@ MonoBehaviour:
   pursueState: {fileID: 6229876615915033378}
   deathState: {fileID: 6229876614833828437}
   stunnedState: {fileID: 7451481705981585719}
-  canPatrol: 1
-  presetWaypoints:
-  - {fileID: 4669532228069136539}
-  - {fileID: 605214609161801182}
-  - {fileID: 2096841096}
+  canPatrol: 0
+  canPathfind: 0
+  waypoints: []
+  randomizeWaypointOrder: 0
   maxDistanceFromStartPosition: 15
   minIdleTime: 2
   maxIdleTime: 3
   nextDestination: {x: 0, y: 0}
+  waypointIndex: 0
 --- !u!4 &4669532228069136539
 Transform:
   m_ObjectHideFlags: 0

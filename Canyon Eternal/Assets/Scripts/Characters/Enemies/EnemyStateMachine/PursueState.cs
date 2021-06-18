@@ -7,7 +7,7 @@ public class PursueState : EnemyStateMachine
 {
 
     [Header("STATE TRANSITIONS")]
-    public PatrolState patrolState;
+    public ScoutState scoutState;
     public CombatState combatState;
     public DeathState deathState;
     public StunnedState stunnedState;
@@ -48,7 +48,7 @@ public class PursueState : EnemyStateMachine
         {
             enemyManager.DisengagePlayer();
             enemyManager.currentTarget = null;
-            return patrolState;
+            return scoutState;
         }
 
         if (enemyManager.isDead)

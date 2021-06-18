@@ -42,7 +42,7 @@ public class EnemyManager : CharacterManager
 
         if(currentState == null)
         {
-            currentState = GetComponentInChildren<PatrolState>();
+            currentState = GetComponentInChildren<ScoutState>();
         }
 
     }

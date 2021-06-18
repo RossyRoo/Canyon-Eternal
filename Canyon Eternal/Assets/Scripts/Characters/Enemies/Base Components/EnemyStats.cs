@@ -37,6 +37,8 @@ public class EnemyStats : CharacterStats
         if (enemyManager.isDead || enemyManager.isInvulnerable)
             return;
 
+        enemyManager.currentTarget = FindObjectOfType<PlayerStats>();
+
         EnableInvulnerability(characterData.invulnerabilityFrames);
 
         currentHealth -= damageHealth;
