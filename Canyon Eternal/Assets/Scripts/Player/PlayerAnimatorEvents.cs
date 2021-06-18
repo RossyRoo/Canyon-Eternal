@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimatorEvents : CharacterAnimatorEvents
 {
+    PlayerManager playerManager;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerBlockHandler playerBlockHandler;
     PlayerStats playerStats;
@@ -14,6 +15,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
     private void Awake()
     {
+        playerManager = GetComponentInParent<PlayerManager>();
         playerStats = GetComponentInParent<PlayerStats>();
         playerMeleeHandler = GetComponentInParent<PlayerMeleeHandler>();
         playerBlockHandler = GetComponentInParent<PlayerBlockHandler>();
@@ -89,6 +91,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
     public void DespawnShield()
     {
         playerBlockHandler.shieldModel.SetActive(false);
+        playerManager.isBlocking = false;
     }
 
     #endregion

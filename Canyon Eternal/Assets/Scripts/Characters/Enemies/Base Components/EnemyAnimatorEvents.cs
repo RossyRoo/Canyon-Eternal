@@ -30,6 +30,16 @@ public class EnemyAnimatorEvents : CharacterAnimatorEvents
 
     public void Footstep()
     {
+        //Not doing this
+    }
 
+    public void EnableComboWindow()
+    {
+        //Not doing this
+    }
+
+    public void DisableComboWindow()
+    {
+        //Not doing this
     }
 }

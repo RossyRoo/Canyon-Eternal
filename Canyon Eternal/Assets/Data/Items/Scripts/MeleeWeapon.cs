@@ -12,7 +12,7 @@ public class MeleeWeapon : Weapon
 
     public int comboDamageToAdd;
     [Tooltip("The force used to calculate forward momentum during combo attacks")]
-    [HideInInspector]public float attackMomentum = 1000;
+    public float attackMomentum = 1000;
 
     public GameObject modelPrefab;
 

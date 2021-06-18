@@ -105,8 +105,6 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         yield return new WaitForSeconds(0.01f);
 
-        currentMeleeModel.GetComponentInChildren<Animator>().Play("Spawn");
-
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimation, true);
     }
 

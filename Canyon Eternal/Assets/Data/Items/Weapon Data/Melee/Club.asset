@@ -17,18 +17,24 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 2
-  attackAnimation: Strike
   baseMinDamage: 0
   baseMaxDamage: 0
   currentMinDamage: 0
   currentMaxDamage: 0
   criticalChance: 0
-  comboDamageToAdd: 0
   knockbackForce: 0
-  attackMomentum: 0
+  collisionVFX: {fileID: 3801012901521723010, guid: fb50b77ac2cac46dba4cdeb41515422f,
+    type: 3}
   isThrust: 0
   isSlash: 0
   isStrike: 1
-  modelPrefab: {fileID: 2283583324346277011, guid: 12f11471289584a6da43ad02533c80e4,
+  comboDamageToAdd: 1
+  attackMomentum: 1000
+  modelPrefab: {fileID: 8638964557053719766, guid: d32554c03a7954949b231d4787ee5918,
     type: 3}
-  meleeWeaponSFXBank: {fileID: 11400000, guid: 7ba2eb6736f4c47a682a978c7f0f5054, type: 2}
+  attackAnimation: Strike
+  attackSFX:
+  - {fileID: 8300000, guid: 3b7bc5dfb80d92c478b309fc9c978d16, type: 3}
+  - {fileID: 8300000, guid: 67aa989104d16464298e0b21aab59bd8, type: 3}
+  - {fileID: 8300000, guid: 1699a5a92a1300946bca50dddbb92fb7, type: 3}
+  collideWithEnemySFX: {fileID: 8300000, guid: 37806eef201044d4290c44a17d3d31b5, type: 3}
