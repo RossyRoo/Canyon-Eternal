@@ -14,32 +14,9 @@ public class EnemyAnimatorEvents : CharacterAnimatorEvents
         enemyStats = GetComponentInParent<EnemyStats>();
     }
 
-    #region Melee
-
-    public void OpenDamageCollider()
-    {
-        enemyStats.enemyWeapons[0].EnableDamageCollider();
-    }
-
-    public void CloseDamageCollider()
-    {
-        enemyStats.enemyWeapons[0].DisableDamageCollider();
-    }
-
-    #endregion
-
     public void Footstep()
     {
         //Not doing this
     }
 
-    public void EnableComboWindow()
-    {
-        //Not doing this
-    }
-
-    public void DisableComboWindow()
-    {
-        //Not doing this
-    }
 }

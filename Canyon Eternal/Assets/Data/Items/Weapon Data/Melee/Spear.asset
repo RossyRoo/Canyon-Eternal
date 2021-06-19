@@ -28,11 +28,15 @@ MonoBehaviour:
   isThrust: 1
   isSlash: 0
   isStrike: 0
-  comboDamageToAdd: 1
-  attackMomentum: 1000
+  attackMomentum: 200
+  openDamageColliderBuffer: 0.05
+  closeDamageColliderBuffer: 0.1
   modelPrefab: {fileID: 8638964557053719766, guid: c680c1385ef0c453ab99fab41d178040,
     type: 3}
-  attackAnimation: Thrust
+  attackAnimations:
+  - Thrust_00
+  - Thrust_01
+  - Thrust_02
   attackSFX:
   - {fileID: 8300000, guid: 3b7bc5dfb80d92c478b309fc9c978d16, type: 3}
   - {fileID: 8300000, guid: 1699a5a92a1300946bca50dddbb92fb7, type: 3}

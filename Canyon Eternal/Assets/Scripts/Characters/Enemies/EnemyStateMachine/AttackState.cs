@@ -42,7 +42,7 @@ public class AttackState : EnemyStateMachine
             {
                 if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isInteracting == false)
                 {
-                    PerformAttack(enemyManager, enemyAnimatorHandler, targetDirection);
+                    PerformAttack(enemyManager, enemyStats, enemyAnimatorHandler, targetDirection);
                     return combatState;
                 }
             }
@@ -110,12 +110,12 @@ public class AttackState : EnemyStateMachine
         }
     }
 
-    private void PerformAttack(EnemyManager enemyManager, EnemyAnimatorHandler enemyAnimatorHandler, Vector2 targetDirection)
+    private void PerformAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler, Vector2 targetDirection)
     {
         enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-        enemyManager.isInteracting = true;
-
         enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
+
+        StartCoroutine(enemyStats.HandleAttackDamageColliders(currentAttack));
 
         if (currentAttack.chargeForce != 999f)
         {
@@ -127,6 +127,7 @@ public class AttackState : EnemyStateMachine
         enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
 
         currentAttack = null;
+
     }
 
 } 

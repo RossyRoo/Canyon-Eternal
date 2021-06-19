@@ -1315,11 +1315,11 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   currentHealth: 0
   lunchboxMeter: {fileID: 0}
-  maxStamina: 5
+  maxStamina: 6
   currentStamina: 0
-  staminaRecoverySpeed: 1.75
+  staminaRecoverySpeed: 2
   staminaRecoveryTimer: 0
-  staminaRecoveryBuffer: 0.5
+  staminaRecoveryBuffer: 0.25
   maxLunchBoxCapacity: 5
   currentLunchBoxCapacity: 0
   bossesDefeated: 
@@ -1351,21 +1351,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2135b11cde62a4eb89b6930934d1e76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeMeleeCard: {fileID: 11400000, guid: 4e080a877e8ac49a0bf4e520d04e2e9d, type: 2}
+  activeMeleeCard: {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}
   currentMeleeModel: {fileID: 0}
   thrustTransform: {fileID: 1682047786}
   slashTransform: {fileID: 4970626563322260538}
   strikeTransform: {fileID: 131878944727133007}
   parrentOverride: {fileID: 0}
   meleeDamageCollider: {fileID: 0}
-  comboNumber: 0
-  canContinueCombo: 0
   attackMomentumActivated: 0
-  comboWasHit: 0
-  comboWasMissed: 0
-  comboSFX:
-  - {fileID: 8300000, guid: 8bd108b299c8e7a42adbf774dae5112b, type: 3}
-  - {fileID: 8300000, guid: 71927f57c10e656489aa70e070763a25, type: 3}
 --- !u!114 &4788685616039370079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,7 +1650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8652666736507707591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.82, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 884914677}
@@ -1698,6 +1691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   characterManager: {fileID: 0}
+  torsoSpriteRenderer: {fileID: 3132717889393365865}
 --- !u!114 &2097422277
 MonoBehaviour:
   m_ObjectHideFlags: 0

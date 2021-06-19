@@ -8,6 +8,8 @@ public class CharacterAnimatorHandler : MonoBehaviour
     public Animator animator;
     public CharacterManager characterManager;
 
+    public SpriteRenderer torsoSpriteRenderer;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -33,5 +35,41 @@ public class CharacterAnimatorHandler : MonoBehaviour
         animator.SetInteger("moveX_Int", Mathf.FloorToInt(moveX));
         animator.SetInteger("moveY_Int", Mathf.FloorToInt(moveY));
         animator.SetBool("isMoving", isMoving);
+    }
+
+    public void UpdateSprite(float moveX, float moveY, CharacterData characterData)
+    {
+        if(moveX == 0 && moveY == -1)
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[0];
+        }
+        else if((moveX == -1 && moveY == -1))
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[1];
+        }
+        else if ((moveX == -1 && moveY == 0))
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[2];
+        }
+        else if ((moveX == -1 && moveY == 1))
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[3];
+        }
+        else if ((moveX == 0 && moveY == 1))
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[4];
+        }
+        else if ((moveX == 1 && moveY == 1))
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[5];
+        }
+        else if ((moveX == 1 && moveY == 0))
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[6];
+        }
+        else if ((moveX == 1 && moveY == -1))
+        {
+            torsoSpriteRenderer.sprite = characterData.torsoSprites[7];
+        }
     }
 }

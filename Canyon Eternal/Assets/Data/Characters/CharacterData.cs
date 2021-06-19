@@ -10,6 +10,9 @@ public class CharacterData : ScriptableObject
     public bool isBoss;
     public int enemyID;
 
+    [Header("Sprites")]
+    public Sprite[] torsoSprites;
+
     [Header("BEHAVIORS")]
     public bool canPursue;
     public bool canAttack;

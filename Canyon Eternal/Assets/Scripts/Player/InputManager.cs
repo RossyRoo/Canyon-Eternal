@@ -82,18 +82,11 @@ public class InputManager : MonoBehaviour
     {
         if(melee_Input)
         {
-            if (playerManager.isConversing)
+            if (playerManager.isConversing || playerStats.currentStamina < playerMeleeHandler.activeMeleeCard.staminaCost)
                 return;
 
-            if(playerManager.isAttacking)
-            {
-                playerMeleeHandler.HandleComboAttempt();
-            }
+            StartCoroutine(playerMeleeHandler.HandleMeleeAttack());
 
-            if (playerManager.isInteracting || playerStats.currentStamina < playerMeleeHandler.activeMeleeCard.staminaCost)
-                return;
-
-            StartCoroutine(playerMeleeHandler.BeginNewAttackChain());
         }
     }
 

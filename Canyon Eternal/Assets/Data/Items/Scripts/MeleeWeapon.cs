@@ -10,13 +10,16 @@ public class MeleeWeapon : Weapon
     public bool isSlash;
     public bool isStrike;
 
-    public int comboDamageToAdd;
     [Tooltip("The force used to calculate forward momentum during combo attacks")]
     public float attackMomentum = 1000;
+    [Tooltip("Time between attack start and opening damage collider")]
+    public float openDamageColliderBuffer = 0f;
+    [Tooltip("Time between opening damage collider and closing damage collider")]
+    public float closeDamageColliderBuffer = 0.15f;
 
     public GameObject modelPrefab;
 
-    public string attackAnimation;
+    public string [] attackAnimations;
 
     [Header("SFX")]
     public AudioClip[] attackSFX;

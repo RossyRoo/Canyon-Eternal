@@ -95,5 +95,14 @@ public class EnemyStats : CharacterStats
             enemyWeapons[i].EnableDamageCollider();
         }
     }
+
+    public IEnumerator HandleAttackDamageColliders(EnemyAttackAction enemyAttackAction)
+    {
+        yield return new WaitForSeconds(enemyAttackAction.openDamageColliderBuffer);
+        enemyWeapons[0].EnableDamageCollider();
+
+        yield return new WaitForSeconds(enemyAttackAction.closeDamageColliderBuffer);
+        enemyWeapons[0].DisableDamageCollider();
+    }
     #endregion
 }

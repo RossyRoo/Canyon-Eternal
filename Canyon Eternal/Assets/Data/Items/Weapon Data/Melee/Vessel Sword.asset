@@ -12,23 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94a4eab3bdf84a699f635d07756d828, type: 3}
   m_Name: Vessel Sword
   m_EditorClassIdentifier: 
-  itemName: Spear
-  itemDescription: The simplest of the thrusting weapons.
+  itemName: Vessel Sword
+  itemDescription: A vessel's sword.
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 1
-  attackAnimation: Thrust
   baseMinDamage: 1
   baseMaxDamage: 1
   currentMinDamage: 1
   currentMaxDamage: 1
   criticalChance: 0.1
-  comboDamageToAdd: 1
   knockbackForce: 0
-  attackMomentum: 400
+  collisionVFX: {fileID: 0}
   isThrust: 1
   isSlash: 0
   isStrike: 0
-  modelPrefab: {fileID: 8638964557053719766, guid: c680c1385ef0c453ab99fab41d178040,
+  attackMomentum: 400
+  openDamageColliderBuffer: 0
+  closeDamageColliderBuffer: 0.1
+  modelPrefab: {fileID: 8638964557053719766, guid: 3afea6df9a7654197bb419278028d9d3,
     type: 3}
-  meleeWeaponSFXBank: {fileID: 11400000, guid: 719c6c64bccb449858da048fa313cc9d, type: 2}
+  attackAnimations: []
+  attackSFX: []
+  collideWithEnemySFX: {fileID: 0}

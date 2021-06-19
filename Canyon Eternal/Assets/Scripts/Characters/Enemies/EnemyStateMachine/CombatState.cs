@@ -33,7 +33,7 @@ public class CombatState : EnemyStateMachine
             return pursueTargetState;
         }
 
-        if(enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange)
+        if(enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade)
         {
             //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
             return evadeState;

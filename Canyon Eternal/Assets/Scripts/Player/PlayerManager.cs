@@ -68,10 +68,6 @@ public class PlayerManager : CharacterManager
     {
         isInteracting = animator.GetBool("isInteracting");
         isAttacking = animator.GetBool("isAttacking");
-
-        playerMeleeHandler.comboNumber = animator.GetInteger("comboNumber");
-        playerMeleeHandler.comboWasHit = animator.GetBool("comboWasHit");
-        playerMeleeHandler.comboWasMissed = animator.GetBool("comboWasMissed");
     }
 
     private void ResetInputLate()

@@ -32,7 +32,10 @@ MonoBehaviour:
   attackMomentum: 1000
   modelPrefab: {fileID: 8638964557053719766, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
     type: 3}
-  attackAnimation: Slash
+  attackAnimations:
+  - Slash_00
+  - Slash_01
+  - Slash_02
   attackSFX:
   - {fileID: 8300000, guid: 3b7bc5dfb80d92c478b309fc9c978d16, type: 3}
   - {fileID: 8300000, guid: 67aa989104d16464298e0b21aab59bd8, type: 3}
