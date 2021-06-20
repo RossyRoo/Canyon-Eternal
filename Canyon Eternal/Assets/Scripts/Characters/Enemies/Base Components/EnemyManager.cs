@@ -142,6 +142,8 @@ public class EnemyManager : CharacterManager
             enemyAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, isMoving);
             isMoving = false;
         }
+
+        enemyAnimatorHandler.UpdateSprite(lastMoveDirection.x, lastMoveDirection.y, enemyStats.characterData);
     }
 
     public void EngagePlayer()

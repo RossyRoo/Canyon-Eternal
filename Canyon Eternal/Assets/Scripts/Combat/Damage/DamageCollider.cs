@@ -43,8 +43,6 @@ public class DamageCollider : MonoBehaviour
         if (weaponData != null)
         {
             knockbackForce = weaponData.knockbackForce;
-            weaponData.currentMinDamage = weaponData.baseMinDamage;
-            weaponData.currentMaxDamage = weaponData.baseMaxDamage;
         }
 
         knockbackTime = startKnockbackTime;
@@ -166,12 +164,12 @@ public class DamageCollider : MonoBehaviour
 
             if (randValue < 1 - weaponData.criticalChance)
             {
-                damage = Random.Range(weaponData.currentMinDamage, weaponData.currentMaxDamage);
+                damage = Random.Range(weaponData.minDamage, weaponData.maxDamage);
                 criticalHitActivated = false;
             }
             else
             {
-                damage = weaponData.currentMaxDamage * 2;
+                damage = weaponData.maxDamage * 2;
                 criticalHitActivated = true;
             }
         }

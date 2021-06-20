@@ -156,10 +156,7 @@ public class PlayerStats : CharacterStats
 
     public void DisableInvulnerability()
     {
-        if(!playerManager.isAttacking)
-        {
-            playerManager.isInvulnerable = false;
-        }
+        playerManager.isInvulnerable = false;
     }
 
     #endregion

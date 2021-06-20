@@ -47,6 +47,7 @@ public class PlayerManager : CharacterManager
         CheckForInteractable();
         playerSpellHandler.TickSpellChargeTimer();
         EnemyCheck();
+        playerMeleeHandler.TickAttackCooldown();
     }
 
     private void FixedUpdate()
@@ -180,6 +181,10 @@ public class PlayerManager : CharacterManager
 
     public void EnterConversationState()
     {
+        if(isDashing)
+        {
+            playerLocomotion.StopDash();
+        }
         isConversing = true;
         isInteracting = true;
         playerAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);

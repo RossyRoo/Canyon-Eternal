@@ -17,8 +17,9 @@ public class PlayerMeleeHandler : MonoBehaviour
     public Transform parrentOverride;
     public DamageCollider meleeDamageCollider;
 
-    [Header("Combo Handling")]
-    public bool attackMomentumActivated;
+    [Header("Attack Settings")]
+    public float currentAttackCooldownTime;
+    bool attackMomentumActivated;
 
     private void Awake()
     {
@@ -83,19 +84,22 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public IEnumerator HandleMeleeAttack()
     {
+        currentAttackCooldownTime = activeMeleeCard.attackCooldownTime;
+
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimations[Random.Range(0,activeMeleeCard.attackAnimations.Length)], true);
 
         yield return new WaitForSeconds(activeMeleeCard.openDamageColliderBuffer);
 
         playerStats.LoseStamina(activeMeleeCard.staminaCost);
         meleeDamageCollider.EnableDamageCollider();
-        attackMomentumActivated = true;
         playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
         SFXPlayer.Instance.PlaySFXAudioClip(activeMeleeCard.attackSFX[Random.Range(0, 2)]);
 
         yield return new WaitForSeconds(activeMeleeCard.closeDamageColliderBuffer);
-
         meleeDamageCollider.DisableDamageCollider();
+
+        attackMomentumActivated = true;
+        yield return new WaitForSeconds(0.1f);
         attackMomentumActivated = false;
     }
 
@@ -104,6 +108,14 @@ public class PlayerMeleeHandler : MonoBehaviour
         if (attackMomentumActivated)
         {
             playerManager.rb.AddForce((playerManager.lastMoveDirection * activeMeleeCard.attackMomentum));
+        }
+    }
+
+    public void TickAttackCooldown()
+    {
+        if(currentAttackCooldownTime > 0)
+        {
+            currentAttackCooldownTime -= Time.deltaTime;
         }
     }
 

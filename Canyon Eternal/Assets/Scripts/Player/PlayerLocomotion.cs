@@ -97,7 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
         playerParticleHandler.SpawnBigDustCloudVFX();
     }
 
-    private void StopDash()
+    public void StopDash()
     {
         dashFXTriggered = false;
         playerManager.isDashing = false;

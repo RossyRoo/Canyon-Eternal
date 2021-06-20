@@ -1351,14 +1351,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2135b11cde62a4eb89b6930934d1e76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeMeleeCard: {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}
+  activeMeleeCard: {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
   currentMeleeModel: {fileID: 0}
   thrustTransform: {fileID: 1682047786}
   slashTransform: {fileID: 4970626563322260538}
   strikeTransform: {fileID: 131878944727133007}
   parrentOverride: {fileID: 0}
   meleeDamageCollider: {fileID: 0}
-  attackMomentumActivated: 0
+  currentAttackCooldownTime: 0
 --- !u!114 &4788685616039370079
 MonoBehaviour:
   m_ObjectHideFlags: 0

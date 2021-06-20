@@ -17,10 +17,8 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 1
-  baseMinDamage: 5
-  baseMaxDamage: 8
-  currentMinDamage: 5
-  currentMaxDamage: 8
+  minDamage: 5
+  maxDamage: 7
   criticalChance: 0.1
   knockbackForce: 200
   collisionVFX: {fileID: 3801012901521723010, guid: fb50b77ac2cac46dba4cdeb41515422f,
@@ -28,9 +26,10 @@ MonoBehaviour:
   isThrust: 1
   isSlash: 0
   isStrike: 0
-  attackMomentum: 200
+  attackMomentum: 0
   openDamageColliderBuffer: 0.05
   closeDamageColliderBuffer: 0.1
+  attackCooldownTime: 0.35
   modelPrefab: {fileID: 8638964557053719766, guid: c680c1385ef0c453ab99fab41d178040,
     type: 3}
   attackAnimations:

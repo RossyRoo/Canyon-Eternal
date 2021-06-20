@@ -29,11 +29,6 @@ public class PlayerSpellHandler : MonoBehaviour
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
     }
 
-    private void Start()
-    {
-        activeSpell.currentMinDamage = activeSpell.baseMinDamage;
-        activeSpell.currentMaxDamage = activeSpell.baseMaxDamage;
-    }
 
     public void ChargeSpell()
     {
