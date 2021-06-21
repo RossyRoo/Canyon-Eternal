@@ -116,6 +116,7 @@ public class AttackState : EnemyStateMachine
         enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
 
         StartCoroutine(enemyStats.HandleAttackDamageColliders(currentAttack));
+        StartCoroutine(enemyStats.HandleBlockVulnerability(currentAttack));
 
         if (currentAttack.chargeForce != 999f)
         {

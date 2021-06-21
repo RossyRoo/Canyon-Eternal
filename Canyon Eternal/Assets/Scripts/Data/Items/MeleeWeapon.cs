@@ -25,5 +25,4 @@ public class MeleeWeapon : Weapon
 
     [Header("SFX")]
     public AudioClip[] swingWeaponSFX;
-    //public AudioClip collideWithEnemySFX;
 }

@@ -14,11 +14,11 @@ public class Weapon : Item
     [Range(0,1)]public float criticalChance;
 
     [Tooltip("Force used to knock enemy back upon attacks")]
-    [HideInInspector]public float knockbackForce = 100f;
+    public float knockbackForce = 100f;
 
     public GameObject collisionVFX;
 
-    public AudioClip damageSFX;
+    public AudioClip [] damageSFX;
     public AudioClip criticalDamageSFX;
 
 }

@@ -35,7 +35,7 @@ public class DeathState : EnemyStateMachine
 
         enemyAnimatorHandler.PlayTargetAnimation("Death", true);
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(enemyManager.myWall.gameObject);
         Destroy(enemyManager.gameObject);
     }

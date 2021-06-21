@@ -94,7 +94,7 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         playerStats.LoseStamina(activeMeleeCard.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
-        playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames); //START I-FRAMES
+        //playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames); //START I-FRAMES
         PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
 
         yield return new WaitForSeconds(activeMeleeCard.closeDamageColliderBuffer); 

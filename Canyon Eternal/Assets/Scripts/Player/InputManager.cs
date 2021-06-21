@@ -134,7 +134,7 @@ public class InputManager : MonoBehaviour
     {
         if(block_Input)
         {
-            if (playerStats.currentStamina < 1 || playerManager.isConversing)
+            if (playerStats.currentStamina < 1 || playerManager.isInteracting)
                 return;
 
             StartCoroutine(playerBlockHandler.HandleBlocking());

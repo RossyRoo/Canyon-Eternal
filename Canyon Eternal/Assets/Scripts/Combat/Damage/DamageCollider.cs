@@ -8,6 +8,7 @@ public class DamageCollider : MonoBehaviour
 
     [HideInInspector]public Collider2D damageCollider;
     public Transform collisionTransform;
+    public CharacterManager myCharacterManager;
 
     [Header("Collider Type")]
     public bool dealsConstantDamage;
@@ -74,6 +75,7 @@ public class DamageCollider : MonoBehaviour
 
         if (characterCollision != null)
         {
+            knockbackTarget = characterCollision;
             targetIsWithinRange = true;
             StartCoroutine(DealDamage(collision.gameObject));
         }
@@ -99,7 +101,10 @@ public class DamageCollider : MonoBehaviour
     {
         if (targetIsWithinRange)
         {
-            knockbackTarget = collision.GetComponent<CharacterManager>();
+            if (knockbackTarget.isInvulnerable)
+            {
+                yield break;
+            }
 
             RollForCriticalHit();
 
@@ -120,16 +125,19 @@ public class DamageCollider : MonoBehaviour
                 if (enemyStats != null)
                 {
                     enemyStats.LoseHealth(damage, criticalHitActivated);
-                    SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX);
-                    if(criticalHitActivated)
-                    {
-                        SFXPlayer.Instance.PlaySFXAudioClip(weaponData.criticalDamageSFX);
-                    }
                     knockbackFlag = true;
                 }
             }
 
-            CharacterManager myCharacterManager = GetComponentInParent<CharacterManager>();
+            SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)]);
+
+            if (criticalHitActivated)
+            {
+                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.criticalDamageSFX);
+            }
+
+            myCharacterManager = GetComponentInParent<CharacterManager>();
+
             if(myCharacterManager != null)
             {
                 knockbackDirection = myCharacterManager.lastMoveDirection;
@@ -157,6 +165,11 @@ public class DamageCollider : MonoBehaviour
             {
                 knockbackTime -= Time.deltaTime;
                 knockbackTarget.rb.AddForce(knockbackDirection * knockbackForce);
+
+                if(myCharacterManager.GetComponent<PlayerManager>())
+                {
+                    myCharacterManager.rb.AddForce(-knockbackDirection * knockbackForce * 10);
+                }
             }
         }
     }

@@ -22,14 +22,8 @@ public class PlayerParticleHandler : MonoBehaviour
     public GameObject littleDustVFX;
     public GameObject bigDustVFX;
 
-
     [Header("IMPACT")]
     public GameObject impactVFXPrefab;
-
-    [Header("COMBO STAR")]
-    public GameObject comboStarVFX;
-    public GameObject currentComboStarGO;
-    public Material[] comboStarMats;
 
     [Header("SPELLS")]
     public GameObject currentChargeVFXGO;
@@ -40,31 +34,6 @@ public class PlayerParticleHandler : MonoBehaviour
         playerSpellHandler = GetComponentInParent<PlayerSpellHandler>();
         objectPool = FindObjectOfType<ObjectPool>();
     }
-
-    #region Combo Star
-
-    public void SpawnComboStar()
-    {
-        currentComboStarGO = Instantiate(comboStarVFX, new Vector2
-            (mainTarget.position.x + (playerManager.currentMoveDirection.x * 2), (mainTarget.position.y + 3)), Quaternion.identity);
-
-        currentComboStarGO.transform.parent = gameObject.transform;
-        Destroy(currentComboStarGO, currentComboStarGO.GetComponent<ParticleSystem>().main.duration);
-    }
-
-    public void ChangeComboStarColor(int color)
-    {
-        if (currentComboStarGO != null)
-        {
-            currentComboStarGO.GetComponent<ParticleSystemRenderer>().material = comboStarMats[color];
-        }
-        else
-        {
-            comboStarVFX.GetComponent<ParticleSystemRenderer>().material = comboStarMats[color];
-        }
-    }
-
-    #endregion
 
     #region Dust Clouds
 

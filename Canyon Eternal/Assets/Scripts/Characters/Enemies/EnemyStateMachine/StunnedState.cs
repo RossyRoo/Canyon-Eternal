@@ -5,7 +5,7 @@ using UnityEngine;
 public class StunnedState : EnemyStateMachine
 {
     public DeathState deathState;
-    public CombatState combatState;
+    public PursueState pursueState;
 
     bool runningStunnedCoroutine;
     bool finishedStunnedCoroutine;
@@ -32,9 +32,10 @@ public class StunnedState : EnemyStateMachine
 
             enemyStats.EnableAllDamageColliders();
 
+            enemyAnimatorHandler.PlayTargetAnimation("Idle", false);
             enemyManager.isStunned = false;
 
-            return combatState;
+            return pursueState;
         }
         else
         {
@@ -46,11 +47,11 @@ public class StunnedState : EnemyStateMachine
     {
         runningStunnedCoroutine = true;
 
-        enemyAnimatorHandler.PlayTargetAnimation("Stunned", true);
+        enemyAnimatorHandler.PlayTargetAnimation("Stunned", false);
 
         enemyStats.DisableAllDamageColliders();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         finishedStunnedCoroutine = true;
     }

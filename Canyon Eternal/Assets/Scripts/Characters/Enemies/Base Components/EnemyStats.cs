@@ -95,5 +95,12 @@ public class EnemyStats : CharacterStats
         yield return new WaitForSeconds(enemyAttackAction.closeDamageColliderBuffer);
         enemyWeapons[0].DisableDamageCollider();
     }
+
+    public IEnumerator HandleBlockVulnerability(EnemyAttackAction enemyAttackAction)
+    {
+        enemyManager.isVulnerableToBlock = true;
+        yield return new WaitForSeconds(enemyAttackAction.recoveryTime / 2);
+        enemyManager.isVulnerableToBlock = false;
+    }
     #endregion
 }

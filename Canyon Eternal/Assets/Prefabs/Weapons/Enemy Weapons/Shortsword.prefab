@@ -9947,12 +9947,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
   collisionTransform: {fileID: 6401092052972575656}
+  myCharacterManager: {fileID: 0}
   dealsConstantDamage: 0
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 1
   knockbackTarget: {fileID: 0}
   knockbackDirection: {x: 0, y: 0}
-  knockbackForce: 10
+  knockbackForce: 100
   startKnockbackTime: 0.02
   weaponData: {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}

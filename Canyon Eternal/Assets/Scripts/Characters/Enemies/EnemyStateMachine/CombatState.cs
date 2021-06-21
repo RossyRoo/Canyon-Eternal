@@ -33,10 +33,17 @@ public class CombatState : EnemyStateMachine
             return pursueTargetState;
         }
 
-        if(enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade)
+        if(enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade && !enemyManager.currentTarget.GetComponent<PlayerManager>().isDashing)
         {
-            //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
-            return evadeState;
+            if (Random.value > 0.1) //%50 percent chance they will evade
+            {
+                Debug.Log("Evading");
+                return evadeState;
+            }
+            else
+            {
+                Debug.Log("Staying");
+            }
         }
 
         if (enemyManager.currentRecoveryTime <= 0

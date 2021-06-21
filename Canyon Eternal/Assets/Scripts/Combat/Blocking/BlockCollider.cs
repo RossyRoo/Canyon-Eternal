@@ -28,7 +28,7 @@ public class BlockCollider : MonoBehaviour
             {
                 characterCollision.isStunned = true;
 
-                SFXPlayer.Instance.PlaySFXAudioClip(myCharacter.GetComponent<CharacterStats>().characterData.blockCollision, 0.1f);
+                SFXPlayer.Instance.PlaySFXAudioClip(myCharacter.GetComponent<CharacterStats>().characterData.blockCollision, 0.05f);
             }
         }
     }

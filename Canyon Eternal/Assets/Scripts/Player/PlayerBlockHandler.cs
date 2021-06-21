@@ -24,21 +24,15 @@ public class PlayerBlockHandler : MonoBehaviour
     public IEnumerator HandleBlocking()
     {
         playerManager.isBlocking = true;
+
         playerStats.LoseStamina(1);
+        playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
 
-        if (playerManager.isInteracting)
-        {
-            yield break;
-        }
-        else
-        {
-            playerAnimatorHandler.PlayTargetAnimation("Block", true);
-            SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.blockMissed);
+        playerAnimatorHandler.PlayTargetAnimation("Block", true);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.blockMissed, 0.3f, 0.2f);
 
-            yield return new WaitForSeconds(0.1f);
+        shieldModel.SetActive(true);
 
-            shieldModel.SetActive(true);
-        }
         yield return new WaitForSeconds(blockDuration);
 
         shieldModel.SetActive(false);
