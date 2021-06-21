@@ -47,15 +47,6 @@ public class EnemyStats : CharacterStats
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 
-        if (!isCriticalHit)
-        {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeNormalDamage);
-        }
-        else
-        {
-            SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeCriticalDamage);
-        }
-
         if (currentHealth <= 0)
         {
             enemyManager.isDead = true;

@@ -22,6 +22,8 @@ MonoBehaviour:
   criticalChance: 0.1
   knockbackForce: 0
   collisionVFX: {fileID: 0}
+  damageSFX: {fileID: 8300000, guid: b69196a2d69a20c4e877d092059f7afc, type: 3}
+  criticalDamageSFX: {fileID: 8300000, guid: 75f2d5cc82e52244ea273b7e32259d15, type: 3}
   isThrust: 1
   isSlash: 0
   isStrike: 0
@@ -32,5 +34,6 @@ MonoBehaviour:
   modelPrefab: {fileID: 8638964557053719766, guid: 3afea6df9a7654197bb419278028d9d3,
     type: 3}
   attackAnimations: []
-  attackSFX: []
-  collideWithEnemySFX: {fileID: 0}
+  swingWeaponSFX:
+  - {fileID: 8300000, guid: 1699a5a92a1300946bca50dddbb92fb7, type: 3}
+  - {fileID: 8300000, guid: 3b7bc5dfb80d92c478b309fc9c978d16, type: 3}

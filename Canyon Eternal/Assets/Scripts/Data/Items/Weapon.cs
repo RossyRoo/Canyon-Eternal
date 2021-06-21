@@ -18,4 +18,7 @@ public class Weapon : Item
 
     public GameObject collisionVFX;
 
+    public AudioClip damageSFX;
+    public AudioClip criticalDamageSFX;
+
 }

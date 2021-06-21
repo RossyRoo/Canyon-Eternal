@@ -10,14 +10,16 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     [Header("Weapon Loading")]
     public MeleeWeapon activeMeleeCard;
+    [HideInInspector]
     public GameObject currentMeleeModel;
     public Transform thrustTransform;
     public Transform slashTransform;
     public Transform strikeTransform;
-    public Transform parrentOverride;
-    public DamageCollider meleeDamageCollider;
+    Transform parentOverride;
+    DamageCollider meleeDamageCollider;
+    public GameObject meleeMotionVFX;
 
-    [Header("Attack Settings")]
+    [HideInInspector]
     public float currentAttackCooldownTime;
     bool attackMomentumActivated;
 
@@ -36,15 +38,15 @@ public class PlayerMeleeHandler : MonoBehaviour
     {
         if (activeMeleeCard.isThrust)
         {
-            parrentOverride = thrustTransform;
+            parentOverride = thrustTransform;
         }
         else if (activeMeleeCard.isSlash)
         {
-            parrentOverride = slashTransform;
+            parentOverride = slashTransform;
         }
         else if (activeMeleeCard.isStrike)
         {
-            parrentOverride = strikeTransform;
+            parentOverride = strikeTransform;
         }
     }
 
@@ -65,9 +67,9 @@ public class PlayerMeleeHandler : MonoBehaviour
         GameObject meleeModelPrefab = Instantiate(activeMeleeCard.modelPrefab) as GameObject;
         if (meleeModelPrefab != null)
         {
-            if (parrentOverride != null)
+            if (parentOverride != null)
             {
-                meleeModelPrefab.transform.parent = parrentOverride;
+                meleeModelPrefab.transform.parent = parentOverride;
             }
             else
             {
@@ -84,23 +86,23 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public IEnumerator HandleMeleeAttack()
     {
-        currentAttackCooldownTime = activeMeleeCard.attackCooldownTime;
+        currentAttackCooldownTime = activeMeleeCard.attackCooldownTime; //START COOLDOWN TIMER
 
-        playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimations[Random.Range(0,activeMeleeCard.attackAnimations.Length)], true);
+        playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimations[Random.Range(0,activeMeleeCard.attackAnimations.Length)], true); //PLAY ATTACK ANIMATION
 
         yield return new WaitForSeconds(activeMeleeCard.openDamageColliderBuffer);
 
-        playerStats.LoseStamina(activeMeleeCard.staminaCost);
-        meleeDamageCollider.EnableDamageCollider();
-        playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeMeleeCard.attackSFX[Random.Range(0, 2)]);
+        playerStats.LoseStamina(activeMeleeCard.staminaCost); //DRAIN STAMINA
+        meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
+        playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames); //START I-FRAMES
+        PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
 
-        yield return new WaitForSeconds(activeMeleeCard.closeDamageColliderBuffer);
-        meleeDamageCollider.DisableDamageCollider();
+        yield return new WaitForSeconds(activeMeleeCard.closeDamageColliderBuffer); 
+        meleeDamageCollider.DisableDamageCollider(); //DISABLE DAMAGE COLLIDER
 
-        attackMomentumActivated = true;
+        attackMomentumActivated = true; //ENABLE ATTACK MOMENTUM
         yield return new WaitForSeconds(0.1f);
-        attackMomentumActivated = false;
+        attackMomentumActivated = false; //DISABLE ATTACK MOMENTUM
     }
 
     public void AdjustAttackMomentum()
@@ -109,6 +111,43 @@ public class PlayerMeleeHandler : MonoBehaviour
         {
             playerManager.rb.AddForce((playerManager.lastMoveDirection * activeMeleeCard.attackMomentum));
         }
+    }
+
+    private void PlayMeleeVFX()
+    {
+        SFXPlayer.Instance.PlaySFXAudioClip(activeMeleeCard.swingWeaponSFX[Random.Range(0, 2)]);
+
+        Vector3 currentEulerAngles = Vector3.zero;
+        Vector3 currentPosition = transform.position;
+
+        #region Get Rotation of Motion VFX
+        if (playerManager.lastMoveDirection == new Vector2(0,1))
+        {
+            currentEulerAngles = new Vector3(0, 0, 0);
+            currentPosition = transform.position + new Vector3(0, 4, 0);
+        }
+        else if(playerManager.lastMoveDirection == new Vector2(0, -1))
+        {
+            currentEulerAngles = new Vector3(0, 0, 180);
+            currentPosition = transform.position + new Vector3(0, -4, 0);
+        }
+        else if (playerManager.lastMoveDirection == new Vector2(-1, 0))
+        {
+            currentEulerAngles = new Vector3(0, 0, 90);
+            currentPosition = transform.position + new Vector3(-4, 0, 0);
+        }
+        else if (playerManager.lastMoveDirection == new Vector2(1, 0))
+        {
+            currentEulerAngles = new Vector3(0, 0, -90);
+            currentPosition = transform.position + new Vector3(4, 0, 0);
+        }
+
+        #endregion
+
+        GameObject meleeMotionVFXGO = Instantiate(meleeMotionVFX, currentPosition, Quaternion.Euler(currentEulerAngles));
+        meleeMotionVFXGO.transform.parent = transform;
+        meleeMotionVFXGO.GetComponentInChildren<Animator>().Play(activeMeleeCard.attackAnimations[0]);
+        Destroy(meleeMotionVFXGO, 1f);
     }
 
     public void TickAttackCooldown()

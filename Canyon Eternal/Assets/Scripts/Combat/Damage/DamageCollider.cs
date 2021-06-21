@@ -120,6 +120,11 @@ public class DamageCollider : MonoBehaviour
                 if (enemyStats != null)
                 {
                     enemyStats.LoseHealth(damage, criticalHitActivated);
+                    SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX);
+                    if(criticalHitActivated)
+                    {
+                        SFXPlayer.Instance.PlaySFXAudioClip(weaponData.criticalDamageSFX);
+                    }
                     knockbackFlag = true;
                 }
             }

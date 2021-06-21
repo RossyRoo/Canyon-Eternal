@@ -24,6 +24,6 @@ public class MeleeWeapon : Weapon
     public string [] attackAnimations;
 
     [Header("SFX")]
-    public AudioClip[] attackSFX;
-    public AudioClip collideWithEnemySFX;
+    public AudioClip[] swingWeaponSFX;
+    //public AudioClip collideWithEnemySFX;
 }
