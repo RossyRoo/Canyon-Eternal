@@ -10720,18 +10720,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 720732912}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &725552469 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7630036917094497178, guid: c2dad1bee05724b268c0c22616a6c40a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1501304287799033183}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &779532707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 100472742, guid: c2dad1bee05724b268c0c22616a6c40a,
@@ -10973,17 +10961,22 @@ PrefabInstance:
     - target: {fileID: 8802697293781870820, guid: f384ac28be7734ba49b59610888313eb,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8802697294152708849, guid: f384ac28be7734ba49b59610888313eb,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9140689240719447587, guid: f384ac28be7734ba49b59610888313eb,
         type: 3}
       propertyPath: m_Name
       value: Sword Vessel
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140689240719447587, guid: f384ac28be7734ba49b59610888313eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9140689240719447597, guid: f384ac28be7734ba49b59610888313eb,
         type: 3}
@@ -12296,21 +12289,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1164396354, guid: aa94564c5a3c148f697d3708134a2668, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1796070743, guid: aa94564c5a3c148f697d3708134a2668, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4170450973767946578, guid: aa94564c5a3c148f697d3708134a2668,
         type: 3}
       propertyPath: m_Name
       value: Slime Vessel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4170450973767946578, guid: aa94564c5a3c148f697d3708134a2668,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4170450973767946588, guid: aa94564c5a3c148f697d3708134a2668,
         type: 3}
@@ -12743,75 +12731,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!1001 &1836591840
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6931023496687219093, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638964557053719766, guid: 7f10f7af3bfe74c0bb2449435ad36d1a,
-        type: 3}
-      propertyPath: m_Name
-      value: Shortsword
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7f10f7af3bfe74c0bb2449435ad36d1a, type: 3}
 --- !u!1001 &1838556521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40708,11 +40627,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3637084588546264581, guid: c2dad1bee05724b268c0c22616a6c40a,
-        type: 3}
-      propertyPath: activeCM
-      value: 
-      objectReference: {fileID: 725552469}
     - target: {fileID: 4192531000350228989, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_AnchorMin.y

@@ -8,7 +8,8 @@ public class PursueState : EnemyStateMachine
 
     [Header("STATE TRANSITIONS")]
     public ScoutState scoutState;
-    public CombatState combatState;
+    public AttackState attackState;
+    public EvadeState evadeState;
     public DeathState deathState;
     public StunnedState stunnedState;
 
@@ -30,19 +31,24 @@ public class PursueState : EnemyStateMachine
 
         enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
 
-        #region Avoid Gates
-        /*Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
-        RaycastHit2D[] raycastHit = Physics2D.RaycastAll(transform.position, targetDirection, enemyManager.distanceFromTarget); //Check if there is an obstacle between enemy and destination
-        for (int i = 0; i < raycastHit.Length; i++)
-        {
-            if (raycastHit[i].collider.gameObject.layer == LayerMask.NameToLayer("AggroWall"))
-            {
-                return patrolState;
-            }
-        }*/
-        #endregion
-
         #region Handle State Switching
+
+        if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade && !enemyManager.currentTarget.GetComponent<PlayerManager>().isDashing)
+        {
+            if (Random.value < 0.05f) //percent chance they will evade
+            {
+                return evadeState;
+            }
+
+        }
+
+        if (enemyManager.currentRecoveryTime <= 0
+            && enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange
+            && enemyStats.characterData.canAttack
+            && !enemyManager.isInteracting)
+        {
+            return attackState;
+        }
 
         if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)
         {
@@ -61,15 +67,8 @@ public class PursueState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange)
-        {
-            enemyManager.isMoving = false;
-            return combatState;
-        }
-        else
-        {
-            return this;
-        }
+        return this;
+
         #endregion
 
     }

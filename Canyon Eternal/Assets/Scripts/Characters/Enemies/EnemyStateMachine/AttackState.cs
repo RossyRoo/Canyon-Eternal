@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class AttackState : EnemyStateMachine
 {
-    [Header("STATE TRANSITIONS")]
-    public CombatState combatState;
     public PursueState pursueState;
-    public DeathState deathState;
-    public StunnedState stunnedState;
-    public EvadeState evadeState;
 
     public EnemyAttackAction currentAttack;
 
@@ -18,55 +13,15 @@ public class AttackState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
-        enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
-
-        if (enemyManager.isInteracting)
-            return combatState;
-
-        if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange
-            && enemyStats.characterData.canEvade)
-        {
-            //WE ONLY WANT TO GO TO THIS IF THE PLAYER IS TOO CLOSE FOR TOO LONG
-            return evadeState;
-        }
+        GetNewAttack(enemyManager, enemyStats);
 
         if (currentAttack != null)
         {
-            if (enemyManager.distanceFromTarget < currentAttack.spaceNeededToStartAttack
-                || enemyManager.distanceFromTarget > currentAttack.shortestDistanceNeededToAttack)
-            {
-                return combatState;
-            }
-            else if (enemyManager.distanceFromTarget < currentAttack.shortestDistanceNeededToAttack)
-            {
-                if (enemyManager.currentRecoveryTime <= 0 && enemyManager.isInteracting == false)
-                {
-                    PerformAttack(enemyManager, enemyStats, enemyAnimatorHandler, targetDirection);
-                    return combatState;
-                }
-            }
-        }
-        else
-        {
-            GetNewAttack(enemyManager, enemyStats);
+            PerformAttack(enemyManager, enemyStats, enemyAnimatorHandler);
+            return pursueState;
         }
 
-        #region Handle State Switching
-
-        if (enemyManager.isDead)
-        {
-            return deathState;
-        }
-
-        if (enemyManager.isStunned)
-        {
-            return stunnedState;
-        }
-
-        return combatState;
-
-        #endregion
+        return pursueState;
 
     }
 
@@ -78,12 +33,10 @@ public class AttackState : EnemyStateMachine
 
         for (int i = 0; i < enemyStats.characterData.enemyAttacks.Length; i++)
         {
-            EnemyAttackAction enemyAttackAction = enemyStats.characterData.enemyAttacks[i];
-
-            if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
-                && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)
+            if (distanceFromTarget <= enemyStats.characterData.enemyAttacks[i].shortestDistanceNeededToAttack
+                && distanceFromTarget >= enemyStats.characterData.enemyAttacks[i].spaceNeededToStartAttack)
             {
-                maxScore += enemyAttackAction.attackScore;
+                maxScore += enemyStats.characterData.enemyAttacks[i].attackScore;
             }
         }
 
@@ -108,26 +61,34 @@ public class AttackState : EnemyStateMachine
                 }
             }
         }
+
     }
 
-    private void PerformAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler, Vector2 targetDirection)
+    private void PerformAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-        enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
-
-        StartCoroutine(enemyStats.HandleAttackDamageColliders(currentAttack));
-        StartCoroutine(enemyStats.HandleBlockVulnerability(currentAttack));
-
-        if (currentAttack.chargeForce != 999f)
+        if(currentAttack != null)
         {
-            //APPLY ACCELERATION
-            Vector2 force = (targetDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
-            enemyManager.rb.AddForce(force);
+            Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+
+            enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
+            enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
+
+            StartCoroutine(enemyStats.HandleAttackDamageColliders(currentAttack));
+            StartCoroutine(enemyStats.HandleBlockVulnerability(currentAttack));
+
+            if (currentAttack.chargeForce != 999f)
+            {
+                Vector2 force = (targetDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
+                enemyManager.rb.AddForce(force);
+            }
+
+            enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+            currentAttack = null;
         }
-
-        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
-
-        currentAttack = null;
+        else
+        {
+            Debug.Log("Tried to attack but didnt have one set");
+        }
 
     }
 

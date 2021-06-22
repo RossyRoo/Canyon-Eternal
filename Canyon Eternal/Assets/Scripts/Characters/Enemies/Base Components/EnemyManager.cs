@@ -52,7 +52,7 @@ public class EnemyManager : CharacterManager
         HandleRecoveryTimer();
         HandleStateMachine();
 
-        enemyAnimatorHandler.animator.SetBool("isInteracting", isInteracting);
+        isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
     }
 
     private void FixedUpdate()

@@ -85,6 +85,7 @@ public class PlayerManager : CharacterManager
     public IEnumerator HandleDeathCoroutine(string deathAnimation = "Death")
     {
         isDead = true;
+        playerStats.playerDeathCount++;
         playerAnimatorHandler.PlayTargetAnimation(deathAnimation, true);
         yield return new WaitForSeconds(1f);
         //Drop fragments

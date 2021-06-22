@@ -127,14 +127,20 @@ public class DamageCollider : MonoBehaviour
                     enemyStats.LoseHealth(damage, criticalHitActivated);
                     knockbackFlag = true;
                 }
+
+                CinemachineManager.Instance.Shake(7f, 0.25f);
             }
 
-            SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)]);
-
-            if (criticalHitActivated)
+            if (weaponData != null)
             {
-                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.criticalDamageSFX);
+                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)]);
+
+                if (criticalHitActivated)
+                {
+                    SFXPlayer.Instance.PlaySFXAudioClip(weaponData.criticalDamageSFX);
+                }
             }
+
 
             myCharacterManager = GetComponentInParent<CharacterManager>();
 

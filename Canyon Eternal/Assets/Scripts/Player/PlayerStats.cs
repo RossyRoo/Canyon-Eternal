@@ -26,7 +26,8 @@ public class PlayerStats : CharacterStats
 
     [Header("Completion")]
     public List <int> bossesDefeated;
-
+    public int playerDeathCount;
+    
 
     private void Awake()
     {

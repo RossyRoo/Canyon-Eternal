@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathState: {fileID: 7663633015214005397}
-  pursueState: {fileID: 0}
+  pursueState: {fileID: 7663633016329567714}
 --- !u!1 &7397301633996004893
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,11 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c2e39776151449d8ade1b424108940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatState: {fileID: 7663633014799498529}
   pursueState: {fileID: 7663633016329567714}
-  deathState: {fileID: 7663633015214005397}
-  stunnedState: {fileID: 6577152630831515639}
-  evadeState: {fileID: 4038453876720225340}
   currentAttack: {fileID: 0}
 --- !u!1 &7663633015135824942
 GameObject:
@@ -643,7 +639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoutState: {fileID: 282893125297895481}
-  combatState: {fileID: 7663633014799498529}
+  attackState: {fileID: 7663633014835633920}
+  evadeState: {fileID: 4038453876720225340}
   deathState: {fileID: 7663633015214005397}
   stunnedState: {fileID: 6577152630831515639}
   nextWaypointDistance: 3

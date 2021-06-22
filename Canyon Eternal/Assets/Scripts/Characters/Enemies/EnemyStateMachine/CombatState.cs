@@ -27,6 +27,14 @@ public class CombatState : EnemyStateMachine
             return stunnedState;
         }
 
+        if (enemyManager.currentRecoveryTime <= 0
+            && enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange
+            && enemyStats.characterData.canAttack
+            && !enemyManager.isInteracting)
+        {
+            return attackState;
+        }
+
         if (enemyManager.distanceFromTarget > enemyStats.characterData.attackRange
             && enemyStats.characterData.canPursue)
         {
@@ -37,20 +45,8 @@ public class CombatState : EnemyStateMachine
         {
             if (Random.value > 0.1) //percent chance they will evade
             {
-                Debug.Log("Evading");
                 return evadeState;
             }
-            else
-            {
-                Debug.Log("Staying");
-            }
-        }
-
-        if (enemyManager.currentRecoveryTime <= 0
-            && enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange
-            && enemyStats.characterData.canAttack)
-        {
-            return attackState;
         }
 
         return this;
