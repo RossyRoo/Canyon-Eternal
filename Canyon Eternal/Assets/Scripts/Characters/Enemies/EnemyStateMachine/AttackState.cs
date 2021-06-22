@@ -6,7 +6,7 @@ public class AttackState : EnemyStateMachine
 {
     public PursueState pursueState;
 
-    public EnemyAttackAction currentAttack;
+    EnemyAttackAction currentAttack;
 
     [Tooltip("Use this until you add acceleration and deceleration to attacks")]
     private float chargeForceMultiplier = 5000f;

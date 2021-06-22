@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EvadeState : EnemyStateMachine
 {
-    public CombatState combatState;
+    public PursueState pursueState;
 
     float safeDistanceBuffer = 2f;
     float evadeRecoveryTime = 0.5f;
@@ -37,7 +37,7 @@ public class EvadeState : EnemyStateMachine
         {
             evadeRecoveryTime = evadeRecoveryStartTime;
             reachedEvadeDistance = false;
-            return combatState;
+            return pursueState;
         }
 
 

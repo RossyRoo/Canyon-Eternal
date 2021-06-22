@@ -108,13 +108,12 @@ public class PlayerStats : CharacterStats
 
         TimeStop timeStop = FindObjectOfType<TimeStop>();
 
-
         EnableInvulnerability(characterData.invulnerabilityFrames);
         currentHealth -= damageHealth;
         heartMeter.SetCurrentHealth(currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
-        //SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeNormalDamage);
+        SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeNormalDamage);
 
         playerParticleHandler.SpawnImpactVFX();
         timeStop.StopTime(0.005f, 10, 0.1f);

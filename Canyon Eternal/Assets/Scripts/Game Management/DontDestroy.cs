@@ -10,6 +10,7 @@ public class DontDestroy : MonoBehaviour
     CinemachineManager cinemachineManager;
     SceneChangeManager sceneChangeManager;
     ScreenFader screenFader;
+    ObjectPool objectPool;
 
     public bool isPersistent;
 
@@ -35,6 +36,7 @@ public class DontDestroy : MonoBehaviour
             sceneChangeManager = dontDestroyDuplicate.GetComponentInChildren<SceneChangeManager>();
             cinemachineManager = dontDestroyDuplicate.GetComponentInChildren<CinemachineManager>();
             screenFader = dontDestroyDuplicate.GetComponentInChildren<ScreenFader>();
+            objectPool = dontDestroyDuplicate.GetComponentInChildren<ObjectPool>();
 
             sceneChangeManager.FindCurrentRoom(dontDestroyDuplicate.sceneChangeManager);
 
@@ -64,5 +66,6 @@ public class DontDestroy : MonoBehaviour
         musicPlayer.OnLoadScene(sceneChangeManager.currentRoom);
         sFXPlayer.OnLoadScene();
         screenFader.OnLoadScene();
+        objectPool.OnLoadScene();
     }
 }

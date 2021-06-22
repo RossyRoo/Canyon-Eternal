@@ -39,10 +39,10 @@ public class ScoutState : EnemyStateMachine
         #region Shed Start Position & Waypoints
         if (startPosition.parent == transform)
         {
-            startPosition.parent = null;
+            FindObjectOfType<ObjectPool>().AddToObjectPool(startPosition.gameObject, false);
             for (int i = 0; i < waypoints.Length; i++)
             {
-                waypoints[i].parent = null;
+                FindObjectOfType<ObjectPool>().AddToObjectPool(waypoints[i].gameObject, false);
             }
         }
         #endregion
