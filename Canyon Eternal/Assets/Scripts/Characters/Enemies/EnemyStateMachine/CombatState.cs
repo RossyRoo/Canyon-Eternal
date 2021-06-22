@@ -35,7 +35,7 @@ public class CombatState : EnemyStateMachine
 
         if(enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade && !enemyManager.currentTarget.GetComponent<PlayerManager>().isDashing)
         {
-            if (Random.value > 0.1) //%50 percent chance they will evade
+            if (Random.value > 0.1) //percent chance they will evade
             {
                 Debug.Log("Evading");
                 return evadeState;
