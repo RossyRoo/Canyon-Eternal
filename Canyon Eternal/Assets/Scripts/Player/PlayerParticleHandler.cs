@@ -58,7 +58,7 @@ public class PlayerParticleHandler : MonoBehaviour
     {
         PlayerStats playerStats = GetComponentInParent<PlayerStats>();
 
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.consumeHealItem[playerStats.currentLunchBoxCapacity - 1]);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.consumeHealItemSFX[playerStats.currentLunchBoxCapacity - 1]);
 
         GameObject healVFXGO = Instantiate(healVFX, mainTarget.position, Quaternion.identity);
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = healMats[playerStats.currentLunchBoxCapacity - 1];

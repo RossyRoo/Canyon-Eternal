@@ -6,6 +6,7 @@ public class BlockCollider : MonoBehaviour
 {
     public CharacterManager myCharacter;
     Collider2D blockCollider;
+    public AudioClip blockCollisionSFX;
 
     public bool targetIsWithinRange;
 
@@ -28,7 +29,7 @@ public class BlockCollider : MonoBehaviour
             {
                 characterCollision.isStunned = true;
 
-                SFXPlayer.Instance.PlaySFXAudioClip(myCharacter.GetComponent<CharacterStats>().characterData.blockCollision, 0.05f);
+                SFXPlayer.Instance.PlaySFXAudioClip(blockCollisionSFX, 0.05f);
             }
         }
     }

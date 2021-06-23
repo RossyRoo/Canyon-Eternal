@@ -10,7 +10,11 @@ public class PlayerLocomotion : MonoBehaviour
     PlayerManager playerManager;
     PlayerParticleHandler playerParticleHandler;
 
+    public AudioClip fallingSFX;
+    public AudioClip hardCollisionSFX;
+
     [Header("Dash Settings")]
+    public AudioClip dashSFX;
     public float dashSpeed;
     public float dashTime;
     public float startDashTime;
@@ -93,7 +97,7 @@ public class PlayerLocomotion : MonoBehaviour
         playerStats.LoseStamina(1);
         playerStats.EnableInvulnerability(startDashTime);
 
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.dash);
+        SFXPlayer.Instance.PlaySFXAudioClip(dashSFX);
         playerParticleHandler.SpawnBigDustCloudVFX();
     }
 
@@ -122,7 +126,7 @@ public class PlayerLocomotion : MonoBehaviour
             if (playerManager.isDashing)
             {
                 dashTime = 0;
-                SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.hardCollision, 0.4f);
+                SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.hardCollisionSFX, 0.4f);
                 CinemachineManager.Instance.Shake(12, 0.35f);
             }
         }
@@ -150,7 +154,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         CinemachineManager.Instance.LosePlayer();
 
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.falling, 0.5f);
+        SFXPlayer.Instance.PlaySFXAudioClip(fallingSFX, 0.5f);
         playerParticleHandler.SpawnBigDustCloudVFX();
 
         StartCoroutine(playerManager.HandleDeathCoroutine("Fall"));

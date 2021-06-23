@@ -51,7 +51,7 @@ public class EnemyStats : CharacterStats
         {
             enemyManager.isDead = true;
             currentHealth = 0;
-            SFXPlayer.Instance.PlaySFXAudioClip(characterData.deathRattle);
+            SFXPlayer.Instance.PlaySFXAudioClip(characterData.deathRattleSFX);
         }
 
     }

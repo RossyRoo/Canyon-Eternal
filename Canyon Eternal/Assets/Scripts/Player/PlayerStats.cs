@@ -13,6 +13,9 @@ public class PlayerStats : CharacterStats
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
+    [Header("Damage SFX")]
+    public AudioClip playerDamageSFX;
+
     [Header("Stamina")]
     public float maxStamina;
     public float currentStamina;
@@ -113,7 +116,7 @@ public class PlayerStats : CharacterStats
         heartMeter.SetCurrentHealth(currentHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
-        SFXPlayer.Instance.PlaySFXAudioClip(characterData.takeNormalDamage);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerDamageSFX);
 
         playerParticleHandler.SpawnImpactVFX();
         timeStop.StopTime(0.005f, 10, 0.1f);

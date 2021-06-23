@@ -12,9 +12,14 @@ public class ProjectilePhysics : MonoBehaviour
     public bool isFired;
     public float speed;
     public Vector2 direction;
+    bool isEnemyProjectile;
 
     private void Awake()
     {
+        if(GetComponentInParent<EnemyManager>())
+        {
+            isEnemyProjectile = true;
+        }
         damageCollider = GetComponent<DamageCollider>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -36,26 +41,29 @@ public class ProjectilePhysics : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isFired)
+        if(isEnemyProjectile && collision.GetComponent<EnemyManager>())
         {
-            CharacterManager characterManager = collision.GetComponent<CharacterManager>();
-
-            if (characterManager != null)
+            return;
+        }
+        else if(!isEnemyProjectile && collision.GetComponent<PlayerManager>())
+        {
+            return;
+        }
+        else
+        {
+            if (isFired)
             {
-                if(characterManager.isInvulnerable)
+                isFired = false;
+                if (projectileData.explosionRadius != 0)
                 {
-                    return;
+                    GetComponent<CircleCollider2D>().radius = projectileData.explosionRadius;
                 }
+
+                SpawnCollisionVFX();
+                SFXPlayer.Instance.PlaySFXAudioClip(projectileData.collisionSFX);
+
+                Destroy(gameObject);
             }
-
-            if (projectileData.explostionRadius != 0)
-            {
-                GetComponent<CircleCollider2D>().radius = projectileData.explostionRadius;
-            }
-
-            SpawnCollisionVFX();
-
-            Destroy(gameObject, 0.05f);
         }
     }
 

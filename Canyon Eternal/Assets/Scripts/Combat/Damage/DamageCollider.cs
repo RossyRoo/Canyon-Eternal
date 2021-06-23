@@ -73,6 +73,8 @@ public class DamageCollider : MonoBehaviour
     {
         CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
 
+        Debug.Log("Colliding");
+
         if (characterCollision != null)
         {
             knockbackTarget = characterCollision;
@@ -131,7 +133,7 @@ public class DamageCollider : MonoBehaviour
                 CinemachineManager.Instance.Shake(7f, 0.25f);
             }
 
-            if (weaponData != null)
+            if (weaponData.criticalDamageSFX != null)
             {
                 SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)]);
 

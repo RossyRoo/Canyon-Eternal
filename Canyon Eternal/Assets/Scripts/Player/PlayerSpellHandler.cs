@@ -12,13 +12,18 @@ public class PlayerSpellHandler : MonoBehaviour
 
     public Spell activeSpell;
 
-    [Header("Charging")]
-    public float currentSpellChargeTime;
-
-    [Header("Projectiles")]
-    public GameObject projectilePointerVFXPrefab;
+    float currentSpellChargeTime;
     GameObject projectilePointerVFXGO;
-    [HideInInspector]public GameObject currentSpellGO;
+    [HideInInspector] public GameObject currentSpellGO;
+
+    [Header("Parameters")]
+    public GameObject projectilePointerVFXPrefab;
+
+    [Header("Spell Casting SFX")]
+    public AudioClip cancelSpellSFX;
+    public AudioClip chargeSpellSFX;
+    public AudioClip chargeSpellCompleteSFX;
+
 
     private void Awake()
     {
@@ -38,10 +43,9 @@ public class PlayerSpellHandler : MonoBehaviour
         playerAnimatorHandler.animator.SetBool("isMoving", false);
         playerMeleeHandler.currentMeleeModel.SetActive(false);
 
-        playerAnimatorHandler.PlayTargetAnimation(activeSpell.chargeAnimation, true);
+        playerAnimatorHandler.PlayTargetAnimation("Charge", true);
         playerParticleHandler.SpawnChargeVFX(activeSpell.chargeVFX);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.chargeSFX, 0.05f);
-
+        SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellSFX, 0.05f);
 
         currentSpellChargeTime = activeSpell.chargeTime;
         playerManager.isChargingSpell = true;
@@ -49,9 +53,9 @@ public class PlayerSpellHandler : MonoBehaviour
 
     public void CancelSpell()
     {
-        playerAnimatorHandler.PlayTargetAnimation(activeSpell.cancelAnimation, false);
+        playerAnimatorHandler.PlayTargetAnimation("Cancel", false);
         Destroy(playerParticleHandler.currentChargeVFXGO);
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.cancelSpell, 0.1f);
+        SFXPlayer.Instance.PlaySFXAudioClip(cancelSpellSFX, 0.1f);
 
         playerManager.isChargingSpell = false;
         playerMeleeHandler.currentMeleeModel.SetActive(true);
@@ -78,10 +82,10 @@ public class PlayerSpellHandler : MonoBehaviour
 
         playerStats.LoseStamina(activeSpell.staminaCost);
 
-        playerAnimatorHandler.PlayTargetAnimation(activeSpell.chargeCompleteAnimation, true);
+        playerAnimatorHandler.PlayTargetAnimation("ChargeComplete", true);
         playerParticleHandler.SpawnChargeCompleteVFX(activeSpell.chargeCompleteVFX);
         Destroy(playerParticleHandler.currentChargeVFXGO);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.chargeCompleteSFX);
+        SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellCompleteSFX);
 
         if (activeSpell.isProjectile)
         {
@@ -90,6 +94,10 @@ public class PlayerSpellHandler : MonoBehaviour
             projectilePointerVFXGO = Instantiate(projectilePointerVFXPrefab, transform.position, Quaternion.identity);
             projectilePointerVFXGO.transform.parent = transform;
             StartCoroutine(RotatePointer());
+        }
+        else
+        {
+            HandleAllSpellCasting();
         }
     }
 
@@ -153,9 +161,18 @@ public class PlayerSpellHandler : MonoBehaviour
             {
                 CastProjectile();
             }
+            else if(activeSpell.isAOE)
+            {
+                CastAOE();
+            }
+            else
+            {
+                CastBuff();
+            }
 
-            playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
             playerManager.isCastingSpell = false;
+            playerAnimatorHandler.PlayTargetAnimation("Cast", false);
+            SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.launchSFX);
             playerMeleeHandler.currentMeleeModel.SetActive(true);
         }
 
@@ -164,11 +181,22 @@ public class PlayerSpellHandler : MonoBehaviour
     private void CastProjectile()
     {
         Destroy(projectilePointerVFXGO);
-
-        playerAnimatorHandler.PlayTargetAnimation(activeSpell.castAnimation, false);
-        SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.launchSFX);
-
         currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
     }
 
+    private void CastAOE()
+    {
+        playerParticleHandler.SpawnCastVFX(activeSpell.GOPrefab);
+
+        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
+        Destroy(currentSpellGO, 0.5f);
+        Debug.Log("Casting AOE Spell");
+
+    }
+
+    private void CastBuff()
+    {
+        Debug.Log("Casting Buff Spell");
+
+    }
 }

@@ -18,6 +18,11 @@ public class CharacterData : ScriptableObject
     public bool canAttack;
     public bool canEvade;
 
+    [Header("AI Detection")]
+    public float detectionRadius = 15f;      //Distance at which enemy can spot the player
+    [HideInInspector] public float attackRange = 0f;          //Distance enemy needs to enter attack state
+    [HideInInspector] public float evadeRange = 5f;           //Distance enemy will back off target
+
     [Header("MOVEMENT")]
     [Range(0, 8000)] public float moveSpeed = 5000f;
 
@@ -34,24 +39,10 @@ public class CharacterData : ScriptableObject
 
     [Header("SFX")]
 
-    [Header("movement")]
-    public AudioClip[] rockFootsteps;
-    public AudioClip dash;
-    public AudioClip hardCollision;
-    public AudioClip falling;
+    public AudioClip[] footstepSFX;
+    public AudioClip hardCollisionSFX;
 
-    [Header("combat")]
-    public AudioClip[] consumeHealItem;
-    public AudioClip blockCollision;
-    public AudioClip blockMissed;
-    public AudioClip takeNormalDamage;
-    public AudioClip takeCriticalDamage;
-    public AudioClip deathRattle;
+    public AudioClip[] consumeHealItemSFX;
+    public AudioClip deathRattleSFX;
 
-    public AudioClip cancelSpell;
-
-    [Header("AI Detection")]
-    public float detectionRadius = 15f;      //Distance at which enemy can spot the player
-    [HideInInspector] public float attackRange = 0f;          //Distance enemy needs to enter attack state
-    [HideInInspector] public float evadeRange = 5f;           //Distance enemy will back off target
 }

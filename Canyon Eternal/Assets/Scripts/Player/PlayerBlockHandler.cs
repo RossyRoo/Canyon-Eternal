@@ -7,9 +7,9 @@ public class PlayerBlockHandler : MonoBehaviour
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerManager playerManager;
     PlayerStats playerStats;
-    public BlockCollider blockCollider;
 
     public GameObject shieldModel;
+    public AudioClip blockMissedSFX;
 
     float blockDuration = 0.35f;
 
@@ -18,7 +18,6 @@ public class PlayerBlockHandler : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         playerStats = GetComponent<PlayerStats>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
-        blockCollider = GetComponentInChildren<BlockCollider>();
     }
 
     public IEnumerator HandleBlocking()
@@ -29,7 +28,7 @@ public class PlayerBlockHandler : MonoBehaviour
         playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
 
         playerAnimatorHandler.PlayTargetAnimation("Block", true);
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.blockMissed, 0.3f, 0.2f);
+        SFXPlayer.Instance.PlaySFXAudioClip(blockMissedSFX, 0.3f, 0.2f);
 
         shieldModel.SetActive(true);
 

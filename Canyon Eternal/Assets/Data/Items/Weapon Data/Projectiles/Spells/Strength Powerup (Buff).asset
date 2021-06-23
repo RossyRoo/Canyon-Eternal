@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e1249d3af0924184bb0097ff6769557, type: 3}
-  m_Name: Fireball
+  m_Name: Strength Powerup (Buff)
   m_EditorClassIdentifier: 
   itemName: Fireball
   itemDescription: The weakest projectile spell
@@ -23,24 +23,19 @@ MonoBehaviour:
   knockbackForce: 200
   collisionVFX: {fileID: 3142461857739340215, guid: bc50f557a3bba4d829eaaf7adf114137,
     type: 3}
-  damageSFX:
-  - {fileID: 8300000, guid: ae55ec1ca66d0ab4385298ed5d2e1e55, type: 3}
-  criticalDamageSFX: {fileID: 8300000, guid: 75f2d5cc82e52244ea273b7e32259d15, type: 3}
+  damageSFX: []
+  criticalDamageSFX: {fileID: 0}
   explostionRadius: 5
+  launchForce: 90
   GOPrefab: {fileID: 2204171353132637292, guid: ac4ae8557494f46a2929866257811fa2,
     type: 3}
-  launchForce: 90
   launchSFX: {fileID: 8300000, guid: ed6a19813a5f2104c828fd0b0cd484a9, type: 3}
   collisionSFX: {fileID: 8300000, guid: ae55ec1ca66d0ab4385298ed5d2e1e55, type: 3}
-  isProjectile: 1
-  chargeTime: 1
-  chargeAnimation: Charge
-  chargeCompleteAnimation: ChargeComplete
-  castAnimation: Cast
-  cancelAnimation: Cancel
+  isProjectile: 0
+  isAOE: 0
+  isBuff: 1
+  chargeTime: 0.5
   chargeVFX: {fileID: 4881746393167522150, guid: a584c12c0ef4440c8aa3b6da3af5afe4,
     type: 3}
   chargeCompleteVFX: {fileID: 4881746393167522150, guid: 797db4a05f18643939926c2e5785d8c5,
     type: 3}
-  chargeSFX: {fileID: 8300000, guid: 51c228f8c07dbc64a9eb15b34f4f0788, type: 3}
-  chargeCompleteSFX: {fileID: 8300000, guid: d4245b844365e1345aeb50e175e5b930, type: 3}
