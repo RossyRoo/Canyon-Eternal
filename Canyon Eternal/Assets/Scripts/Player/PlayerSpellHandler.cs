@@ -188,7 +188,7 @@ public class PlayerSpellHandler : MonoBehaviour
     {
         playerParticleHandler.SpawnCastVFX(activeSpell.GOPrefab);
 
-        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
+        //currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
         Destroy(currentSpellGO, 0.5f);
         Debug.Log("Casting AOE Spell");
 
@@ -196,7 +196,17 @@ public class PlayerSpellHandler : MonoBehaviour
 
     private void CastBuff()
     {
-        Debug.Log("Casting Buff Spell");
+        playerStats.characterData.maxHealth += activeSpell.heartBuff;
+        playerStats.RecoverHealth(activeSpell.heartBuff, false);
 
+        playerStats.maxStamina += activeSpell.staminaBuff;
+        //Reset max hearts and stamina so that only max is raised
+
+        if (activeSpell.damagaMultiplierBuff != 0)
+        {
+            playerMeleeHandler.activeMeleeCard.minDamage *= activeSpell.damagaMultiplierBuff;
+            playerMeleeHandler.activeMeleeCard.maxDamage *= activeSpell.damagaMultiplierBuff;
+        }
+        
     }
 }

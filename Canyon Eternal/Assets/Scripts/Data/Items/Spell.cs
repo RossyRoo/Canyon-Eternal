@@ -14,4 +14,9 @@ public class Spell : Projectile
 
     public GameObject chargeVFX;
     public GameObject chargeCompleteVFX;
+
+    [Header("BUFF PARAMETERS")]
+    public int heartBuff = 0;
+    public int staminaBuff = 0;
+    public int damagaMultiplierBuff = 0;
 }

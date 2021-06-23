@@ -61,6 +61,7 @@ public class ProjectilePhysics : MonoBehaviour
 
                 SpawnCollisionVFX();
                 SFXPlayer.Instance.PlaySFXAudioClip(projectileData.collisionSFX);
+                Debug.Log("Spawning Collision FX");
 
                 Destroy(gameObject);
             }

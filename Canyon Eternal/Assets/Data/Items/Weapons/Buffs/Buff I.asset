@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1249d3af0924184bb0097ff6769557, type: 3}
+  m_Name: Buff I
+  m_EditorClassIdentifier: 
+  itemName: Buff I
+  itemDescription: First buff spell
+  itemIcon: {fileID: 0}
+  itemValue: 0
+  staminaCost: 1
+  minDamage: 0
+  maxDamage: 0
+  criticalChance: 0
+  knockbackForce: 100
+  collisionVFX: {fileID: 0}
+  damageSFX: []
+  criticalDamageSFX: {fileID: 0}
+  explosionRadius: 0
+  launchForce: 0
+  GOPrefab: {fileID: 0}
+  launchSFX: {fileID: 8300000, guid: ed6a19813a5f2104c828fd0b0cd484a9, type: 3}
+  collisionSFX: {fileID: 0}
+  isProjectile: 0
+  isAOE: 0
+  isBuff: 1
+  chargeTime: 0.99
+  chargeVFX: {fileID: 4881746393167522150, guid: a584c12c0ef4440c8aa3b6da3af5afe4,
+    type: 3}
+  chargeCompleteVFX: {fileID: 4881746393167522150, guid: 797db4a05f18643939926c2e5785d8c5,
+    type: 3}
+  heartBuff: 2
+  staminaBuff: 2
+  damagaMultiplierBuff: 2

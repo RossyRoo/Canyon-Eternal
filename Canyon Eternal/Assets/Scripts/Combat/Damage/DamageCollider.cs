@@ -73,8 +73,6 @@ public class DamageCollider : MonoBehaviour
     {
         CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
 
-        Debug.Log("Colliding");
-
         if (characterCollision != null)
         {
             knockbackTarget = characterCollision;
