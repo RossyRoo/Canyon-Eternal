@@ -69,7 +69,7 @@ public class PlayerStats : CharacterStats
     public void LoseStamina(int damageStamina)
     {
         currentStamina -= damageStamina;
-        staminaMeter.SetCurrentStamina(currentStamina);
+        staminaMeter.SetCurrentStamina(currentStamina, startingMaxStamina);
 
         if (currentStamina <= 0)
         {
@@ -80,7 +80,7 @@ public class PlayerStats : CharacterStats
     public void RecoverStamina(int recoverStamina)
     {
         currentStamina += recoverStamina;
-        staminaMeter.SetCurrentStamina(currentStamina);
+        staminaMeter.SetCurrentStamina(currentStamina, startingMaxStamina);
 
         if (currentStamina >= currentMaxStamina)
         {
@@ -100,7 +100,7 @@ public class PlayerStats : CharacterStats
             if (currentStamina < currentMaxStamina && staminaRecoveryTimer > staminaRecoveryBuffer)
             {
                 currentStamina += staminaRecoverySpeed * Time.deltaTime;
-                staminaMeter.SetCurrentStamina(currentStamina);
+                staminaMeter.SetCurrentStamina(currentStamina, startingMaxStamina);
             }
         }
     }
@@ -118,7 +118,7 @@ public class PlayerStats : CharacterStats
 
         EnableInvulnerability(characterData.invulnerabilityFrames);
         currentHealth -= damageHealth;
-        heartMeter.SetCurrentHealth(currentHealth);
+        heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);
 
         playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
         SFXPlayer.Instance.PlaySFXAudioClip(playerDamageSFX);
@@ -137,7 +137,7 @@ public class PlayerStats : CharacterStats
     public void RecoverHealth(int recoveryHealth, bool isFullHeal)
     {
         currentHealth += recoveryHealth;
-        heartMeter.SetCurrentHealth(currentHealth);
+        heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);
 
         if(!isFullHeal)
         {
@@ -169,7 +169,7 @@ public class PlayerStats : CharacterStats
             currentHealth = characterData.currentMaxHealth;
         }
 
-        heartMeter.SetCurrentHealth(currentHealth);
+        heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);
     }
 
     public void DeactivateHealthBuff()
@@ -183,7 +183,7 @@ public class PlayerStats : CharacterStats
             currentHealth = characterData.currentMaxHealth;
         }
 
-        heartMeter.SetCurrentHealth(currentHealth);
+        heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);
     }
 
     public void ActivateStaminaBuff(int amountToAdjust)
@@ -203,7 +203,7 @@ public class PlayerStats : CharacterStats
             currentStamina = currentMaxStamina;
         }
 
-        staminaMeter.SetCurrentStamina(currentStamina);
+        staminaMeter.SetCurrentStamina(currentStamina, startingMaxStamina);
     }
 
     #endregion

@@ -24,25 +24,48 @@ public class HeartMeter : MonoBehaviour
         }
     }
 
-    public void SetCurrentHealth(int currentHearts)
+    public void SetCurrentHealth(int currentHearts, int startingMaxHealth)
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (i < currentHearts)
+            if(i < startingMaxHealth)
             {
-                if(hearts[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HealthIdle"))
+                if (i < currentHearts)
                 {
-                    hearts[i].GetComponent<Animator>().Play("HealthIdle");
+                    if (hearts[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("HealthIdle"))
+                    {
+                        hearts[i].GetComponent<Animator>().Play("HealthIdle");
+                    }
+                    else
+                    {
+                        hearts[i].GetComponent<Animator>().Play("HealthHeal");
+                    }
                 }
                 else
                 {
-                    hearts[i].GetComponent<Animator>().Play("HealthHeal");
+                    hearts[i].GetComponent<Animator>().Play("HealthBreak");
                 }
             }
             else
             {
-                hearts[i].GetComponent<Animator>().Play("HealthBreak");
+                if(i < currentHearts)
+                {
+                    if (hearts[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BuffIdle"))
+                    {
+                        hearts[i].GetComponent<Animator>().Play("BuffIdle");
+                    }
+                    else
+                    {
+                        hearts[i].GetComponent<Animator>().Play("BuffHeal");
+                    }
+                }
+                else
+                {
+                    hearts[i].GetComponent<Animator>().Play("BuffBreak");
+                }
+
             }
+
         }
     }
 }

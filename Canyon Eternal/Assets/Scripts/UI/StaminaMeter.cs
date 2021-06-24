@@ -24,22 +24,41 @@ public class StaminaMeter : MonoBehaviour
         }
     }
 
-    public void SetCurrentStamina(float currentStamina)
+    public void SetCurrentStamina(float currentStamina, float startingMaxStamina)
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            if (i < Mathf.Floor(currentStamina))
+            if(i < startingMaxStamina)
             {
-                if(!cards[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("StaminaIdle"))
+                if (i < Mathf.Floor(currentStamina))
                 {
-                    cards[i].GetComponent<Animator>().Play("StaminaHeal");
-                }
+                    if (!cards[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("StaminaIdle"))
+                    {
+                        cards[i].GetComponent<Animator>().Play("StaminaHeal");
+                    }
 
+                }
+                else
+                {
+                    cards[i].GetComponent<Animator>().Play("StaminaBreak");
+                }
             }
             else
             {
-                cards[i].GetComponent<Animator>().Play("StaminaBreak");
+                if (i < Mathf.Floor(currentStamina))
+                {
+                    if (!cards[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BuffIdle"))
+                    {
+                        cards[i].GetComponent<Animator>().Play("BuffHeal");
+                    }
+
+                }
+                else
+                {
+                    cards[i].GetComponent<Animator>().Play("BuffBreak");
+                }
             }
+
         }
     }
 
