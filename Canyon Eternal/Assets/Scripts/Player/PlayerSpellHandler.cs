@@ -37,7 +37,8 @@ public class PlayerSpellHandler : MonoBehaviour
 
     public void ChargeSpell()
     {
-        if (playerStats.currentStamina < activeSpell.staminaCost)
+        if (playerStats.currentStamina < activeSpell.staminaCost
+            || activeSpell.isBuff && playerStats.isBuffed)
             return;
 
         playerAnimatorHandler.animator.SetBool("isMoving", false);
@@ -89,7 +90,8 @@ public class PlayerSpellHandler : MonoBehaviour
 
         if (activeSpell.isProjectile)
         {
-            playerParticleHandler.SpawnCastVFX(activeSpell.GOPrefab);
+            currentSpellGO = Instantiate(activeSpell.GOPrefab, transform.position, Quaternion.identity);
+            currentSpellGO.transform.parent = playerManager.transform;
 
             projectilePointerVFXGO = Instantiate(projectilePointerVFXPrefab, transform.position, Quaternion.identity);
             projectilePointerVFXGO.transform.parent = transform;
@@ -167,7 +169,7 @@ public class PlayerSpellHandler : MonoBehaviour
             }
             else
             {
-                CastBuff();
+                StartCoroutine(CastBuff());
             }
 
             playerManager.isCastingSpell = false;
@@ -186,7 +188,8 @@ public class PlayerSpellHandler : MonoBehaviour
 
     private void CastAOE()
     {
-        playerParticleHandler.SpawnCastVFX(activeSpell.GOPrefab);
+        currentSpellGO = Instantiate(activeSpell.GOPrefab, transform.position, Quaternion.identity);
+        currentSpellGO.transform.parent = playerManager.transform;
 
         //currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
         Destroy(currentSpellGO, 0.5f);
@@ -194,19 +197,25 @@ public class PlayerSpellHandler : MonoBehaviour
 
     }
 
-    private void CastBuff()
+    private IEnumerator CastBuff()
     {
-        playerStats.characterData.maxHealth += activeSpell.heartBuff;
-        playerStats.RecoverHealth(activeSpell.heartBuff, false);
-
-        playerStats.maxStamina += activeSpell.staminaBuff;
-        //Reset max hearts and stamina so that only max is raised
+        playerStats.isBuffed = true;
+        playerStats.ActivateHealthBuff(activeSpell.heartBuff);
+        playerStats.ActivateStaminaBuff(activeSpell.staminaBuff);
 
         if (activeSpell.damagaMultiplierBuff != 0)
         {
             playerMeleeHandler.activeMeleeCard.minDamage *= activeSpell.damagaMultiplierBuff;
             playerMeleeHandler.activeMeleeCard.maxDamage *= activeSpell.damagaMultiplierBuff;
         }
-        
+
+        yield return new WaitForSeconds(activeSpell.buffDuration);
+
+        playerStats.DeactivateHealthBuff();
+        playerStats.DeactivateStaminaBuff();
+        playerMeleeHandler.activeMeleeCard.minDamage = playerMeleeHandler.activeMeleeCard.startingMinDamage;
+        playerMeleeHandler.activeMeleeCard.maxDamage = playerMeleeHandler.activeMeleeCard.startingMaxDamage;
+
+        playerStats.isBuffed = false;
     }
 }

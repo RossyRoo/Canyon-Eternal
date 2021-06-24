@@ -22,8 +22,8 @@ public class EnemyStats : CharacterStats
 
     private void Start()
     {
-        currentHealth = characterData.maxHealth;
-        enemyHealthBarUI.SetMaxHealth(characterData.maxHealth);
+        currentHealth = characterData.startingMaxHealth;
+        enemyHealthBarUI.SetMaxHealth(characterData.startingMaxHealth);
 
         foreach (var attack in characterData.enemyAttacks)
         {

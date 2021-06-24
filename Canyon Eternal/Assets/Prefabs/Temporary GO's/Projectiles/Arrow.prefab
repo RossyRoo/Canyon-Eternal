@@ -144,10 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20529c31cb55434ebc6af49e05dc58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: bf2b1af708e034b45a57e2ea1c355966, type: 2}
-  isFired: 1
-  speed: 100
-  direction: {x: 0, y: 0}
+  standardProjectileData: {fileID: 11400000, guid: bf2b1af708e034b45a57e2ea1c355966,
+    type: 2}
+  spellProjectileData: {fileID: 0}
 --- !u!114 &-7072923029392143523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
   collisionTransform: {fileID: 0}
+  myCharacterManager: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 0

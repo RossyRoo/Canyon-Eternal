@@ -13,11 +13,14 @@ public class PlayerStats : CharacterStats
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
+    public bool isBuffed = false;
+
     [Header("Damage SFX")]
     public AudioClip playerDamageSFX;
 
     [Header("Stamina")]
-    public float maxStamina;
+    public float startingMaxStamina;
+    public float currentMaxStamina;
     public float currentStamina;
     public float staminaRecoverySpeed = 1.25f;
     public float staminaRecoveryTimer = 0;
@@ -49,11 +52,13 @@ public class PlayerStats : CharacterStats
 
     public void SetStartingStats()
     {
-        currentHealth = characterData.maxHealth;
-        heartMeter.SetMaxHearts(characterData.maxHealth);
+        currentHealth = characterData.startingMaxHealth;
+        characterData.currentMaxHealth = characterData.startingMaxHealth;
+        heartMeter.SetMaxHearts(characterData.currentMaxHealth);
 
-        currentStamina = maxStamina;
-        staminaMeter.SetMaxStamina(maxStamina);
+        currentStamina = startingMaxStamina;
+        currentMaxStamina = startingMaxStamina;
+        staminaMeter.SetMaxStamina(currentMaxStamina);
 
         currentLunchBoxCapacity = maxLunchBoxCapacity;
         lunchboxMeter.SetMaxLunchbox(maxLunchBoxCapacity);
@@ -77,9 +82,9 @@ public class PlayerStats : CharacterStats
         currentStamina += recoverStamina;
         staminaMeter.SetCurrentStamina(currentStamina);
 
-        if (currentStamina >= maxStamina)
+        if (currentStamina >= currentMaxStamina)
         {
-            currentStamina = maxStamina;
+            currentStamina = currentMaxStamina;
         }
     }
 
@@ -92,7 +97,7 @@ public class PlayerStats : CharacterStats
         else
         {
             staminaRecoveryTimer += Time.deltaTime;
-            if (currentStamina < maxStamina && staminaRecoveryTimer > staminaRecoveryBuffer)
+            if (currentStamina < currentMaxStamina && staminaRecoveryTimer > staminaRecoveryBuffer)
             {
                 currentStamina += staminaRecoverySpeed * Time.deltaTime;
                 staminaMeter.SetCurrentStamina(currentStamina);
@@ -142,11 +147,65 @@ public class PlayerStats : CharacterStats
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
         }
 
-        if (currentHealth >= characterData.maxHealth)
+        if (currentHealth >= characterData.currentMaxHealth)
         {
-            currentHealth = characterData.maxHealth;
+            currentHealth = characterData.currentMaxHealth;
         }
     }
+
+    #endregion
+
+    #region Handle Buffs
+
+    public void ActivateHealthBuff(int amountToAdjust)
+    {
+        characterData.currentMaxHealth += amountToAdjust;
+        heartMeter.SetMaxHearts(characterData.currentMaxHealth);
+
+        currentHealth += amountToAdjust;
+
+        if (currentHealth >= characterData.currentMaxHealth)
+        {
+            currentHealth = characterData.currentMaxHealth;
+        }
+
+        heartMeter.SetCurrentHealth(currentHealth);
+    }
+
+    public void DeactivateHealthBuff()
+    {
+        characterData.currentMaxHealth = characterData.startingMaxHealth;
+
+        heartMeter.SetMaxHearts(characterData.currentMaxHealth);
+
+        if (currentHealth >= characterData.currentMaxHealth)
+        {
+            currentHealth = characterData.currentMaxHealth;
+        }
+
+        heartMeter.SetCurrentHealth(currentHealth);
+    }
+
+    public void ActivateStaminaBuff(int amountToAdjust)
+    {
+        currentMaxStamina += amountToAdjust;
+        staminaMeter.SetMaxStamina(currentMaxStamina);
+    }
+
+    public void DeactivateStaminaBuff()
+    {
+        currentMaxStamina = startingMaxStamina;
+
+        staminaMeter.SetMaxStamina(currentMaxStamina);
+
+        if (currentStamina >= currentMaxStamina)
+        {
+            currentStamina = currentMaxStamina;
+        }
+
+        staminaMeter.SetCurrentStamina(currentStamina);
+    }
+
     #endregion
 
     #region Invulnerability

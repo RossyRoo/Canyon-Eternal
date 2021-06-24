@@ -7,6 +7,8 @@ public class Weapon : Item
 {
     [Header("WEAPON PARAMETERS")]
     public int staminaCost = 1;
+    public int startingMinDamage;
+    public int startingMaxDamage;
     public int minDamage;
     public int maxDamage;
     [Range(0,1)]public float criticalChance;

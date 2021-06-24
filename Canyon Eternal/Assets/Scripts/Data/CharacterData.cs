@@ -27,7 +27,8 @@ public class CharacterData : ScriptableObject
     [Range(0, 8000)] public float moveSpeed = 5000f;
 
     [Header("HEALTH")]
-    [Range(4, 2000)] public int maxHealth;
+    [Range(4, 2000)] public int startingMaxHealth;
+    public int currentMaxHealth;
     public int healAmount;
     public float invulnerabilityFrames = 0.4f;
 

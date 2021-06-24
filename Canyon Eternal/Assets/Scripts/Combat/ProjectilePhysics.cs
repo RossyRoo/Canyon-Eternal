@@ -7,19 +7,25 @@ public class ProjectilePhysics : MonoBehaviour
     DamageCollider damageCollider;
     Rigidbody2D rb;
 
-    public Projectile projectileData;
+    [Header("Projectile Data Slot")]
+    public StandardProjectile standardProjectileData;
+    public Spell spellProjectileData;
 
-    public bool isFired;
-    public float speed;
-    public Vector2 direction;
+    //MY PARAMETERS
+    float myLaunchForce;
+    float myExplosionRadius;
+    GameObject myCollisionVFX;
+    AudioClip myCollisionSFX;
     bool isEnemyProjectile;
+
+    bool isFired;
+    Vector2 direction;
+
 
     private void Awake()
     {
-        if(GetComponentInParent<EnemyManager>())
-        {
-            isEnemyProjectile = true;
-        }
+        DetermineProjectileData();
+
         damageCollider = GetComponent<DamageCollider>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -32,10 +38,33 @@ public class ProjectilePhysics : MonoBehaviour
         }
     }
 
+    private void DetermineProjectileData()
+    {
+        if (GetComponentInParent<EnemyManager>())
+        {
+            isEnemyProjectile = true;
+        }
+
+        if (standardProjectileData != null)
+        {
+            myLaunchForce = standardProjectileData.launchForce;
+            myExplosionRadius = standardProjectileData.explosionRadius;
+            myCollisionVFX = standardProjectileData.collisionVFX;
+            myCollisionSFX = standardProjectileData.collisionSFX;
+        }
+        else if (spellProjectileData != null)
+        {
+            myLaunchForce = spellProjectileData.launchForce;
+            myExplosionRadius = spellProjectileData.explosionRadius;
+            myCollisionVFX = spellProjectileData.collisionVFX;
+            myCollisionSFX = spellProjectileData.collisionSFX;
+        }
+    }
+
     private void FlyStraight()
     {
         damageCollider.EnableDamageCollider();
-        rb.velocity = direction * speed;
+        rb.velocity = direction * myLaunchForce;
         Destroy(gameObject, 10f);
     }
 
@@ -54,23 +83,22 @@ public class ProjectilePhysics : MonoBehaviour
             if (isFired)
             {
                 isFired = false;
-                if (projectileData.explosionRadius != 0)
+                if (myExplosionRadius != 0)
                 {
-                    GetComponent<CircleCollider2D>().radius = projectileData.explosionRadius;
+                    GetComponent<CircleCollider2D>().radius = myExplosionRadius;
                 }
 
                 SpawnCollisionVFX();
-                SFXPlayer.Instance.PlaySFXAudioClip(projectileData.collisionSFX);
-                Debug.Log("Spawning Collision FX");
+                SFXPlayer.Instance.PlaySFXAudioClip(myCollisionSFX);
 
                 Destroy(gameObject);
             }
         }
     }
 
-    public void Launch(float newSpeed, Vector2 newDirection)
+    public void Launch(float newLaunchForce, Vector2 newDirection)
     {
-        speed = newSpeed;
+        myLaunchForce = newLaunchForce;
         direction = newDirection;
         damageCollider.knockbackDirection = direction;
         isFired = true;
@@ -79,9 +107,9 @@ public class ProjectilePhysics : MonoBehaviour
 
     private void SpawnCollisionVFX()
     {
-        if(projectileData.collisionVFX != null)
+        if(myCollisionVFX != null)
         {
-            GameObject collisionVFXGO = Instantiate(projectileData.collisionVFX, transform.position, Quaternion.identity);
+            GameObject collisionVFXGO = Instantiate(myCollisionVFX, transform.position, Quaternion.identity);
             Destroy(collisionVFXGO, 3f);
         }
 

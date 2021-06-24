@@ -17,17 +17,19 @@ MonoBehaviour:
   itemIcon: {fileID: 0}
   itemValue: 0
   staminaCost: 1
-  minDamage: 1
-  maxDamage: 1
+  startingMinDamage: 1
+  startingMaxDamage: 1
+  minDamage: 0
+  maxDamage: 0
   criticalChance: 0
   knockbackForce: 0
   collisionVFX: {fileID: 0}
   damageSFX:
   - {fileID: 8300000, guid: 9065d9bb4c3b8cd469b1ee1b2e8c0c49, type: 3}
   criticalDamageSFX: {fileID: 8300000, guid: 75f2d5cc82e52244ea273b7e32259d15, type: 3}
-  explostionRadius: 0
+  explosionRadius: 0
+  launchForce: 50
   GOPrefab: {fileID: 2386400630290685019, guid: 866f12829c0b34def84d739683786bc7,
     type: 3}
-  launchForce: 50
   launchSFX: {fileID: 8300000, guid: a1f2bc9efe2d58b479259e1c395aaa00, type: 3}
   collisionSFX: {fileID: 8300000, guid: 9065d9bb4c3b8cd469b1ee1b2e8c0c49, type: 3}

@@ -148,7 +148,7 @@ public class InputManager : MonoBehaviour
             if (playerManager.isDead || playerManager.isConversing)
                 return;
 
-            if (playerStats.currentLunchBoxCapacity > 0 && playerStats.currentHealth < playerStats.characterData.maxHealth)
+            if (playerStats.currentLunchBoxCapacity > 0 && playerStats.currentHealth < playerStats.characterData.startingMaxHealth)
             {
                 playerStats.RecoverHealth(playerStats.characterData.healAmount, false);
             }

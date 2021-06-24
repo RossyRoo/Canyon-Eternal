@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileShooter : MonoBehaviour
 {
-    public Projectile projectile;
+    public StandardProjectile projectile;
     public Transform firingPoint;
 
     public float rateOfFireOffset = 0f;

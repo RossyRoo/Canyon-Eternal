@@ -7,13 +7,13 @@ public class StaminaMeter : MonoBehaviour
 {
     public Image[] cards;
 
-    public void SetMaxStamina(float maxImagination)
+    public void SetMaxStamina(float maxStamina)
     {
         for (int i = 0; i < cards.Length; i++)
         {
             cards[i].GetComponent<Animator>().Play("StaminaIdle");
 
-            if (i < maxImagination)
+            if (i < maxStamina)
             {
                 cards[i].enabled = true;
             }
@@ -24,11 +24,11 @@ public class StaminaMeter : MonoBehaviour
         }
     }
 
-    public void SetCurrentStamina(float currentImagination)
+    public void SetCurrentStamina(float currentStamina)
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            if (i < Mathf.Floor(currentImagination))
+            if (i < Mathf.Floor(currentStamina))
             {
                 if(!cards[i].GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("StaminaIdle"))
                 {

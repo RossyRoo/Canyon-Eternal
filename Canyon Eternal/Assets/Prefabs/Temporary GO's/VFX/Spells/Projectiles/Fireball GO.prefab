@@ -4872,7 +4872,7 @@ GameObject:
   - component: {fileID: 2204171353132637291}
   - component: {fileID: 2204171353132637288}
   m_Layer: 16
-  m_Name: Fireball
+  m_Name: Fireball GO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4944,6 +4944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
   collisionTransform: {fileID: 2204171353132637290}
+  myCharacterManager: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
@@ -4965,10 +4966,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20529c31cb55434ebc6af49e05dc58a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  nonSpellProjectileData: {fileID: 0}
+  spellProjectileData: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4,
+    type: 2}
   isFired: 0
-  speed: 25
   direction: {x: 0, y: 0}
+  myCollisionSFX: {fileID: 0}
 --- !u!1 &2251094569859808170
 GameObject:
   m_ObjectHideFlags: 0

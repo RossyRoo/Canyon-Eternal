@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Items/Weapons/Spell")]
-public class Spell : Projectile
+public class Spell : Weapon
 {
     [Header("SPELL PARAMETERS")]
     public bool isProjectile;
     public bool isAOE;
     public bool isBuff;
-
     [Range(0.5f, 3f)]public float chargeTime;
-
     public GameObject chargeVFX;
     public GameObject chargeCompleteVFX;
 
-    [Header("BUFF PARAMETERS")]
+    [Header("Projectile / AOE")]
+    [Range(0, 10)] public float explosionRadius;
+    public float launchForce;
+    public GameObject GOPrefab;
+    public AudioClip launchSFX;
+    public AudioClip collisionSFX;
+
+    [Header("Buffs")]
+    public float buffDuration = 0f;
     public int heartBuff = 0;
     public int staminaBuff = 0;
     public int damagaMultiplierBuff = 0;

@@ -26,27 +26,23 @@ MonoBehaviour:
   canPursue: 0
   canAttack: 0
   canEvade: 0
+  detectionRadius: 45
+  attackRange: 0
+  evadeRange: 5
   moveSpeed: 30
-  maxHealth: 6
+  startingMaxHealth: 4
+  currentMaxHealth: 0
   healAmount: 3
   invulnerabilityFrames: 0.4
   enemyAttacks: []
   fragmentDrop: 0
   footstepSFX:
   - {fileID: 8300000, guid: 7e05e7e9554edff4ebf0eeee083cc3de, type: 3}
-  dashSFX: {fileID: 8300000, guid: 5062dea39f7daa94b8184b6e984e14bd, type: 3}
   hardCollisionSFX: {fileID: 8300000, guid: ed451b18ef0dc8d4692175cbd845831c, type: 3}
-  fallingSFX: {fileID: 8300000, guid: ad95219b6c14c234a8d09bb82bfc96fa, type: 3}
   consumeHealItemSFX:
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
   - {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
-  blockMissed: {fileID: 8300000, guid: 1699a5a92a1300946bca50dddbb92fb7, type: 3}
-  takeNormalDamage: {fileID: 8300000, guid: 812f8f76c01e6dc4bb653fa92f82d463, type: 3}
-  takeCriticalDamage: {fileID: 8300000, guid: 6e95a12822c8cbb488d93ee5c5f796b8, type: 3}
   deathRattleSFX: {fileID: 8300000, guid: adf62d865209a904696ade7f136d0268, type: 3}
-  detectionRadius: 45
-  attackRange: 0
-  evadeRange: 5

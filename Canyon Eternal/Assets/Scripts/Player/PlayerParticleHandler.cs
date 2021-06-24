@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerParticleHandler : MonoBehaviour
 {
     PlayerManager playerManager;
-    PlayerSpellHandler playerSpellHandler;
 
     ObjectPool objectPool;
 
@@ -31,7 +30,6 @@ public class PlayerParticleHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
-        playerSpellHandler = GetComponentInParent<PlayerSpellHandler>();
         objectPool = FindObjectOfType<ObjectPool>();
     }
 
@@ -89,11 +87,6 @@ public class PlayerParticleHandler : MonoBehaviour
     }
 
 
-    public void SpawnCastVFX(GameObject castVFXPrefab)
-    {
-        playerSpellHandler.currentSpellGO = Instantiate(castVFXPrefab, new Vector2(mainTarget.position.x, mainTarget.position.y - 1.5f), Quaternion.identity);
-        playerSpellHandler.currentSpellGO.transform.parent = playerManager.transform;
-    }
     #endregion
 
 

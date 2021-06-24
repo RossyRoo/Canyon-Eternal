@@ -5869,8 +5869,10 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   currentHealth: 0
   lunchboxMeter: {fileID: 0}
+  isBuffed: 0
   playerDamageSFX: {fileID: 8300000, guid: 812f8f76c01e6dc4bb653fa92f82d463, type: 3}
-  maxStamina: 6
+  startingMaxStamina: 4
+  currentMaxStamina: 0
   currentStamina: 0
   staminaRecoverySpeed: 2
   staminaRecoveryTimer: 0
@@ -5961,11 +5963,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e0166e6dfaf414493cce0077f408cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeSpell: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  activeSpell: {fileID: 11400000, guid: e879f95b3275e4f61a70dbf3e202915a, type: 2}
   currentSpellGO: {fileID: 0}
   projectilePointerVFXPrefab: {fileID: 630692850903603627, guid: e581584112d784a6bae4e1aa65e986d7,
     type: 3}
   cancelSpellSFX: {fileID: 8300000, guid: 7bddb0c4df5ed104bbaa81edcb1641a5, type: 3}
+  chargeSpellSFX: {fileID: 8300000, guid: 51c228f8c07dbc64a9eb15b34f4f0788, type: 3}
+  chargeSpellCompleteSFX: {fileID: 8300000, guid: d4245b844365e1345aeb50e175e5b930,
+    type: 3}
 --- !u!114 &3903406275795144268
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,6 +44,8 @@ public class DamageCollider : MonoBehaviour
         if (weaponData != null)
         {
             knockbackForce = weaponData.knockbackForce;
+            weaponData.minDamage = weaponData.startingMinDamage;
+            weaponData.maxDamage = weaponData.startingMaxDamage;
         }
 
         knockbackTime = startKnockbackTime;
