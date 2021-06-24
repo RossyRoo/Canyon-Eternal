@@ -124,7 +124,7 @@ public class PlayerStats : CharacterStats
         SFXPlayer.Instance.PlaySFXAudioClip(playerDamageSFX);
 
         playerParticleHandler.SpawnImpactVFX();
-        timeStop.StopTime(0.005f, 10, 0.1f);
+        timeStop.StopTime(0.005f, 1000, 0.1f);
         CinemachineManager.Instance.Shake(10f, 0.5f);
 
         if (currentHealth <= 0)
@@ -190,6 +190,7 @@ public class PlayerStats : CharacterStats
     {
         currentMaxStamina += amountToAdjust;
         staminaMeter.SetMaxStamina(currentMaxStamina);
+        staminaMeter.SetCurrentStamina(currentStamina, startingMaxStamina);
     }
 
     public void DeactivateStaminaBuff()

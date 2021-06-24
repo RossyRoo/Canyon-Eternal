@@ -87,14 +87,13 @@ public class PlayerMeleeHandler : MonoBehaviour
     public IEnumerator HandleMeleeAttack()
     {
         currentAttackCooldownTime = activeMeleeCard.attackCooldownTime; //START COOLDOWN TIMER
-
+        meleeDamageCollider.knockbackDirection = playerManager.lastMoveDirection;
         playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimations[Random.Range(0,activeMeleeCard.attackAnimations.Length)], true); //PLAY ATTACK ANIMATION
 
         yield return new WaitForSeconds(activeMeleeCard.openDamageColliderBuffer);
 
         playerStats.LoseStamina(activeMeleeCard.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
-        //playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames); //START I-FRAMES
         PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
 
         yield return new WaitForSeconds(activeMeleeCard.closeDamageColliderBuffer); 

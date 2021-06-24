@@ -16,6 +16,7 @@ public class StaminaMeter : MonoBehaviour
             if (i < maxStamina)
             {
                 cards[i].enabled = true;
+
             }
             else
             {

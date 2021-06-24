@@ -146,11 +146,6 @@ public class DamageCollider : MonoBehaviour
 
             myCharacterManager = GetComponentInParent<CharacterManager>();
 
-            if(myCharacterManager != null)
-            {
-                knockbackDirection = myCharacterManager.lastMoveDirection;
-            }
-
             yield return new WaitForFixedUpdate();
             StartCoroutine(DealDamage(collision));
         }

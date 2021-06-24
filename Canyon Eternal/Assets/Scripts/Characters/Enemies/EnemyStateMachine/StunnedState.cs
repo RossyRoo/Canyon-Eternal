@@ -12,7 +12,7 @@ public class StunnedState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        #region Handle Death and Stun State
+        #region Handle Death State
 
         if (enemyManager.isDead)
         {

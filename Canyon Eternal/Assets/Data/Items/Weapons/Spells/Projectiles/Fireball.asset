@@ -16,9 +16,9 @@ MonoBehaviour:
   itemDescription: The weakest projectile spell
   itemIcon: {fileID: 0}
   itemValue: 0
-  staminaCost: 2
-  startingMinDamage: 25
-  startingMaxDamage: 30
+  staminaCost: 4
+  startingMinDamage: 30
+  startingMaxDamage: 35
   minDamage: 0
   maxDamage: 0
   criticalChance: 0.223
@@ -30,13 +30,13 @@ MonoBehaviour:
   isProjectile: 1
   isAOE: 0
   isBuff: 0
-  chargeTime: 0.5
+  chargeTime: 1
   chargeVFX: {fileID: 4881746393167522150, guid: a584c12c0ef4440c8aa3b6da3af5afe4,
     type: 3}
   chargeCompleteVFX: {fileID: 4881746393167522150, guid: 797db4a05f18643939926c2e5785d8c5,
     type: 3}
   explosionRadius: 0
-  launchForce: 90
+  launchForce: 100
   GOPrefab: {fileID: 2204171353132637292, guid: ac4ae8557494f46a2929866257811fa2,
     type: 3}
   launchSFX: {fileID: 8300000, guid: ed6a19813a5f2104c828fd0b0cd484a9, type: 3}

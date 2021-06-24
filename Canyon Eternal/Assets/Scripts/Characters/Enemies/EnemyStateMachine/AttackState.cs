@@ -85,10 +85,6 @@ public class AttackState : EnemyStateMachine
             enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
             currentAttack = null;
         }
-        else
-        {
-            Debug.Log("Tried to attack but didnt have one set");
-        }
 
     }
 
