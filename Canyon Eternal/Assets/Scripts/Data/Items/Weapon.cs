@@ -9,8 +9,8 @@ public class Weapon : Item
     public int staminaCost = 1;
     public int startingMinDamage;
     public int startingMaxDamage;
-    public int minDamage;
-    public int maxDamage;
+    public float minDamage;
+    public float maxDamage;
     [Range(0,1)]public float criticalChance;
     public float knockbackForce = 100f;
     public GameObject collisionVFX;

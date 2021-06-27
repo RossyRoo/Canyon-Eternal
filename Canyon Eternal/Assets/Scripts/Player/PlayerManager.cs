@@ -12,6 +12,8 @@ public class PlayerManager : CharacterManager
     PlayerSpellHandler playerSpellHandler;
     PlayerAnimatorHandler playerAnimatorHandler;
 
+    public bool isInteractingWithUI;
+
     public GameObject interactionPopupGO;
     public GameObject itemPopupGO;
     public InteractableUI interactableUI;
@@ -80,6 +82,14 @@ public class PlayerManager : CharacterManager
         inputManager.block_Input = false;
         inputManager.chargeSpell_Input = false;
         inputManager.castSpell_Input = false;
+
+        //UI
+        inputManager.backpack_Input = false;
+        inputManager.cycleMenuLeft_Input = false;
+        inputManager.cycleMenuRight_Input = false;
+        inputManager.cycleSubmenuLeft_Input = false;
+        inputManager.cycleSubmenuRight_Input = false;
+        inputManager.close_Input = false;
     }
 
     public IEnumerator HandleDeathCoroutine(string deathAnimation = "Death")
@@ -118,7 +128,7 @@ public class PlayerManager : CharacterManager
         RaycastHit2D hit = Physics2D.Raycast(transform.position,
             lastMoveDirection, 5f, interactableLayers);
 
-            if (hit)
+            if (hit && !isInteractingWithUI)
             {
                 Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
@@ -186,14 +196,14 @@ public class PlayerManager : CharacterManager
         {
             playerLocomotion.StopDash();
         }
-        isConversing = true;
+        isInteractingWithUI = true;
         isInteracting = true;
         playerAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);
     }
 
     public void ExitConversationState()
     {
-        isConversing = false;
+        isInteractingWithUI = false;
         isInteracting = false;
     }
 

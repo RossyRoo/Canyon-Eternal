@@ -108,7 +108,7 @@ public class PlayerStats : CharacterStats
     #endregion
 
     #region Health
-    public void LoseHealth(int damageHealth, string damageAnimation = "TakeDamage")
+    public void LoseHealth(float damageHealth, string damageAnimation = "TakeDamage")
     {
         if (playerManager.isInvulnerable
             || playerManager.isDead)
@@ -134,7 +134,7 @@ public class PlayerStats : CharacterStats
         }
     }
 
-    public void RecoverHealth(int recoveryHealth, bool isFullHeal)
+    public void RecoverHealth(float recoveryHealth, bool isFullHeal)
     {
         currentHealth += recoveryHealth;
         heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);

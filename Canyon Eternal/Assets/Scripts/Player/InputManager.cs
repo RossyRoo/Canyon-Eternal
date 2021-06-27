@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
     PlayerBlockHandler playerBlockHandler;
+    BackpackUI backpackUI;
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
@@ -21,6 +22,13 @@ public class InputManager : MonoBehaviour
     public bool block_Input;
     public bool heal_Input;
     public bool interact_Input;
+    public bool backpack_Input;
+    public bool cycleMenuLeft_Input;
+    public bool cycleMenuRight_Input;
+    public bool cycleSubmenuLeft_Input;
+    public bool cycleSubmenuRight_Input;
+    public bool close_Input;
+
 
     private void Awake()
     {
@@ -29,6 +37,8 @@ public class InputManager : MonoBehaviour
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
         playerBlockHandler = GetComponent<PlayerBlockHandler>();
+
+        backpackUI = FindObjectOfType<BackpackUI>();
     }
 
     private void OnEnable()
@@ -59,6 +69,14 @@ public class InputManager : MonoBehaviour
 
             //INTERACT
             playerControls.PlayerActions.Interact.performed += i => interact_Input = true;
+
+            //UI
+            playerControls.UI.Backpack.performed += i => backpack_Input = true;
+            playerControls.UI.CycleMenuLeft.performed += i => cycleMenuLeft_Input = true;
+            playerControls.UI.CycleMenuRight.performed += i => cycleMenuRight_Input = true;
+            playerControls.UI.CycleSubmenuLeft.performed += i => cycleSubmenuLeft_Input = true;
+            playerControls.UI.CycleSubmenuRight.performed += i => cycleSubmenuRight_Input = true;
+            playerControls.UI.Close.performed += i => close_Input = true;
         }
         playerControls.Enable();
     }
@@ -76,13 +94,21 @@ public class InputManager : MonoBehaviour
         HandleDashInput();
         HandleBlockInput();
         HandleHealInput();
+        HandleBackpackInput();
+        HandleCloseInput();
+
+        if(backpackUI.backpackIsOpen)
+        {
+            HandleCycleMenuInput();
+            HandleCycleSubmenuInput();
+        }
     }
     #region Handle Combat Input
     private void HandleMeleeInput()
     {
         if(melee_Input)
         {
-            if (playerManager.isInteracting || playerStats.currentStamina < playerMeleeHandler.activeMeleeCard.staminaCost || playerMeleeHandler.currentAttackCooldownTime > 0)
+            if (playerManager.isInteracting || playerStats.currentStamina < playerMeleeHandler.activeMeleeWeapon.staminaCost || playerMeleeHandler.currentAttackCooldownTime > 0)
                 return;
 
             StartCoroutine(playerMeleeHandler.HandleMeleeAttack());
@@ -123,7 +149,7 @@ public class InputManager : MonoBehaviour
     {
         if(dash_Input)
         {
-            if (playerManager.isInteracting || playerStats.currentStamina < 1 || playerManager.isConversing || playerManager.isFalling)
+            if (playerManager.isInteracting || playerStats.currentStamina < 1 || playerManager.isFalling)
                 return;
 
             playerManager.isDashing = true;
@@ -155,5 +181,62 @@ public class InputManager : MonoBehaviour
         }
 
     }
+
     #endregion
+
+    private void HandleBackpackInput()
+    {
+        if(backpack_Input)
+        {
+            backpackUI.ReverseBackpackUI();
+
+        }
+    }
+
+    private void HandleCycleMenuInput()
+    {
+        if (cycleMenuRight_Input)
+        {
+            backpackUI.CycleMenuRight();
+        }
+
+        if (cycleMenuLeft_Input)
+        {
+            backpackUI.CycleMenuLeft();
+        }
+    }
+
+    private void HandleCycleSubmenuInput()
+    {
+        if(cycleSubmenuLeft_Input)
+        {
+            backpackUI.CycleSubmenuLeft();
+        }
+
+        if(cycleSubmenuRight_Input)
+        {
+            backpackUI.CycleSubmenuRight();
+        }
+    }
+
+    private void HandleCloseInput()
+    {
+        if(close_Input)
+        {
+            if(!playerManager.isInteractingWithUI)
+            {
+                return;
+            }
+
+            Mirror mirror = FindObjectOfType<Mirror>();
+            if(mirror != null && mirror.mirrorIsOpen)
+            {
+                mirror.ReverseMirrorUI();
+            }
+            else if(backpackUI.backpackIsOpen)
+            {
+                backpackUI.ReverseBackpackUI();
+            }
+        }
+    }
 }

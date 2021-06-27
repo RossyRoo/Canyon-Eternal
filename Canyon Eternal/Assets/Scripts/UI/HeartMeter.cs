@@ -24,7 +24,7 @@ public class HeartMeter : MonoBehaviour
         }
     }
 
-    public void SetCurrentHealth(int currentHearts, int startingMaxHealth)
+    public void SetCurrentHealth(float currentHearts, int startingMaxHealth)
     {
         for (int i = 0; i < hearts.Length; i++)
         {

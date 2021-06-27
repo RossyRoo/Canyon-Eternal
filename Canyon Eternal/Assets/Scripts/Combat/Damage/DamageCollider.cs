@@ -26,7 +26,7 @@ public class DamageCollider : MonoBehaviour
 
     [Header("Damage Stats")]
     public Weapon weaponData;
-    int damage = 1;
+    float damage = 1;
     bool criticalHitActivated;
 
     private void Awake()
@@ -185,12 +185,12 @@ public class DamageCollider : MonoBehaviour
 
             if (randValue < 1 - weaponData.criticalChance)
             {
-                damage = Random.Range(weaponData.minDamage, weaponData.maxDamage);
+                damage = Mathf.RoundToInt(Random.Range(weaponData.minDamage, weaponData.maxDamage));
                 criticalHitActivated = false;
             }
             else
             {
-                damage = weaponData.maxDamage * 2;
+                damage = Mathf.RoundToInt(weaponData.maxDamage * 2);
                 criticalHitActivated = true;
             }
         }

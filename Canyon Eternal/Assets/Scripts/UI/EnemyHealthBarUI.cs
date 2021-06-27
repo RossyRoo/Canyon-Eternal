@@ -18,7 +18,7 @@ public class EnemyHealthBarUI : MonoBehaviour
     float timeUntilHealthBarIsHidden = 0f;
     float timeUntilDamageTextIsHidden = 0f;
 
-    public int currentHealth;
+    public float currentHealth;
 
     private void Awake()
     {
@@ -98,7 +98,7 @@ public class EnemyHealthBarUI : MonoBehaviour
         }
     }
 
-    public IEnumerator SetHealthCoroutine(int health, bool isCriticalHit, int damage)
+    public IEnumerator SetHealthCoroutine(float health, bool isCriticalHit, float damage)
     {
         damageText.text = damage.ToString();
         timeUntilHealthBarIsHidden = 3f;

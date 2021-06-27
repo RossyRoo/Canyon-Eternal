@@ -186,7 +186,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b2744532-4fc8-4ebe-b41c-7b8dddff2a80"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -206,6 +206,128 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""a978b114-f827-4dd5-b351-a1f74deb7095"",
+            ""actions"": [
+                {
+                    ""name"": ""Backpack"",
+                    ""type"": ""Button"",
+                    ""id"": ""8be32cc1-12fe-4eaa-8f00-157d7aa00d89"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleMenuRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""237c9419-45ec-4c64-b654-118fc9c646f7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleMenuLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""aefd054d-0fff-4ce6-93a0-5d52d31085ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleSubmenuRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""104d2247-05d1-4317-b0f6-bd0d8894669a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CycleSubmenuLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ab6231f-9dc2-4f98-9b7e-d97ffc7484f1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Close"",
+                    ""type"": ""Button"",
+                    ""id"": ""0726049b-073e-417f-98df-a8516bbad87a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""57d506a5-09cc-4bb3-bcd9-5302a2e29431"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Backpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b0f9b33-b05c-4245-ac9c-1a58ac61c70a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleMenuRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1aa23511-e783-4c30-a9a7-bd89fae6c4c4"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleMenuLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7aeb0400-125e-4a20-84fc-aa73b114628e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleSubmenuRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d41872d4-b05f-4f36-8965-b2a7acc0d2c7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CycleSubmenuLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92836cb3-bb75-4e5c-99f8-fbefa9762df4"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Close"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -221,6 +343,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Block = m_PlayerActions.FindAction("Block", throwIfNotFound: true);
         m_PlayerActions_Spell = m_PlayerActions.FindAction("Spell", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Backpack = m_UI.FindAction("Backpack", throwIfNotFound: true);
+        m_UI_CycleMenuRight = m_UI.FindAction("CycleMenuRight", throwIfNotFound: true);
+        m_UI_CycleMenuLeft = m_UI.FindAction("CycleMenuLeft", throwIfNotFound: true);
+        m_UI_CycleSubmenuRight = m_UI.FindAction("CycleSubmenuRight", throwIfNotFound: true);
+        m_UI_CycleSubmenuLeft = m_UI.FindAction("CycleSubmenuLeft", throwIfNotFound: true);
+        m_UI_Close = m_UI.FindAction("Close", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,6 +502,79 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Backpack;
+    private readonly InputAction m_UI_CycleMenuRight;
+    private readonly InputAction m_UI_CycleMenuLeft;
+    private readonly InputAction m_UI_CycleSubmenuRight;
+    private readonly InputAction m_UI_CycleSubmenuLeft;
+    private readonly InputAction m_UI_Close;
+    public struct UIActions
+    {
+        private @PlayerControls m_Wrapper;
+        public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Backpack => m_Wrapper.m_UI_Backpack;
+        public InputAction @CycleMenuRight => m_Wrapper.m_UI_CycleMenuRight;
+        public InputAction @CycleMenuLeft => m_Wrapper.m_UI_CycleMenuLeft;
+        public InputAction @CycleSubmenuRight => m_Wrapper.m_UI_CycleSubmenuRight;
+        public InputAction @CycleSubmenuLeft => m_Wrapper.m_UI_CycleSubmenuLeft;
+        public InputAction @Close => m_Wrapper.m_UI_Close;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @Backpack.started -= m_Wrapper.m_UIActionsCallbackInterface.OnBackpack;
+                @Backpack.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnBackpack;
+                @Backpack.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnBackpack;
+                @CycleMenuRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleMenuRight;
+                @CycleMenuRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleMenuRight;
+                @CycleMenuRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleMenuRight;
+                @CycleMenuLeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleMenuLeft;
+                @CycleMenuLeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleMenuLeft;
+                @CycleMenuLeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleMenuLeft;
+                @CycleSubmenuRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuRight;
+                @CycleSubmenuRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuRight;
+                @CycleSubmenuRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuRight;
+                @CycleSubmenuLeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuLeft;
+                @CycleSubmenuLeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuLeft;
+                @CycleSubmenuLeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuLeft;
+                @Close.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClose;
+                @Close.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClose;
+                @Close.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClose;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Backpack.started += instance.OnBackpack;
+                @Backpack.performed += instance.OnBackpack;
+                @Backpack.canceled += instance.OnBackpack;
+                @CycleMenuRight.started += instance.OnCycleMenuRight;
+                @CycleMenuRight.performed += instance.OnCycleMenuRight;
+                @CycleMenuRight.canceled += instance.OnCycleMenuRight;
+                @CycleMenuLeft.started += instance.OnCycleMenuLeft;
+                @CycleMenuLeft.performed += instance.OnCycleMenuLeft;
+                @CycleMenuLeft.canceled += instance.OnCycleMenuLeft;
+                @CycleSubmenuRight.started += instance.OnCycleSubmenuRight;
+                @CycleSubmenuRight.performed += instance.OnCycleSubmenuRight;
+                @CycleSubmenuRight.canceled += instance.OnCycleSubmenuRight;
+                @CycleSubmenuLeft.started += instance.OnCycleSubmenuLeft;
+                @CycleSubmenuLeft.performed += instance.OnCycleSubmenuLeft;
+                @CycleSubmenuLeft.canceled += instance.OnCycleSubmenuLeft;
+                @Close.started += instance.OnClose;
+                @Close.performed += instance.OnClose;
+                @Close.canceled += instance.OnClose;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerMovementActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -384,5 +587,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnSpell(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnBackpack(InputAction.CallbackContext context);
+        void OnCycleMenuRight(InputAction.CallbackContext context);
+        void OnCycleMenuLeft(InputAction.CallbackContext context);
+        void OnCycleSubmenuRight(InputAction.CallbackContext context);
+        void OnCycleSubmenuLeft(InputAction.CallbackContext context);
+        void OnClose(InputAction.CallbackContext context);
     }
 }

@@ -173,7 +173,7 @@
                 {
                     "name": "",
                     "id": "b2744532-4fc8-4ebe-b41c-7b8dddff2a80",
-                    "path": "<Keyboard>/e",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -189,6 +189,128 @@
                     "processors": "",
                     "groups": "",
                     "action": "Spell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "a978b114-f827-4dd5-b351-a1f74deb7095",
+            "actions": [
+                {
+                    "name": "Backpack",
+                    "type": "Button",
+                    "id": "8be32cc1-12fe-4eaa-8f00-157d7aa00d89",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CycleMenuRight",
+                    "type": "Button",
+                    "id": "237c9419-45ec-4c64-b654-118fc9c646f7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CycleMenuLeft",
+                    "type": "Button",
+                    "id": "aefd054d-0fff-4ce6-93a0-5d52d31085ed",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CycleSubmenuRight",
+                    "type": "Button",
+                    "id": "104d2247-05d1-4317-b0f6-bd0d8894669a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CycleSubmenuLeft",
+                    "type": "Button",
+                    "id": "6ab6231f-9dc2-4f98-9b7e-d97ffc7484f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Close",
+                    "type": "Button",
+                    "id": "0726049b-073e-417f-98df-a8516bbad87a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "57d506a5-09cc-4bb3-bcd9-5302a2e29431",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Backpack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b0f9b33-b05c-4245-ac9c-1a58ac61c70a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleMenuRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1aa23511-e783-4c30-a9a7-bd89fae6c4c4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleMenuLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7aeb0400-125e-4a20-84fc-aa73b114628e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleSubmenuRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d41872d4-b05f-4f36-8965-b2a7acc0d2c7",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleSubmenuLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92836cb3-bb75-4e5c-99f8-fbefa9762df4",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

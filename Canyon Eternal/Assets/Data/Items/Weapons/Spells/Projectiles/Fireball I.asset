@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1249d3af0924184bb0097ff6769557, type: 3}
+  m_Name: Fireball I
+  m_EditorClassIdentifier: 
+  itemName: Fireball I
+  itemDescription: The weakest projectile spell
+  itemIcon: {fileID: 0}
+  itemValue: 0
+  staminaCost: 4
+  startingMinDamage: 30
+  startingMaxDamage: 35
+  minDamage: 0
+  maxDamage: 0
+  criticalChance: 0.223
+  knockbackForce: 200
+  collisionVFX: {fileID: 3142461857739340215, guid: bc50f557a3bba4d829eaaf7adf114137,
+    type: 3}
+  damageSFX: []
+  criticalDamageSFX: {fileID: 0}
+  isProjectile: 1
+  isAOE: 0
+  isBuff: 0
+  chargeTime: 1
+  chargeVFX: {fileID: 4881746393167522150, guid: a584c12c0ef4440c8aa3b6da3af5afe4,
+    type: 3}
+  chargeCompleteVFX: {fileID: 4881746393167522150, guid: 797db4a05f18643939926c2e5785d8c5,
+    type: 3}
+  explosionRadius: 0
+  launchForce: 100
+  GOPrefab: {fileID: 2204171353132637292, guid: ac4ae8557494f46a2929866257811fa2,
+    type: 3}
+  launchSFX: {fileID: 8300000, guid: ed6a19813a5f2104c828fd0b0cd484a9, type: 3}
+  collisionSFX: {fileID: 8300000, guid: ae55ec1ca66d0ab4385298ed5d2e1e55, type: 3}
+  buffDuration: 0
+  heartBuff: 0
+  staminaBuff: 0
+  damagaMultiplierBuff: 0

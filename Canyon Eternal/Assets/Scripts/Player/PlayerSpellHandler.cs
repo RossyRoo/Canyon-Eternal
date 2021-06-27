@@ -205,16 +205,16 @@ public class PlayerSpellHandler : MonoBehaviour
 
         if (activeSpell.damagaMultiplierBuff != 0)
         {
-            playerMeleeHandler.activeMeleeCard.minDamage *= activeSpell.damagaMultiplierBuff;
-            playerMeleeHandler.activeMeleeCard.maxDamage *= activeSpell.damagaMultiplierBuff;
+            playerMeleeHandler.activeMeleeWeapon.minDamage *= activeSpell.damagaMultiplierBuff;
+            playerMeleeHandler.activeMeleeWeapon.maxDamage *= activeSpell.damagaMultiplierBuff;
         }
 
         yield return new WaitForSeconds(activeSpell.buffDuration);
 
         playerStats.DeactivateHealthBuff();
         playerStats.DeactivateStaminaBuff();
-        playerMeleeHandler.activeMeleeCard.minDamage = playerMeleeHandler.activeMeleeCard.startingMinDamage;
-        playerMeleeHandler.activeMeleeCard.maxDamage = playerMeleeHandler.activeMeleeCard.startingMaxDamage;
+        playerMeleeHandler.activeMeleeWeapon.minDamage = playerMeleeHandler.activeMeleeWeapon.startingMinDamage;
+        playerMeleeHandler.activeMeleeWeapon.maxDamage = playerMeleeHandler.activeMeleeWeapon.startingMaxDamage;
 
         playerStats.isBuffed = false;
     }

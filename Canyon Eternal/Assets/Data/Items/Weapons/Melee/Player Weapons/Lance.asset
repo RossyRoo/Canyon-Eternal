@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94a4eab3bdf84a699f635d07756d828, type: 3}
+  m_Name: Lance
+  m_EditorClassIdentifier: 
+  itemName: Lance
+  itemDescription: The simplest of the thrusting weapons.
+  itemIcon: {fileID: 0}
+  itemValue: 0
+  staminaCost: 1
+  startingMinDamage: 4
+  startingMaxDamage: 6
+  minDamage: 4
+  maxDamage: 6
+  criticalChance: 0.1
+  knockbackForce: 300
+  collisionVFX: {fileID: 3801012901521723010, guid: fb50b77ac2cac46dba4cdeb41515422f,
+    type: 3}
+  damageSFX:
+  - {fileID: 8300000, guid: a5afba8007cd4e14fb2929e6ccf59e27, type: 3}
+  - {fileID: 8300000, guid: 3aef3e60bc483e04ca6ebe51eef51d3d, type: 3}
+  - {fileID: 8300000, guid: e71ba8ab868e86c449ca4aa993de4171, type: 3}
+  criticalDamageSFX: {fileID: 8300000, guid: 75f2d5cc82e52244ea273b7e32259d15, type: 3}
+  isThrust: 1
+  isSlash: 0
+  isStrike: 0
+  attackMomentum: 0
+  openDamageColliderBuffer: 0.05
+  closeDamageColliderBuffer: 0.1
+  attackCooldownTime: 0.35
+  modelPrefab: {fileID: 8638964557053719766, guid: c680c1385ef0c453ab99fab41d178040,
+    type: 3}
+  attackAnimations:
+  - Thrust_00
+  - Thrust_01
+  - Thrust_02
+  swingWeaponSFX:
+  - {fileID: 8300000, guid: 1699a5a92a1300946bca50dddbb92fb7, type: 3}
+  - {fileID: 8300000, guid: 3b7bc5dfb80d92c478b309fc9c978d16, type: 3}

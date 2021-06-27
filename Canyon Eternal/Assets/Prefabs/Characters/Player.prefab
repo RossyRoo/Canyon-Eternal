@@ -5825,6 +5825,7 @@ MonoBehaviour:
   isDashing: 0
   currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
+  isInteractingWithUI: 0
   interactionPopupGO: {fileID: 0}
   itemPopupGO: {fileID: 0}
   interactableUI: {fileID: 0}
@@ -5854,6 +5855,12 @@ MonoBehaviour:
   block_Input: 0
   heal_Input: 0
   interact_Input: 0
+  backpack_Input: 0
+  cycleMenuLeft_Input: 0
+  cycleMenuRight_Input: 0
+  cycleSubmenuLeft_Input: 0
+  cycleSubmenuRight_Input: 0
+  close_Input: 0
 --- !u!114 &9008261327072951981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5912,7 +5919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2135b11cde62a4eb89b6930934d1e76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeMeleeCard: {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
+  activeMeleeWeapon: {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
   currentMeleeModel: {fileID: 0}
   thrustTransform: {fileID: 1682047786}
   slashTransform: {fileID: 4970626563322260538}
@@ -5946,11 +5953,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c7d7625fcb14f718c40eaeb2d78c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fragmentCounterUI: {fileID: 0}
   fragmentInventory: 0
-  heldThrustCard: {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}
-  heldSlashCard: {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
-  heldStrikeCard: {fileID: 11400000, guid: 4e080a877e8ac49a0bf4e520d04e2e9d, type: 2}
+  thrustWeaponsInventory:
+  - {fileID: 11400000, guid: e14be5407735445c49e75ec8a658938e, type: 2}
+  - {fileID: 11400000, guid: 439af596f16894dc7aaa2d5015c7aadb, type: 2}
+  - {fileID: 11400000, guid: 1e339c4613c38433caed546a691e784d, type: 2}
+  slashWeaponsInventory:
+  - {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
+  - {fileID: 11400000, guid: c86e8144340bf490c99f359dbd4c9b4d, type: 2}
+  - {fileID: 11400000, guid: 79507e403e97f41608379e1e6e8eef76, type: 2}
+  strikeWeaponsInventory:
+  - {fileID: 11400000, guid: 4e080a877e8ac49a0bf4e520d04e2e9d, type: 2}
+  - {fileID: 11400000, guid: c58cee6c3fe324f909519759929d8691, type: 2}
+  - {fileID: 11400000, guid: 032d6f98eaec14cb7a780c9e439588c0, type: 2}
+  projectileSpellsInventory:
+  - {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  - {fileID: 11400000, guid: a549a626cc8954443b9799a5445d0fe0, type: 2}
+  - {fileID: 11400000, guid: 9856df2f01ec24e8a9ff2867abacf2fc, type: 2}
+  aOESpellsInventory:
+  - {fileID: 11400000, guid: 05b4b096f430e4a0f951fa1759cfccf1, type: 2}
+  - {fileID: 11400000, guid: 871283b3105064cd9b75b6651c735bb7, type: 2}
+  - {fileID: 11400000, guid: aef9c2679a8644305a84742b03462041, type: 2}
+  buffSpellsInventory:
+  - {fileID: 11400000, guid: e879f95b3275e4f61a70dbf3e202915a, type: 2}
+  - {fileID: 11400000, guid: 1bb68452eca0e4c428a0981a53177d57, type: 2}
+  - {fileID: 11400000, guid: 9a8927c631875480bb290d96dec17556, type: 2}
+  keyInventory:
+  - {fileID: 11400000, guid: b9be6a1ab3fc84289be44dd847b51f75, type: 2}
+  treasureInventory:
+  - {fileID: 11400000, guid: 43c2ca9b215d44178ba84c27375121a8, type: 2}
+  - {fileID: 11400000, guid: 142a3d1800b3a40debe1dbf3876f586e, type: 2}
+  usableInventory:
+  - {fileID: 11400000, guid: 41ba84185bd0a40a1a85992d4b73fff6, type: 2}
+  - {fileID: 11400000, guid: a4644522ef5454498bdd728382ac14e0, type: 2}
 --- !u!114 &8498243642609210069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5963,7 +5998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e0166e6dfaf414493cce0077f408cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeSpell: {fileID: 11400000, guid: e879f95b3275e4f61a70dbf3e202915a, type: 2}
+  activeSpell: {fileID: 11400000, guid: 05b4b096f430e4a0f951fa1759cfccf1, type: 2}
   currentSpellGO: {fileID: 0}
   projectilePointerVFXPrefab: {fileID: 630692850903603627, guid: e581584112d784a6bae4e1aa65e986d7,
     type: 3}

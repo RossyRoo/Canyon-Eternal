@@ -32,7 +32,7 @@ public class EnemyStats : CharacterStats
         }
     }
 
-    public void LoseHealth(int damageHealth, bool isCriticalHit, string damageAnimation = "TakeDamage")
+    public void LoseHealth(float damageHealth, bool isCriticalHit, string damageAnimation = "TakeDamage")
     {
         if (enemyManager.isDead || enemyManager.isInvulnerable)
             return;

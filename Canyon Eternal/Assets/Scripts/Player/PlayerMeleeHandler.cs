@@ -9,7 +9,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     PlayerAnimatorHandler playerAnimatorHandler;
 
     [Header("Weapon Loading")]
-    public MeleeWeapon activeMeleeCard;
+    public MeleeWeapon activeMeleeWeapon;
     [HideInInspector]
     public GameObject currentMeleeModel;
     public Transform thrustTransform;
@@ -36,15 +36,15 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public void SetParentOverride()
     {
-        if (activeMeleeCard.isThrust)
+        if (activeMeleeWeapon.isThrust)
         {
             parentOverride = thrustTransform;
         }
-        else if (activeMeleeCard.isSlash)
+        else if (activeMeleeWeapon.isSlash)
         {
             parentOverride = slashTransform;
         }
-        else if (activeMeleeCard.isStrike)
+        else if (activeMeleeWeapon.isStrike)
         {
             parentOverride = strikeTransform;
         }
@@ -59,12 +59,12 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public void LoadMelee()
     {
-        if (activeMeleeCard == null)
+        if (activeMeleeWeapon == null)
         {
             return;
         }
 
-        GameObject meleeModelPrefab = Instantiate(activeMeleeCard.modelPrefab) as GameObject;
+        GameObject meleeModelPrefab = Instantiate(activeMeleeWeapon.modelPrefab) as GameObject;
         if (meleeModelPrefab != null)
         {
             if (parentOverride != null)
@@ -86,17 +86,17 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public IEnumerator HandleMeleeAttack()
     {
-        currentAttackCooldownTime = activeMeleeCard.attackCooldownTime; //START COOLDOWN TIMER
+        currentAttackCooldownTime = activeMeleeWeapon.attackCooldownTime; //START COOLDOWN TIMER
         meleeDamageCollider.knockbackDirection = playerManager.lastMoveDirection;
-        playerAnimatorHandler.PlayTargetAnimation(activeMeleeCard.attackAnimations[Random.Range(0,activeMeleeCard.attackAnimations.Length)], true); //PLAY ATTACK ANIMATION
+        playerAnimatorHandler.PlayTargetAnimation(activeMeleeWeapon.attackAnimations[Random.Range(0,activeMeleeWeapon.attackAnimations.Length)], true); //PLAY ATTACK ANIMATION
 
-        yield return new WaitForSeconds(activeMeleeCard.openDamageColliderBuffer);
+        yield return new WaitForSeconds(activeMeleeWeapon.openDamageColliderBuffer);
 
-        playerStats.LoseStamina(activeMeleeCard.staminaCost); //DRAIN STAMINA
+        playerStats.LoseStamina(activeMeleeWeapon.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
         PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
 
-        yield return new WaitForSeconds(activeMeleeCard.closeDamageColliderBuffer); 
+        yield return new WaitForSeconds(activeMeleeWeapon.closeDamageColliderBuffer); 
         meleeDamageCollider.DisableDamageCollider(); //DISABLE DAMAGE COLLIDER
 
         attackMomentumActivated = true; //ENABLE ATTACK MOMENTUM
@@ -108,13 +108,13 @@ public class PlayerMeleeHandler : MonoBehaviour
     {
         if (attackMomentumActivated)
         {
-            playerManager.rb.AddForce((playerManager.lastMoveDirection * activeMeleeCard.attackMomentum));
+            playerManager.rb.AddForce((playerManager.lastMoveDirection * activeMeleeWeapon.attackMomentum));
         }
     }
 
     private void PlayMeleeVFX()
     {
-        SFXPlayer.Instance.PlaySFXAudioClip(activeMeleeCard.swingWeaponSFX[Random.Range(0, 2)]);
+        SFXPlayer.Instance.PlaySFXAudioClip(activeMeleeWeapon.swingWeaponSFX[Random.Range(0, activeMeleeWeapon.swingWeaponSFX.Length)]);
 
         Vector3 currentEulerAngles = Vector3.zero;
         Vector3 currentPosition = transform.position;
@@ -145,7 +145,7 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         GameObject meleeMotionVFXGO = Instantiate(meleeMotionVFX, currentPosition, Quaternion.Euler(currentEulerAngles));
         meleeMotionVFXGO.transform.parent = transform;
-        meleeMotionVFXGO.GetComponentInChildren<Animator>().Play(activeMeleeCard.attackAnimations[0]);
+        meleeMotionVFXGO.GetComponentInChildren<Animator>().Play(activeMeleeWeapon.attackAnimations[0]);
         Destroy(meleeMotionVFXGO, 1f);
     }
 

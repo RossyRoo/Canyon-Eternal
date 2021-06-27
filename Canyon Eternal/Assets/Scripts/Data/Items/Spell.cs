@@ -24,5 +24,5 @@ public class Spell : Weapon
     public float buffDuration = 0f;
     public int heartBuff = 0;
     public int staminaBuff = 0;
-    public int damagaMultiplierBuff = 0;
+    public float damagaMultiplierBuff = 0;
 }
