@@ -58,32 +58,18 @@ public class BagUI : MonoBehaviour
 
         for (int i = 0; i < interfaceSlots.Length; i++)
         {
-            Image[] itemIcons = interfaceSlots[i].GetComponentsInChildren<Image>();
+            Image myItemIcon = interfaceSlots[i].GetComponent<Image>();
 
-            for (int j = 0; j < itemIcons.Length; j++)
+            if (i < playerInventory.usableInventory.Count)
             {
-                if (!itemIcons[j].GetComponent<Button>())
-                {
-                    Debug.Log("found my item icon");
-                    Image myItemIcon = itemIcons[j];
-
-                    if (i < playerInventory.usableInventory.Count)
-                    {
-                        myItemIcon.sprite = playerInventory.usableInventory[i].itemIcon;
-                        myItemIcon.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        myItemIcon.sprite = null;
-                        myItemIcon.gameObject.SetActive(false);
-                    }
-                }
-                else
-                {
-                    Debug.Log("didnt found my item icon");
-                }
+                myItemIcon.sprite = playerInventory.usableInventory[i].itemIcon;
+                myItemIcon.gameObject.SetActive(true);
             }
-
+            else
+            {
+                myItemIcon.sprite = null;
+                myItemIcon.gameObject.SetActive(false);
+            }
 
         }
 
@@ -96,25 +82,17 @@ public class BagUI : MonoBehaviour
 
         for (int i = 0; i < interfaceSlots.Length; i++)
         {
-            Image[] itemIcons = interfaceSlots[i].GetComponentsInChildren<Image>();
+            Image myItemIcon = interfaceSlots[i].GetComponent<Image>();
 
-            for (int j = 0; j < itemIcons.Length; j++)
+            if (i < playerInventory.keyInventory.Count)
             {
-                if (!itemIcons[j].GetComponent<Button>())
-                {
-                    Image myItemIcon = itemIcons[j];
-
-                    if (i < playerInventory.keyInventory.Count)
-                    {
-                        myItemIcon.sprite = playerInventory.keyInventory[i].itemIcon;
-                        myItemIcon.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        myItemIcon.sprite = null;
-                        myItemIcon.gameObject.SetActive(false);
-                    }
-                }
+                myItemIcon.sprite = playerInventory.keyInventory[i].itemIcon;
+                myItemIcon.gameObject.SetActive(true);
+            }
+            else
+            {
+                myItemIcon.sprite = null;
+                myItemIcon.gameObject.SetActive(false);
             }
 
         }
@@ -128,25 +106,17 @@ public class BagUI : MonoBehaviour
 
         for (int i = 0; i < interfaceSlots.Length; i++)
         {
-            Image[] itemIcons = interfaceSlots[i].GetComponentsInChildren<Image>();
+            Image myItemIcon = interfaceSlots[i].GetComponent<Image>();
 
-            for (int j = 0; j < itemIcons.Length; j++)
+            if (i < playerInventory.treasureInventory.Count)
             {
-                if(!itemIcons[j].GetComponent<Button>())
-                {
-                    Image myItemIcon = itemIcons[j];
-
-                    if (i < playerInventory.treasureInventory.Count)
-                    {
-                        myItemIcon.sprite = playerInventory.treasureInventory[i].itemIcon;
-                        myItemIcon.gameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        myItemIcon.sprite = null;
-                        myItemIcon.gameObject.SetActive(false);
-                    }
-                }
+                myItemIcon.sprite = playerInventory.treasureInventory[i].itemIcon;
+                myItemIcon.gameObject.SetActive(true);
+            }
+            else
+            {
+                myItemIcon.sprite = null;
+                myItemIcon.gameObject.SetActive(false);
             }
 
         }
