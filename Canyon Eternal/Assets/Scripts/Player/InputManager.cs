@@ -10,7 +10,7 @@ public class InputManager : MonoBehaviour
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
     PlayerBlockHandler playerBlockHandler;
-    BackpackUI backpackUI;
+    GameMenuUI gameMenuUI;
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
@@ -22,12 +22,12 @@ public class InputManager : MonoBehaviour
     public bool block_Input;
     public bool heal_Input;
     public bool interact_Input;
-    public bool backpack_Input;
+    public bool openMenu_Input;
     public bool cycleMenuLeft_Input;
     public bool cycleMenuRight_Input;
     public bool cycleSubmenuLeft_Input;
     public bool cycleSubmenuRight_Input;
-    public bool close_Input;
+    public bool closeMenu_Input;
 
 
     private void Awake()
@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
         playerBlockHandler = GetComponent<PlayerBlockHandler>();
 
-        backpackUI = FindObjectOfType<BackpackUI>();
+        gameMenuUI = FindObjectOfType<GameMenuUI>();
     }
 
     private void OnEnable()
@@ -71,12 +71,12 @@ public class InputManager : MonoBehaviour
             playerControls.PlayerActions.Interact.performed += i => interact_Input = true;
 
             //UI
-            playerControls.UI.Backpack.performed += i => backpack_Input = true;
+            playerControls.UI.OpenMenu.performed += i => openMenu_Input = true;
             playerControls.UI.CycleMenuLeft.performed += i => cycleMenuLeft_Input = true;
             playerControls.UI.CycleMenuRight.performed += i => cycleMenuRight_Input = true;
             playerControls.UI.CycleSubmenuLeft.performed += i => cycleSubmenuLeft_Input = true;
             playerControls.UI.CycleSubmenuRight.performed += i => cycleSubmenuRight_Input = true;
-            playerControls.UI.Close.performed += i => close_Input = true;
+            playerControls.UI.CloseMenu.performed += i => closeMenu_Input = true;
         }
         playerControls.Enable();
     }
@@ -94,10 +94,10 @@ public class InputManager : MonoBehaviour
         HandleDashInput();
         HandleBlockInput();
         HandleHealInput();
-        HandleBackpackInput();
+        HandleMenuInput();
         HandleCloseInput();
 
-        if(backpackUI.backpackIsOpen)
+        if(gameMenuUI.gameMenuIsOpen)
         {
             HandleCycleMenuInput();
             HandleCycleSubmenuInput();
@@ -184,12 +184,11 @@ public class InputManager : MonoBehaviour
 
     #endregion
 
-    private void HandleBackpackInput()
+    private void HandleMenuInput()
     {
-        if(backpack_Input)
+        if(openMenu_Input)
         {
-            backpackUI.ReverseBackpackUI();
-
+            gameMenuUI.ReverseGameMenuUI();
         }
     }
 
@@ -197,12 +196,12 @@ public class InputManager : MonoBehaviour
     {
         if (cycleMenuRight_Input)
         {
-            backpackUI.CycleMenuRight();
+            gameMenuUI.CycleMenuRight();
         }
 
         if (cycleMenuLeft_Input)
         {
-            backpackUI.CycleMenuLeft();
+            gameMenuUI.CycleMenuLeft();
         }
     }
 
@@ -210,18 +209,18 @@ public class InputManager : MonoBehaviour
     {
         if(cycleSubmenuLeft_Input)
         {
-            backpackUI.CycleSubmenuLeft();
+            gameMenuUI.CycleSubmenuLeft();
         }
 
         if(cycleSubmenuRight_Input)
         {
-            backpackUI.CycleSubmenuRight();
+            gameMenuUI.CycleSubmenuRight();
         }
     }
 
     private void HandleCloseInput()
     {
-        if(close_Input)
+        if(closeMenu_Input)
         {
             if(!playerManager.isInteractingWithUI)
             {
@@ -233,9 +232,9 @@ public class InputManager : MonoBehaviour
             {
                 mirror.ReverseMirrorUI();
             }
-            else if(backpackUI.backpackIsOpen)
+            else if(gameMenuUI.gameMenuIsOpen)
             {
-                backpackUI.ReverseBackpackUI();
+                gameMenuUI.ReverseGameMenuUI();
             }
         }
     }

@@ -199,7 +199,7 @@
             "id": "a978b114-f827-4dd5-b351-a1f74deb7095",
             "actions": [
                 {
-                    "name": "Backpack",
+                    "name": "OpenMenu",
                     "type": "Button",
                     "id": "8be32cc1-12fe-4eaa-8f00-157d7aa00d89",
                     "expectedControlType": "Button",
@@ -239,7 +239,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Close",
+                    "name": "CloseMenu",
                     "type": "Button",
                     "id": "0726049b-073e-417f-98df-a8516bbad87a",
                     "expectedControlType": "Button",
@@ -251,11 +251,11 @@
                 {
                     "name": "",
                     "id": "57d506a5-09cc-4bb3-bcd9-5302a2e29431",
-                    "path": "<Keyboard>/b",
+                    "path": "<Keyboard>/m",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Backpack",
+                    "action": "OpenMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -310,7 +310,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Close",
+                    "action": "CloseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

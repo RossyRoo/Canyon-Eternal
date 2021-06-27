@@ -84,12 +84,12 @@ public class PlayerManager : CharacterManager
         inputManager.castSpell_Input = false;
 
         //UI
-        inputManager.backpack_Input = false;
+        inputManager.openMenu_Input = false;
         inputManager.cycleMenuLeft_Input = false;
         inputManager.cycleMenuRight_Input = false;
         inputManager.cycleSubmenuLeft_Input = false;
         inputManager.cycleSubmenuRight_Input = false;
-        inputManager.close_Input = false;
+        inputManager.closeMenu_Input = false;
     }
 
     public IEnumerator HandleDeathCoroutine(string deathAnimation = "Death")
