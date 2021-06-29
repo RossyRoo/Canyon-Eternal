@@ -24,7 +24,6 @@ public class PlayerManager : CharacterManager
 
     public List<EnemyManager> enemiesEngaged;
 
-
     private void Awake()
     {
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
