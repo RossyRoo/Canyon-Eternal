@@ -1,25 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ItemPickup : Interactable
 {
+    float collectItemBuffer = 1.5f;
     public Item thisItem;
+    public Sprite openContainerSprite;
 
     public override void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
         base.Interact(playerManager, playerStats);
-        AddToInventory(playerManager);
+        StartCoroutine(AddToInventory(playerManager));
     }
 
-    private void AddToInventory(PlayerManager playerManager)
+    private IEnumerator AddToInventory(PlayerManager playerManager)
     {
+        GetComponent<BoxCollider2D>().enabled = false;
+
+        GetComponentInChildren<SpriteRenderer>().sprite = openContainerSprite;
         PlayerInventory playerInventory = playerManager.GetComponent<PlayerInventory>();
+
 
         if(thisItem.GetType()==typeof(Treasure))
         {
             playerInventory.treasureInventory.Add((Treasure)thisItem);
-            Debug.Log("Added treasure to inventory");
         }
         else if(thisItem.GetType() == typeof(Usable))
         {
@@ -49,6 +56,32 @@ public class ItemPickup : Interactable
         else if(thisItem.GetType() == typeof(Spell))
         {
             Spell thisSpell = (Spell)thisItem;
+
+            if(thisSpell.isProjectile)
+            {
+                playerInventory.projectileSpellsInventory.Add(thisSpell);
+            }
+            else if(thisSpell.isAOE)
+            {
+                playerInventory.aOESpellsInventory.Add(thisSpell);
+            }
+            else
+            {
+                playerInventory.buffSpellsInventory.Add(thisSpell);
+            }
         }
+
+        playerManager.isInteractingWithUI = true;
+
+        playerManager.itemPopupGO.GetComponentInChildren<TextMeshProUGUI>().text = thisItem.itemName;
+        playerManager.itemPopupGO.GetComponentInChildren<Image>().sprite = thisItem.itemIcon;
+        playerManager.itemPopupGO.SetActive(true);
+
+        yield return new WaitForSeconds(collectItemBuffer);
+
+        playerManager.isInteractingWithUI = false;
+
+        playerManager.itemPopupGO.SetActive(false);
+
     }
 }

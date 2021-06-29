@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 2558
     height: 1370
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 663}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 2558
     height: 1320
-  m_MinSize: {x: 869, y: 613}
-  m_MaxSize: {x: 18004, y: 18063}
+  m_MinSize: {x: 868, y: 613}
+  m_MaxSize: {x: 18003, y: 18063}
   vertical: 0
-  controlID: 180
+  controlID: 85
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 593, y: 613}
   m_MaxSize: {x: 14003, y: 18063}
   vertical: 1
-  controlID: 181
+  controlID: 86
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 505, y: 342}
   m_MaxSize: {x: 12005, y: 8042}
   vertical: 0
-  controlID: 153
+  controlID: 87
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 113
+  controlID: 88
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -238,8 +238,8 @@ MonoBehaviour:
     y: 636
     width: 837
     height: 223
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -292,8 +292,8 @@ MonoBehaviour:
     y: 0
     width: 433
     height: 859
-  m_MinSize: {x: 102, y: 121}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_MinSize: {x: 593, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 182
+  controlID: 239
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -370,8 +370,8 @@ MonoBehaviour:
     y: 0
     width: 706
     height: 461
-  m_MinSize: {x: 360, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 362, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 26}
   m_Panes:
   - {fileID: 26}
@@ -397,8 +397,8 @@ MonoBehaviour:
     y: 0
     width: 541
     height: 1320
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 28}
   m_Panes:
   - {fileID: 28}
@@ -774,7 +774,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 7af8ffff22fbffff
+      m_ExpandedIDs: 8af7ffffdcf7ffffe0f7ffffe2f7ffff1af8ffffecfafffff4ffffff0a560000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -827,9 +827,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7af8ffff
-      m_LastClickedID: -1926
-      m_ExpandedIDs: 22fbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: ecfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -915,9 +915,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 103.03334, y: 28.693718, z: -264.72272}
+    m_Target: {x: 481.55594, y: 428.3701, z: -598.67523}
     speed: 2
-    m_Value: {x: 103.03334, y: 28.693718, z: -264.72272}
+    m_Value: {x: 662.3635, y: 494.54144, z: -2220.72}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -967,9 +967,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 196.55052
+    m_Target: 412.67264
     speed: 2
-    m_Value: 196.55052
+    m_Value: 350.06137
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1672,20 +1672,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/UI
+    - Assets/Scripts/Player
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scripts/UI
+  - Assets/Scripts/Player
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /Users/rosssmith/Documents/GitHub/Canyon-Eternal/Canyon Eternal
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 368}
-    m_SelectedIDs: c2750000
-    m_LastClickedID: 30146
-    m_ExpandedIDs: 0000000008510000e6740000e8740000ea740000ec740000ee740000f0740000f2740000f4740000f6740000f8740000fa740000fc740000fe74000000750000027500000475000006750000087500000a7500000c7500000e75000010750000127500001475000016750000187500001a7500001c7500001e7500002075000000ca9a3b
+    scrollPos: {x: 0, y: 364}
+    m_SelectedIDs: 9e770000
+    m_LastClickedID: 30622
+    m_ExpandedIDs: 0000000010510000ee760000f0760000f2760000f4760000f6760000f8760000fa760000fc760000fe76000000770000027700000477000006770000087700000a7700000c7700000e77000010770000127700001477000016770000187700001a7700001c7700001e7700002077000022770000247700002677000028770000627700009c77000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1713,7 +1713,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000008510000e6740000e8740000ea740000ec740000ee740000f0740000f2740000f4740000f6740000f8740000fa740000fc740000fe74000000750000027500000475000006750000087500000a7500000c7500000e75000010750000127500001475000016750000187500001a7500001c7500001e75000020750000
+    m_ExpandedIDs: 0000000010510000ee760000f0760000f2760000f4760000f6760000f8760000fa760000fc760000fe76000000770000027700000477000006770000087700000a7700000c7700000e77000010770000127700001477000016770000187700001a7700001c7700001e7700002077000022770000247700002677000028770000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1757,7 +1757,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 14}
+      m_ClientGUIView: {fileID: 0}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1795,7 +1795,8 @@ MonoBehaviour:
     height: 440
   m_ViewDataDictionary: {fileID: 0}
   m_ResetOnNextRepaint: 0
-  m_SelectedAssetPath: Assets/Art/Sprites/Environment/Structures/Interiors/Fort Interior.png
+  m_SelectedAssetPath: Assets/Art/Sprites/Environment/Structures/Buildings/Beebo's
+    House.png
   m_SelectedSpriteRectGUID: 5e97eb03825dee720800000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
 --- !u!114 &27
@@ -1826,7 +1827,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1926
+  m_LastSelectedObjectID: -2290
 --- !u!114 &28
 MonoBehaviour:
   m_ObjectHideFlags: 52

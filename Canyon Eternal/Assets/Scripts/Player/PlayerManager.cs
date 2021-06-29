@@ -14,8 +14,10 @@ public class PlayerManager : CharacterManager
 
     public bool isInteractingWithUI;
 
+    [Header("Interactions")]
     public GameObject interactionPopupGO;
     public GameObject itemPopupGO;
+
     public InteractableUI interactableUI;
     public LayerMask interactableLayers;
 
