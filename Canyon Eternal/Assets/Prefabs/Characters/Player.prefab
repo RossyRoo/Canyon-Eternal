@@ -5318,6 +5318,53 @@ Transform:
   m_Father: {fileID: 1518488389}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1967979648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967979649}
+  - component: {fileID: 1967979650}
+  m_Layer: 8
+  m_Name: Progression
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1967979649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967979648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8652666736338822578}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1967979650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967979648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc780519578a143e6965c9c29fe45c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vesselPoints: 0
+  playerVesselPercentage: 0
+  completedBossIDs: 
+  completedChestIDs: 
 --- !u!1 &1998093287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5753,6 +5800,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8652666736507707589}
+  - {fileID: 1967979649}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5886,8 +5934,6 @@ MonoBehaviour:
   staminaRecoveryBuffer: 0.25
   maxLunchBoxCapacity: 5
   currentLunchBoxCapacity: 0
-  bossesDefeated: 
-  playerDeathCount: 0
 --- !u!114 &8652666736338822579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5986,6 +6032,12 @@ MonoBehaviour:
   usableInventory:
   - {fileID: 11400000, guid: 41ba84185bd0a40a1a85992d4b73fff6, type: 2}
   - {fileID: 11400000, guid: a4644522ef5454498bdd728382ac14e0, type: 2}
+  photoInventory:
+  - {fileID: 11400000, guid: 7e4b5ac359c9842729a2f8dc4e4bc710, type: 2}
+  - {fileID: 11400000, guid: 82a342675ed7943ffba887cddf320ecb, type: 2}
+  - {fileID: 11400000, guid: 6416c7dee46fa42e18e43df0b10431d5, type: 2}
+  - {fileID: 11400000, guid: d4338442020584eec84c48dd52fec321, type: 2}
+  - {fileID: 11400000, guid: dac852f10a7ea49f4b1f92c027ad4ca6, type: 2}
 --- !u!114 &8498243642609210069
 MonoBehaviour:
   m_ObjectHideFlags: 0

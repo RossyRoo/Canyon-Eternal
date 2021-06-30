@@ -28,7 +28,7 @@ public class DeathState : EnemyStateMachine
 
         if (enemyStats.characterData.isBoss)
         {
-            playerStats.bossesDefeated.Add(enemyStats.characterData.enemyID);
+            playerStats.GetComponentInChildren<PlayerProgression>().completedBossIDs.Add(enemyStats.characterData.enemyID);
         }
 
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;

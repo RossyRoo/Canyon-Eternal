@@ -29,10 +29,6 @@ public class PlayerStats : CharacterStats
     [Header("Lunchbox")]
     public int maxLunchBoxCapacity = 5;
     public int currentLunchBoxCapacity;
-
-    [Header("Completion")]
-    public List <int> bossesDefeated;
-    public int playerDeathCount;
     
 
     private void Awake()

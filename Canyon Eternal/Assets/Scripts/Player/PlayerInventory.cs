@@ -24,6 +24,8 @@ public class PlayerInventory : MonoBehaviour
     public List<Treasure> treasureInventory;
     public List<Usable> usableInventory;
 
+    [Header("Photo Inventory")]
+    public List<Photo> photoInventory;
 
 
     private void Awake()

@@ -6,9 +6,22 @@ using TMPro;
 
 public class ItemPickup : Interactable
 {
+    PlayerProgression playerProgression;
+
     float collectItemBuffer = 1.5f;
     public Item thisItem;
     public Sprite openContainerSprite;
+    public int chestID;
+
+    private void Start()
+    {
+        playerProgression = FindObjectOfType<PlayerProgression>();
+
+        if (playerProgression.completedChestIDs.Contains(chestID))
+        {
+            DeactivateItemPickup();
+        }
+    }
 
     public override void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
@@ -18,11 +31,14 @@ public class ItemPickup : Interactable
 
     private IEnumerator AddToInventory(PlayerManager playerManager)
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        DeactivateItemPickup();
 
-        GetComponentInChildren<SpriteRenderer>().sprite = openContainerSprite;
+        if (!playerProgression.completedChestIDs.Contains(chestID))
+        {
+            playerProgression.completedChestIDs.Add(chestID);
+        }
+
         PlayerInventory playerInventory = playerManager.GetComponent<PlayerInventory>();
-
 
         if(thisItem.GetType()==typeof(Treasure))
         {
@@ -82,6 +98,13 @@ public class ItemPickup : Interactable
         playerManager.isInteractingWithUI = false;
 
         playerManager.itemPopupGO.SetActive(false);
+
+    }
+
+    public void DeactivateItemPickup()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().sprite = openContainerSprite;
 
     }
 }

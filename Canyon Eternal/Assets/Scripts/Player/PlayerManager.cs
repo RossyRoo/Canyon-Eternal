@@ -11,6 +11,7 @@ public class PlayerManager : CharacterManager
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
     PlayerAnimatorHandler playerAnimatorHandler;
+    PlayerProgression playerProgression;
 
     public bool isInteractingWithUI;
 
@@ -28,6 +29,7 @@ public class PlayerManager : CharacterManager
 
     private void Awake()
     {
+        playerProgression = GetComponentInChildren<PlayerProgression>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
@@ -96,7 +98,7 @@ public class PlayerManager : CharacterManager
     public IEnumerator HandleDeathCoroutine(string deathAnimation = "Death")
     {
         isDead = true;
-        playerStats.playerDeathCount++;
+        playerProgression.AdjustVesselLevel(1);
         playerAnimatorHandler.PlayTargetAnimation(deathAnimation, true);
         yield return new WaitForSeconds(1f);
         //Drop fragments
