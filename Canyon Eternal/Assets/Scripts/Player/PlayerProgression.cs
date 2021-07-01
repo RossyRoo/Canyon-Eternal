@@ -12,6 +12,10 @@ public class PlayerProgression : MonoBehaviour
     public List<int> completedBossIDs;
     public List<int> completedChestIDs;
 
+    [Header("Phone Calls")]
+    public List<Contact> collectedContacts;
+    public List<int> collectedPhoneCallIDs;
+
     private void Awake()
     {
         playerVesselPercentage = vesselPoints * 0.1f;

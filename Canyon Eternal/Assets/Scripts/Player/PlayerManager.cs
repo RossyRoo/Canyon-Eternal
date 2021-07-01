@@ -112,7 +112,6 @@ public class PlayerManager : CharacterManager
 
         animator.SetBool("isInteracting", false);
 
-
         Door[] doorsInRoom = FindObjectsOfType<Door>();
         for (int i = 0; i < doorsInRoom.Length; i++)
         {
@@ -195,19 +194,22 @@ public class PlayerManager : CharacterManager
 
     public void EnterConversationState()
     {
+        Debug.Log("Entering conversation");
+
         if(isDashing)
         {
             playerLocomotion.StopDash();
         }
         isInteractingWithUI = true;
-        isInteracting = true;
+        animator.SetBool("isInteracting", true);
+
         playerAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);
     }
 
     public void ExitConversationState()
     {
         isInteractingWithUI = false;
-        isInteracting = false;
+        animator.SetBool("isInteracting", false);
     }
 
     #endregion
