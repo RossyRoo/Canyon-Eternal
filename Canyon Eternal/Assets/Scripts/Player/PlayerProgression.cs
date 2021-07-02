@@ -17,10 +17,9 @@ public class PlayerProgression : MonoBehaviour
     public List<int> collectedPhoneCallIDs;
 
     [Header("Exploration")]
-    public int roomsDiscovered;
-    public int lastRoomVisited;
-    public int areasDiscovered;
-    public int lastAreaVisited;
+    public List<Room> roomsDiscovered;
+    public List<int> areasDiscovered;
+
 
     private void Awake()
     {

@@ -121,6 +121,11 @@ public class PlayerManager : CharacterManager
             }
         }
 
+        if (!GetComponentInChildren<PlayerProgression>().roomsDiscovered.Contains(currentRoom))
+        {
+            GetComponentInChildren<PlayerProgression>().roomsDiscovered.Add(currentRoom);
+        }
+
     }
 
     #region Area Checks
