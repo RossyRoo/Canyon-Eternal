@@ -35,9 +35,9 @@ public class ScrapbookUI : MonoBehaviour
     public void CloseScrapbook()
     {
         scrapbookUIGO.SetActive(false);
-
     }
 
+    #region Map
     public void OpenMap()
     {
         submenuNameText.text = "Map";
@@ -46,6 +46,8 @@ public class ScrapbookUI : MonoBehaviour
         mapUIGO.SetActive(true);
 
     }
+
+    #endregion
 
     public void OpenJournal()
     {

@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 663}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 2536
     height: 1370
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 663}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 2536
     height: 1320
-  m_MinSize: {x: 869, y: 613}
+  m_MinSize: {x: 1301, y: 613}
   m_MaxSize: {x: 18004, y: 18063}
   vertical: 0
-  controlID: 46
+  controlID: 234
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1963
     height: 1320
-  m_MinSize: {x: 593, y: 613}
+  m_MinSize: {x: 1025, y: 613}
   m_MaxSize: {x: 14003, y: 18063}
   vertical: 1
-  controlID: 47
+  controlID: 235
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,10 +163,10 @@ MonoBehaviour:
     y: 0
     width: 1963
     height: 859
-  m_MinSize: {x: 505, y: 342}
+  m_MinSize: {x: 1025, y: 342}
   m_MaxSize: {x: 12005, y: 8042}
   vertical: 0
-  controlID: 48
+  controlID: 236
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 49
+  controlID: 237
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,8 +211,8 @@ MonoBehaviour:
     y: 0
     width: 455
     height: 636
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -238,8 +238,8 @@ MonoBehaviour:
     y: 636
     width: 455
     height: 223
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: DialogueEditorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -264,15 +264,15 @@ MonoBehaviour:
     y: 0
     width: 917
     height: 859
-  m_MinSize: {x: 202, y: 221}
+  m_MinSize: {x: 722, y: 261}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 22}
+  m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 22}
   - {fileID: 23}
   - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 2
+  m_Selected: 2
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_MinSize: {x: 593, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 221
+  controlID: 176
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -439,7 +439,7 @@ MonoBehaviour:
   actorTexturesFoldout: 0
   actorSpritesFoldout: 1
   showNodeEditor: 1
-  currentConversationID: 24
+  currentConversationID: 96
   globalSearchText: 
   globalReplaceText: 
   globalSearchSpecificConversation: 0
@@ -520,7 +520,7 @@ MonoBehaviour:
   watches: []
   autoUpdateWatches: 0
   watchUpdateFrequency: 1
-  nextWatchUpdateTime: 5144.195593056
+  nextWatchUpdateTime: 8718.409298375
   watchableVariableNames:
   - Actor
   - ActorIndex
@@ -546,101 +546,181 @@ MonoBehaviour:
   canvasScrollView: {x: 100000, y: 100000}
   canvasScrollPosition: {x: 0, y: 0}
   conversationTitles:
-  - CavernSign_01
   - Beebo_01
   - Beebo_02
+  - Beebo_03
+  - Beebo_04
+  - CavernSign_01
   - CavernSign_02
   - CavernSign_03
   - CavernSign_04
   - CavernSign_05
   - CavernSign_06
-  - Beebo_03
-  - Beebo_04
-  - Room25_01
   - CavernSign_08
   - CavernSign_09
   - Jeans
-  - PhoneCall_Beebo_01
-  - PhoneCall_Beebo_02
-  - PhoneCall_Beebo_03
-  - PhoneCall_Beebo_04
-  - PhoneCall_Beebo_05
-  - PhoneCall_Beebo_06
-  - PhoneCall_Beebo_07
-  - PhoneCall_Beebo_08
-  - PhoneCall_Beebo_09
-  - PhoneCall_Beebo_10
-  - PhoneCall_LordArmad_01
-  - PhoneCall_LordArmad_02
-  - PhoneCall_LordArmad_03
-  - PhoneCall_LordArmad_04
-  - PhoneCall_LordArmad_05
-  - PhoneCall_LordArmad_06
-  - PhoneCall_LordArmad_07
-  - PhoneCall_LordArmad_08
-  - PhoneCall_LordArmad_09
-  - PhoneCall_LordArmad_10
-  - PhoneCall_Ichigo_01
-  - PhoneCall_Ichigo_02
-  - PhoneCall_Ichigo_03
-  - PhoneCall_Ichigo_04
-  - PhoneCall_Ichigo_05
-  - PhoneCall_Ichigo_06
-  - PhoneCall_Ichigo_07
-  - PhoneCall_Ichigo_08
-  - PhoneCall_Ichigo_09
-  - PhoneCall_Ichigo_10
-  - PhoneCall_Pawstin_01
-  - PhoneCall_Pawstin_02
-  - PhoneCall_Pawstin_03
-  - PhoneCall_Pawstin_04
-  - PhoneCall_Pawstin_05
-  - PhoneCall_Pawstin_06
-  - PhoneCall_Pawstin_07
-  - PhoneCall_Pawstin_08
-  - PhoneCall_Pawstin_09
-  - PhoneCall_Pawstin_10
-  - PhoneCall_Gigo_01
-  - PhoneCall_Gigo_02
-  - PhoneCall_Gigo_03
-  - PhoneCall_Gigo_04
-  - PhoneCall_Gigo_05
-  - PhoneCall_Gigo_06
-  - PhoneCall_Gigo_07
-  - PhoneCall_Gigo_08
-  - PhoneCall_Gigo_09
-  - PhoneCall_Gigo_10
-  - PhoneCall_Shimmer_01
-  - PhoneCall_Shimmer_02
-  - PhoneCall_Shimmer_03
-  - PhoneCall_Shimmer_04
-  - PhoneCall_Shimmer_05
-  - PhoneCall_Shimmer_06
-  - PhoneCall_Shimmer_07
-  - PhoneCall_Shimmer_08
-  - PhoneCall_Shimmer_09
-  - PhoneCall_Shimmer_10
-  - PhoneCall_DarkComedy_01
-  - PhoneCall_DarkComedy_02
-  - PhoneCall_DarkComedy_03
-  - PhoneCall_DarkComedy_04
-  - PhoneCall_DarkComedy_05
-  - PhoneCall_DarkComedy_06
-  - PhoneCall_DarkComedy_07
-  - PhoneCall_DarkComedy_08
-  - PhoneCall_DarkComedy_09
-  - PhoneCall_DarkComedy_10
-  - PhoneCall_Dwyby_01
-  - PhoneCall_Dwyby_02
-  - PhoneCall_Dwyby_03
-  - PhoneCall_Dwyby_04
-  - PhoneCall_Dwyby_05
-  - PhoneCall_Dwyby_06
-  - PhoneCall_Dwyby_07
-  - PhoneCall_Dwyby_08
-  - PhoneCall_Dwyby_09
-  - PhoneCall_Dwyby_10
-  conversationIndex: 23
+  - PhoneCall_Beebo_Incoming_01
+  - PhoneCall_Beebo_Incoming_02
+  - PhoneCall_Beebo_Incoming_03
+  - PhoneCall_Beebo_Incoming_04
+  - PhoneCall_Beebo_Incoming_05
+  - PhoneCall_Beebo_Incoming_06
+  - PhoneCall_Beebo_Incoming_07
+  - PhoneCall_Beebo_Incoming_08
+  - PhoneCall_Beebo_Incoming_09
+  - PhoneCall_Beebo_Incoming_10
+  - PhoneCall_Beebo_Outgoing_01
+  - PhoneCall_Beebo_Outgoing_02
+  - PhoneCall_Beebo_Outgoing_03
+  - PhoneCall_Beebo_Outgoing_04
+  - PhoneCall_Beebo_Outgoing_05
+  - PhoneCall_Beebo_Outgoing_06
+  - PhoneCall_Beebo_Outgoing_07
+  - PhoneCall_Beebo_Outgoing_08
+  - PhoneCall_Beebo_Outgoing_09
+  - PhoneCall_Beebo_Outgoing_10
+  - PhoneCall_DarkComedy_Incoming_01
+  - PhoneCall_DarkComedy_Incoming_02
+  - PhoneCall_DarkComedy_Incoming_03
+  - PhoneCall_DarkComedy_Incoming_04
+  - PhoneCall_DarkComedy_Incoming_05
+  - PhoneCall_DarkComedy_Incoming_06
+  - PhoneCall_DarkComedy_Incoming_07
+  - PhoneCall_DarkComedy_Incoming_08
+  - PhoneCall_DarkComedy_Incoming_09
+  - PhoneCall_DarkComedy_Incoming_10
+  - PhoneCall_DarkComedy_Outgoing_01
+  - PhoneCall_DarkComedy_Outgoing_02
+  - PhoneCall_DarkComedy_Outgoing_03
+  - PhoneCall_DarkComedy_Outgoing_04
+  - PhoneCall_DarkComedy_Outgoing_05
+  - PhoneCall_DarkComedy_Outgoing_06
+  - PhoneCall_DarkComedy_Outgoing_07
+  - PhoneCall_DarkComedy_Outgoing_08
+  - PhoneCall_DarkComedy_Outgoing_09
+  - PhoneCall_DarkComedy_Outgoing_10
+  - PhoneCall_Dwyby_Incoming_01
+  - PhoneCall_Dwyby_Incoming_02
+  - PhoneCall_Dwyby_Incoming_03
+  - PhoneCall_Dwyby_Incoming_04
+  - PhoneCall_Dwyby_Incoming_05
+  - PhoneCall_Dwyby_Incoming_06
+  - PhoneCall_Dwyby_Incoming_07
+  - PhoneCall_Dwyby_Incoming_08
+  - PhoneCall_Dwyby_Incoming_09
+  - PhoneCall_Dwyby_Incoming_10
+  - PhoneCall_Dwyby_Outgoing_01
+  - PhoneCall_Dwyby_Outgoing_02
+  - PhoneCall_Dwyby_Outgoing_03
+  - PhoneCall_Dwyby_Outgoing_04
+  - PhoneCall_Dwyby_Outgoing_05
+  - PhoneCall_Dwyby_Outgoing_06
+  - PhoneCall_Dwyby_Outgoing_07
+  - PhoneCall_Dwyby_Outgoing_08
+  - PhoneCall_Dwyby_Outgoing_09
+  - PhoneCall_Dwyby_Outgoing_10
+  - PhoneCall_Gigo_Incoming_01
+  - PhoneCall_Gigo_Incoming_02
+  - PhoneCall_Gigo_Incoming_03
+  - PhoneCall_Gigo_Incoming_04
+  - PhoneCall_Gigo_Incoming_05
+  - PhoneCall_Gigo_Incoming_06
+  - PhoneCall_Gigo_Incoming_07
+  - PhoneCall_Gigo_Incoming_08
+  - PhoneCall_Gigo_Incoming_09
+  - PhoneCall_Gigo_Incoming_10
+  - PhoneCall_Gigo_Outgoing_01
+  - PhoneCall_Gigo_Outgoing_02
+  - PhoneCall_Gigo_Outgoing_03
+  - PhoneCall_Gigo_Outgoing_04
+  - PhoneCall_Gigo_Outgoing_05
+  - PhoneCall_Gigo_Outgoing_06
+  - PhoneCall_Gigo_Outgoing_07
+  - PhoneCall_Gigo_Outgoing_08
+  - PhoneCall_Gigo_Outgoing_09
+  - PhoneCall_Gigo_Outgoing_10
+  - PhoneCall_Ichigo_Incoming_01
+  - PhoneCall_Ichigo_Incoming_02
+  - PhoneCall_Ichigo_Incoming_03
+  - PhoneCall_Ichigo_Incoming_04
+  - PhoneCall_Ichigo_Incoming_05
+  - PhoneCall_Ichigo_Incoming_06
+  - PhoneCall_Ichigo_Incoming_07
+  - PhoneCall_Ichigo_Incoming_08
+  - PhoneCall_Ichigo_Incoming_09
+  - PhoneCall_Ichigo_Incoming_10
+  - PhoneCall_Ichigo_Outgoing_01
+  - PhoneCall_Ichigo_Outgoing_02
+  - PhoneCall_Ichigo_Outgoing_03
+  - PhoneCall_Ichigo_Outgoing_04
+  - PhoneCall_Ichigo_Outgoing_05
+  - PhoneCall_Ichigo_Outgoing_06
+  - PhoneCall_Ichigo_Outgoing_07
+  - PhoneCall_Ichigo_Outgoing_08
+  - PhoneCall_Ichigo_Outgoing_09
+  - PhoneCall_Ichigo_Outgoing_10
+  - PhoneCall_LordArmad_Incoming_01
+  - PhoneCall_LordArmad_Incoming_02
+  - PhoneCall_LordArmad_Incoming_03
+  - PhoneCall_LordArmad_Incoming_04
+  - PhoneCall_LordArmad_Incoming_05
+  - PhoneCall_LordArmad_Incoming_06
+  - PhoneCall_LordArmad_Incoming_07
+  - PhoneCall_LordArmad_Incoming_08
+  - PhoneCall_LordArmad_Incoming_09
+  - PhoneCall_LordArmad_Incoming_10
+  - PhoneCall_LordArmad_Outgoing_01
+  - PhoneCall_LordArmad_Outgoing_02
+  - PhoneCall_LordArmad_Outgoing_03
+  - PhoneCall_LordArmad_Outgoing_04
+  - PhoneCall_LordArmad_Outgoing_05
+  - PhoneCall_LordArmad_Outgoing_06
+  - PhoneCall_LordArmad_Outgoing_07
+  - PhoneCall_LordArmad_Outgoing_08
+  - PhoneCall_LordArmad_Outgoing_09
+  - PhoneCall_LordArmad_Outgoing_10
+  - PhoneCall_Pawstin_Incoming_01
+  - PhoneCall_Pawstin_Incoming_02
+  - PhoneCall_Pawstin_Incoming_03
+  - PhoneCall_Pawstin_Incoming_04
+  - PhoneCall_Pawstin_Incoming_05
+  - PhoneCall_Pawstin_Incoming_06
+  - PhoneCall_Pawstin_Incoming_07
+  - PhoneCall_Pawstin_Incoming_08
+  - PhoneCall_Pawstin_Incoming_09
+  - PhoneCall_Pawstin_Incoming_10
+  - PhoneCall_Pawstin_Outgoing_01
+  - PhoneCall_Pawstin_Outgoing_02
+  - PhoneCall_Pawstin_Outgoing_03
+  - PhoneCall_Pawstin_Outgoing_04
+  - PhoneCall_Pawstin_Outgoing_05
+  - PhoneCall_Pawstin_Outgoing_06
+  - PhoneCall_Pawstin_Outgoing_07
+  - PhoneCall_Pawstin_Outgoing_08
+  - PhoneCall_Pawstin_Outgoing_09
+  - PhoneCall_Pawstin_Outgoing_10
+  - PhoneCall_Shimmer_Incoming_01
+  - PhoneCall_Shimmer_Incoming_02
+  - PhoneCall_Shimmer_Incoming_03
+  - PhoneCall_Shimmer_Incoming_04
+  - PhoneCall_Shimmer_Incoming_05
+  - PhoneCall_Shimmer_Incoming_06
+  - PhoneCall_Shimmer_Incoming_07
+  - PhoneCall_Shimmer_Incoming_08
+  - PhoneCall_Shimmer_Incoming_09
+  - PhoneCall_Shimmer_Incoming_10
+  - PhoneCall_Shimmer_Outgoing_01
+  - PhoneCall_Shimmer_Outgoing_02
+  - PhoneCall_Shimmer_Outgoing_03
+  - PhoneCall_Shimmer_Outgoing_04
+  - PhoneCall_Shimmer_Outgoing_05
+  - PhoneCall_Shimmer_Outgoing_06
+  - PhoneCall_Shimmer_Outgoing_07
+  - PhoneCall_Shimmer_Outgoing_08
+  - PhoneCall_Shimmer_Outgoing_09
+  - PhoneCall_Shimmer_Outgoing_10
+  - Room25_01
+  conversationIndex: 24
   snapToGridAmount: 0
   confirmDelete: 1
   trimWhitespaceAroundPipes: 1
@@ -767,7 +847,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: eec3fdff60f7fffff6f7ffff42f8ffff7af8ffff2cfbffff
+      m_ExpandedIDs: 2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -820,8 +900,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1ce7ffff
-      m_LastClickedID: -6372
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -908,9 +988,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.7396336, y: -50.492466, z: -860.49347}
+    m_Target: {x: 0.61956215, y: -59.303143, z: -884.26227}
     speed: 2
-    m_Value: {x: 662.3635, y: 494.54144, z: -2220.72}
+    m_Value: {x: 0.61956215, y: -59.303143, z: -884.26227}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -960,9 +1040,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 46.101265
+    m_Target: 83.03162
     speed: 2
-    m_Value: 350.06137
+    m_Value: 83.03162
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1665,31 +1745,31 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Room Builder
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Prefabs/Room Builder
+  - Assets
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /Users/rosssmith/Documents/GitHub/Canyon-Eternal/Canyon Eternal
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 176}
-    m_SelectedIDs: d28e0000
-    m_LastClickedID: 36562
-    m_ExpandedIDs: 000000000c510000b2770000b4770000b6770000b8770000ba770000bc770000be770000c0770000c2770000c4770000c6770000c8770000ca770000cc770000ce770000d0770000d2770000d4770000d6770000d8770000da770000dc770000e0770000e2770000e6770000ea770000ec770000ee770000707800007e78000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 12510000
+    m_LastClickedID: 20754
+    m_ExpandedIDs: 000000001251000030760000327600003476000036760000387600003a7600003c7600003e76000040760000427600004476000046760000487600004a7600004c7600004e76000050760000527600005476000056760000587600005a7600005c760000607600006676000068760000d2760000e8760000f0760000a48d0000a68d0000a88d0000be8d0000d48d0000ea8d0000008e0000168e00002c8e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Actions
-      m_OriginalName: Actions
+      m_Name: Phone System
+      m_OriginalName: Phone System
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 30812
+      m_UserData: 30544
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -1706,7 +1786,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000c510000b2770000b4770000b6770000b8770000ba770000bc770000be770000c0770000c2770000c4770000c6770000c8770000ca770000cc770000ce770000d0770000d2770000d4770000d6770000d8770000da770000dc770000de770000e0770000e2770000e4770000e6770000e8770000ea770000ec770000ee770000
+    m_ExpandedIDs: 000000001251000030760000327600003476000036760000387600003a7600003c7600003e76000040760000427600004476000046760000487600004a7600004c7600004e76000050760000527600005476000056760000587600005a7600005c7600005e76000060760000627600006476000066760000687600006a760000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1819,7 +1899,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -2032
+  m_LastSelectedObjectID: 115252
 --- !u!114 &28
 MonoBehaviour:
   m_ObjectHideFlags: 52

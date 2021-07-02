@@ -25,14 +25,14 @@ public class IncomingPhoneCallTrigger : MonoBehaviour
 
             //Determine which phone calls are possible for that contact
             List<GameObject> possiblePhoneCalls = new List<GameObject>();
-            for (int i = 0; i < contactToCall.phoneCalls.Count; i++)
+            for (int i = 0; i < contactToCall.incomingPhoneCalls.Count; i++)
             {
-                if(playerProgression.playerVesselPercentage >= contactToCall.phoneCalls[i].GetComponent<PhoneCall>().minVesselPercentage
-                    && playerProgression.playerVesselPercentage <= contactToCall.phoneCalls[i].GetComponent<PhoneCall>().maxVesselPercentage
-                    && playerProgression.completedBossIDs.Contains(contactToCall.phoneCalls[i].GetComponent<PhoneCall>().bossIDRequirement)
-                    && !playerProgression.collectedPhoneCallIDs.Contains(contactToCall.phoneCalls[i].GetComponent<PhoneCall>().phoneCallID))
+                if(playerProgression.playerVesselPercentage >= contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().minVesselPercentage
+                    && playerProgression.playerVesselPercentage <= contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().maxVesselPercentage
+                    && playerProgression.completedBossIDs.Contains(contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().bossIDRequirement)
+                    && !playerProgression.collectedPhoneCallIDs.Contains(contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().phoneCallID))
                 {
-                    possiblePhoneCalls.Add(contactToCall.phoneCalls[i]);
+                    possiblePhoneCalls.Add(contactToCall.incomingPhoneCalls[i]);
                 }
             }
 

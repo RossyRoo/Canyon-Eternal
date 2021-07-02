@@ -5,5 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Contact")]
 public class Contact : Item
 {
-    public List<GameObject> phoneCalls;
+    public List<GameObject> incomingPhoneCalls;
+    public List<GameObject> outgoingPhoneCalls;
 }
