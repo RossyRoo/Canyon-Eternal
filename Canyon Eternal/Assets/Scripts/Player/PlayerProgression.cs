@@ -9,8 +9,8 @@ public class PlayerProgression : MonoBehaviour
     public float playerVesselPercentage;
 
     [Header("Completion IDs")]
-    public List<int> completedBossIDs;
-    public List<int> completedChestIDs;
+    public List<int> collectedEnemyIDs;
+    public List<int> collectedChestIDs;
 
     [Header("Phone Calls")]
     public List<Contact> collectedContacts;

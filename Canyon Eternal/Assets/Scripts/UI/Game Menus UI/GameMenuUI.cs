@@ -24,6 +24,7 @@ public class GameMenuUI : MonoBehaviour
 
     private void Awake()
     {
+        gameMenusGO.SetActive(false);
         playerManager = FindObjectOfType<PlayerManager>();
         playerAnimatorHandler = FindObjectOfType<PlayerAnimatorHandler>();
 

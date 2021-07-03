@@ -26,9 +26,11 @@ public class DeathState : EnemyStateMachine
         PlayerStats playerStats = FindObjectOfType<PlayerStats>();
         playerStats.GetComponent<PlayerInventory>().AdjustFragmentInventory(enemyStats.characterData.fragmentDrop);
 
-        if (enemyStats.characterData.isBoss)
+        PlayerProgression playerProgression = playerStats.GetComponentInChildren<PlayerProgression>();
+
+        if(!playerProgression.collectedEnemyIDs.Contains(enemyStats.characterData.enemyID))
         {
-            playerStats.GetComponentInChildren<PlayerProgression>().completedBossIDs.Add(enemyStats.characterData.enemyID);
+            playerProgression.collectedEnemyIDs.Add(enemyStats.characterData.enemyID);
         }
 
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;

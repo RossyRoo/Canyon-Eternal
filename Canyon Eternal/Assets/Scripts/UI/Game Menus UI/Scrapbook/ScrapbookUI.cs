@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ScrapbookUI : MonoBehaviour
@@ -26,16 +27,26 @@ public class ScrapbookUI : MonoBehaviour
     public GameObject currentAreaMap;
     public AreaSlot[] roomsInCurrentArea;
 
+    [Header("Bestiary")]
+    public Image enemyIcon;
+    public TextMeshProUGUI enemyName;
+    public TextMeshProUGUI enemyDescription;
+
+    [Header("Journal")]
+    public Image entryIcon;
+    public TextMeshProUGUI entryDescription;
+    public TextMeshProUGUI entryText;
+
 
     public void OpenScrapbook(int currentSubmenuIndex)
     {
-        if(playerProgression == null || sceneChangeManager == null)
+        if (playerProgression == null || sceneChangeManager == null)
         {
             playerProgression = FindObjectOfType<PlayerProgression>();
             sceneChangeManager = FindObjectOfType<SceneChangeManager>();
         }
 
-        gameMenuUI.menuNameText.text = null;
+        gameMenuUI.menuNameText.text = "Scrapbook";
         scrapbookUIGO.SetActive(true);
 
         if(currentSubmenuIndex == 0)
@@ -163,5 +174,6 @@ public class ScrapbookUI : MonoBehaviour
         journalUIGO.SetActive(false);
         bestiaryUIGO.SetActive(true);
 
+        Debug.Log(playerProgression.collectedEnemyIDs);
     }
 }

@@ -49,7 +49,7 @@ public class SceneChangeManager : MonoBehaviour
 
     public IEnumerator ChangeScene(int sceneNum = 999)
     {
-        if(!sceneChangeTriggered)
+        if (!sceneChangeTriggered)
         {
             sceneChangeTriggered = true;
 
@@ -96,5 +96,10 @@ public class SceneChangeManager : MonoBehaviour
     {
         //THIS should be the saved scene
         SceneManager.LoadScene(1);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

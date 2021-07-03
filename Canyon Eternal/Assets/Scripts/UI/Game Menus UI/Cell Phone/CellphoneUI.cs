@@ -109,7 +109,7 @@ public class CellphoneUI : MonoBehaviour
         {
             if (playerProgression.playerVesselPercentage >= activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().minVesselPercentage
                 && playerProgression.playerVesselPercentage <= activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().maxVesselPercentage
-                && playerProgression.completedBossIDs.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().bossIDRequirement)
+                && playerProgression.collectedEnemyIDs.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().bossIDRequirement)
                 && !playerProgression.collectedPhoneCallIDs.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().phoneCallID))
             {
                 possiblePhoneCalls.Add(activeContact.outgoingPhoneCalls[i]);
@@ -208,5 +208,14 @@ public class CellphoneUI : MonoBehaviour
         settingsUIGO.SetActive(true);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void QuitToMainMenu()
+    {
+        GetComponentInParent<SceneChangeManager>().LoadMainMenu();
+    }
 
 }

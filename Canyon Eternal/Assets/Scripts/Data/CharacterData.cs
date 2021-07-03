@@ -8,7 +8,6 @@ public class CharacterData : ScriptableObject
 {
     [Header("ID")]
     public Contact characterContact;
-    public bool isBoss;
     public int enemyID;
 
     [Header("Sprites")]

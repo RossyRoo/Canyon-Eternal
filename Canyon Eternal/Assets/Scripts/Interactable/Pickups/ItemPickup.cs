@@ -17,7 +17,7 @@ public class ItemPickup : Interactable
     {
         playerProgression = FindObjectOfType<PlayerProgression>();
 
-        if (playerProgression.completedChestIDs.Contains(chestID))
+        if (playerProgression.collectedChestIDs.Contains(chestID))
         {
             DeactivateItemPickup();
         }
@@ -33,9 +33,9 @@ public class ItemPickup : Interactable
     {
         DeactivateItemPickup();
 
-        if (!playerProgression.completedChestIDs.Contains(chestID))
+        if (!playerProgression.collectedChestIDs.Contains(chestID))
         {
-            playerProgression.completedChestIDs.Add(chestID);
+            playerProgression.collectedChestIDs.Add(chestID);
         }
 
         PlayerInventory playerInventory = playerManager.GetComponent<PlayerInventory>();
