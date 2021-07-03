@@ -18,7 +18,6 @@ public class PlayerProgression : MonoBehaviour
 
     [Header("Exploration")]
     public List<Room> roomsDiscovered;
-    public List<int> areasDiscovered;
 
 
     private void Awake()

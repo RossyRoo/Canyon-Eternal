@@ -48,6 +48,7 @@ public class GameMenuUI : MonoBehaviour
             playerManager.isInteractingWithUI = true;
             playerAnimatorHandler.animator.SetBool("isInteracting", true);
             gameMenusGO.SetActive(true);
+            SwitchMenus();
         }
     }
 

@@ -5,6 +5,9 @@ using TMPro;
 
 public class ScrapbookUI : MonoBehaviour
 {
+    PlayerProgression playerProgression;
+    SceneChangeManager sceneChangeManager;
+
     public GameMenuUI gameMenuUI;
     public TextMeshProUGUI submenuNameText;
     public GameObject scrapbookUIGO;
@@ -12,15 +15,26 @@ public class ScrapbookUI : MonoBehaviour
     public GameObject journalUIGO;
     public GameObject bestiaryUIGO;
 
-    [Header("Map")]
-    public GameObject worldMapUIGO;
-    public GameObject areaMapUIGO;
+    [Header("World Map")]
     public GameObject playerIcon;
+    public GameObject worldMapUIGO;
+    public GameObject[] worldMapAreas;
+
+    [Header("Area Maps")]
+    public GameObject areaMapUIGO;
     public GameObject[] areaMaps;
+    public GameObject currentAreaMap;
+    public AreaSlot[] roomsInCurrentArea;
 
 
     public void OpenScrapbook(int currentSubmenuIndex)
     {
+        if(playerProgression == null || sceneChangeManager == null)
+        {
+            playerProgression = FindObjectOfType<PlayerProgression>();
+            sceneChangeManager = FindObjectOfType<SceneChangeManager>();
+        }
+
         gameMenuUI.menuNameText.text = null;
         scrapbookUIGO.SetActive(true);
 
@@ -46,7 +60,7 @@ public class ScrapbookUI : MonoBehaviour
     #region Map
     public void OpenMap()
     {
-        submenuNameText.text = "Map";
+        submenuNameText.text = "";
         bestiaryUIGO.SetActive(false);
         journalUIGO.SetActive(false);
         mapUIGO.SetActive(true);
@@ -60,12 +74,25 @@ public class ScrapbookUI : MonoBehaviour
         areaMapUIGO.SetActive(false);
         worldMapUIGO.SetActive(true);
 
-        Debug.Log("Clearing cover froma areas discovered");
+        for (int i = 0; i < worldMapAreas.Length; i++)
+        {
+            AreaSlot thisArea = worldMapAreas[i].GetComponent<AreaSlot>();
 
-        //Place player icon at current area
-        //Remove cover from areas you have discovered
-        //If it's the first time the map has been seen since area was discovered, get rid of that cover and play animation of clouds dispersing
-        //animate and activate button to check out that area
+            if(playerProgression.roomsDiscovered.Contains(thisArea.slotRoom))
+            {
+                if (thisArea.roomsInThisArea.Contains(sceneChangeManager.currentRoom))
+                {
+                    playerIcon.transform.position = thisArea.playerIconTF.position;
+                }
+
+                if (thisArea.areaCoverGO != null)
+                {
+                    thisArea.areaCoverGO.GetComponent<Animator>().Play("RemoveCover");
+
+                    Destroy(thisArea.areaCoverGO, 1);
+                }
+            }
+        }
     }
 
     public void PrepareAreaMap()
@@ -73,22 +100,49 @@ public class ScrapbookUI : MonoBehaviour
         worldMapUIGO.SetActive(false);
         areaMapUIGO.SetActive(true);
 
-        Debug.Log("Clearing cover froma rooms discovered");
+        for (int i = 0; i < roomsInCurrentArea.Length; i++)
+        {
+            AreaSlot thisRoom = roomsInCurrentArea[i].GetComponent<AreaSlot>();
 
-        //Place player icon at current room
-        //Remove cover from rooms you have discovered
+            if (playerProgression.roomsDiscovered.Contains(thisRoom.slotRoom))
+            {
+                if (sceneChangeManager.currentRoom == thisRoom.slotRoom)
+                {
+                    playerIcon.SetActive(true);
+                    playerIcon.transform.position = thisRoom.playerIconTF.position;
+                }
+
+                if (thisRoom.areaCoverGO != null)
+                {
+                    thisRoom.areaCoverGO.GetComponent<Animator>().Play("RemoveCover");
+
+                    Destroy(thisRoom.areaCoverGO, 1);
+                }
+            }
+        }
     }
 
-    public void SwitchBetweenMaps()
+    public void SwitchToAreaMap(GameObject areaMap)
     {
-        if(worldMapUIGO.activeInHierarchy)
+        playerIcon.SetActive(false);
+
+        areaMap.SetActive(true);
+        currentAreaMap = areaMap;
+
+        roomsInCurrentArea = currentAreaMap.GetComponentsInChildren<AreaSlot>();
+
+        PrepareAreaMap();
+    }
+
+    public void SwitchToWorldMap()
+    {
+        playerIcon.SetActive(true);
+
+        for (int i = 0; i < areaMaps.Length; i++)
         {
-            PrepareAreaMap();
+            areaMaps[i].SetActive(false);
         }
-        else
-        {
-            PrepareWorldMap();
-        }
+        PrepareWorldMap();
     }
 
     #endregion
