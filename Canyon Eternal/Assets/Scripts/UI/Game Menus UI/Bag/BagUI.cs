@@ -17,6 +17,7 @@ public class BagUI : MonoBehaviour
     public int interfacePageIndex = 0;
 
     [Header("Item Info Panel")]
+    public GameObject bagInfoPanel;
     public Image itemIcon;
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescriptionText;
@@ -74,7 +75,6 @@ public class BagUI : MonoBehaviour
 
         }
 
-        DisplayItem(playerInventory.usableInventory[0]);
     }
 
     public void OpenKeyInventory()
@@ -101,7 +101,6 @@ public class BagUI : MonoBehaviour
 
         }
 
-        DisplayItem(playerInventory.keyInventory[0]);
     }
 
     public void OpenTreasureInventory()
@@ -128,7 +127,6 @@ public class BagUI : MonoBehaviour
 
         }
 
-        DisplayItem(playerInventory.treasureInventory[0]);
     }
 
     private void DisplayItem(Item itemToDisplay)
@@ -164,6 +162,8 @@ public class BagUI : MonoBehaviour
 
     public void SelectDisplayItem(ItemSlotUI slotToSelect)
     {
+        bagInfoPanel.SetActive(true);
+
         DisplayItem(slotToSelect.slotItem);
     }
 }

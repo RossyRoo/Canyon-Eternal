@@ -9,7 +9,7 @@ public class PlayerProgression : MonoBehaviour
     public float playerVesselPercentage;
 
     [Header("Completion IDs")]
-    public List<int> collectedEnemyIDs;
+    public List<CharacterData> enemiesEncountered;
     public List<int> collectedChestIDs;
 
     [Header("Phone Calls")]
@@ -18,6 +18,8 @@ public class PlayerProgression : MonoBehaviour
 
     [Header("Exploration")]
     public List<Room> roomsDiscovered;
+
+
 
 
     private void Awake()

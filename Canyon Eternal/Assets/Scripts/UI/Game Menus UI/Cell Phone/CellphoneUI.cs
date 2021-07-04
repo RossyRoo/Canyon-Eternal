@@ -17,11 +17,13 @@ public class CellphoneUI : MonoBehaviour
     public GameObject settingsUIGO;
 
     [Header("Photos")]
+    public GameObject photosInfoPanel;
     public Image photoIcon;
     public TextMeshProUGUI photoCaption;
     public GameObject[] photoSlots;
 
     [Header("Contacts")]
+    public GameObject contactsInfoPanel;
     Contact activeContact;
     public Image contactIcon;
     public TextMeshProUGUI contactName;
@@ -98,6 +100,8 @@ public class CellphoneUI : MonoBehaviour
 
     public void SelectDisplayContact(ContactSlotUI contactToSelect)
     {
+        contactsInfoPanel.SetActive(true);
+
         DisplayContact(contactToSelect.slotContact);
     }
 
@@ -109,7 +113,7 @@ public class CellphoneUI : MonoBehaviour
         {
             if (playerProgression.playerVesselPercentage >= activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().minVesselPercentage
                 && playerProgression.playerVesselPercentage <= activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().maxVesselPercentage
-                && playerProgression.collectedEnemyIDs.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().bossIDRequirement)
+                && playerProgression.enemiesEncountered.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().enemyEncounteredRequirement)
                 && !playerProgression.collectedPhoneCallIDs.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().phoneCallID))
             {
                 possiblePhoneCalls.Add(activeContact.outgoingPhoneCalls[i]);
@@ -195,6 +199,8 @@ public class CellphoneUI : MonoBehaviour
 
     public void SelectDisplayPhoto(ItemSlotUI slotToSelect)
     {
+        photosInfoPanel.SetActive(true);
+
         DisplayPhoto(slotToSelect.slotItem);
     }
 

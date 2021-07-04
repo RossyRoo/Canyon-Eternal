@@ -16,6 +16,8 @@ public class GameMenuUI : MonoBehaviour
     public GameObject gameMenusGO;
     public TextMeshProUGUI menuNameText;
 
+    public GameObject[] infoPanels;
+
     int currentMenuIndex = 0;
     int currentSubmenuIndex = 0;
     [HideInInspector]
@@ -138,6 +140,11 @@ public class GameMenuUI : MonoBehaviour
 
     private void SwitchMenus()
     {
+        for (int i = 0; i < infoPanels.Length; i++)
+        {
+            infoPanels[i].SetActive(false);
+        }
+
         if (currentMenuIndex == 0)
         {
             cellphoneUI.CloseCellphone();
@@ -158,3 +165,4 @@ public class GameMenuUI : MonoBehaviour
         }
     }
 }
+

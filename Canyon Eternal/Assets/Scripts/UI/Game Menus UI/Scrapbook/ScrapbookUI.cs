@@ -7,6 +7,7 @@ using TMPro;
 public class ScrapbookUI : MonoBehaviour
 {
     PlayerProgression playerProgression;
+    PlayerInventory playerInventory;
     SceneChangeManager sceneChangeManager;
 
     public GameMenuUI gameMenuUI;
@@ -24,15 +25,19 @@ public class ScrapbookUI : MonoBehaviour
     [Header("Area Maps")]
     public GameObject areaMapUIGO;
     public GameObject[] areaMaps;
-    public GameObject currentAreaMap;
-    public AreaSlot[] roomsInCurrentArea;
+    GameObject currentAreaMap;
+    AreaSlot[] roomsInCurrentArea;
 
     [Header("Bestiary")]
-    public Image enemyIcon;
-    public TextMeshProUGUI enemyName;
-    public TextMeshProUGUI enemyDescription;
+    public GameObject beastiaryInfoPanel;
+    public CharacterDataSlot[] beastiarySlots;
+    public Image beastiaryIcon;
+    public TextMeshProUGUI beastiaryName;
+    public TextMeshProUGUI beastiaryDescription;
 
     [Header("Journal")]
+    public GameObject entryInfoPanel;
+    public ItemSlotUI[] entrySlots;
     public Image entryIcon;
     public TextMeshProUGUI entryDescription;
     public TextMeshProUGUI entryText;
@@ -40,9 +45,10 @@ public class ScrapbookUI : MonoBehaviour
 
     public void OpenScrapbook(int currentSubmenuIndex)
     {
-        if (playerProgression == null || sceneChangeManager == null)
+        if (playerProgression == null)
         {
             playerProgression = FindObjectOfType<PlayerProgression>();
+            playerInventory = FindObjectOfType<PlayerInventory>();
             sceneChangeManager = FindObjectOfType<SceneChangeManager>();
         }
 
@@ -158,15 +164,8 @@ public class ScrapbookUI : MonoBehaviour
 
     #endregion
 
-    public void OpenJournal()
-    {
-        submenuNameText.text = "Journal";
-        bestiaryUIGO.SetActive(false);
-        mapUIGO.SetActive(false);
-        journalUIGO.SetActive(true);
 
-    }
-
+    #region Beastiary
     public void OpenBestiary()
     {
         submenuNameText.text = "Bestiary";
@@ -174,6 +173,58 @@ public class ScrapbookUI : MonoBehaviour
         journalUIGO.SetActive(false);
         bestiaryUIGO.SetActive(true);
 
-        Debug.Log(playerProgression.collectedEnemyIDs);
+        for (int i = 0; i < beastiarySlots.Length; i++)
+        {
+            if (i < playerProgression.enemiesEncountered.Count)
+            {
+                beastiarySlots[i].GetComponent<CharacterDataSlot>().slotCharacterData = playerProgression.enemiesEncountered[i];
+                beastiarySlots[i].GetComponent<Image>().sprite = playerProgression.enemiesEncountered[i].characterIcon;
+            }
+        }
     }
+
+    public void SelectEnemyToDisplay(CharacterDataSlot characterDataSlot)
+    {
+        if(characterDataSlot != null)
+        {
+            beastiaryInfoPanel.SetActive(true);
+
+            CharacterData characterDataToDisplay = characterDataSlot.slotCharacterData;
+            beastiaryName.text = characterDataToDisplay.characterName;
+            beastiaryDescription.text = characterDataToDisplay.characterDescription;
+            beastiaryIcon.sprite = characterDataToDisplay.characterIcon;
+        }
+    }
+    #endregion
+
+    #region Journal
+
+    public void OpenJournal()
+    {
+        submenuNameText.text = "Journal";
+        bestiaryUIGO.SetActive(false);
+        mapUIGO.SetActive(false);
+        journalUIGO.SetActive(true);
+
+        for (int i = 0; i < entrySlots.Length; i++)
+        {
+            if(i < playerInventory.loreEntryInventory.Count)
+            {
+                entrySlots[i].GetComponent<ItemSlotUI>().slotItem = playerInventory.loreEntryInventory[i];
+                entrySlots[i].GetComponent<Image>().sprite = playerInventory.loreEntryInventory[i].itemIcon;
+            }
+        }
+    }
+
+    public void SelectEntryToDisplay(ItemSlotUI itemSlotUI)
+    {
+        entryInfoPanel.SetActive(true);
+
+        Item loreEntryToDisplay = itemSlotUI.slotItem;
+        entryDescription.text = loreEntryToDisplay.itemName;
+        entryText.text = loreEntryToDisplay.itemDescription;
+        entryIcon.sprite = loreEntryToDisplay.itemIcon;
+    }
+
+    #endregion
 }

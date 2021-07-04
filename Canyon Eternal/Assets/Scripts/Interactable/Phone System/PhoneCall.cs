@@ -7,7 +7,7 @@ public class PhoneCall : MonoBehaviour
     public int phoneCallID;
     public int minVesselPercentage = 0;
     public int maxVesselPercentage = 100;
-    public int bossIDRequirement = 0;
+    public CharacterData enemyEncounteredRequirement;
 
     private void Awake()
     {

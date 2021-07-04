@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class CharacterData : ScriptableObject
 {
-    [Header("ID")]
+    [Header("Basic Info")]
+    public string characterName;
+    public string characterDescription;
+    public Sprite characterIcon;
     public Contact characterContact;
-    public int enemyID;
+    public int characterID;
+    public bool isSingleEncounter;
 
     [Header("Sprites")]
     public Sprite[] torsoSprites;

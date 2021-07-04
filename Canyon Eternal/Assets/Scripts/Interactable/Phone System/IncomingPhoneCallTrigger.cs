@@ -29,7 +29,7 @@ public class IncomingPhoneCallTrigger : MonoBehaviour
             {
                 if(playerProgression.playerVesselPercentage >= contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().minVesselPercentage
                     && playerProgression.playerVesselPercentage <= contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().maxVesselPercentage
-                    && playerProgression.collectedEnemyIDs.Contains(contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().bossIDRequirement)
+                    && playerProgression.enemiesEncountered.Contains(contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().enemyEncounteredRequirement)
                     && !playerProgression.collectedPhoneCallIDs.Contains(contactToCall.incomingPhoneCalls[i].GetComponent<PhoneCall>().phoneCallID))
                 {
                     possiblePhoneCalls.Add(contactToCall.incomingPhoneCalls[i]);

@@ -26,7 +26,7 @@ public class EnemyManager : CharacterManager
     {
         enemyStats = GetComponent<EnemyStats>();
 
-        if (FindObjectOfType<PlayerStats>().GetComponentInChildren<PlayerProgression>().collectedEnemyIDs.Contains(enemyStats.characterData.enemyID))
+        if (enemyStats.characterData.isSingleEncounter && FindObjectOfType<PlayerStats>().GetComponentInChildren<PlayerProgression>().enemiesEncountered.Contains(enemyStats.characterData))
         {
             Destroy(gameObject);
         }

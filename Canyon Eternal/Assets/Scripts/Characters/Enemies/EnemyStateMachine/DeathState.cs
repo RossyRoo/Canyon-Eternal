@@ -28,9 +28,9 @@ public class DeathState : EnemyStateMachine
 
         PlayerProgression playerProgression = playerStats.GetComponentInChildren<PlayerProgression>();
 
-        if(!playerProgression.collectedEnemyIDs.Contains(enemyStats.characterData.enemyID))
+        if(!playerProgression.enemiesEncountered.Contains(enemyStats.characterData))
         {
-            playerProgression.collectedEnemyIDs.Add(enemyStats.characterData.enemyID);
+            playerProgression.enemiesEncountered.Add(enemyStats.characterData);
         }
 
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
