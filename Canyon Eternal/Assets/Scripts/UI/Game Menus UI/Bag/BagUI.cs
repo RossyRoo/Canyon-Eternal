@@ -16,7 +16,7 @@ public class BagUI : MonoBehaviour
     public GameObject[] interfacePages;
     public int interfacePageIndex = 0;
 
-    [Header("Item Info Panel")]
+    [Header("Info Panel")]
     public GameObject bagInfoPanel;
     public Image itemIcon;
     public TextMeshProUGUI itemNameText;
@@ -46,11 +46,7 @@ public class BagUI : MonoBehaviour
         }
     }
 
-    public void CloseBag()
-    {
-        bagUIGO.SetActive(false);
-    }
-
+    #region Open Inventories
     public void OpenUsableInventory()
     {
         submenuNameText.text = "Usables";
@@ -72,9 +68,7 @@ public class BagUI : MonoBehaviour
                 myItemIcon.sprite = null;
                 myItemIcon.gameObject.SetActive(false);
             }
-
         }
-
     }
 
     public void OpenKeyInventory()
@@ -98,9 +92,7 @@ public class BagUI : MonoBehaviour
                 myItemIcon.sprite = null;
                 myItemIcon.gameObject.SetActive(false);
             }
-
         }
-
     }
 
     public void OpenTreasureInventory()
@@ -124,17 +116,9 @@ public class BagUI : MonoBehaviour
                 myItemIcon.sprite = null;
                 myItemIcon.gameObject.SetActive(false);
             }
-
         }
-
     }
-
-    private void DisplayItem(Item itemToDisplay)
-    {
-        itemIcon.sprite = itemToDisplay.itemIcon;
-        itemDescriptionText.text = itemToDisplay.itemDescription;
-        itemNameText.text = itemToDisplay.itemName;
-    }
+    #endregion
 
     public void CycleInterfacePages()
     {
@@ -162,8 +146,14 @@ public class BagUI : MonoBehaviour
 
     public void SelectDisplayItem(ItemSlotUI slotToSelect)
     {
-        bagInfoPanel.SetActive(true);
+        Item itemToDisplay = slotToSelect.slotItem;
 
-        DisplayItem(slotToSelect.slotItem);
+        if (itemToDisplay != null)
+        {
+            bagInfoPanel.SetActive(true);
+            itemIcon.sprite = itemToDisplay.itemIcon;
+            itemDescriptionText.text = itemToDisplay.itemDescription;
+            itemNameText.text = itemToDisplay.itemName;
+        }
     }
 }

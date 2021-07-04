@@ -199,8 +199,6 @@ public class PlayerManager : CharacterManager
 
     public void EnterConversationState()
     {
-        Debug.Log("Entering conversation");
-
         if(isDashing)
         {
             playerLocomotion.StopDash();

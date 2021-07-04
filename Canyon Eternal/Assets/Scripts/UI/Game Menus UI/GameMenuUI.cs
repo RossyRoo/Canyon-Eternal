@@ -134,8 +134,6 @@ public class GameMenuUI : MonoBehaviour
         SwitchMenus();
     }
 
-
-
     #endregion
 
     private void SwitchMenus()
@@ -147,20 +145,20 @@ public class GameMenuUI : MonoBehaviour
 
         if (currentMenuIndex == 0)
         {
-            cellphoneUI.CloseCellphone();
-            bagUI.CloseBag();
+            cellphoneUI.cellUIGO.SetActive(false);
+            bagUI.bagUIGO.SetActive(false);
             scrapbookUI.OpenScrapbook(currentSubmenuIndex);
         }
         else if (currentMenuIndex == 1)
         {
-            scrapbookUI.CloseScrapbook();
-            cellphoneUI.CloseCellphone();
+            scrapbookUI.scrapbookUIGO.SetActive(false);
+            cellphoneUI.cellUIGO.SetActive(false);
             bagUI.OpenBag(currentSubmenuIndex);
         }
         else
         {
-            bagUI.CloseBag();
-            scrapbookUI.CloseScrapbook();
+            bagUI.bagUIGO.SetActive(false);
+            scrapbookUI.scrapbookUIGO.SetActive(false);
             cellphoneUI.OpenCellphone(currentSubmenuIndex);
         }
     }

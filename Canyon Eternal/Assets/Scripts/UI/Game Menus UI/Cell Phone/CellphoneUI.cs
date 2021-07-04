@@ -30,6 +30,9 @@ public class CellphoneUI : MonoBehaviour
     public TextMeshProUGUI contactBio;
     public GameObject[] contactSlots;
 
+    [Header("Settings")]
+    public GameObject settingsInfoPanel;
+
 
     public void OpenCellphone(int currentSubmenuIndex)
     {
@@ -48,11 +51,6 @@ public class CellphoneUI : MonoBehaviour
         {
             OpenSettings();
         }
-    }
-
-    public void CloseCellphone()
-    {
-        cellUIGO.SetActive(false);
     }
 
     #region Contacts
@@ -85,24 +83,20 @@ public class CellphoneUI : MonoBehaviour
             }
 
         }
-
-        DisplayContact(playerProgression.collectedContacts[0]);
     }
-
-    private void DisplayContact(Contact contactToDisplay)
-    {
-        activeContact = contactToDisplay;
-        contactIcon.sprite = contactToDisplay.itemIcon;
-        contactBio.text = contactToDisplay.itemDescription;
-        contactName.text = contactToDisplay.itemName;
-    }
-
 
     public void SelectDisplayContact(ContactSlotUI contactToSelect)
     {
-        contactsInfoPanel.SetActive(true);
+        Contact contactToDisplay = contactToSelect.slotContact;
 
-        DisplayContact(contactToSelect.slotContact);
+        if(contactToDisplay != null)
+        {
+            contactsInfoPanel.SetActive(true);
+            activeContact = contactToDisplay;
+            contactIcon.sprite = contactToDisplay.itemIcon;
+            contactBio.text = contactToDisplay.itemDescription;
+            contactName.text = contactToDisplay.itemName;
+        }
     }
 
     public void TriggerOutgoingPhoneCall()
@@ -114,6 +108,7 @@ public class CellphoneUI : MonoBehaviour
             if (playerProgression.playerVesselPercentage >= activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().minVesselPercentage
                 && playerProgression.playerVesselPercentage <= activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().maxVesselPercentage
                 && playerProgression.enemiesEncountered.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().enemyEncounteredRequirement)
+                || activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().enemyEncounteredRequirement == null
                 && !playerProgression.collectedPhoneCallIDs.Contains(activeContact.outgoingPhoneCalls[i].GetComponent<PhoneCall>().phoneCallID))
             {
                 possiblePhoneCalls.Add(activeContact.outgoingPhoneCalls[i]);
@@ -156,8 +151,6 @@ public class CellphoneUI : MonoBehaviour
                 photoSlots[i].SetActive(false);
             }
         }
-
-        DisplayPhoto(playerInventory.photoInventory[0]);
     }
 
     private void FindPhotoSlotIcons(int i, PlayerInventory playerInventory, PlayerProgression playerProgression)
@@ -191,21 +184,22 @@ public class CellphoneUI : MonoBehaviour
         }
     }
 
-    private void DisplayPhoto(Item itemToDisplay)
-    {
-        photoIcon.sprite = itemToDisplay.itemIcon;
-        photoCaption.text = itemToDisplay.itemDescription;
-    }
 
     public void SelectDisplayPhoto(ItemSlotUI slotToSelect)
     {
-        photosInfoPanel.SetActive(true);
+        Item photoToDisplay = slotToSelect.slotItem;
 
-        DisplayPhoto(slotToSelect.slotItem);
+        if(photoToDisplay!=null)
+        {
+            photosInfoPanel.SetActive(true);
+            photoIcon.sprite = photoToDisplay.itemIcon;
+            photoCaption.text = photoToDisplay.itemDescription;
+        }
     }
 
     #endregion
 
+    #region Settings
     public void OpenSettings()
     {
         submenuNameText.text = "Settings";
@@ -223,5 +217,11 @@ public class CellphoneUI : MonoBehaviour
     {
         GetComponentInParent<SceneChangeManager>().LoadMainMenu();
     }
+
+    public void SelectSettingsToDisplay()
+    {
+        settingsInfoPanel.SetActive(true);
+    }
+    #endregion
 
 }

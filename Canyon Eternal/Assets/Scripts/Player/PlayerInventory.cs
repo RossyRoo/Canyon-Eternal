@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
     public List<Photo> photoInventory;
 
     [Header("Lore Entry Collection")]
-    public List<LoreEntry> loreEntryInventory;
+    public List<Item> loreEntryInventory;
 
 
     private void Awake()

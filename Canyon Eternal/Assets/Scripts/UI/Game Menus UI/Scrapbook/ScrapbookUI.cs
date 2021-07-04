@@ -69,11 +69,6 @@ public class ScrapbookUI : MonoBehaviour
         }
     }
 
-    public void CloseScrapbook()
-    {
-        scrapbookUIGO.SetActive(false);
-    }
-
     #region Map
     public void OpenMap()
     {
@@ -164,7 +159,6 @@ public class ScrapbookUI : MonoBehaviour
 
     #endregion
 
-
     #region Beastiary
     public void OpenBestiary()
     {
@@ -185,11 +179,11 @@ public class ScrapbookUI : MonoBehaviour
 
     public void SelectEnemyToDisplay(CharacterDataSlot characterDataSlot)
     {
-        if(characterDataSlot != null)
+        CharacterData characterDataToDisplay = characterDataSlot.slotCharacterData;
+
+        if(characterDataToDisplay != null)
         {
             beastiaryInfoPanel.SetActive(true);
-
-            CharacterData characterDataToDisplay = characterDataSlot.slotCharacterData;
             beastiaryName.text = characterDataToDisplay.characterName;
             beastiaryDescription.text = characterDataToDisplay.characterDescription;
             beastiaryIcon.sprite = characterDataToDisplay.characterIcon;
@@ -218,12 +212,15 @@ public class ScrapbookUI : MonoBehaviour
 
     public void SelectEntryToDisplay(ItemSlotUI itemSlotUI)
     {
-        entryInfoPanel.SetActive(true);
+        Item entryToDisplay = itemSlotUI.slotItem;
 
-        Item loreEntryToDisplay = itemSlotUI.slotItem;
-        entryDescription.text = loreEntryToDisplay.itemName;
-        entryText.text = loreEntryToDisplay.itemDescription;
-        entryIcon.sprite = loreEntryToDisplay.itemIcon;
+        if(entryToDisplay != null)
+        {
+            entryInfoPanel.SetActive(true);
+            entryDescription.text = entryToDisplay.itemName;
+            entryText.text = entryToDisplay.itemDescription;
+            entryIcon.sprite = entryToDisplay.itemIcon;
+        }
     }
 
     #endregion
