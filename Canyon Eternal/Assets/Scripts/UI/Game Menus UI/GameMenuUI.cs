@@ -15,6 +15,7 @@ public class GameMenuUI : MonoBehaviour
 
     public GameObject gameMenusGO;
     public TextMeshProUGUI menuNameText;
+    public TextMeshProUGUI submenuNameText;
 
     public GameObject[] infoPanels;
 
@@ -24,12 +25,17 @@ public class GameMenuUI : MonoBehaviour
     public bool gameMenuIsOpen;
 
     [Header("SFX")]
+    public AudioClip closeGameMenusSFX;
+    public AudioClip openGameMenusSFX;
     public AudioClip openScrapbookSFX;
     public AudioClip openCellPhoneSFX;
     public AudioClip openBagSFX;
     public AudioClip switchScrapbookSubMenuSFX;
     public AudioClip switchCellphoneSubMenuSFX;
     public AudioClip switchBagSubMenuSFX;
+    public AudioClip clickUIButtonSFX;
+    public AudioClip errorUIButtonSFX;
+    public AudioClip phoneRingSFX;
 
 
     private void Awake()
@@ -49,6 +55,7 @@ public class GameMenuUI : MonoBehaviour
             playerManager.isInteractingWithUI = false;
             playerAnimatorHandler.animator.SetBool("isInteracting", false);
             gameMenusGO.SetActive(false);
+            SFXPlayer.Instance.PlaySFXAudioClip(closeGameMenusSFX);
         }
         else
         {
@@ -60,6 +67,7 @@ public class GameMenuUI : MonoBehaviour
             playerAnimatorHandler.animator.SetBool("isInteracting", true);
             gameMenusGO.SetActive(true);
             SwitchMenus();
+            SFXPlayer.Instance.PlaySFXAudioClip(openGameMenusSFX);
         }
     }
 

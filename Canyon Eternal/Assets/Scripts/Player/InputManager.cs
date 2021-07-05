@@ -108,11 +108,12 @@ public class InputManager : MonoBehaviour
     {
         if(melee_Input)
         {
-            if (playerManager.isInteracting || playerStats.currentStamina < playerMeleeHandler.activeMeleeWeapon.staminaCost || playerMeleeHandler.currentAttackCooldownTime > 0)
+            if (playerManager.isInteracting
+                || playerStats.currentStamina < playerMeleeHandler.activeMeleeWeapon.staminaCost
+                || playerMeleeHandler.currentAttackCooldownTime > 0)
                 return;
 
             StartCoroutine(playerMeleeHandler.HandleMeleeAttack());
-
         }
     }
 
@@ -186,6 +187,9 @@ public class InputManager : MonoBehaviour
 
     private void HandleMenuInput()
     {
+        if (playerManager.isInteracting && !playerManager.isInteractingWithUI)
+            return;
+
         if(openMenu_Input)
         {
             gameMenuUI.ReverseGameMenuUI();

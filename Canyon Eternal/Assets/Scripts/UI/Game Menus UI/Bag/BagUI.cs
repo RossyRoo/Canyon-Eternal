@@ -7,10 +7,10 @@ using TMPro;
 public class BagUI : MonoBehaviour
 {
     public GameMenuUI gameMenuUI;
-    public TextMeshProUGUI submenuNameText;
     PlayerInventory playerInventory;
 
     [Header("Interface Panel")]
+    public Sprite emptyWindowSprite;
     public GameObject bagUIGO;
     public GameObject[] interfaceSlots;
     public GameObject[] interfacePages;
@@ -32,6 +32,18 @@ public class BagUI : MonoBehaviour
         gameMenuUI.menuNameText.text = "Bag";
         bagUIGO.SetActive(true);
 
+        for (int i = 0; i < interfacePages.Length; i++)
+        {
+            if (i == 0)
+            {
+                interfacePages[i].SetActive(true);
+            }
+            else
+            {
+                interfacePages[i].SetActive(false);
+            }
+        }
+
         if (currentSubmenuIndex == 0)
         {
             OpenUsableInventory();
@@ -49,7 +61,7 @@ public class BagUI : MonoBehaviour
     #region Open Inventories
     public void OpenUsableInventory()
     {
-        submenuNameText.text = "Usables";
+        gameMenuUI.submenuNameText.text = "Usables";
 
         for (int i = 0; i < interfaceSlots.Length; i++)
         {
@@ -65,15 +77,16 @@ public class BagUI : MonoBehaviour
             }
             else
             {
-                myItemIcon.sprite = null;
-                myItemIcon.gameObject.SetActive(false);
+                itemSlotUI.slotItem = null;
+                myItemIcon.sprite = emptyWindowSprite;
             }
         }
     }
 
     public void OpenKeyInventory()
     {
-        submenuNameText.text = "Keys";
+        gameMenuUI.submenuNameText.text = "Keys";
+
 
         for (int i = 0; i < interfaceSlots.Length; i++)
         {
@@ -89,15 +102,15 @@ public class BagUI : MonoBehaviour
             }
             else
             {
-                myItemIcon.sprite = null;
-                myItemIcon.gameObject.SetActive(false);
+                itemSlotUI.slotItem = null;
+                myItemIcon.sprite = emptyWindowSprite;
             }
         }
     }
 
     public void OpenTreasureInventory()
     {
-        submenuNameText.text = "Treasures";
+        gameMenuUI.submenuNameText.text = "Treasures";
 
         for (int i = 0; i < interfaceSlots.Length; i++)
         {
@@ -113,8 +126,8 @@ public class BagUI : MonoBehaviour
             }
             else
             {
-                myItemIcon.sprite = null;
-                myItemIcon.gameObject.SetActive(false);
+                itemSlotUI.slotItem = null;
+                myItemIcon.sprite = emptyWindowSprite;
             }
         }
     }
@@ -142,7 +155,10 @@ public class BagUI : MonoBehaviour
                 interfacePages[i].SetActive(false);
             }
         }
+
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
     }
+
 
     public void SelectDisplayItem(ItemSlotUI slotToSelect)
     {
@@ -154,6 +170,13 @@ public class BagUI : MonoBehaviour
             itemIcon.sprite = itemToDisplay.itemIcon;
             itemDescriptionText.text = itemToDisplay.itemDescription;
             itemNameText.text = itemToDisplay.itemName;
+
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
         }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
+        }
+
     }
 }

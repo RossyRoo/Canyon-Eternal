@@ -11,7 +11,6 @@ public class ScrapbookUI : MonoBehaviour
     SceneChangeManager sceneChangeManager;
 
     public GameMenuUI gameMenuUI;
-    public TextMeshProUGUI submenuNameText;
     public GameObject scrapbookUIGO;
     public GameObject mapUIGO;
     public GameObject journalUIGO;
@@ -42,7 +41,6 @@ public class ScrapbookUI : MonoBehaviour
     public TextMeshProUGUI entryDescription;
     public TextMeshProUGUI entryText;
 
-
     public void OpenScrapbook(int currentSubmenuIndex)
     {
         if (playerProgression == null)
@@ -52,7 +50,7 @@ public class ScrapbookUI : MonoBehaviour
             sceneChangeManager = FindObjectOfType<SceneChangeManager>();
         }
 
-        gameMenuUI.menuNameText.text = "Scrapbook";
+        gameMenuUI.menuNameText.text = "Book";
         scrapbookUIGO.SetActive(true);
 
         if(currentSubmenuIndex == 0)
@@ -72,7 +70,7 @@ public class ScrapbookUI : MonoBehaviour
     #region Map
     public void OpenMap()
     {
-        submenuNameText.text = "";
+        gameMenuUI.submenuNameText.text = "Map";
         bestiaryUIGO.SetActive(false);
         journalUIGO.SetActive(false);
         mapUIGO.SetActive(true);
@@ -152,6 +150,8 @@ public class ScrapbookUI : MonoBehaviour
         roomsInCurrentArea = currentAreaMap.GetComponentsInChildren<AreaSlot>();
 
         PrepareAreaMap();
+
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
     }
 
     public void SwitchToWorldMap()
@@ -163,6 +163,8 @@ public class ScrapbookUI : MonoBehaviour
             areaMaps[i].SetActive(false);
         }
         PrepareWorldMap();
+
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
     }
 
     #endregion
@@ -170,7 +172,7 @@ public class ScrapbookUI : MonoBehaviour
     #region Beastiary
     public void OpenBestiary()
     {
-        submenuNameText.text = "Bestiary";
+        gameMenuUI.submenuNameText.text = "Bestiary";
         mapUIGO.SetActive(false);
         journalUIGO.SetActive(false);
         bestiaryUIGO.SetActive(true);
@@ -195,7 +197,13 @@ public class ScrapbookUI : MonoBehaviour
             beastiaryName.text = characterDataToDisplay.characterName;
             beastiaryDescription.text = characterDataToDisplay.characterDescription;
             beastiaryIcon.sprite = characterDataToDisplay.characterIcon;
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
         }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
+        }
+
     }
     #endregion
 
@@ -203,7 +211,7 @@ public class ScrapbookUI : MonoBehaviour
 
     public void OpenJournal()
     {
-        submenuNameText.text = "Journal";
+        gameMenuUI.submenuNameText.text = "Artifacts";
         bestiaryUIGO.SetActive(false);
         mapUIGO.SetActive(false);
         journalUIGO.SetActive(true);
@@ -228,7 +236,13 @@ public class ScrapbookUI : MonoBehaviour
             entryDescription.text = entryToDisplay.itemName;
             entryText.text = entryToDisplay.itemDescription;
             entryIcon.sprite = entryToDisplay.itemIcon;
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
         }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
+        }
+
     }
 
     #endregion

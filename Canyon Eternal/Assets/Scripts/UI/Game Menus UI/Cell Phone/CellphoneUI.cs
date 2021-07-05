@@ -11,7 +11,6 @@ public class CellphoneUI : MonoBehaviour
 
     public GameMenuUI gameMenuUI;
     public GameObject cellUIGO;
-    public TextMeshProUGUI submenuNameText;
     public GameObject contactsUIGO;
     public GameObject photosUIGO;
     public GameObject settingsUIGO;
@@ -59,7 +58,7 @@ public class CellphoneUI : MonoBehaviour
     {
         playerProgression = FindObjectOfType<PlayerProgression>();
 
-        submenuNameText.text = "Messages";
+        gameMenuUI.submenuNameText.text = "Messages";
         photosUIGO.SetActive(false);
         settingsUIGO.SetActive(false);
         contactsUIGO.SetActive(true);
@@ -76,12 +75,6 @@ public class CellphoneUI : MonoBehaviour
 
                 myContactIcon.gameObject.SetActive(true);
             }
-            else
-            {
-                myContactIcon.sprite = null;
-                myContactIcon.gameObject.SetActive(false);
-            }
-
         }
     }
 
@@ -96,7 +89,13 @@ public class CellphoneUI : MonoBehaviour
             contactIcon.sprite = contactToDisplay.itemIcon;
             contactBio.text = contactToDisplay.itemDescription;
             contactName.text = contactToDisplay.itemName;
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
         }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
+        }
+
     }
 
     public void TriggerOutgoingPhoneCall()
@@ -119,6 +118,7 @@ public class CellphoneUI : MonoBehaviour
 
         playerProgression.GetComponentInParent<PlayerManager>().EnterConversationState();
         Instantiate(possiblePhoneCalls[randomPhoneCallNum], transform.position, Quaternion.identity);
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.phoneRingSFX);
 
         gameMenuUI.ReverseGameMenuUI();
     }
@@ -128,7 +128,7 @@ public class CellphoneUI : MonoBehaviour
 
     public void OpenPhotos()
     {
-        submenuNameText.text = "Photos";
+        gameMenuUI.submenuNameText.text = "Photos";
         contactsUIGO.SetActive(false);
         settingsUIGO.SetActive(false);
         photosUIGO.SetActive(true);
@@ -194,7 +194,13 @@ public class CellphoneUI : MonoBehaviour
             photosInfoPanel.SetActive(true);
             photoIcon.sprite = photoToDisplay.itemIcon;
             photoCaption.text = photoToDisplay.itemDescription;
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
         }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
+        }
+
     }
 
     #endregion
@@ -202,7 +208,7 @@ public class CellphoneUI : MonoBehaviour
     #region Settings
     public void OpenSettings()
     {
-        submenuNameText.text = "Settings";
+        gameMenuUI.submenuNameText.text = "Settings";
         contactsUIGO.SetActive(false);
         photosUIGO.SetActive(false);
         settingsUIGO.SetActive(true);
@@ -221,6 +227,8 @@ public class CellphoneUI : MonoBehaviour
     public void SelectSettingsToDisplay()
     {
         settingsInfoPanel.SetActive(true);
+
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
     }
     #endregion
 
