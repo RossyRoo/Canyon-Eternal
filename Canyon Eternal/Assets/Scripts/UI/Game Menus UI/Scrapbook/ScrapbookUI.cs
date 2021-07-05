@@ -99,7 +99,11 @@ public class ScrapbookUI : MonoBehaviour
 
                 if (thisArea.areaCoverGO != null)
                 {
-                    thisArea.areaCoverGO.GetComponent<Animator>().Play("RemoveCover");
+                    Animator[] coverAnimators = thisArea.areaCoverGO.GetComponentsInChildren<Animator>();
+                    for (int j = 0; j < coverAnimators.Length; j++)
+                    {
+                        coverAnimators[j].Play("RemoveCover");
+                    }
 
                     Destroy(thisArea.areaCoverGO, 1);
                 }
@@ -126,7 +130,11 @@ public class ScrapbookUI : MonoBehaviour
 
                 if (thisRoom.areaCoverGO != null)
                 {
-                    thisRoom.areaCoverGO.GetComponent<Animator>().Play("RemoveCover");
+                    Animator[] coverAnimators = thisRoom.areaCoverGO.GetComponentsInChildren<Animator>();
+                    for (int j = 0; j < coverAnimators.Length; j++)
+                    {
+                        coverAnimators[j].Play("RemoveCover");
+                    }
 
                     Destroy(thisRoom.areaCoverGO, 1);
                 }
