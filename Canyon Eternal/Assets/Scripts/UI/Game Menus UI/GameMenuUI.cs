@@ -23,6 +23,14 @@ public class GameMenuUI : MonoBehaviour
     [HideInInspector]
     public bool gameMenuIsOpen;
 
+    [Header("SFX")]
+    public AudioClip openScrapbookSFX;
+    public AudioClip openCellPhoneSFX;
+    public AudioClip openBagSFX;
+    public AudioClip switchScrapbookSubMenuSFX;
+    public AudioClip switchCellphoneSubMenuSFX;
+    public AudioClip switchBagSubMenuSFX;
+
 
     private void Awake()
     {
@@ -63,14 +71,17 @@ public class GameMenuUI : MonoBehaviour
         if(currentMenuIndex == 0)
         {
             currentMenuIndex++;
+            SFXPlayer.Instance.PlaySFXAudioClip(openBagSFX);
         }
         else if(currentMenuIndex == 1)
         {
             currentMenuIndex++;
+            SFXPlayer.Instance.PlaySFXAudioClip(openCellPhoneSFX);
         }
         else
         {
             currentMenuIndex = 0;
+            SFXPlayer.Instance.PlaySFXAudioClip(openScrapbookSFX);
         }
 
         SwitchMenus();
@@ -81,14 +92,17 @@ public class GameMenuUI : MonoBehaviour
         if (currentMenuIndex == 0)
         {
             currentMenuIndex = 2;
+            SFXPlayer.Instance.PlaySFXAudioClip(openCellPhoneSFX);
         }
         else if (currentMenuIndex == 1)
         {
             currentMenuIndex--;
+            SFXPlayer.Instance.PlaySFXAudioClip(openScrapbookSFX);
         }
         else
         {
             currentMenuIndex--;
+            SFXPlayer.Instance.PlaySFXAudioClip(openBagSFX);
         }
 
         SwitchMenus();
@@ -113,6 +127,7 @@ public class GameMenuUI : MonoBehaviour
             currentSubmenuIndex = 0;
         }
 
+        PlaySubMenuSwitchingSFX();
         SwitchMenus();
     }
 
@@ -131,7 +146,24 @@ public class GameMenuUI : MonoBehaviour
             currentSubmenuIndex--;
         }
 
+        PlaySubMenuSwitchingSFX();
         SwitchMenus();
+    }
+
+    private void PlaySubMenuSwitchingSFX()
+    {
+        if (currentMenuIndex == 0)
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(switchScrapbookSubMenuSFX);
+        }
+        else if (currentMenuIndex == 1)
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(switchBagSubMenuSFX);
+        }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(switchCellphoneSubMenuSFX);
+        }
     }
 
     #endregion
