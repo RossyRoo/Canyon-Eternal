@@ -88,22 +88,25 @@ public class ScrapbookUI : MonoBehaviour
         {
             AreaSlot thisArea = worldMapAreas[i].GetComponent<AreaSlot>();
 
-            if(playerProgression.roomsDiscovered.Contains(thisArea.slotRoom))
+            for (int j = 0; j < thisArea.roomsInThisArea.Count; j++)
             {
-                if (thisArea.roomsInThisArea.Contains(sceneChangeManager.currentRoom))
+                if(playerProgression.roomsDiscovered.Contains(thisArea.roomsInThisArea[j]))
                 {
-                    playerIcon.transform.position = thisArea.playerIconTF.position;
-                }
-
-                if (thisArea.areaCoverGO != null)
-                {
-                    Animator[] coverAnimators = thisArea.areaCoverGO.GetComponentsInChildren<Animator>();
-                    for (int j = 0; j < coverAnimators.Length; j++)
+                    if (thisArea.roomsInThisArea.Contains(sceneChangeManager.currentRoom))
                     {
-                        coverAnimators[j].Play("RemoveCover");
+                        playerIcon.transform.position = thisArea.playerIconTF.position;
                     }
 
-                    Destroy(thisArea.areaCoverGO, 1);
+                    if (thisArea.areaCoverGO != null)
+                    {
+                        Animator[] coverAnimators = thisArea.areaCoverGO.GetComponentsInChildren<Animator>();
+                        for (int k = 0; k < coverAnimators.Length; k++)
+                        {
+                            coverAnimators[k].Play("RemoveCover");
+                        }
+
+                        Destroy(thisArea.areaCoverGO, 1);
+                    }
                 }
             }
         }

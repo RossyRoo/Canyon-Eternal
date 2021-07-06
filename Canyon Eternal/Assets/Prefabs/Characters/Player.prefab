@@ -5922,7 +5922,6 @@ MonoBehaviour:
   cycleMenuRight_Input: 0
   cycleSubmenuLeft_Input: 0
   cycleSubmenuRight_Input: 0
-  closeMenu_Input: 0
 --- !u!114 &9008261327072951981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6107,9 +6106,9 @@ MonoBehaviour:
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   textStyle: 1
   textStyleColor: {r: 0, g: 0, b: 0, a: 1}
-  defaultUseMessage: '[r] talk'
+  defaultUseMessage: talk [x]
   useKey: 114
-  useButton: Fire2
+  useButton: Submit
   enableTouch: 0
   touchArea:
     origin: 0

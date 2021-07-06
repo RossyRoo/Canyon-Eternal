@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers;
 
 public class InputManager : MonoBehaviour
 {
@@ -27,7 +28,6 @@ public class InputManager : MonoBehaviour
     public bool cycleMenuRight_Input;
     public bool cycleSubmenuLeft_Input;
     public bool cycleSubmenuRight_Input;
-    public bool closeMenu_Input;
 
 
     private void Awake()
@@ -76,7 +76,10 @@ public class InputManager : MonoBehaviour
             playerControls.UI.CycleMenuRight.performed += i => cycleMenuRight_Input = true;
             playerControls.UI.CycleSubmenuLeft.performed += i => cycleSubmenuLeft_Input = true;
             playerControls.UI.CycleSubmenuRight.performed += i => cycleSubmenuRight_Input = true;
-            playerControls.UI.CloseMenu.performed += i => closeMenu_Input = true;
+
+            //DIALOGUE SYSTEM
+            InputDeviceManager.RegisterInputAction("Submit", playerControls.PlayerActions.Interact);
+            InputDeviceManager.RegisterInputAction("Cancel", playerControls.PlayerActions.Dash);
         }
         playerControls.Enable();
     }
@@ -224,7 +227,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleCloseInput()
     {
-        if(closeMenu_Input)
+        if(dash_Input)
         {
             if(!playerManager.isInteractingWithUI)
             {

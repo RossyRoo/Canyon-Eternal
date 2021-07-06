@@ -108,11 +108,11 @@ MonoBehaviour:
       - Fire1
       - Fire2
       cancel:
-        key: 114
-        buttonName: 
+        key: 102
+        buttonName: Submit
       cancelConversation:
         key: 27
-        buttonName: 
+        buttonName: Back
     barkSettings:
       allowBarksDuringConversations: 1
       barkCharsPerSecond: 0
@@ -176,7 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputDevice: 1
   joystickKeyCodesToCheck: 4a0100004b0100004c01000051010000
-  joystickButtonsToCheck: []
+  joystickButtonsToCheck:
+  - Submit
   joystickAxesToCheck: []
   joystickAxisThreshold: 0.5
   keyButtonsToCheck: []

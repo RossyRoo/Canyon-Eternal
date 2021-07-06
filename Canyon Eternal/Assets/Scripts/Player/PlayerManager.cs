@@ -92,7 +92,6 @@ public class PlayerManager : CharacterManager
         inputManager.cycleMenuRight_Input = false;
         inputManager.cycleSubmenuLeft_Input = false;
         inputManager.cycleSubmenuRight_Input = false;
-        inputManager.closeMenu_Input = false;
     }
 
     public IEnumerator HandleDeathCoroutine(string deathAnimation = "Death")

@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour
 
     private void Awake()
     {
-        interactableText = interactableText + " [r]";
+        interactableText = interactableText + " [x]";
     }
 
     public virtual void Interact(PlayerManager playerManager, PlayerStats playerStats)
