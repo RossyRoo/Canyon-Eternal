@@ -246,6 +246,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""QuickSlot"",
+                    ""type"": ""Button"",
+                    ""id"": ""302dd86c-ca2a-409d-a2da-da84accab130"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -378,6 +386,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""336b3c5f-1f1a-466f-a88f-082f9a5e7aef"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QuickSlot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -583,6 +602,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Block = m_PlayerActions.FindAction("Block", throwIfNotFound: true);
         m_PlayerActions_Spell = m_PlayerActions.FindAction("Spell", throwIfNotFound: true);
+        m_PlayerActions_QuickSlot = m_PlayerActions.FindAction("QuickSlot", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenMenu = m_UI.FindAction("OpenMenu", throwIfNotFound: true);
@@ -678,6 +698,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Block;
     private readonly InputAction m_PlayerActions_Spell;
+    private readonly InputAction m_PlayerActions_QuickSlot;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -688,6 +709,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Block => m_Wrapper.m_PlayerActions_Block;
         public InputAction @Spell => m_Wrapper.m_PlayerActions_Spell;
+        public InputAction @QuickSlot => m_Wrapper.m_PlayerActions_QuickSlot;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -715,6 +737,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Spell.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
                 @Spell.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
                 @Spell.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
+                @QuickSlot.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuickSlot;
+                @QuickSlot.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuickSlot;
+                @QuickSlot.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnQuickSlot;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -737,6 +762,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Spell.started += instance.OnSpell;
                 @Spell.performed += instance.OnSpell;
                 @Spell.canceled += instance.OnSpell;
+                @QuickSlot.started += instance.OnQuickSlot;
+                @QuickSlot.performed += instance.OnQuickSlot;
+                @QuickSlot.canceled += instance.OnQuickSlot;
             }
         }
     }
@@ -836,6 +864,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnSpell(InputAction.CallbackContext context);
+        void OnQuickSlot(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

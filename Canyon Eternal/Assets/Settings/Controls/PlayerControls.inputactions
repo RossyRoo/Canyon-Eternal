@@ -233,6 +233,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "QuickSlot",
+                    "type": "Button",
+                    "id": "302dd86c-ca2a-409d-a2da-da84accab130",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -365,6 +373,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Spell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "336b3c5f-1f1a-466f-a88f-082f9a5e7aef",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QuickSlot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

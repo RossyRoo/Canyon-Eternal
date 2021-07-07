@@ -17,10 +17,12 @@ public class BagUI : MonoBehaviour
     public int interfacePageIndex = 0;
 
     [Header("Info Panel")]
+    public Item currentItem;
     public GameObject bagInfoPanel;
     public Image itemIcon;
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescriptionText;
+    public GameObject usableButtons;
 
     private void Awake()
     {
@@ -72,8 +74,18 @@ public class BagUI : MonoBehaviour
             {
                 itemSlotUI.slotItem = playerInventory.usableInventory[i];
                 myItemIcon.sprite = playerInventory.usableInventory[i].itemIcon;
+                
+                int thisItemSlotCount = 0;
+                for (int j = 0; j < playerInventory.usableInventory.Count; j++)
+                {
+                    if(playerInventory.usableInventory[i].itemName == playerInventory.usableInventory[j].itemName)
+                    {
+                        thisItemSlotCount++;
+                    }
+                }
 
-                myItemIcon.gameObject.SetActive(true);
+                itemSlotUI.itemCount.text = (thisItemSlotCount).ToString();
+
             }
             else
             {
@@ -162,21 +174,44 @@ public class BagUI : MonoBehaviour
 
     public void SelectDisplayItem(ItemSlotUI slotToSelect)
     {
-        Item itemToDisplay = slotToSelect.slotItem;
+        currentItem = slotToSelect.slotItem;
 
-        if (itemToDisplay != null)
+        if (currentItem != null)
         {
             bagInfoPanel.SetActive(true);
-            itemIcon.sprite = itemToDisplay.itemIcon;
-            itemDescriptionText.text = itemToDisplay.itemDescription;
-            itemNameText.text = itemToDisplay.itemName;
+            itemIcon.sprite = currentItem.itemIcon;
+            itemDescriptionText.text = currentItem.itemDescription;
+            itemNameText.text = currentItem.itemName;
 
             SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+
+            if(currentItem.GetType().Equals(typeof(Usable)))
+            {
+                usableButtons.SetActive(true);
+            }
+            else
+            {
+                usableButtons.SetActive(false);
+            }
         }
         else
         {
             SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
         }
 
+    }
+
+    /*
+    public void SetQuickSlotUsable()
+    {
+        playerInventory.quickSlotUsable = (Usable)currentItem;
+
+        Debug.Log("Setting current quick slot to "+ currentItem);
+    }*/
+
+    public void UseCurrentUsableItem()
+    {
+        FindObjectOfType<PlayerItemUser>().UseItemFromInventory((Usable)currentItem);
+        OpenUsableInventory();
     }
 }

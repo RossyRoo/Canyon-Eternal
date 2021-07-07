@@ -5791,6 +5791,7 @@ GameObject:
   - component: {fileID: 4788685616039370079}
   - component: {fileID: 4708498828894331879}
   - component: {fileID: 8498243642609210069}
+  - component: {fileID: 5224865824568375289}
   - component: {fileID: 3903406275795144268}
   - component: {fileID: 6044603010213835387}
   - component: {fileID: 7725648213466483098}
@@ -5917,6 +5918,7 @@ MonoBehaviour:
   block_Input: 0
   heal_Input: 0
   interact_Input: 0
+  quickSlot_Input: 0
   openMenu_Input: 0
   cycleMenuLeft_Input: 0
   cycleMenuRight_Input: 0
@@ -6045,6 +6047,8 @@ MonoBehaviour:
   usableInventory:
   - {fileID: 11400000, guid: 41ba84185bd0a40a1a85992d4b73fff6, type: 2}
   - {fileID: 11400000, guid: a4644522ef5454498bdd728382ac14e0, type: 2}
+  - {fileID: 11400000, guid: a4644522ef5454498bdd728382ac14e0, type: 2}
+  - {fileID: 11400000, guid: a4644522ef5454498bdd728382ac14e0, type: 2}
   photoInventory:
   - {fileID: 11400000, guid: 7e4b5ac359c9842729a2f8dc4e4bc710, type: 2}
   - {fileID: 11400000, guid: 82a342675ed7943ffba887cddf320ecb, type: 2}
@@ -6073,6 +6077,18 @@ MonoBehaviour:
   chargeSpellSFX: {fileID: 8300000, guid: 51c228f8c07dbc64a9eb15b34f4f0788, type: 3}
   chargeSpellCompleteSFX: {fileID: 8300000, guid: d4245b844365e1345aeb50e175e5b930,
     type: 3}
+--- !u!114 &5224865824568375289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652666736338822588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca33735f0b094894bd1d9f0eeb2bec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3903406275795144268
 MonoBehaviour:
   m_ObjectHideFlags: 0
