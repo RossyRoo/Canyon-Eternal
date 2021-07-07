@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 2390
     height: 1320
-  m_MinSize: {x: 778, y: 613}
-  m_MaxSize: {x: 18003, y: 18063}
+  m_MinSize: {x: 781, y: 613}
+  m_MaxSize: {x: 18004, y: 18063}
   vertical: 0
-  controlID: 200
+  controlID: 194
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 1838
     height: 1320
-  m_MinSize: {x: 503, y: 613}
+  m_MinSize: {x: 505, y: 613}
   m_MaxSize: {x: 14003, y: 18063}
   vertical: 1
-  controlID: 201
+  controlID: 195
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -163,10 +163,10 @@ MonoBehaviour:
     y: 0
     width: 1838
     height: 621
-  m_MinSize: {x: 503, y: 342}
-  m_MaxSize: {x: 12003, y: 8042}
+  m_MinSize: {x: 505, y: 342}
+  m_MaxSize: {x: 12005, y: 8042}
   vertical: 0
-  controlID: 84
+  controlID: 196
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 173
+  controlID: 197
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -292,8 +292,8 @@ MonoBehaviour:
     y: 0
     width: 659
     height: 621
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_MinSize: {x: 333, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 202
+  controlID: 163
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -453,9 +453,9 @@ MonoBehaviour:
     m_SearchString: 
   m_ActionsTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: df7a7124
-    m_LastClickedID: 611416799
-    m_ExpandedIDs: c19807207fbdb428
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 7fbdb428
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -600,10 +600,6 @@ MonoBehaviour:
       \"name\": \"Spell\",\n                    \"type\": \"Button\",\n                   
       \"id\": \"c48c0885-279b-4413-b6c0-f35b91f8955c\",\n                    \"expectedControlType\":
       \"Button\",\n                    \"processors\": \"\",\n                   
-      \"interactions\": \"\"\n                },\n                {\n                   
-      \"name\": \"QuickSlot\",\n                    \"type\": \"Button\",\n                   
-      \"id\": \"302dd86c-ca2a-409d-a2da-da84accab130\",\n                    \"expectedControlType\":
-      \"Button\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\"\n                }\n            ],\n            \"bindings\":
       [\n                {\n                    \"name\": \"\",\n                   
       \"id\": \"96aad6bd-3b68-4424-b200-0a29c04537fb\",\n                    \"path\":
@@ -671,14 +667,9 @@ MonoBehaviour:
       \"\",\n                    \"processors\": \"\",\n                    \"groups\":
       \"Gamepad\",\n                    \"action\": \"Spell\",\n                   
       \"isComposite\": false,\n                    \"isPartOfComposite\": false\n               
-      },\n                {\n                    \"name\": \"\",\n                   
-      \"id\": \"336b3c5f-1f1a-466f-a88f-082f9a5e7aef\",\n                    \"path\":
-      \"<Gamepad>/dpad/up\",\n                    \"interactions\": \"\",\n                   
-      \"processors\": \"\",\n                    \"groups\": \"\",\n                   
-      \"action\": \"QuickSlot\",\n                    \"isComposite\": false,\n                   
-      \"isPartOfComposite\": false\n                }\n            ]\n        },\n       
-      {\n            \"name\": \"UI\",\n            \"id\": \"a978b114-f827-4dd5-b351-a1f74deb7095\",\n           
-      \"actions\": [\n                {\n                    \"name\": \"OpenMenu\",\n                   
+      }\n            ]\n        },\n        {\n            \"name\": \"UI\",\n           
+      \"id\": \"a978b114-f827-4dd5-b351-a1f74deb7095\",\n            \"actions\":
+      [\n                {\n                    \"name\": \"OpenMenu\",\n                   
       \"type\": \"Button\",\n                    \"id\": \"8be32cc1-12fe-4eaa-8f00-157d7aa00d89\",\n                   
       \"expectedControlType\": \"Button\",\n                    \"processors\": \"\",\n                   
       \"interactions\": \"\"\n                },\n                {\n                   
@@ -911,9 +902,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1a590000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: bcefffff02f3ffff42f6ffff5cf6ffff50f7fffff0f7ffffb0f8ffffe0f8ffff50f9ffff22fbfffff4ffffff
+      m_ExpandedIDs: 58f9ffff22fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1056,7 +1047,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 928.6222, y: 102.28158, z: -308.1654}
     speed: 2
-    m_Value: {x: 928.6222, y: 102.28158, z: -308.1654}
+    m_Value: {x: 552.3775, y: 24.607347, z: -2922.6636}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1108,7 +1099,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 631.13855
     speed: 2
-    m_Value: 631.13855
+    m_Value: 574.3558
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1828,20 +1819,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Data/Items/Usables
+    - Assets/Scripts/Player
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Data/Items/Usables
+  - Assets/Scripts/Player
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /Users/rosssmith/Documents/GitHub/Canyon-Eternal/Canyon Eternal
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 94}
-    m_SelectedIDs: 64a40000
-    m_LastClickedID: 42084
-    m_ExpandedIDs: 0000000016510000409d0000429d0000449d0000469d0000489d00004a9d00004c9d00004e9d0000509d0000529d0000549d0000569d0000589d00005a9d00005c9d00005e9d0000609d0000629d0000649d0000669d0000689d00006a9d00006c9d00006e9d0000709d0000729d0000749d0000769d0000789d00007a9d00007c9d00007e9d0000809d0000829d0000849d0000869d0000889d00008a9d00008c9d0000ee9d0000149e00004aa4000000ca9a3b
+    scrollPos: {x: 0, y: 206}
+    m_SelectedIDs: 08ba0000
+    m_LastClickedID: 47624
+    m_ExpandedIDs: 00000000185100001e9f0000209f0000229f0000249f0000269f0000289f00002a9f00002c9f00002e9f0000309f0000329f0000349f0000369f0000389f00003a9f00003c9f00003e9f0000409f0000429f0000449f0000469f0000489f00004a9f00004c9f00004e9f0000509f0000529f0000549f0000569f0000589f00005a9f00005c9f00005e9f0000609f0000629f0000649f0000669f0000689f00006a9f0000c69f0000ec9f0000fa9f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1869,7 +1860,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000016510000409d0000429d0000449d0000469d0000489d00004a9d00004c9d00004e9d0000509d0000529d0000549d0000569d0000589d00005a9d00005c9d00005e9d0000609d0000629d0000649d0000669d0000689d00006a9d00006c9d00006e9d0000709d0000729d0000749d0000769d0000789d00007a9d00007c9d00007e9d0000809d0000829d0000849d0000869d0000889d00008a9d00008c9d0000
+    m_ExpandedIDs: 00000000185100001e9f0000209f0000229f0000249f0000269f0000289f00002a9f00002c9f00002e9f0000309f0000329f0000349f0000369f0000389f00003a9f00003c9f00003e9f0000409f0000429f0000449f0000469f0000489f00004a9f00004c9f00004e9f0000509f0000529f0000549f0000569f0000589f00005a9f00005c9f00005e9f0000609f0000629f0000649f0000669f0000689f00006a9f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1982,7 +1973,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1712
+  m_LastSelectedObjectID: -121216
 --- !u!114 &28
 MonoBehaviour:
   m_ObjectHideFlags: 52

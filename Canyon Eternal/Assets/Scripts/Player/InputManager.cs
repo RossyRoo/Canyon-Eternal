@@ -23,7 +23,6 @@ public class InputManager : MonoBehaviour
     public bool block_Input;
     public bool heal_Input;
     public bool interact_Input;
-    public bool quickSlot_Input;
     public bool openMenu_Input;
     public bool cycleMenuLeft_Input;
     public bool cycleMenuRight_Input;
@@ -67,9 +66,6 @@ public class InputManager : MonoBehaviour
 
             //HEAL
             playerControls.PlayerActions.Heal.performed += i => heal_Input = true;
-
-            //QUICK SLOT
-            playerControls.PlayerActions.QuickSlot.performed += i => quickSlot_Input = true;
 
             //INTERACT
             playerControls.PlayerActions.Interact.performed += i => interact_Input = true;

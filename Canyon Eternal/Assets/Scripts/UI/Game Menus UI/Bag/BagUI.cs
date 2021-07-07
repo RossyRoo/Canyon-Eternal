@@ -70,6 +70,7 @@ public class BagUI : MonoBehaviour
             Image myItemIcon = interfaceSlots[i].GetComponent<Image>();
             ItemSlotUI itemSlotUI = interfaceSlots[i].GetComponent<ItemSlotUI>();
 
+            //Instead of this I need a way that the inventory counts the stacks first and then assigns slots
             if (i < playerInventory.usableInventory.Count)
             {
                 itemSlotUI.slotItem = playerInventory.usableInventory[i];
@@ -85,10 +86,10 @@ public class BagUI : MonoBehaviour
                 }
 
                 itemSlotUI.itemCount.text = (thisItemSlotCount).ToString();
-
             }
             else
             {
+                itemSlotUI.itemCount.text = "";
                 itemSlotUI.slotItem = null;
                 myItemIcon.sprite = emptyWindowSprite;
             }
@@ -201,17 +202,18 @@ public class BagUI : MonoBehaviour
 
     }
 
+    public void UseCurrentUsableItem()
+    {
+        FindObjectOfType<PlayerItemUser>().UseItemFromInventory((Usable)currentItem);
+        OpenUsableInventory();
+        //If there is no more of this item, you need to close the info panel
+    }
+
     /*
     public void SetQuickSlotUsable()
     {
         playerInventory.quickSlotUsable = (Usable)currentItem;
 
-        Debug.Log("Setting current quick slot to "+ currentItem);
+        Debug.Log("Setting current quick slot to " + currentItem);
     }*/
-
-    public void UseCurrentUsableItem()
-    {
-        FindObjectOfType<PlayerItemUser>().UseItemFromInventory((Usable)currentItem);
-        OpenUsableInventory();
-    }
 }
