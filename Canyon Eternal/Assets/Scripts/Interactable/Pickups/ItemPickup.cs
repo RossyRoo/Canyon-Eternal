@@ -44,10 +44,6 @@ public class ItemPickup : Interactable
         {
             playerInventory.treasureInventory.Add((Treasure)thisItem);
         }
-        else if(thisItem.GetType() == typeof(Usable))
-        {
-            playerInventory.usableInventory.Add((Usable)thisItem);
-        }
         else if(thisItem.GetType() == typeof(Key))
         {
             playerInventory.keyInventory.Add((Key)thisItem);

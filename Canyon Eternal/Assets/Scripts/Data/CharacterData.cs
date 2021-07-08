@@ -4,12 +4,9 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Character Data / Character Data")]
 
-public class CharacterData : ScriptableObject
+public class CharacterData : Item
 {
     [Header("Basic Info")]
-    public string characterName;
-    public string characterDescription;
-    public Sprite characterIcon;
     public Contact characterContact;
     public int characterID;
     public bool isSingleEncounter;

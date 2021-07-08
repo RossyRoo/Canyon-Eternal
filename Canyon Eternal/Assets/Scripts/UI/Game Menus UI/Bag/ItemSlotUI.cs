@@ -6,7 +6,4 @@ using TMPro;
 public class ItemSlotUI : MonoBehaviour
 {
     public Item slotItem;
-    public TextMeshProUGUI itemCount;
-
-    
 }

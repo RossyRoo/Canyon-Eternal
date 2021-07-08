@@ -9,34 +9,27 @@ public class CellphoneUI : MonoBehaviour
     PlayerInventory playerInventory;
     PlayerProgression playerProgression;
 
-    public GameMenuUI gameMenuUI;
-    public GameObject cellUIGO;
-    public GameObject contactsUIGO;
-    public GameObject photosUIGO;
-    public GameObject settingsUIGO;
+    GameMenuUI gameMenuUI;
 
     [Header("Photos")]
-    public GameObject photosInfoPanel;
-    public Image photoIcon;
-    public TextMeshProUGUI photoCaption;
     public GameObject[] photoSlots;
 
     [Header("Contacts")]
-    public GameObject contactsInfoPanel;
-    Contact activeContact;
-    public Image contactIcon;
-    public TextMeshProUGUI contactName;
-    public TextMeshProUGUI contactBio;
+    public Contact activeContact;
     public GameObject[] contactSlots;
+    public GameObject callButton;
 
     [Header("Settings")]
     public GameObject settingsInfoPanel;
 
+    private void Awake()
+    {
+        gameMenuUI = GetComponent<GameMenuUI>();
+    }
 
     public void OpenCellphone(int currentSubmenuIndex)
     {
         gameMenuUI.menuNameText.text = "Cell";
-        cellUIGO.SetActive(true);
 
         if (currentSubmenuIndex == 0)
         {
@@ -52,25 +45,33 @@ public class CellphoneUI : MonoBehaviour
         }
     }
 
+    public void CloseCellphone()
+    {
+        gameMenuUI.contactsUIGO.SetActive(false);
+        gameMenuUI.photosUIGO.SetActive(false);
+        gameMenuUI.settingsUIGO.SetActive(false);
+    }
+
     #region Contacts
 
     public void OpenContacts()
     {
         playerProgression = FindObjectOfType<PlayerProgression>();
 
-        gameMenuUI.submenuNameText.text = "Messages";
-        photosUIGO.SetActive(false);
-        settingsUIGO.SetActive(false);
-        contactsUIGO.SetActive(true);
+        gameMenuUI.submenuNameText.text = "Contacts";
+        gameMenuUI.photosUIGO.SetActive(false);
+        gameMenuUI.settingsUIGO.SetActive(false);
+        gameMenuUI.contactsUIGO.SetActive(true);
+        callButton.SetActive(true);
 
         for (int i = 0; i < contactSlots.Length; i++)
         {
             Image myContactIcon = contactSlots[i].GetComponent<Image>();
-            ContactSlotUI contactSlotUI = contactSlots[i].GetComponent<ContactSlotUI>();
+            ItemSlotUI itemSlotUI = contactSlots[i].GetComponent<ItemSlotUI>();
 
             if (i < playerProgression.collectedContacts.Count)
             {
-                contactSlotUI.slotContact = playerProgression.collectedContacts[i];
+                itemSlotUI.slotItem = playerProgression.collectedContacts[i];
                 myContactIcon.sprite = playerProgression.collectedContacts[i].itemIcon;
 
                 myContactIcon.gameObject.SetActive(true);
@@ -78,25 +79,6 @@ public class CellphoneUI : MonoBehaviour
         }
     }
 
-    public void SelectDisplayContact(ContactSlotUI contactToSelect)
-    {
-        Contact contactToDisplay = contactToSelect.slotContact;
-
-        if(contactToDisplay != null)
-        {
-            contactsInfoPanel.SetActive(true);
-            activeContact = contactToDisplay;
-            contactIcon.sprite = contactToDisplay.itemIcon;
-            contactBio.text = contactToDisplay.itemDescription;
-            contactName.text = contactToDisplay.itemName;
-            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
-        }
-        else
-        {
-            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
-        }
-
-    }
 
     public void TriggerOutgoingPhoneCall()
     {
@@ -129,9 +111,9 @@ public class CellphoneUI : MonoBehaviour
     public void OpenPhotos()
     {
         gameMenuUI.submenuNameText.text = "Photos";
-        contactsUIGO.SetActive(false);
-        settingsUIGO.SetActive(false);
-        photosUIGO.SetActive(true);
+        gameMenuUI.contactsUIGO.SetActive(false);
+        gameMenuUI.settingsUIGO.SetActive(false);
+        gameMenuUI.photosUIGO.SetActive(true);
 
 
         for (int i = 0; i < photoSlots.Length; i++)
@@ -185,33 +167,15 @@ public class CellphoneUI : MonoBehaviour
     }
 
 
-    public void SelectDisplayPhoto(ItemSlotUI slotToSelect)
-    {
-        Item photoToDisplay = slotToSelect.slotItem;
-
-        if(photoToDisplay!=null)
-        {
-            photosInfoPanel.SetActive(true);
-            photoIcon.sprite = photoToDisplay.itemIcon;
-            photoCaption.text = photoToDisplay.itemDescription;
-            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
-        }
-        else
-        {
-            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
-        }
-
-    }
-
     #endregion
 
     #region Settings
     public void OpenSettings()
     {
         gameMenuUI.submenuNameText.text = "Settings";
-        contactsUIGO.SetActive(false);
-        photosUIGO.SetActive(false);
-        settingsUIGO.SetActive(true);
+        gameMenuUI.contactsUIGO.SetActive(false);
+        gameMenuUI.photosUIGO.SetActive(false);
+        gameMenuUI.settingsUIGO.SetActive(true);
     }
 
     public void QuitGame()
@@ -224,12 +188,6 @@ public class CellphoneUI : MonoBehaviour
         GetComponentInParent<SceneChangeManager>().LoadMainMenu();
     }
 
-    public void SelectSettingsToDisplay()
-    {
-        settingsInfoPanel.SetActive(true);
-
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
-    }
     #endregion
 
 }

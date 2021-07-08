@@ -6,33 +6,24 @@ using TMPro;
 
 public class BagUI : MonoBehaviour
 {
-    public GameMenuUI gameMenuUI;
+    GameMenuUI gameMenuUI;
     PlayerInventory playerInventory;
 
     [Header("Interface Panel")]
     public Sprite emptyWindowSprite;
-    public GameObject bagUIGO;
     public GameObject[] interfaceSlots;
     public GameObject[] interfacePages;
     public int interfacePageIndex = 0;
 
-    [Header("Info Panel")]
-    public Item currentItem;
-    public GameObject bagInfoPanel;
-    public Image itemIcon;
-    public TextMeshProUGUI itemNameText;
-    public TextMeshProUGUI itemDescriptionText;
-    public GameObject usableButtons;
-
     private void Awake()
     {
         playerInventory = FindObjectOfType<PlayerInventory>();
+        gameMenuUI = GetComponent<GameMenuUI>();
     }
 
     public void OpenBag(int currentSubmenuIndex)
     {
         gameMenuUI.menuNameText.text = "Bag";
-        bagUIGO.SetActive(true);
 
         for (int i = 0; i < interfacePages.Length; i++)
         {
@@ -48,7 +39,7 @@ public class BagUI : MonoBehaviour
 
         if (currentSubmenuIndex == 0)
         {
-            OpenUsableInventory();
+            OpenEquipment();
         }
         else if (currentSubmenuIndex == 1)
         {
@@ -60,45 +51,23 @@ public class BagUI : MonoBehaviour
         }
     }
 
-    #region Open Inventories
-    public void OpenUsableInventory()
+    public void CloseBag()
     {
-        gameMenuUI.submenuNameText.text = "Usables";
+        gameMenuUI.inventoryUIGO.SetActive(false);
+    }
 
-        for (int i = 0; i < interfaceSlots.Length; i++)
-        {
-            Image myItemIcon = interfaceSlots[i].GetComponent<Image>();
-            ItemSlotUI itemSlotUI = interfaceSlots[i].GetComponent<ItemSlotUI>();
+    #region Open Inventories
+    public void OpenEquipment()
+    {
+        gameMenuUI.submenuNameText.text = "Gear";
 
-            //Instead of this I need a way that the inventory counts the stacks first and then assigns slots
-            if (i < playerInventory.usableInventory.Count)
-            {
-                itemSlotUI.slotItem = playerInventory.usableInventory[i];
-                myItemIcon.sprite = playerInventory.usableInventory[i].itemIcon;
-                
-                int thisItemSlotCount = 0;
-                for (int j = 0; j < playerInventory.usableInventory.Count; j++)
-                {
-                    if(playerInventory.usableInventory[i].itemName == playerInventory.usableInventory[j].itemName)
-                    {
-                        thisItemSlotCount++;
-                    }
-                }
-
-                itemSlotUI.itemCount.text = (thisItemSlotCount).ToString();
-            }
-            else
-            {
-                itemSlotUI.itemCount.text = "";
-                itemSlotUI.slotItem = null;
-                myItemIcon.sprite = emptyWindowSprite;
-            }
-        }
+        gameMenuUI.inventoryUIGO.SetActive(false);
     }
 
     public void OpenKeyInventory()
     {
         gameMenuUI.submenuNameText.text = "Keys";
+        gameMenuUI.inventoryUIGO.SetActive(true);
 
 
         for (int i = 0; i < interfaceSlots.Length; i++)
@@ -124,6 +93,7 @@ public class BagUI : MonoBehaviour
     public void OpenTreasureInventory()
     {
         gameMenuUI.submenuNameText.text = "Treasures";
+        gameMenuUI.inventoryUIGO.SetActive(true);
 
         for (int i = 0; i < interfaceSlots.Length; i++)
         {
@@ -172,36 +142,7 @@ public class BagUI : MonoBehaviour
         SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
     }
 
-
-    public void SelectDisplayItem(ItemSlotUI slotToSelect)
-    {
-        currentItem = slotToSelect.slotItem;
-
-        if (currentItem != null)
-        {
-            bagInfoPanel.SetActive(true);
-            itemIcon.sprite = currentItem.itemIcon;
-            itemDescriptionText.text = currentItem.itemDescription;
-            itemNameText.text = currentItem.itemName;
-
-            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
-
-            if(currentItem.GetType().Equals(typeof(Usable)))
-            {
-                usableButtons.SetActive(true);
-            }
-            else
-            {
-                usableButtons.SetActive(false);
-            }
-        }
-        else
-        {
-            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
-        }
-
-    }
-
+    /*
     public void UseCurrentUsableItem()
     {
         FindObjectOfType<PlayerItemUser>().UseItemFromInventory((Usable)currentItem);
@@ -209,7 +150,7 @@ public class BagUI : MonoBehaviour
         //If there is no more of this item, you need to close the info panel
     }
 
-    /*
+    
     public void SetQuickSlotUsable()
     {
         playerInventory.quickSlotUsable = (Usable)currentItem;

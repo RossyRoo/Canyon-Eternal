@@ -22,8 +22,6 @@ public class PlayerInventory : MonoBehaviour
     [Header("Item Inventory")]
     public List<Key> keyInventory;
     public List<Treasure> treasureInventory;
-    public List<Usable> usableInventory;
-    //public Usable quickSlotUsable;
 
     [Header("Photo Inventory")]
     public List<Photo> photoInventory;

@@ -8,21 +8,25 @@ public class GameMenuUI : MonoBehaviour
 {
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerManager playerManager;
-
-    public BagUI bagUI;
-    public CellphoneUI cellphoneUI;
-    public ScrapbookUI scrapbookUI;
+    BagUI bagUI;
+    CellphoneUI cellphoneUI;
+    BookUI bookUI;
 
     public GameObject gameMenusGO;
+    public GameObject infoPanel;
+    public GameObject[] buttons;
     public TextMeshProUGUI menuNameText;
     public TextMeshProUGUI submenuNameText;
 
-    public GameObject[] infoPanels;
-
-    int currentMenuIndex = 0;
-    int currentSubmenuIndex = 0;
-    [HideInInspector]
-    public bool gameMenuIsOpen;
+    [Header("Submenu Interface Panels")]
+    public GameObject interfacePanel;
+    public GameObject inventoryUIGO;
+    public GameObject mapUIGO;
+    public GameObject journalUIGO;
+    public GameObject bestiaryUIGO;
+    public GameObject contactsUIGO;
+    public GameObject photosUIGO;
+    public GameObject settingsUIGO;
 
     [Header("SFX")]
     public AudioClip closeGameMenusSFX;
@@ -37,9 +41,16 @@ public class GameMenuUI : MonoBehaviour
     public AudioClip errorUIButtonSFX;
     public AudioClip phoneRingSFX;
 
+    int currentMenuIndex = 0;
+    int currentSubmenuIndex = 0;
+    [HideInInspector]
+    public bool gameMenuIsOpen;
 
     private void Awake()
     {
+        bagUI = GetComponent<BagUI>();
+        bookUI = GetComponent<BookUI>();
+        cellphoneUI = GetComponent<CellphoneUI>();
         gameMenusGO.SetActive(false);
         playerManager = FindObjectOfType<PlayerManager>();
         playerAnimatorHandler = FindObjectOfType<PlayerAnimatorHandler>();
@@ -178,29 +189,62 @@ public class GameMenuUI : MonoBehaviour
 
     private void SwitchMenus()
     {
-        for (int i = 0; i < infoPanels.Length; i++)
+        interfacePanel.GetComponent<Image>().enabled = true;
+
+        for (int i = 0; i < buttons.Length; i++)
         {
-            infoPanels[i].SetActive(false);
+            buttons[i].SetActive(false);
         }
 
         if (currentMenuIndex == 0)
         {
-            cellphoneUI.cellUIGO.SetActive(false);
-            bagUI.bagUIGO.SetActive(false);
-            scrapbookUI.OpenScrapbook(currentSubmenuIndex);
+            cellphoneUI.CloseCellphone();
+            bagUI.CloseBag();
+            bookUI.OpenBook(currentSubmenuIndex);
         }
         else if (currentMenuIndex == 1)
         {
-            scrapbookUI.scrapbookUIGO.SetActive(false);
-            cellphoneUI.cellUIGO.SetActive(false);
+            cellphoneUI.CloseCellphone();
+            bookUI.CloseBook();
             bagUI.OpenBag(currentSubmenuIndex);
         }
         else
         {
-            bagUI.bagUIGO.SetActive(false);
-            scrapbookUI.scrapbookUIGO.SetActive(false);
+            bookUI.CloseBook();
+            bagUI.CloseBag();
             cellphoneUI.OpenCellphone(currentSubmenuIndex);
         }
+
+        infoPanel.SetActive(false);
+    }
+
+    public void SelectItem(ItemSlotUI itemSlotUI)
+    {
+        Item itemToDisplay = itemSlotUI.slotItem;
+
+        if(itemToDisplay != null)
+        {
+            infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.itemName;
+            infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemToDisplay.itemDescription;
+            infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.itemIcon;
+
+            infoPanel.SetActive(true);
+
+            if (itemSlotUI.slotItem.GetType() == typeof(Contact))
+            {
+                Debug.Log("this is a contact");
+                cellphoneUI.activeContact = (Contact)itemSlotUI.slotItem;
+            }
+
+            SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);
+        }
+        else
+        {
+            SFXPlayer.Instance.PlaySFXAudioClip(errorUIButtonSFX);
+        }
+
+        //Handle Specific
+
     }
 }
 
