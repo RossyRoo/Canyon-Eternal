@@ -19,8 +19,6 @@ public class CellphoneUI : MonoBehaviour
     public GameObject[] contactSlots;
     public GameObject callButton;
 
-    [Header("Settings")]
-    public GameObject settingsInfoPanel;
 
     private void Awake()
     {
@@ -67,12 +65,12 @@ public class CellphoneUI : MonoBehaviour
         for (int i = 0; i < contactSlots.Length; i++)
         {
             Image myContactIcon = contactSlots[i].GetComponent<Image>();
-            ItemSlotUI itemSlotUI = contactSlots[i].GetComponent<ItemSlotUI>();
+            DataSlotUI itemSlotUI = contactSlots[i].GetComponent<DataSlotUI>();
 
             if (i < playerProgression.collectedContacts.Count)
             {
-                itemSlotUI.slotItem = playerProgression.collectedContacts[i];
-                myContactIcon.sprite = playerProgression.collectedContacts[i].itemIcon;
+                itemSlotUI.slotData = playerProgression.collectedContacts[i];
+                myContactIcon.sprite = playerProgression.collectedContacts[i].dataIcon;
 
                 myContactIcon.gameObject.SetActive(true);
             }
@@ -120,12 +118,12 @@ public class CellphoneUI : MonoBehaviour
         {
             playerInventory = FindObjectOfType<PlayerInventory>();
             PlayerProgression playerProgression = FindObjectOfType<PlayerProgression>();
-            ItemSlotUI itemSlotUI = photoSlots[i].GetComponent<ItemSlotUI>();
+            DataSlotUI itemSlotUI = photoSlots[i].GetComponent<DataSlotUI>();
 
             if (i < playerInventory.photoInventory.Count)
             {
                 FindPhotoSlotIcons(i, playerInventory, playerProgression);
-                itemSlotUI.slotItem = playerInventory.photoInventory[i];
+                itemSlotUI.slotData = playerInventory.photoInventory[i];
                 photoSlots[i].SetActive(true);
             }
             else
@@ -143,26 +141,26 @@ public class CellphoneUI : MonoBehaviour
         if (playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent2)
         {
             photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon4;
-            thisPhoto.itemIcon = playerInventory.photoInventory[i].photoIcon4;
-            thisPhoto.itemDescription = playerInventory.photoInventory[i].photoCaption4;
+            thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon4;
+            thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption4;
         }
         else if(playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent2)
         {
             photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon3;
-            thisPhoto.itemIcon = playerInventory.photoInventory[i].photoIcon3;
-            thisPhoto.itemDescription = playerInventory.photoInventory[i].photoCaption3;
+            thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon3;
+            thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption3;
         }
         else if (playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent1)
         {
             photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon2;
-            thisPhoto.itemIcon = playerInventory.photoInventory[i].photoIcon2;
-            thisPhoto.itemDescription = playerInventory.photoInventory[i].photoCaption2;
+            thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon2;
+            thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption2;
         }
         else
         {
             photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon1;
-            thisPhoto.itemIcon = playerInventory.photoInventory[i].photoIcon1;
-            thisPhoto.itemDescription = playerInventory.photoInventory[i].photoCaption1;
+            thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon1;
+            thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption1;
         }
     }
 

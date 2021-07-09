@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class Mirror : Interactable
-{
+{/*
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerInventory playerInventory;
@@ -68,7 +68,7 @@ public class Mirror : Interactable
 
         if (meleeType == 0)
         {
-            playerMeleeHandler.activeMeleeWeapon = playerInventory.thrustWeaponsInventory[thrustIndex];
+            playerMeleeHandler.activeMeleeWeapon = playerInventory.weaponsInventory[thrustIndex];
         }
         else if(meleeType == 1)
         {
@@ -104,12 +104,12 @@ public class Mirror : Interactable
 
     public void CycleThrustIndex()
     {
-        if(playerInventory.thrustWeaponsInventory.Count < 2)
+        if(playerInventory.weaponsInventory.Count < 2)
         {
             return;
         }
 
-        if(thrustIndex != playerInventory.thrustWeaponsInventory.Count - 1)
+        if(thrustIndex != playerInventory.weaponsInventory.Count - 1)
         {
             thrustIndex++;
         }
@@ -212,11 +212,12 @@ public class Mirror : Interactable
 
     public void DisplayCurrentInventoryIndices()
     {
-        currentThrustText.text = playerInventory.thrustWeaponsInventory[thrustIndex].itemName;
-        currentSlashText.text = playerInventory.slashWeaponsInventory[slashIndex].itemName;
-        currentStrikeText.text = playerInventory.strikeWeaponsInventory[strikeIndex].itemName;
-        currentProjectileText.text = playerInventory.projectileSpellsInventory[projectileIndex].itemName;
-        currentAOEText.text = playerInventory.aOESpellsInventory[aOEIndex].itemName;
-        currentBuffText.text = playerInventory.buffSpellsInventory[buffIndex].itemName;
+        currentThrustText.text = playerInventory.weaponsInventory[thrustIndex].dataName;
+        currentSlashText.text = playerInventory.slashWeaponsInventory[slashIndex].dataName;
+        currentStrikeText.text = playerInventory.strikeWeaponsInventory[strikeIndex].dataName;
+        currentProjectileText.text = playerInventory.projectileSpellsInventory[projectileIndex].dataName;
+        currentAOEText.text = playerInventory.aOESpellsInventory[aOEIndex].dataName;
+        currentBuffText.text = playerInventory.buffSpellsInventory[buffIndex].dataName;
     }
+*/
 }

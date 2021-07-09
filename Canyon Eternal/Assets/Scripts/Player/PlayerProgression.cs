@@ -20,8 +20,6 @@ public class PlayerProgression : MonoBehaviour
     public List<Room> roomsDiscovered;
 
 
-
-
     private void Awake()
     {
         playerVesselPercentage = vesselPoints * 0.1f;

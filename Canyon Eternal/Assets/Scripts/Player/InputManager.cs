@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
     PlayerManager playerManager;
+    PlayerInventory playerInventory;
     PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
@@ -33,6 +34,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerInventory = GetComponent<PlayerInventory>();
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
@@ -112,7 +114,7 @@ public class InputManager : MonoBehaviour
         if(melee_Input)
         {
             if (playerManager.isInteracting
-                || playerStats.currentStamina < playerMeleeHandler.activeMeleeWeapon.staminaCost
+                || playerStats.currentStamina < playerInventory.weaponsInventory[0].staminaCost
                 || playerMeleeHandler.currentAttackCooldownTime > 0)
                 return;
 
@@ -232,16 +234,6 @@ public class InputManager : MonoBehaviour
             if(!playerManager.isInteractingWithUI)
             {
                 return;
-            }
-
-            Mirror mirror = FindObjectOfType<Mirror>();
-            if(mirror != null && mirror.mirrorIsOpen)
-            {
-                mirror.ReverseMirrorUI();
-            }
-            else if(gameMenuUI.gameMenuIsOpen)
-            {
-                gameMenuUI.ReverseGameMenuUI();
             }
         }
     }

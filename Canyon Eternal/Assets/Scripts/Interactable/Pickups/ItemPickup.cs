@@ -9,7 +9,7 @@ public class ItemPickup : Interactable
     PlayerProgression playerProgression;
 
     float collectItemBuffer = 1.5f;
-    public Item thisItem;
+    public DataObject thisData;
     public Sprite openContainerSprite;
     public int chestID;
 
@@ -40,53 +40,23 @@ public class ItemPickup : Interactable
 
         PlayerInventory playerInventory = playerManager.GetComponent<PlayerInventory>();
 
-        if(thisItem.GetType()==typeof(Treasure))
+        if(thisData.GetType() == typeof(Item))
         {
-            playerInventory.treasureInventory.Add((Treasure)thisItem);
+            playerInventory.itemInventory.Add((Item)thisData);
         }
-        else if(thisItem.GetType() == typeof(Key))
+        else if(thisData.GetType() == typeof(MeleeWeapon))
         {
-            playerInventory.keyInventory.Add((Key)thisItem);
+            playerInventory.weaponsInventory.Add((MeleeWeapon)thisData);
         }
-        else if(thisItem.GetType() == typeof(MeleeWeapon))
+        else if(thisData.GetType() == typeof(Spell))
         {
-            MeleeWeapon thisMelee = (MeleeWeapon)thisItem;
-
-            if(thisMelee.isThrust)
-            {
-                playerInventory.thrustWeaponsInventory.Add(thisMelee);
-            }
-            else if(thisMelee.isSlash)
-            {
-                playerInventory.slashWeaponsInventory.Add(thisMelee);
-            }
-            else
-            {
-                playerInventory.strikeWeaponsInventory.Add(thisMelee);
-            }
-        }
-        else if(thisItem.GetType() == typeof(Spell))
-        {
-            Spell thisSpell = (Spell)thisItem;
-
-            if(thisSpell.isProjectile)
-            {
-                playerInventory.projectileSpellsInventory.Add(thisSpell);
-            }
-            else if(thisSpell.isAOE)
-            {
-                playerInventory.aOESpellsInventory.Add(thisSpell);
-            }
-            else
-            {
-                playerInventory.buffSpellsInventory.Add(thisSpell);
-            }
+            playerInventory.spellsInventory.Add((Spell)thisData);
         }
 
         playerManager.isInteractingWithUI = true;
 
-        playerManager.itemPopupGO.GetComponentInChildren<TextMeshProUGUI>().text = thisItem.itemName;
-        playerManager.itemPopupGO.GetComponentInChildren<Image>().sprite = thisItem.itemIcon;
+        playerManager.itemPopupGO.GetComponentInChildren<TextMeshProUGUI>().text = thisData.dataName;
+        playerManager.itemPopupGO.GetComponentInChildren<Image>().sprite = thisData.dataIcon;
         playerManager.itemPopupGO.SetActive(true);
 
         yield return new WaitForSeconds(collectItemBuffer);

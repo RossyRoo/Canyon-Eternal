@@ -11,6 +11,10 @@ public class GameMenuUI : MonoBehaviour
     BagUI bagUI;
     CellphoneUI cellphoneUI;
     BookUI bookUI;
+    int currentMenuIndex = 0;
+    int currentSubmenuIndex = 0;
+    [HideInInspector]
+    public bool gameMenuIsOpen;
 
     public GameObject gameMenusGO;
     public GameObject infoPanel;
@@ -18,11 +22,11 @@ public class GameMenuUI : MonoBehaviour
     public TextMeshProUGUI menuNameText;
     public TextMeshProUGUI submenuNameText;
 
-    [Header("Submenu Interface Panels")]
-    public GameObject interfacePanel;
+    [Header("Interface Panels")]
+    public GameObject interfaceBackground;
+    public GameObject gearUIGO;
     public GameObject inventoryUIGO;
     public GameObject mapUIGO;
-    public GameObject journalUIGO;
     public GameObject bestiaryUIGO;
     public GameObject contactsUIGO;
     public GameObject photosUIGO;
@@ -41,10 +45,7 @@ public class GameMenuUI : MonoBehaviour
     public AudioClip errorUIButtonSFX;
     public AudioClip phoneRingSFX;
 
-    int currentMenuIndex = 0;
-    int currentSubmenuIndex = 0;
-    [HideInInspector]
-    public bool gameMenuIsOpen;
+
 
     private void Awake()
     {
@@ -189,7 +190,7 @@ public class GameMenuUI : MonoBehaviour
 
     private void SwitchMenus()
     {
-        interfacePanel.GetComponent<Image>().enabled = true;
+        interfaceBackground.GetComponent<Image>().enabled = true;
 
         for (int i = 0; i < buttons.Length; i++)
         {
@@ -218,22 +219,22 @@ public class GameMenuUI : MonoBehaviour
         infoPanel.SetActive(false);
     }
 
-    public void SelectItem(ItemSlotUI itemSlotUI)
+    public void SelectItem(DataSlotUI itemSlotUI)
     {
-        Item itemToDisplay = itemSlotUI.slotItem;
+        DataObject itemToDisplay = itemSlotUI.slotData;
 
         if(itemToDisplay != null)
         {
-            infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.itemName;
-            infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemToDisplay.itemDescription;
-            infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.itemIcon;
+            infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataName;
+            infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataDescription;
+            infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.dataIcon;
 
             infoPanel.SetActive(true);
 
-            if (itemSlotUI.slotItem.GetType() == typeof(Contact))
+            if (itemSlotUI.slotData.GetType() == typeof(Contact))
             {
                 Debug.Log("this is a contact");
-                cellphoneUI.activeContact = (Contact)itemSlotUI.slotItem;
+                cellphoneUI.activeContact = (Contact)itemSlotUI.slotData;
             }
 
             SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);
@@ -242,8 +243,6 @@ public class GameMenuUI : MonoBehaviour
         {
             SFXPlayer.Instance.PlaySFXAudioClip(errorUIButtonSFX);
         }
-
-        //Handle Specific
 
     }
 }

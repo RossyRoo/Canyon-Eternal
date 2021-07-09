@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/Generic Item")]
-public class Item : ScriptableObject
+[CreateAssetMenu(menuName = "Data/Item")]
+public class Item : DataObject
 {
-    public string itemName;
-    [TextArea] public string itemDescription;
-
-    public Sprite itemIcon;
-
+    [Header("ITEM")]
     public int itemValue;
 
 }

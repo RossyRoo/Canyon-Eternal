@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/Weapons/Melee")]
+[CreateAssetMenu(menuName = "Data/Weapons/Melee")]
 public class MeleeWeapon : Weapon
 {
     [Header("MELEE")]

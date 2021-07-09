@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/Contact")]
-public class Contact : Item
+[CreateAssetMenu(menuName = "Data/Contact")]
+public class Contact : DataObject
 {
     public List<GameObject> incomingPhoneCalls;
     public List<GameObject> outgoingPhoneCalls;

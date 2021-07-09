@@ -10,24 +10,19 @@ public class PlayerInventory : MonoBehaviour
     public int fragmentInventory;
 
     [Header("Melee Inventory")]
-    public List<MeleeWeapon> thrustWeaponsInventory;
-    public List<MeleeWeapon> slashWeaponsInventory;
-    public List<MeleeWeapon> strikeWeaponsInventory;
+    public List<MeleeWeapon> weaponsInventory;
 
     [Header("Spell Inventory")]
-    public List<Spell> projectileSpellsInventory;
-    public List<Spell> aOESpellsInventory;
-    public List<Spell> buffSpellsInventory;
+    public List<Spell> spellsInventory;
 
     [Header("Item Inventory")]
-    public List<Key> keyInventory;
-    public List<Treasure> treasureInventory;
+    public List<Item> itemInventory;
 
     [Header("Photo Inventory")]
     public List<Photo> photoInventory;
 
     [Header("Lore Entry Collection")]
-    public List<Item> loreEntryInventory;
+    public List<DataObject> artifactInventory;
 
 
     private void Awake()

@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerSpellHandler : MonoBehaviour
 {
     PlayerManager playerManager;
+    PlayerInventory playerInventory;
     PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
-    public Spell activeSpell;
+    //public Spell activeSpell;
 
     float currentSpellChargeTime;
     GameObject projectilePointerVFXGO;
@@ -28,6 +29,7 @@ public class PlayerSpellHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponent<PlayerManager>();
+        playerInventory = GetComponent<PlayerInventory>();
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
@@ -37,18 +39,18 @@ public class PlayerSpellHandler : MonoBehaviour
 
     public void ChargeSpell()
     {
-        if (playerStats.currentStamina < activeSpell.staminaCost
-            || activeSpell.isBuff && playerStats.isBuffed)
+        if (playerStats.currentStamina < playerInventory.spellsInventory[0].staminaCost
+            || playerInventory.spellsInventory[0].isBuff && playerStats.isBuffed)
             return;
 
         playerAnimatorHandler.animator.SetBool("isMoving", false);
         playerMeleeHandler.currentMeleeModel.SetActive(false);
 
         playerAnimatorHandler.PlayTargetAnimation("Charge", true);
-        playerParticleHandler.SpawnChargeVFX(activeSpell.chargeVFX);
+        playerParticleHandler.SpawnChargeVFX(playerInventory.spellsInventory[0].chargeVFX);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellSFX, 0.05f);
 
-        currentSpellChargeTime = activeSpell.chargeTime;
+        currentSpellChargeTime = playerInventory.spellsInventory[0].chargeTime;
         playerManager.isChargingSpell = true;
     }
 
@@ -70,7 +72,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
             if (currentSpellChargeTime < 0)
             {
-                currentSpellChargeTime = activeSpell.chargeTime;
+                currentSpellChargeTime = playerInventory.spellsInventory[0].chargeTime;
                 CompleteSpellCharge();
             }
         }
@@ -81,16 +83,16 @@ public class PlayerSpellHandler : MonoBehaviour
         playerManager.isChargingSpell = false;
         playerManager.isCastingSpell = true;
 
-        playerStats.LoseStamina(activeSpell.staminaCost);
+        playerStats.LoseStamina(playerInventory.spellsInventory[0].staminaCost);
 
         playerAnimatorHandler.PlayTargetAnimation("ChargeComplete", true);
-        playerParticleHandler.SpawnChargeCompleteVFX(activeSpell.chargeCompleteVFX);
+        playerParticleHandler.SpawnChargeCompleteVFX(playerInventory.spellsInventory[0].chargeCompleteVFX);
         Destroy(playerParticleHandler.currentChargeVFXGO);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellCompleteSFX);
 
-        if (activeSpell.isProjectile)
+        if (playerInventory.spellsInventory[0].isProjectile)
         {
-            currentSpellGO = Instantiate(activeSpell.GOPrefab, transform.position, Quaternion.identity);
+            currentSpellGO = Instantiate(playerInventory.spellsInventory[0].GOPrefab, transform.position, Quaternion.identity);
             currentSpellGO.transform.parent = playerManager.transform;
 
             projectilePointerVFXGO = Instantiate(projectilePointerVFXPrefab, transform.position, Quaternion.identity);
@@ -106,7 +108,7 @@ public class PlayerSpellHandler : MonoBehaviour
     private IEnumerator RotatePointer()
     {
 
-        if (playerManager.isCastingSpell && activeSpell.isProjectile)
+        if (playerManager.isCastingSpell && playerInventory.spellsInventory[0].isProjectile)
         {
             int lastMoveDirectionXInt = Mathf.RoundToInt(playerManager.lastMoveDirection.x);
             int lastMoveDirectionYInt = Mathf.RoundToInt(playerManager.lastMoveDirection.y);
@@ -159,11 +161,11 @@ public class PlayerSpellHandler : MonoBehaviour
     {
         if(playerManager.isCastingSpell)
         {
-            if(activeSpell.isProjectile)
+            if(playerInventory.spellsInventory[0].isProjectile)
             {
                 CastProjectile();
             }
-            else if(activeSpell.isAOE)
+            else if(playerInventory.spellsInventory[0].isAOE)
             {
                 CastAOE();
             }
@@ -174,7 +176,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
             playerManager.isCastingSpell = false;
             playerAnimatorHandler.PlayTargetAnimation("Cast", false);
-            SFXPlayer.Instance.PlaySFXAudioClip(activeSpell.launchSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.spellsInventory[0].launchSFX);
             playerMeleeHandler.currentMeleeModel.SetActive(true);
         }
 
@@ -183,12 +185,12 @@ public class PlayerSpellHandler : MonoBehaviour
     private void CastProjectile()
     {
         Destroy(projectilePointerVFXGO);
-        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
+        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(playerInventory.spellsInventory[0].launchForce, playerManager.lastMoveDirection);
     }
 
     private void CastAOE()
     {
-        currentSpellGO = Instantiate(activeSpell.GOPrefab, transform.position, Quaternion.identity);
+        currentSpellGO = Instantiate(playerInventory.spellsInventory[0].GOPrefab, transform.position, Quaternion.identity);
         currentSpellGO.transform.parent = playerManager.transform;
 
         //currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
@@ -200,21 +202,21 @@ public class PlayerSpellHandler : MonoBehaviour
     private IEnumerator CastBuff()
     {
         playerStats.isBuffed = true;
-        playerStats.ActivateHealthBuff(activeSpell.heartBuff);
-        playerStats.ActivateStaminaBuff(activeSpell.staminaBuff);
+        playerStats.ActivateHealthBuff(playerInventory.spellsInventory[0].heartBuff);
+        playerStats.ActivateStaminaBuff(playerInventory.spellsInventory[0].staminaBuff);
 
-        if (activeSpell.damagaMultiplierBuff != 0)
+        if (playerInventory.spellsInventory[0].damagaMultiplierBuff != 0)
         {
-            playerMeleeHandler.activeMeleeWeapon.minDamage *= activeSpell.damagaMultiplierBuff;
-            playerMeleeHandler.activeMeleeWeapon.maxDamage *= activeSpell.damagaMultiplierBuff;
+            playerInventory.weaponsInventory[0].minDamage *= playerInventory.spellsInventory[0].damagaMultiplierBuff;
+            playerInventory.weaponsInventory[0].maxDamage *= playerInventory.spellsInventory[0].damagaMultiplierBuff;
         }
 
-        yield return new WaitForSeconds(activeSpell.buffDuration);
+        yield return new WaitForSeconds(playerInventory.spellsInventory[0].buffDuration);
 
         playerStats.DeactivateHealthBuff();
         playerStats.DeactivateStaminaBuff();
-        playerMeleeHandler.activeMeleeWeapon.minDamage = playerMeleeHandler.activeMeleeWeapon.startingMinDamage;
-        playerMeleeHandler.activeMeleeWeapon.maxDamage = playerMeleeHandler.activeMeleeWeapon.startingMaxDamage;
+        playerInventory.weaponsInventory[0].minDamage = playerInventory.weaponsInventory[0].startingMinDamage;
+        playerInventory.weaponsInventory[0].maxDamage = playerInventory.weaponsInventory[0].startingMaxDamage;
 
         playerStats.isBuffed = false;
     }

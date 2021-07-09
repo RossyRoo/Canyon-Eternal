@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Character Data / Character Data")]
 
-public class CharacterData : Item
+public class CharacterData : DataObject
 {
     [Header("Basic Info")]
     public Contact characterContact;
