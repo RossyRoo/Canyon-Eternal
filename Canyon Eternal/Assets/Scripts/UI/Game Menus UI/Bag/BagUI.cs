@@ -198,13 +198,11 @@ public class BagUI : MonoBehaviour
 
             if(dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
             {
-                Debug.Log("You're trying to switch your weapon");
                 equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex];
                 cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex + 1];
             }
             else if(dataSlotUI.slotData.GetType() == typeof(Spell))
             {
-                Debug.Log("You're trying to switch your spell");
                 equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex];
                 cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex + 1];
             }
@@ -219,7 +217,6 @@ public class BagUI : MonoBehaviour
 
     public void CycleEquipment(DataSlotUI dataSlotUI)
     {
-        currentEquipmentIndex++;
 
         DataObject itemToDisplay = dataSlotUI.slotData;
 
@@ -228,36 +225,37 @@ public class BagUI : MonoBehaviour
         gameMenuUI.infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.dataIcon;
         SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
 
+        Debug.Log(playerInventory.spellsInventory.Count);
+
         if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {
             equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex];
 
-            if (currentEquipmentIndex == playerInventory.weaponsInventory.Count - 1)
+            if (currentEquipmentIndex != playerInventory.weaponsInventory.Count - 1)
             {
-                currentEquipmentIndex = 0;
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex];
+                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex + 1];
+                currentEquipmentIndex++;
             }
             else
             {
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex + 1];
+                currentEquipmentIndex = 0;
+                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex];
             }
 
         }
         else if (dataSlotUI.slotData.GetType() == typeof(Spell))
         {
             equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex];
-            Debug.Log("Current weapon index: " + currentEquipmentIndex);
-            Debug.Log("Spell count: " + playerInventory.spellsInventory.Count);
 
-            if (currentEquipmentIndex == playerInventory.spellsInventory.Count - 1)
+            if (currentEquipmentIndex != playerInventory.spellsInventory.Count - 1)
             {
-                Debug.Log("Last item");
-                currentEquipmentIndex = 0;
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex];
+                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex + 1];
+                currentEquipmentIndex++;
             }
             else
             {
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex + 1];
+                currentEquipmentIndex = 0;
+                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex];
             }
 
         }
@@ -271,7 +269,7 @@ public class BagUI : MonoBehaviour
             {
                 return;
             }
-
+            //Need to fix this
             playerInventory.weaponsInventory.Add(playerInventory.weaponsInventory[0]);
             playerInventory.weaponsInventory[0] = (MeleeWeapon)dataSlotUI.slotData;
             playerInventory.weaponsInventory.Remove(playerInventory.weaponsInventory[currentEquipmentIndex]);
@@ -291,6 +289,8 @@ public class BagUI : MonoBehaviour
             playerInventory.spellsInventory[0] = (Spell)dataSlotUI.slotData;
             playerInventory.spellsInventory.Remove(playerInventory.spellsInventory[currentEquipmentIndex]);
         }
+
+        //SelectEquipmentToChange(dataSlotUI);
     }
     #endregion
 }
