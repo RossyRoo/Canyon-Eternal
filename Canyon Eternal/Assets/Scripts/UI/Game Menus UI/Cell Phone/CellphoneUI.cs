@@ -8,17 +8,8 @@ public class CellphoneUI : MonoBehaviour
 {
     PlayerInventory playerInventory;
     PlayerProgression playerProgression;
-
     GameMenuUI gameMenuUI;
-
-    [Header("Photos")]
-    public GameObject[] photoSlots;
-
-    [Header("Contacts")]
-    public Contact activeContact;
-    public GameObject[] contactSlots;
-    public GameObject callButton;
-
+    [HideInInspector]public Contact activeContact;
 
     private void Awake()
     {
@@ -45,8 +36,8 @@ public class CellphoneUI : MonoBehaviour
 
     public void CloseCellphone()
     {
-        gameMenuUI.contactsUIGO.SetActive(false);
-        gameMenuUI.photosUIGO.SetActive(false);
+        gameMenuUI.callButton.SetActive(false);
+        gameMenuUI.RefreshGrid(false);
         gameMenuUI.settingsUIGO.SetActive(false);
     }
 
@@ -57,22 +48,19 @@ public class CellphoneUI : MonoBehaviour
         playerProgression = FindObjectOfType<PlayerProgression>();
 
         gameMenuUI.submenuNameText.text = "Contacts";
-        gameMenuUI.photosUIGO.SetActive(false);
         gameMenuUI.settingsUIGO.SetActive(false);
-        gameMenuUI.contactsUIGO.SetActive(true);
-        callButton.SetActive(true);
+        gameMenuUI.RefreshGrid(true);
+        gameMenuUI.callButton.SetActive(true);
 
-        for (int i = 0; i < contactSlots.Length; i++)
+        for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
-            Image myContactIcon = contactSlots[i].GetComponent<Image>();
-            DataSlotUI itemSlotUI = contactSlots[i].GetComponent<DataSlotUI>();
+            Image myContactIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+            DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
             if (i < playerProgression.collectedContacts.Count)
             {
                 itemSlotUI.slotData = playerProgression.collectedContacts[i];
                 myContactIcon.sprite = playerProgression.collectedContacts[i].dataIcon;
-
-                myContactIcon.gameObject.SetActive(true);
             }
         }
     }
@@ -109,26 +97,21 @@ public class CellphoneUI : MonoBehaviour
     public void OpenPhotos()
     {
         gameMenuUI.submenuNameText.text = "Photos";
-        gameMenuUI.contactsUIGO.SetActive(false);
         gameMenuUI.settingsUIGO.SetActive(false);
-        gameMenuUI.photosUIGO.SetActive(true);
+        gameMenuUI.RefreshGrid(true);
 
 
-        for (int i = 0; i < photoSlots.Length; i++)
+        for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
             playerInventory = FindObjectOfType<PlayerInventory>();
             PlayerProgression playerProgression = FindObjectOfType<PlayerProgression>();
-            DataSlotUI itemSlotUI = photoSlots[i].GetComponent<DataSlotUI>();
+            DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
             if (i < playerInventory.photoInventory.Count)
             {
                 FindPhotoSlotIcons(i, playerInventory, playerProgression);
                 itemSlotUI.slotData = playerInventory.photoInventory[i];
-                photoSlots[i].SetActive(true);
-            }
-            else
-            {
-                photoSlots[i].SetActive(false);
+                gameMenuUI.interfaceGridSlots[i].SetActive(true);
             }
         }
     }
@@ -140,39 +123,36 @@ public class CellphoneUI : MonoBehaviour
 
         if (playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent2)
         {
-            photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon4;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon4;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon4;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption4;
         }
         else if(playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent2)
         {
-            photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon3;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon3;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon3;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption3;
         }
         else if (playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent1)
         {
-            photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon2;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon2;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon2;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption2;
         }
         else
         {
-            photoSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon1;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon1;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon1;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption1;
         }
     }
-
-
     #endregion
 
     #region Settings
     public void OpenSettings()
     {
         gameMenuUI.submenuNameText.text = "Settings";
-        gameMenuUI.contactsUIGO.SetActive(false);
-        gameMenuUI.photosUIGO.SetActive(false);
+        gameMenuUI.RefreshGrid(false);
         gameMenuUI.settingsUIGO.SetActive(true);
     }
 
@@ -185,7 +165,6 @@ public class CellphoneUI : MonoBehaviour
     {
         GetComponentInParent<SceneChangeManager>().LoadMainMenu();
     }
-
     #endregion
 
 }

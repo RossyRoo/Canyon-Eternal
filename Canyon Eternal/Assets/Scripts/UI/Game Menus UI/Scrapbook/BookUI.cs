@@ -7,9 +7,7 @@ using TMPro;
 public class BookUI : MonoBehaviour
 {
     PlayerProgression playerProgression;
-    PlayerInventory playerInventory;
     SceneChangeManager sceneChangeManager;
-
     GameMenuUI gameMenuUI;
 
     [Header("World Map")]
@@ -23,9 +21,6 @@ public class BookUI : MonoBehaviour
     GameObject currentAreaMap;
     AreaSlot[] roomsInCurrentArea;
 
-    [Header("Bestiary")]
-    public DataSlotUI[] beastiarySlots;
-
 
     private void Awake()
     {
@@ -37,7 +32,6 @@ public class BookUI : MonoBehaviour
         if (playerProgression == null)
         {
             playerProgression = FindObjectOfType<PlayerProgression>();
-            playerInventory = FindObjectOfType<PlayerInventory>();
             sceneChangeManager = FindObjectOfType<SceneChangeManager>();
         }
 
@@ -49,7 +43,7 @@ public class BookUI : MonoBehaviour
         }
         else if(currentSubmenuIndex == 1)
         {
-            OpenThirdSubmenu();
+            OpenJournal();
         }
         else
         {
@@ -60,7 +54,7 @@ public class BookUI : MonoBehaviour
     public void CloseBook()
     {
         gameMenuUI.mapUIGO.SetActive(false);
-        gameMenuUI.bestiaryUIGO.SetActive(false);
+        gameMenuUI.RefreshGrid(false);
     }
 
     #region Map
@@ -68,7 +62,7 @@ public class BookUI : MonoBehaviour
     {
         gameMenuUI.submenuNameText.text = "Map";
         gameMenuUI.interfaceBackground.GetComponent<Image>().enabled = false;
-        gameMenuUI.bestiaryUIGO.SetActive(false);
+        gameMenuUI.RefreshGrid(false);
         gameMenuUI.mapUIGO.SetActive(true);
 
         PrepareWorldMap();
@@ -168,33 +162,32 @@ public class BookUI : MonoBehaviour
 
     #endregion
 
-    #region Beastiary
+    #region Bestiary
     public void OpenBestiary()
     {
         gameMenuUI.submenuNameText.text = "Bestiary";
+        gameMenuUI.RefreshGrid(true);
         gameMenuUI.mapUIGO.SetActive(false);
-        gameMenuUI.bestiaryUIGO.SetActive(true);
 
-        for (int i = 0; i < beastiarySlots.Length; i++)
+        for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
             if (i < playerProgression.enemiesEncountered.Count)
             {
-                beastiarySlots[i].GetComponent<DataSlotUI>().slotData = playerProgression.enemiesEncountered[i];
-                beastiarySlots[i].GetComponent<Image>().sprite = playerProgression.enemiesEncountered[i].dataIcon;
+                gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().slotData = playerProgression.enemiesEncountered[i];
+                gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerProgression.enemiesEncountered[i].dataIcon;
             }
         }
     }
 
-
     #endregion
 
-    public void OpenThirdSubmenu()
+    #region Journal
+    public void OpenJournal()
     {
         gameMenuUI.submenuNameText.text = "Journal";
-        gameMenuUI.bestiaryUIGO.SetActive(false);
+        gameMenuUI.RefreshGrid(true);
         gameMenuUI.mapUIGO.SetActive(false);
-
     }
-
+    #endregion
 
 }

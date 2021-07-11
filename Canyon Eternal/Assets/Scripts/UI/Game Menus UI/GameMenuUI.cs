@@ -16,21 +16,27 @@ public class GameMenuUI : MonoBehaviour
     [HideInInspector]
     public bool gameMenuIsOpen;
 
+    [Header("GENERAL")]
     public GameObject gameMenusGO;
-    public GameObject infoPanel;
-    public GameObject[] buttons;
     public TextMeshProUGUI menuNameText;
     public TextMeshProUGUI submenuNameText;
 
-    [Header("Interface Panels")]
+    [Header("INTERFACE")]
     public GameObject interfaceBackground;
-    public GameObject gearUIGO;
-    public GameObject inventoryUIGO;
+    public GameObject interfaceGrid;
+    public GameObject[] interfacePages;
+    [HideInInspector]public int interfacePageIndex = 0;
+    public Sprite emptyWindowSprite;
+    public GameObject [] interfaceGridSlots;
+    public GameObject equipmentUIGO;
     public GameObject mapUIGO;
-    public GameObject bestiaryUIGO;
-    public GameObject contactsUIGO;
-    public GameObject photosUIGO;
     public GameObject settingsUIGO;
+
+    [Header("INFO")]
+    public GameObject infoPanel;
+    public GameObject callButton;
+    public GameObject equipButton;
+    public GameObject equipmentOverviewButton;
 
     [Header("SFX")]
     public AudioClip closeGameMenusSFX;
@@ -44,7 +50,6 @@ public class GameMenuUI : MonoBehaviour
     public AudioClip clickUIButtonSFX;
     public AudioClip errorUIButtonSFX;
     public AudioClip phoneRingSFX;
-
 
 
     private void Awake()
@@ -66,6 +71,11 @@ public class GameMenuUI : MonoBehaviour
             gameMenuIsOpen = false;
             playerManager.isInteractingWithUI = false;
             playerAnimatorHandler.animator.SetBool("isInteracting", false);
+
+            bagUI.CloseBag();
+            cellphoneUI.CloseCellphone();
+            bookUI.CloseBook();
+
             gameMenusGO.SetActive(false);
             SFXPlayer.Instance.PlaySFXAudioClip(closeGameMenusSFX);
         }
@@ -192,11 +202,6 @@ public class GameMenuUI : MonoBehaviour
     {
         interfaceBackground.GetComponent<Image>().enabled = true;
 
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].SetActive(false);
-        }
-
         if (currentMenuIndex == 0)
         {
             cellphoneUI.CloseCellphone();
@@ -233,7 +238,6 @@ public class GameMenuUI : MonoBehaviour
 
             if (itemSlotUI.slotData.GetType() == typeof(Contact))
             {
-                Debug.Log("this is a contact");
                 cellphoneUI.activeContact = (Contact)itemSlotUI.slotData;
             }
 
@@ -243,7 +247,47 @@ public class GameMenuUI : MonoBehaviour
         {
             SFXPlayer.Instance.PlaySFXAudioClip(errorUIButtonSFX);
         }
+    }
 
+    public void CycleInterfacePages()
+    {
+        if (interfacePageIndex < interfacePages.Length - 1)
+        {
+            interfacePageIndex++;
+        }
+        else
+        {
+            interfacePageIndex = 0;
+        }
+
+        for (int i = 0; i < interfacePages.Length; i++)
+        {
+            if (i == interfacePageIndex)
+            {
+                interfacePages[i].SetActive(true);
+            }
+            else
+            {
+                interfacePages[i].SetActive(false);
+            }
+        }
+
+        SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);
+    }
+
+    public void RefreshGrid(bool turnBackOn)
+    {
+        for (int i = 0; i < interfaceGridSlots.Length; i++)
+        {
+            interfaceGridSlots[i].GetComponent<DataSlotUI>().slotData = null;
+            interfaceGridSlots[i].GetComponent<Image>().sprite = emptyWindowSprite;
+        }
+        interfaceGrid.SetActive(false);
+
+        if(turnBackOn == true)
+        {
+            interfaceGrid.SetActive(true);
+        }
     }
 }
 
