@@ -10,7 +10,6 @@ public class PlayerMeleeHandler : MonoBehaviour
     PlayerAnimatorHandler playerAnimatorHandler;
 
     [Header("Weapon Loading")]
-    //public MeleeWeapon activeMeleeWeapon;
     [HideInInspector]
     public GameObject currentMeleeModel;
     public Transform thrustTransform;
@@ -31,22 +30,35 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
 
-        SetParentOverride();
-        LoadMelee();
+
+        if (playerInventory.activeWeapon == null)
+        {
+            if (playerInventory.weaponsInventory.Count != 0)
+            {
+                playerInventory.activeWeapon = playerInventory.weaponsInventory[0];
+            }
+        }
+
+        if(playerInventory.activeWeapon != null)
+        {
+            SetParentOverride();
+            LoadMelee();
+        }
+
     }
 
 
     public void SetParentOverride()
     {
-        if (playerInventory.weaponsInventory[0].isThrust)
+        if (playerInventory.activeWeapon.isThrust)
         {
             parentOverride = thrustTransform;
         }
-        else if (playerInventory.weaponsInventory[0].isSlash)
+        else if (playerInventory.activeWeapon.isSlash)
         {
             parentOverride = slashTransform;
         }
-        else if (playerInventory.weaponsInventory[0].isStrike)
+        else if (playerInventory.activeWeapon.isStrike)
         {
             parentOverride = strikeTransform;
         }
@@ -61,12 +73,7 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public void LoadMelee()
     {
-        if (playerInventory.weaponsInventory[0] == null)
-        {
-            return;
-        }
-
-        GameObject meleeModelPrefab = Instantiate(playerInventory.weaponsInventory[0].modelPrefab) as GameObject;
+        GameObject meleeModelPrefab = Instantiate(playerInventory.activeWeapon.modelPrefab) as GameObject;
         if (meleeModelPrefab != null)
         {
             if (parentOverride != null)
@@ -88,17 +95,17 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public IEnumerator HandleMeleeAttack()
     {
-        currentAttackCooldownTime = playerInventory.weaponsInventory[0].attackCooldownTime; //START COOLDOWN TIMER
+        currentAttackCooldownTime = playerInventory.activeWeapon.attackCooldownTime; //START COOLDOWN TIMER
         meleeDamageCollider.knockbackDirection = playerManager.lastMoveDirection;
-        playerAnimatorHandler.PlayTargetAnimation(playerInventory.weaponsInventory[0].attackAnimations[Random.Range(0, playerInventory.weaponsInventory[0].attackAnimations.Length)], true); //PLAY ATTACK ANIMATION
+        playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeWeapon.attackAnimations[Random.Range(0, playerInventory.activeWeapon.attackAnimations.Length)], true); //PLAY ATTACK ANIMATION
 
-        yield return new WaitForSeconds(playerInventory.weaponsInventory[0].openDamageColliderBuffer);
+        yield return new WaitForSeconds(playerInventory.activeWeapon.openDamageColliderBuffer);
 
-        playerStats.LoseStamina(playerInventory.weaponsInventory[0].staminaCost); //DRAIN STAMINA
+        playerStats.LoseStamina(playerInventory.activeWeapon.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
         PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
 
-        yield return new WaitForSeconds(playerInventory.weaponsInventory[0].closeDamageColliderBuffer); 
+        yield return new WaitForSeconds(playerInventory.activeWeapon.closeDamageColliderBuffer); 
         meleeDamageCollider.DisableDamageCollider(); //DISABLE DAMAGE COLLIDER
 
         attackMomentumActivated = true; //ENABLE ATTACK MOMENTUM
@@ -110,13 +117,13 @@ public class PlayerMeleeHandler : MonoBehaviour
     {
         if (attackMomentumActivated)
         {
-            playerManager.rb.AddForce((playerManager.lastMoveDirection * playerInventory.weaponsInventory[0].attackMomentum));
+            playerManager.rb.AddForce((playerManager.lastMoveDirection * playerInventory.activeWeapon.attackMomentum));
         }
     }
 
     private void PlayMeleeVFX()
     {
-        SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.weaponsInventory[0].swingWeaponSFX[Random.Range(0, playerInventory.weaponsInventory[0].swingWeaponSFX.Length)]);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeWeapon.swingWeaponSFX[Random.Range(0, playerInventory.activeWeapon.swingWeaponSFX.Length)]);
 
         Vector3 currentEulerAngles = Vector3.zero;
         Vector3 currentPosition = transform.position;
@@ -147,7 +154,7 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         GameObject meleeMotionVFXGO = Instantiate(meleeMotionVFX, currentPosition, Quaternion.Euler(currentEulerAngles));
         meleeMotionVFXGO.transform.parent = transform;
-        meleeMotionVFXGO.GetComponentInChildren<Animator>().Play(playerInventory.weaponsInventory[0].attackAnimations[0]);
+        meleeMotionVFXGO.GetComponentInChildren<Animator>().Play(playerInventory.activeWeapon.attackAnimations[0]);
         Destroy(meleeMotionVFXGO, 1f);
     }
 

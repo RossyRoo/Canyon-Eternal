@@ -10,9 +10,11 @@ public class PlayerInventory : MonoBehaviour
     public int fragmentInventory;
 
     [Header("Melee Inventory")]
+    public MeleeWeapon activeWeapon;
     public List<MeleeWeapon> weaponsInventory;
 
     [Header("Spell Inventory")]
+    public Spell activeSpell;
     public List<Spell> spellsInventory;
 
     [Header("Item Inventory")]

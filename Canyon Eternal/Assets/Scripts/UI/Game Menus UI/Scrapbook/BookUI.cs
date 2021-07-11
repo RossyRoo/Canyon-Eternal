@@ -190,7 +190,7 @@ public class BookUI : MonoBehaviour
 
     public void OpenThirdSubmenu()
     {
-        gameMenuUI.submenuNameText.text = "Third Submenu";
+        gameMenuUI.submenuNameText.text = "Journal";
         gameMenuUI.bestiaryUIGO.SetActive(false);
         gameMenuUI.mapUIGO.SetActive(false);
 

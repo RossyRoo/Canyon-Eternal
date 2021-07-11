@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 using TMPro;
 
 public class BagUI : MonoBehaviour
@@ -22,11 +21,13 @@ public class BagUI : MonoBehaviour
     public DataSlotUI[] artifactSlots;
 
     [Header("Gear")]
+    public GameObject equipmentGrid;
     public GameObject equipButton;
-    public GameObject cycleEquipmentButton;
+    public GameObject gearSelectionOverview;
+    public GameObject gearSelectionOverviewButton;
     public GameObject currentSpellButton;
     public GameObject currentWeaponButton;
-    public int currentEquipmentIndex = 0;
+    public GameObject[] equipmentSlots;
 
 
     private void Awake()
@@ -180,16 +181,18 @@ public class BagUI : MonoBehaviour
             playerInventory.weaponsInventory[0].dataIcon;
 
         equipButton.SetActive(true);
-        cycleEquipmentButton.SetActive(true);
     }
 
     public void SelectEquipmentToChange(DataSlotUI dataSlotUI)
     {
         DataObject itemToDisplay = dataSlotUI.slotData;
-        currentEquipmentIndex = 0;
 
         if (itemToDisplay != null)
         {
+            equipmentGrid.SetActive(true);
+            gearSelectionOverviewButton.SetActive(true);
+            gearSelectionOverview.SetActive(false);
+
             gameMenuUI.infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataName;
             gameMenuUI.infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataDescription;
             gameMenuUI.infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.dataIcon;
@@ -198,14 +201,52 @@ public class BagUI : MonoBehaviour
 
             if(dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
             {
-                equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex];
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex + 1];
+                equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[0];
+
+                for (int i = 0; i < equipmentSlots.Length; i++)
+                {
+                    Image myItemIcon = equipmentSlots[i].GetComponent<Image>();
+                    DataSlotUI itemSlotUI = equipmentSlots[i].GetComponent<DataSlotUI>();
+
+                    if (i < playerInventory.weaponsInventory.Count)
+                    {
+                        itemSlotUI.slotData = playerInventory.weaponsInventory[i];
+
+                        myItemIcon.sprite = playerInventory.weaponsInventory[i].dataIcon;
+                        myItemIcon.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        itemSlotUI.slotData = null;
+                        myItemIcon.sprite = emptyWindowSprite;
+                    }
+                }
             }
             else if(dataSlotUI.slotData.GetType() == typeof(Spell))
             {
-                equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex];
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex + 1];
+                equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[0];
+
+                for (int i = 0; i < equipmentSlots.Length; i++)
+                {
+                    Image myItemIcon = equipmentSlots[i].GetComponent<Image>();
+                    DataSlotUI itemSlotUI = equipmentSlots[i].GetComponent<DataSlotUI>();
+
+                    if (i < playerInventory.spellsInventory.Count)
+                    {
+                        itemSlotUI.slotData = playerInventory.spellsInventory[i];
+
+                        myItemIcon.sprite = playerInventory.spellsInventory[i].dataIcon;
+                        myItemIcon.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        itemSlotUI.slotData = null;
+                        myItemIcon.sprite = emptyWindowSprite;
+                    }
+                }
             }
+
+
         }
         else
         {
@@ -214,66 +255,36 @@ public class BagUI : MonoBehaviour
     }
 
 
-
-    public void CycleEquipment(DataSlotUI dataSlotUI)
+    public void SelectEquipmentOverview()
     {
+        equipmentGrid.SetActive(false);
+        gearSelectionOverview.SetActive(true);
+        gameMenuUI.infoPanel.SetActive(false);
+    }
 
-        DataObject itemToDisplay = dataSlotUI.slotData;
-
-        gameMenuUI.infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataName;
-        gameMenuUI.infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataDescription;
-        gameMenuUI.infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.dataIcon;
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
-
-        Debug.Log(playerInventory.spellsInventory.Count);
-
-        if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
+    public void SelectEquipmentToView(DataSlotUI dataSlotUI)
+    {
+        if(dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {
-            equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex];
-
-            if (currentEquipmentIndex != playerInventory.weaponsInventory.Count - 1)
-            {
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex + 1];
-                currentEquipmentIndex++;
-            }
-            else
-            {
-                currentEquipmentIndex = 0;
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[currentEquipmentIndex];
-            }
-
+            equipButton.GetComponent<DataSlotUI>().slotData = (MeleeWeapon)dataSlotUI.slotData;
         }
         else if (dataSlotUI.slotData.GetType() == typeof(Spell))
         {
-            equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex];
-
-            if (currentEquipmentIndex != playerInventory.spellsInventory.Count - 1)
-            {
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex + 1];
-                currentEquipmentIndex++;
-            }
-            else
-            {
-                currentEquipmentIndex = 0;
-                cycleEquipmentButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[currentEquipmentIndex];
-            }
-
+            equipButton.GetComponent<DataSlotUI>().slotData = (Spell)dataSlotUI.slotData;
         }
     }
+
 
     public void ChangeEquipment(DataSlotUI dataSlotUI)
     {
         if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {
-            if(playerInventory.weaponsInventory[0] == dataSlotUI.slotData)
+            if(playerInventory.activeWeapon == dataSlotUI.slotData)
             {
                 return;
             }
-            //Need to fix this
-            playerInventory.weaponsInventory.Add(playerInventory.weaponsInventory[0]);
-            playerInventory.weaponsInventory[0] = (MeleeWeapon)dataSlotUI.slotData;
-            playerInventory.weaponsInventory.Remove(playerInventory.weaponsInventory[currentEquipmentIndex]);
 
+            playerInventory.activeWeapon = (MeleeWeapon)dataSlotUI.slotData;
             playerMeleeHandler.DestroyMelee();
             playerMeleeHandler.SetParentOverride();
             playerMeleeHandler.LoadMelee();
@@ -285,12 +296,10 @@ public class BagUI : MonoBehaviour
                 return;
             }
 
-            playerInventory.spellsInventory.Add(playerInventory.spellsInventory[0]);
-            playerInventory.spellsInventory[0] = (Spell)dataSlotUI.slotData;
-            playerInventory.spellsInventory.Remove(playerInventory.spellsInventory[currentEquipmentIndex]);
+            playerInventory.activeSpell = (Spell)dataSlotUI.slotData;
+
         }
 
-        //SelectEquipmentToChange(dataSlotUI);
     }
     #endregion
 }
