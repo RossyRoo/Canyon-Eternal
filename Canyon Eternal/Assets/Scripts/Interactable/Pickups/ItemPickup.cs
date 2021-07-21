@@ -64,7 +64,7 @@ public class ItemPickup : Interactable
         playerManager.isInteractingWithUI = false;
 
         playerManager.itemPopupGO.SetActive(false);
-
+        
     }
 
     public void DeactivateItemPickup()
