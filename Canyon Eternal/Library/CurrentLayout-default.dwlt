@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 663}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
@@ -112,10 +112,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1390
-  m_MinSize: {x: 780, y: 613}
-  m_MaxSize: {x: 18001, y: 18063}
+  m_MinSize: {x: 781, y: 613}
+  m_MaxSize: {x: 18004, y: 18063}
   vertical: 0
-  controlID: 46
+  controlID: 184
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -138,9 +138,9 @@ MonoBehaviour:
     width: 1969
     height: 1390
   m_MinSize: {x: 505, y: 613}
-  m_MaxSize: {x: 14001, y: 18063}
+  m_MaxSize: {x: 14003, y: 18063}
   vertical: 1
-  controlID: 47
+  controlID: 185
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 505, y: 342}
   m_MaxSize: {x: 12005, y: 8042}
   vertical: 0
-  controlID: 193
+  controlID: 186
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -186,12 +186,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 712
+    width: 541
     height: 1008
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 108
+  controlID: 187
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -209,14 +209,14 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 712
+    width: 541
     height: 736
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 20}
   m_Panes:
-  - {fileID: 19}
   - {fileID: 20}
+  - {fileID: 21}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &10
@@ -236,13 +236,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 736
-    width: 712
+    width: 541
     height: 272
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 21}
+  m_ActualView: {fileID: 22}
   m_Panes:
-  - {fileID: 21}
+  - {fileID: 22}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &11
@@ -260,19 +260,20 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 712
+    x: 541
     y: 0
-    width: 551
+    width: 722
     height: 1008
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 23}
   m_Panes:
-  - {fileID: 22}
   - {fileID: 23}
+  - {fileID: 24}
+  - {fileID: 18}
   - {fileID: 17}
   m_Selected: 0
-  m_LastSelected: 2
+  m_LastSelected: 3
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -294,9 +295,9 @@ MonoBehaviour:
     height: 1008
   m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 18}
+  m_ActualView: {fileID: 19}
   m_Panes:
-  - {fileID: 18}
+  - {fileID: 19}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &13
@@ -320,10 +321,10 @@ MonoBehaviour:
     y: 1008
     width: 1969
     height: 382
-  m_MinSize: {x: 331, y: 271}
-  m_MaxSize: {x: 14001, y: 10021}
+  m_MinSize: {x: 333, y: 271}
+  m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 48
+  controlID: 147
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -345,10 +346,10 @@ MonoBehaviour:
     height: 382
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 25}
+  m_ActualView: {fileID: 26}
   m_Panes:
-  - {fileID: 24}
   - {fileID: 25}
+  - {fileID: 26}
   m_Selected: 1
   m_LastSelected: 0
 --- !u!114 &15
@@ -370,12 +371,12 @@ MonoBehaviour:
     y: 0
     width: 223
     height: 382
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 27}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 28}
   m_Panes:
-  - {fileID: 26}
   - {fileID: 27}
+  - {fileID: 28}
   m_Selected: 1
   m_LastSelected: 0
 --- !u!114 &16
@@ -397,14 +398,335 @@ MonoBehaviour:
     y: 0
     width: 591
     height: 1390
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 28}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 29}
   m_Panes:
-  - {fileID: 28}
+  - {fileID: 29}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &17
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3424c03dd9e533544a90f81267b56ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 720, y: 240}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Dialogue
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 541
+    y: 30
+    width: 720
+    height: 987
+  m_ViewDataDictionary: {fileID: 0}
+  actorFoldouts:
+    propertiesKeys: 
+    propertiesValues: 
+    fieldsKeys: 
+    fieldsValues: 
+  actorFilter: 
+  actorListSelectedIndex: -1
+  actorTexturesFoldout: 0
+  actorSpritesFoldout: 0
+  showNodeEditor: 1
+  currentConversationID: 175
+  globalSearchText: 
+  globalReplaceText: 
+  globalSearchSpecificConversation: 0
+  globalSearchConversationIndex: -1
+  databaseFoldouts:
+    database: 1
+    emphasisSettings: 0
+    emphasisSetting: 
+    globalReplace: 0
+    merge: 0
+    export: 0
+    localization: 0
+    editorSettings: 0
+  databaseToMerge: {fileID: 0}
+  conflictingIDRule: 0
+  mergeProperties: 1
+  mergeActors: 1
+  mergeItems: 1
+  mergeLocations: 1
+  mergeVariables: 1
+  mergeConversations: 1
+  exportFormat: 0
+  chatMapperExportPath: 
+  csvExportPath: 
+  voiceoverExportPath: 
+  languageTextExportPath: 
+  screenplayExportPath: 
+  entrytagFormat: 0
+  encodingType: 4
+  isSearchBarOpen: 0
+  searchString: 
+  searchCaseSensitive: 0
+  currentEntryID: 1
+  itemFoldouts:
+    propertiesKeys: 
+    propertiesValues: 
+    fieldsKeys: 
+    fieldsValues: 
+  itemFilter: 
+  itemListSelectedIndex: -1
+  questEntrySelectedIdx: -1
+  showCompactQuestEntryList: 1
+  localizationLanguages:
+    languages: []
+    importMainTextIndex: -1
+    outputFolder: 
+  exportLocalizationConversationTitle: 0
+  exportLocalizationKeyField: 0
+  localizationKeyField: Articy Id
+  locationFoldouts:
+    propertiesKeys: 
+    propertiesValues: 
+    fieldsKeys: 
+    fieldsValues: 
+  locationFilter: 
+  locationListSelectedIndex: -1
+  toolbar:
+    current: 5
+  database: {fileID: 11400000, guid: f51cddbb57c7c4ac684f37d1bb40d7f6, type: 2}
+  debug: 0
+  registerCompleteObjectUndo: 1
+  scrollPosition: {x: 0, y: 0}
+  templateFoldouts:
+    templates: 0
+    actors: 0
+    items: 0
+    quests: 0
+    locations: 0
+    conversations: 0
+    dialogueEntries: 0
+    variables: 0
+  variableView:
+    database: {fileID: 11400000, guid: f51cddbb57c7c4ac684f37d1bb40d7f6, type: 2}
+    isDialogueEditorWindow: 1
+    variableFilter: 
+    showVariableGroupFoldouts: 0
+    expandedVariableGroups: []
+  watches: []
+  autoUpdateWatches: 0
+  watchUpdateFrequency: 1
+  nextWatchUpdateTime: 1642.867282785
+  watchableVariableNames:
+  - Actor
+  - ActorIndex
+  - Alert
+  - Conversant
+  - ConversantIndex
+  - Room25_01Triggered
+  watchableQuestNames: []
+  luaCommand: 
+  showNodeIDs: 0
+  showTitlesInsteadOfText: 0
+  showAllActorNames: 0
+  showOtherActorNames: 1
+  showActorPortraits: 0
+  showParticipantNames: 1
+  showEndNodeMarkers: 1
+  showFullTextOnHover: 1
+  addNewNodesToRight: 0
+  autoArrangeOnCreate: 0
+  zoomLocked: 0
+  _zoom: 1
+  canvasRectWidthMultiplier: 1
+  canvasScrollView: {x: 100000, y: 100000}
+  canvasScrollPosition: {x: 0, y: 0}
+  conversationTitles:
+  - Beebo_01
+  - Beebo_02
+  - Beebo_03
+  - Beebo_04
+  - CavernSign_01
+  - CavernSign_02
+  - CavernSign_03
+  - CavernSign_04
+  - CavernSign_05
+  - CavernSign_06
+  - CavernSign_08
+  - CavernSign_09
+  - Jeans
+  - PhoneCall_Beebo_Incoming_01
+  - PhoneCall_Beebo_Incoming_02
+  - PhoneCall_Beebo_Incoming_03
+  - PhoneCall_Beebo_Incoming_04
+  - PhoneCall_Beebo_Incoming_05
+  - PhoneCall_Beebo_Incoming_06
+  - PhoneCall_Beebo_Incoming_07
+  - PhoneCall_Beebo_Incoming_08
+  - PhoneCall_Beebo_Incoming_09
+  - PhoneCall_Beebo_Incoming_10
+  - PhoneCall_Beebo_Outgoing_01
+  - PhoneCall_Beebo_Outgoing_02
+  - PhoneCall_Beebo_Outgoing_03
+  - PhoneCall_Beebo_Outgoing_04
+  - PhoneCall_Beebo_Outgoing_05
+  - PhoneCall_Beebo_Outgoing_06
+  - PhoneCall_Beebo_Outgoing_07
+  - PhoneCall_Beebo_Outgoing_08
+  - PhoneCall_Beebo_Outgoing_09
+  - PhoneCall_Beebo_Outgoing_10
+  - PhoneCall_DarkComedy_Incoming_01
+  - PhoneCall_DarkComedy_Incoming_02
+  - PhoneCall_DarkComedy_Incoming_03
+  - PhoneCall_DarkComedy_Incoming_04
+  - PhoneCall_DarkComedy_Incoming_05
+  - PhoneCall_DarkComedy_Incoming_06
+  - PhoneCall_DarkComedy_Incoming_07
+  - PhoneCall_DarkComedy_Incoming_08
+  - PhoneCall_DarkComedy_Incoming_09
+  - PhoneCall_DarkComedy_Incoming_10
+  - PhoneCall_DarkComedy_Outgoing_01
+  - PhoneCall_DarkComedy_Outgoing_02
+  - PhoneCall_DarkComedy_Outgoing_03
+  - PhoneCall_DarkComedy_Outgoing_04
+  - PhoneCall_DarkComedy_Outgoing_05
+  - PhoneCall_DarkComedy_Outgoing_06
+  - PhoneCall_DarkComedy_Outgoing_07
+  - PhoneCall_DarkComedy_Outgoing_08
+  - PhoneCall_DarkComedy_Outgoing_09
+  - PhoneCall_DarkComedy_Outgoing_10
+  - PhoneCall_Dwyby_Incoming_01
+  - PhoneCall_Dwyby_Incoming_02
+  - PhoneCall_Dwyby_Incoming_03
+  - PhoneCall_Dwyby_Incoming_04
+  - PhoneCall_Dwyby_Incoming_05
+  - PhoneCall_Dwyby_Incoming_06
+  - PhoneCall_Dwyby_Incoming_07
+  - PhoneCall_Dwyby_Incoming_08
+  - PhoneCall_Dwyby_Incoming_09
+  - PhoneCall_Dwyby_Incoming_10
+  - PhoneCall_Dwyby_Outgoing_01
+  - PhoneCall_Dwyby_Outgoing_02
+  - PhoneCall_Dwyby_Outgoing_03
+  - PhoneCall_Dwyby_Outgoing_04
+  - PhoneCall_Dwyby_Outgoing_05
+  - PhoneCall_Dwyby_Outgoing_06
+  - PhoneCall_Dwyby_Outgoing_07
+  - PhoneCall_Dwyby_Outgoing_08
+  - PhoneCall_Dwyby_Outgoing_09
+  - PhoneCall_Dwyby_Outgoing_10
+  - PhoneCall_Gigo_Incoming_01
+  - PhoneCall_Gigo_Incoming_02
+  - PhoneCall_Gigo_Incoming_03
+  - PhoneCall_Gigo_Incoming_04
+  - PhoneCall_Gigo_Incoming_05
+  - PhoneCall_Gigo_Incoming_06
+  - PhoneCall_Gigo_Incoming_07
+  - PhoneCall_Gigo_Incoming_08
+  - PhoneCall_Gigo_Incoming_09
+  - PhoneCall_Gigo_Incoming_10
+  - PhoneCall_Gigo_Outgoing_01
+  - PhoneCall_Gigo_Outgoing_02
+  - PhoneCall_Gigo_Outgoing_03
+  - PhoneCall_Gigo_Outgoing_04
+  - PhoneCall_Gigo_Outgoing_05
+  - PhoneCall_Gigo_Outgoing_06
+  - PhoneCall_Gigo_Outgoing_07
+  - PhoneCall_Gigo_Outgoing_08
+  - PhoneCall_Gigo_Outgoing_09
+  - PhoneCall_Gigo_Outgoing_10
+  - PhoneCall_Ichigo_Incoming_01
+  - PhoneCall_Ichigo_Incoming_02
+  - PhoneCall_Ichigo_Incoming_03
+  - PhoneCall_Ichigo_Incoming_04
+  - PhoneCall_Ichigo_Incoming_05
+  - PhoneCall_Ichigo_Incoming_06
+  - PhoneCall_Ichigo_Incoming_07
+  - PhoneCall_Ichigo_Incoming_08
+  - PhoneCall_Ichigo_Incoming_09
+  - PhoneCall_Ichigo_Incoming_10
+  - PhoneCall_Ichigo_Outgoing_01
+  - PhoneCall_Ichigo_Outgoing_02
+  - PhoneCall_Ichigo_Outgoing_03
+  - PhoneCall_Ichigo_Outgoing_04
+  - PhoneCall_Ichigo_Outgoing_05
+  - PhoneCall_Ichigo_Outgoing_06
+  - PhoneCall_Ichigo_Outgoing_07
+  - PhoneCall_Ichigo_Outgoing_08
+  - PhoneCall_Ichigo_Outgoing_09
+  - PhoneCall_Ichigo_Outgoing_10
+  - PhoneCall_LordArmad_Incoming_01
+  - PhoneCall_LordArmad_Incoming_02
+  - PhoneCall_LordArmad_Incoming_03
+  - PhoneCall_LordArmad_Incoming_04
+  - PhoneCall_LordArmad_Incoming_05
+  - PhoneCall_LordArmad_Incoming_06
+  - PhoneCall_LordArmad_Incoming_07
+  - PhoneCall_LordArmad_Incoming_08
+  - PhoneCall_LordArmad_Incoming_09
+  - PhoneCall_LordArmad_Incoming_10
+  - PhoneCall_LordArmad_Outgoing_01
+  - PhoneCall_LordArmad_Outgoing_02
+  - PhoneCall_LordArmad_Outgoing_03
+  - PhoneCall_LordArmad_Outgoing_04
+  - PhoneCall_LordArmad_Outgoing_05
+  - PhoneCall_LordArmad_Outgoing_06
+  - PhoneCall_LordArmad_Outgoing_07
+  - PhoneCall_LordArmad_Outgoing_08
+  - PhoneCall_LordArmad_Outgoing_09
+  - PhoneCall_LordArmad_Outgoing_10
+  - PhoneCall_Pawstin_Incoming_01
+  - PhoneCall_Pawstin_Incoming_02
+  - PhoneCall_Pawstin_Incoming_03
+  - PhoneCall_Pawstin_Incoming_04
+  - PhoneCall_Pawstin_Incoming_05
+  - PhoneCall_Pawstin_Incoming_06
+  - PhoneCall_Pawstin_Incoming_07
+  - PhoneCall_Pawstin_Incoming_08
+  - PhoneCall_Pawstin_Incoming_09
+  - PhoneCall_Pawstin_Incoming_10
+  - PhoneCall_Pawstin_Outgoing_01
+  - PhoneCall_Pawstin_Outgoing_02
+  - PhoneCall_Pawstin_Outgoing_03
+  - PhoneCall_Pawstin_Outgoing_04
+  - PhoneCall_Pawstin_Outgoing_05
+  - PhoneCall_Pawstin_Outgoing_06
+  - PhoneCall_Pawstin_Outgoing_07
+  - PhoneCall_Pawstin_Outgoing_08
+  - PhoneCall_Pawstin_Outgoing_09
+  - PhoneCall_Pawstin_Outgoing_10
+  - PhoneCall_Shimmer_Incoming_01
+  - PhoneCall_Shimmer_Incoming_02
+  - PhoneCall_Shimmer_Incoming_03
+  - PhoneCall_Shimmer_Incoming_04
+  - PhoneCall_Shimmer_Incoming_05
+  - PhoneCall_Shimmer_Incoming_06
+  - PhoneCall_Shimmer_Incoming_07
+  - PhoneCall_Shimmer_Incoming_08
+  - PhoneCall_Shimmer_Incoming_09
+  - PhoneCall_Shimmer_Incoming_10
+  - PhoneCall_Shimmer_Outgoing_01
+  - PhoneCall_Shimmer_Outgoing_02
+  - PhoneCall_Shimmer_Outgoing_03
+  - PhoneCall_Shimmer_Outgoing_04
+  - PhoneCall_Shimmer_Outgoing_05
+  - PhoneCall_Shimmer_Outgoing_06
+  - PhoneCall_Shimmer_Outgoing_07
+  - PhoneCall_Shimmer_Outgoing_08
+  - PhoneCall_Shimmer_Outgoing_09
+  - PhoneCall_Shimmer_Outgoing_10
+  - Room25_01
+  - DoorMessage_Generic
+  conversationIndex: -1
+  snapToGridAmount: 0
+  confirmDelete: 1
+  trimWhitespaceAroundPipes: 1
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -424,10 +746,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 747
-    y: 75
-    width: 600
-    height: 600
+    x: 541
+    y: 30
+    width: 720
+    height: 987
   m_ViewDataDictionary: {fileID: 0}
   m_ActionMapsTreeState:
     scrollPos: {x: 0, y: 0}
@@ -781,7 +1103,7 @@ MonoBehaviour:
     m_Text: PlayerControls (Input Actions)
     m_Image: {fileID: 0}
     m_Tooltip: 
---- !u!114 &18
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -873,7 +1195,7 @@ MonoBehaviour:
   m_LowResolutionForAspectRatios: 00000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &19
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -896,7 +1218,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 711
+    width: 540
     height: 715
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
@@ -904,7 +1226,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c8e8feff0cfffeff7cfffeff6e14ffff8828ffffa23cffff3e58ffff506dfffff088ffff0a9dffff94b1ffff98c8ffff22fbffff
+      m_ExpandedIDs: 5265ffff7c65ffff4067ffff8c97ffff28b3ffffeec7fffff0e3ffffe0f9ffff22fbffff6aa30000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -928,7 +1250,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 5f3d06cf49f784c44b4403282939a0da
---- !u!114 &20
+--- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -957,9 +1279,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e4e5ffff
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c8e8feff0cfffeff7cfffeff6e14ffff8828ffffa23cffff3e58ffff506dfffff088ffff0a9dffff94b1ffff98c8ffff22fbffff
+      m_ExpandedIDs: 4067ffff8c97ffff28b3ffffeec7fffff0e3ffffe0f9ffff22fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -983,7 +1305,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: b1e6b6ce623294f31b1d8c1ec5f19c48
---- !u!114 &21
+--- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1006,10 +1328,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 766
-    width: 711
+    width: 540
     height: 251
   m_ViewDataDictionary: {fileID: 0}
---- !u!114 &22
+--- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1030,9 +1352,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 712
+    x: 541
     y: 30
-    width: 549
+    width: 720
     height: 987
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
@@ -1045,9 +1367,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 19.606365, y: 79.13248, z: -41.979904}
+    m_Target: {x: 69.57473, y: -35.98983, z: -2.7649686}
     speed: 2
-    m_Value: {x: 22.099361, y: 82.6939, z: -40.96318}
+    m_Value: {x: 552.3775, y: 24.607347, z: -2922.6636}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1097,9 +1419,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 71.75449
+    m_Target: 9.956175
     speed: 2
-    m_Value: 78.260025
+    m_Value: 574.3558
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1124,7 +1446,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &23
+--- !u!114 &24
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1145,10 +1467,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 724
-    y: 75
-    width: 623
-    height: 600
+    x: 745
+    y: 30
+    width: 516
+    height: 987
   m_ViewDataDictionary: {fileID: 0}
   m_ViewTransforms:
     m_KeySerializationHelper:
@@ -1749,7 +2071,7 @@ MonoBehaviour:
   m_CurrentEditor: 0
   m_LayerEditor:
     m_SelectedLayerIndex: 3
---- !u!114 &24
+--- !u!114 &25
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1780,7 +2102,7 @@ MonoBehaviour:
     m_PrefName: Preview_TilemapBrushInspector
   m_Palette: {fileID: 2726440149881053079, guid: 85985ba0fb93d4953ae5927f2b0f3537,
     type: 3}
---- !u!114 &25
+--- !u!114 &26
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1819,20 +2141,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Tile Palettes/Neighborhood
+    - Assets/Prefabs/Temporary GO's/Locked Door Messages
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Tile Palettes/Neighborhood
+  - Assets/Prefabs/Temporary GO's/Locked Door Messages
   m_LastFoldersGridSize: 96
   m_LastProjectPath: /Users/rosssmith/Documents/GitHub/Canyon-Eternal/Canyon Eternal
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 30cd0000
-    m_LastClickedID: 52528
-    m_ExpandedIDs: 000000000c5100000a9600000c9600000e96000010960000129600001496000016960000189600001a9600001c9600001e96000020960000229600002496000026960000289600002a9600002c9600002e96000030960000329600003496000036960000389600003a9600003c9600003e96000040960000429600004496000046960000489600004a9600004e96000050960000589600005e96000064960000e296000016cb000000ca9a3b
+    scrollPos: {x: 0, y: 415}
+    m_SelectedIDs: a4f30000
+    m_LastClickedID: 62372
+    m_ExpandedIDs: 000000000c510000625e0000645e0000665e0000685e00006a5e00006c5e00006e5e0000705e0000725e0000745e0000765e0000785e00007a5e00007c5e00007e5e0000805e0000825e0000845e0000865e0000885e00008a5e00008c5e0000905e0000925e0000945e0000965e0000985e00009a5e00009c5e00009e5e0000a05e0000a25e0000a45e0000a65e0000aa5e0000ac5e0000ea5e0000f25e0000f65e0000385f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1860,7 +2182,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000c5100000a9600000c9600000e96000010960000129600001496000016960000189600001a9600001c9600001e96000020960000229600002496000026960000289600002a9600002c9600002e96000030960000329600003496000036960000389600003a9600003c9600003e96000040960000429600004496000046960000489600004a9600004c9600004e96000050960000529600005496000056960000589600005a9600005c9600005e960000609600006296000064960000
+    m_ExpandedIDs: 000000000c510000625e0000645e0000665e0000685e00006a5e00006c5e00006e5e0000705e0000725e0000745e0000765e0000785e00007a5e00007c5e00007e5e0000805e0000825e0000845e0000865e0000885e00008a5e00008c5e00008e5e0000905e0000925e0000945e0000965e0000985e00009a5e00009c5e00009e5e0000a05e0000a25e0000a45e0000a65e0000a85e0000aa5e0000ac5e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1916,7 +2238,7 @@ MonoBehaviour:
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 263
---- !u!114 &26
+--- !u!114 &27
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1942,10 +2264,10 @@ MonoBehaviour:
     height: 440
   m_ViewDataDictionary: {fileID: 0}
   m_ResetOnNextRepaint: 0
-  m_SelectedAssetPath: Assets/Art/Sprites/Environment/Nature/Cavern Waterfall/Waterfall_0000s_0000_6.psd
+  m_SelectedAssetPath: Assets/Art/Sprites/Environment/Structures/Signs/DoormatDown.png
   m_SelectedSpriteRectGUID: 5e97eb03825dee720800000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
---- !u!114 &27
+--- !u!114 &28
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1973,8 +2295,8 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -60312
---- !u!114 &28
+  m_LastSelectedObjectID: -82312
+--- !u!114 &29
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2012,7 +2334,7 @@ MonoBehaviour:
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
---- !u!114 &29
+--- !u!114 &30
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
