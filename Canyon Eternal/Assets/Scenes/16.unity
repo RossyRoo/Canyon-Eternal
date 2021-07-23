@@ -670,9 +670,8 @@ MonoBehaviour:
   leadsToPreviousRoom: 0
   otherRoom: {fileID: 0}
   doorNum: 1
-  lockString: Plastic Key
-  lockedDoorMessageGO: {fileID: 8082007659722673653, guid: 9f9d765eb7583449c9a278b6bfc2f633,
-    type: 3}
+  requiredItem: {fileID: 11400000, guid: a333d595ae26d46d59e4ff03cae5af62, type: 2}
+  lockedSFX: {fileID: 8300000, guid: 17e956d0c3e23054c9270db49323b9ba, type: 3}
 --- !u!61 &378136444
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12553,8 +12552,8 @@ MonoBehaviour:
   leadsToPreviousRoom: 1
   otherRoom: {fileID: 0}
   doorNum: 1
-  lockString: 
-  lockedDoorMessageGO: {fileID: 0}
+  requiredItem: {fileID: 0}
+  lockedSFX: {fileID: 0}
 --- !u!61 &1780479658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40478,6 +40477,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4126282633543651827, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: itemInventory.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c6de89c06d8e4f51a4bf0f32523850d,
+        type: 2}
     - target: {fileID: 4192531000350228989, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_AnchorMin.y

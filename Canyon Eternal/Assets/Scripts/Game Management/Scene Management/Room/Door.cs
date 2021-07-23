@@ -9,9 +9,10 @@ public class Door : Interactable
     public Room otherRoom;
     public int doorNum = 0;
     [Tooltip("If there is no lock, leave as null.")]
-    public string lockString;
+    public Item requiredItem;
     bool doorIsLocked = false;
-    public GameObject lockedDoorMessageGO;
+    //public GameObject lockedDoorMessageGO;
+    public AudioClip lockedSFX;
 
     public override void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
@@ -60,22 +61,22 @@ public class Door : Interactable
 
     private void CheckForLock(PlayerInventory playerInventory)
     {
-        if(lockString != null)
+        if(requiredItem != null)
         {
             doorIsLocked = true;
 
-            for (int i = 0; i < playerInventory.itemInventory.Count; i++)
+            if (playerInventory.itemInventory.Contains(requiredItem))
             {
-                if(playerInventory.itemInventory[i].name == lockString)
-                {
-                    doorIsLocked = false;
-                }
+                doorIsLocked = false;
+                return;
             }
+
         }
     }
 
     private void DisplayLockedDoorFX()
     {
-        Instantiate(lockedDoorMessageGO, transform.position, Quaternion.identity);
+        //Instantiate(lockedDoorMessageGO, transform.position, Quaternion.identity);
+        SFXPlayer.Instance.PlaySFXAudioClip(lockedSFX);
     }
 }
