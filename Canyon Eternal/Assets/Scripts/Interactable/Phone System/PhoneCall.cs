@@ -9,9 +9,4 @@ public class PhoneCall : MonoBehaviour
     public int maxVesselPercentage = 100;
     public CharacterData enemyEncounteredRequirement;
 
-    private void Awake()
-    {
-        Debug.Log("Phone call Game Object Spawned");
-    }
-
 }

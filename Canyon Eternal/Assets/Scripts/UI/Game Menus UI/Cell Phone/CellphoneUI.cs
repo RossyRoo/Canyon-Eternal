@@ -85,7 +85,10 @@ public class CellphoneUI : MonoBehaviour
         int randomPhoneCallNum = Random.Range(0, possiblePhoneCalls.Count);
 
         playerProgression.GetComponentInParent<PlayerManager>().EnterConversationState();
-        Instantiate(possiblePhoneCalls[randomPhoneCallNum], transform.position, Quaternion.identity);
+
+        ObjectPool objectPool = FindObjectOfType<ObjectPool>();
+        Instantiate(possiblePhoneCalls[randomPhoneCallNum], objectPool.transform.position, Quaternion.identity);
+        
         SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.phoneRingSFX);
 
         gameMenuUI.ReverseGameMenuUI();

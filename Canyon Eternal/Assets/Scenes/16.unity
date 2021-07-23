@@ -671,6 +671,8 @@ MonoBehaviour:
   otherRoom: {fileID: 0}
   doorNum: 1
   requiredItem: {fileID: 11400000, guid: a333d595ae26d46d59e4ff03cae5af62, type: 2}
+  lockedDoorMessageGO: {fileID: 8082007659722673653, guid: 9f9d765eb7583449c9a278b6bfc2f633,
+    type: 3}
   lockedSFX: {fileID: 8300000, guid: 17e956d0c3e23054c9270db49323b9ba, type: 3}
 --- !u!61 &378136444
 BoxCollider2D:
@@ -12553,6 +12555,7 @@ MonoBehaviour:
   otherRoom: {fileID: 0}
   doorNum: 1
   requiredItem: {fileID: 0}
+  lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
 --- !u!61 &1780479658
 BoxCollider2D:
@@ -40397,6 +40400,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1379076287353617294, guid: c2dad1bee05724b268c0c22616a6c40a,
+        type: 3}
+      propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ExitConversationState
+      objectReference: {fileID: 0}
     - target: {fileID: 1549397531893961983, guid: c2dad1bee05724b268c0c22616a6c40a,
         type: 3}
       propertyPath: m_AnchorMin.y
