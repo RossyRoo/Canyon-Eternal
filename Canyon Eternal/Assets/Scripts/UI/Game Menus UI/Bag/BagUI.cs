@@ -12,6 +12,7 @@ public class BagUI : MonoBehaviour
 
     public GameObject currentSpellButton;
     public GameObject currentWeaponButton;
+    public GameObject currentGearButton;
 
     private void Awake()
     {
@@ -133,6 +134,11 @@ public class BagUI : MonoBehaviour
         currentWeaponButton.GetComponent<Image>().sprite =
             playerInventory.weaponsInventory[0].dataIcon;
 
+        currentGearButton.GetComponent<DataSlotUI>().slotData =
+            playerInventory.gearInventory[0];
+        currentGearButton.GetComponent<Image>().sprite =
+            playerInventory.gearInventory[0].dataIcon;
+
         gameMenuUI.equipButton.SetActive(true);
     }
 
@@ -188,6 +194,24 @@ public class BagUI : MonoBehaviour
                     }
                 }
             }
+            else if(dataSlotUI.slotData.GetType() == typeof(Gear))
+            {
+                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.gearInventory[0];
+
+                for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
+                {
+                    Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+                    DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
+
+                    if (i < playerInventory.gearInventory.Count)
+                    {
+                        itemSlotUI.slotData = playerInventory.gearInventory[i];
+
+                        myItemIcon.sprite = playerInventory.gearInventory[i].dataIcon;
+                        myItemIcon.gameObject.SetActive(true);
+                    }
+                }
+            }
         }
         else
         {
@@ -216,6 +240,10 @@ public class BagUI : MonoBehaviour
             {
                 gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = (Spell)dataSlotUI.slotData;
             }
+            else if(dataSlotUI.slotData.GetType() == typeof(Gear))
+            {
+                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = (Gear)dataSlotUI.slotData;
+            }
         }
     }
 
@@ -243,6 +271,15 @@ public class BagUI : MonoBehaviour
             }
 
             playerInventory.activeSpell = (Spell)dataSlotUI.slotData;
+        }
+        else if(dataSlotUI.slotData.GetType() == typeof(Gear))
+        {
+            if (playerInventory.gearInventory[0] == dataSlotUI.slotData)
+            {
+                return;
+            }
+
+            playerInventory.activeGear = (Gear)dataSlotUI.slotData;
         }
 
     }

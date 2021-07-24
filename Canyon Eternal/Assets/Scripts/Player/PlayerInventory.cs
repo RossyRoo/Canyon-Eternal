@@ -17,6 +17,10 @@ public class PlayerInventory : MonoBehaviour
     public Spell activeSpell;
     public List<Spell> spellsInventory;
 
+    [Header("Gear Inventory")]
+    public Gear activeGear;
+    public List<Gear> gearInventory;
+
     [Header("Item Inventory")]
     public List<Item> itemInventory;
 

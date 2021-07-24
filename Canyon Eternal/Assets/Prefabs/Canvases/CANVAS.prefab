@@ -12737,7 +12737,7 @@ GameObject:
   - component: {fileID: 4526570068623875791}
   - component: {fileID: 1192980260642916257}
   m_Layer: 5
-  m_Name: Current Held Button
+  m_Name: Current Gear Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12842,7 +12842,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5078134797867283868}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3642598440416423524}
+        m_MethodName: SelectEquipmentToChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1192980260642916257}
+          m_ObjectArgumentAssemblyTypeName: DataSlotUI, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1192980260642916257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16600,6 +16611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSpellButton: {fileID: 1812199352320544690}
   currentWeaponButton: {fileID: 7199381721735773064}
+  currentGearButton: {fileID: 2404073054018930850}
 --- !u!114 &2792935184130832716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25772,7 +25784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Held
+  m_text: Gear
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4892274a5a91b4a208963276158de937, type: 2}
   m_sharedMaterial: {fileID: 3805393224597669998, guid: 4892274a5a91b4a208963276158de937,
