@@ -219,13 +219,12 @@ public class BagUI : MonoBehaviour
         }
     }
 
-
     public void SelectEquipmentOverview()
     {
         gameMenuUI.interfaceGrid.SetActive(false);
         gameMenuUI.equipmentUIGO.SetActive(true);
         gameMenuUI.infoPanel.SetActive(false);
-        //SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
     }
 
     public void SelectEquipmentToView(DataSlotUI dataSlotUI)
@@ -265,7 +264,7 @@ public class BagUI : MonoBehaviour
         }
         else if (dataSlotUI.slotData.GetType() == typeof(Spell))
         {
-            if (playerInventory.spellsInventory[0] == dataSlotUI.slotData)
+            if (playerInventory.activeSpell == dataSlotUI.slotData)
             {
                 return;
             }
@@ -274,12 +273,13 @@ public class BagUI : MonoBehaviour
         }
         else if(dataSlotUI.slotData.GetType() == typeof(Gear))
         {
-            if (playerInventory.gearInventory[0] == dataSlotUI.slotData)
+            if (playerInventory.activeGear == dataSlotUI.slotData)
             {
                 return;
             }
 
             playerInventory.activeGear = (Gear)dataSlotUI.slotData;
+            playerInventory.GetComponent<PlayerGearHandler>().InitializeGearEffect(playerInventory.activeGear.gearID);
         }
 
     }
