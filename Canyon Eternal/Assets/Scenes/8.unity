@@ -170,6 +170,9 @@ MonoBehaviour:
   leadsToPreviousRoom: 0
   otherRoom: {fileID: 0}
   doorNum: 1
+  requiredItem: {fileID: 0}
+  lockedDoorMessageGO: {fileID: 0}
+  lockedSFX: {fileID: 0}
 --- !u!1 &92170802308911091
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +408,9 @@ MonoBehaviour:
   leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: 03c8f86d9d37a4e5bbffc45775f87477, type: 2}
   doorNum: 2
+  requiredItem: {fileID: 0}
+  lockedDoorMessageGO: {fileID: 0}
+  lockedSFX: {fileID: 0}
 --- !u!4 &304513316366304519
 Transform:
   m_ObjectHideFlags: 0
@@ -15656,6 +15662,51 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &4650397329817474096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4650397329817474103}
+  - component: {fileID: 4650397329817474102}
+  m_Layer: 0
+  m_Name: SCENE COMMENT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &4650397329817474102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4650397329817474096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41cff5bad9a9c4b18ba26829c5f06dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subject: Monster Chest
+  comment: 
+--- !u!4 &4650397329817474103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4650397329817474096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4816792124950885639
 Transform:
   m_ObjectHideFlags: 0
