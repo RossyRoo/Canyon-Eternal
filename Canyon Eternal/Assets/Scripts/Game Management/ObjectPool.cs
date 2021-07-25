@@ -11,7 +11,6 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < objectsToDestroy.Count; i++)
         {
-            Debug.Log("Destroying " + objectsToDestroy[i]);
             Destroy(objectsToDestroy[i]);
         }
         objectsToDestroy.Clear();

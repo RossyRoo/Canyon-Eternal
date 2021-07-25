@@ -67,6 +67,7 @@ public class BagUI : MonoBehaviour
     {
         gameMenuUI.submenuNameText.text = "Inventory";
         gameMenuUI.equipmentUIGO.SetActive(false);
+        gameMenuUI.equipButton.SetActive(false);
         gameMenuUI.RefreshGrid(true);
 
 
@@ -93,6 +94,7 @@ public class BagUI : MonoBehaviour
     {
         gameMenuUI.submenuNameText.text = "Artifacts";
         gameMenuUI.equipmentUIGO.SetActive(false);
+        gameMenuUI.equipButton.SetActive(false);
         gameMenuUI.RefreshGrid(true);
 
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
@@ -224,7 +226,7 @@ public class BagUI : MonoBehaviour
         gameMenuUI.interfaceGrid.SetActive(false);
         gameMenuUI.equipmentUIGO.SetActive(true);
         gameMenuUI.infoPanel.SetActive(false);
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+        //SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
     }
 
     public void SelectEquipmentToView(DataSlotUI dataSlotUI)

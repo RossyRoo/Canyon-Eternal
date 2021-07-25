@@ -101,8 +101,8 @@ public class CellphoneUI : MonoBehaviour
     {
         gameMenuUI.submenuNameText.text = "Photos";
         gameMenuUI.settingsUIGO.SetActive(false);
+        gameMenuUI.callButton.SetActive(false);
         gameMenuUI.RefreshGrid(true);
-
 
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
@@ -156,6 +156,7 @@ public class CellphoneUI : MonoBehaviour
     {
         gameMenuUI.submenuNameText.text = "Settings";
         gameMenuUI.RefreshGrid(false);
+        gameMenuUI.callButton.SetActive(false);
         gameMenuUI.settingsUIGO.SetActive(true);
     }
 
