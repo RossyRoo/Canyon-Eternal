@@ -6,7 +6,6 @@ public class PlayerInventory : MonoBehaviour
 {
     FragmentCounterUI fragmentCounterUI;
 
-    [HideInInspector]
     public int fragmentInventory;
 
     [Header("Melee Inventory")]
@@ -39,6 +38,16 @@ public class PlayerInventory : MonoBehaviour
     public void AdjustFragmentInventory(int adjustment)
     {
         fragmentInventory += adjustment;
-        StartCoroutine(fragmentCounterUI.UpdateFragmentCountUI(adjustment));
+
+        if(adjustment >= 0)
+        {
+            Debug.Log("Starting add money coroutine");
+            StartCoroutine(fragmentCounterUI.IncreaseFragmentCountUI(adjustment));
+        }
+        else
+        {
+            Debug.Log("Starting lose money coroutine");
+            StartCoroutine(fragmentCounterUI.DecreaseFragmentCountUI(adjustment));
+        }
     }
 }

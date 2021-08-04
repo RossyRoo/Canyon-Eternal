@@ -19,14 +19,15 @@ public class FragmentCounterUI : MonoBehaviour
     private void Awake()
     {
         totalText.text = playerInventory.fragmentInventory.ToString();
+        currentTotalDisplay = playerInventory.fragmentInventory;
     }
 
-    public IEnumerator UpdateFragmentCountUI(int adjustment)
+    public IEnumerator IncreaseFragmentCountUI(int adjustment)
     {
         isCounting = true;
         currentAdjustmentDisplay += adjustment;
 
-        adjustmentText.text = "+ " + currentAdjustmentDisplay.ToString();
+        adjustmentText.text = "+" + currentAdjustmentDisplay.ToString();
         adjustmentText.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1f);
@@ -53,7 +54,46 @@ public class FragmentCounterUI : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        if(!isCounting)
+        if (!isCounting)
+        {
+            adjustmentText.gameObject.SetActive(false);
+        }
+    }
+
+    public IEnumerator DecreaseFragmentCountUI(int adjustment)
+    {
+        isCounting = true;
+        currentAdjustmentDisplay += adjustment;
+
+        adjustmentText.text = currentAdjustmentDisplay.ToString();
+        adjustmentText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        InvokeRepeating("CounterSFX", 0f, 0.05f);
+
+        while (currentTotalDisplay > playerInventory.fragmentInventory)
+        {
+            Debug.Log(currentTotalDisplay);
+            currentTotalDisplay -= Time.deltaTime * (adjustment + 10);
+            currentTotalDisplay = Mathf.Clamp(currentTotalDisplay, 0f, playerInventory.fragmentInventory);
+            totalText.text = Mathf.RoundToInt(currentTotalDisplay).ToString();
+
+
+            currentAdjustmentDisplay -= Time.deltaTime * (adjustment + 10);
+            currentAdjustmentDisplay = Mathf.Clamp(currentAdjustmentDisplay, 0f, playerInventory.fragmentInventory);
+            adjustmentText.text = Mathf.RoundToInt(currentAdjustmentDisplay).ToString();
+
+            yield return null;
+        }
+
+        CancelInvoke();
+
+        isCounting = false;
+
+        yield return new WaitForSeconds(1f);
+
+        if (!isCounting)
         {
             adjustmentText.gameObject.SetActive(false);
         }

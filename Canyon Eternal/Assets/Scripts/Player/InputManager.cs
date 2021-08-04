@@ -197,7 +197,7 @@ public class InputManager : MonoBehaviour
 
         if(openMenu_Input)
         {
-            gameMenuUI.ReverseGameMenuUI();
+            gameMenuUI.ReverseGameMenuUI(false);
         }
     }
 

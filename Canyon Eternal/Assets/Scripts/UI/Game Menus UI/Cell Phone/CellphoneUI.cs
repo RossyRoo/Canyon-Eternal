@@ -91,7 +91,7 @@ public class CellphoneUI : MonoBehaviour
         
         SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.phoneRingSFX);
 
-        gameMenuUI.ReverseGameMenuUI();
+        gameMenuUI.ReverseGameMenuUI(false);
     }
 #endregion
 

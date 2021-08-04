@@ -11,9 +11,10 @@ public class GameMenuUI : MonoBehaviour
     BagUI bagUI;
     CellphoneUI cellphoneUI;
     BookUI bookUI;
+    ShopUI shopUI;
     int currentMenuIndex = 0;
     int currentSubmenuIndex = 0;
-    [HideInInspector]
+    //[HideInInspector]
     public bool gameMenuIsOpen;
 
     [Header("GENERAL")]
@@ -36,6 +37,7 @@ public class GameMenuUI : MonoBehaviour
     public GameObject infoPanel;
     public GameObject callButton;
     public GameObject equipButton;
+    public GameObject buyButton;
     public GameObject equipmentOverviewButton;
 
     [Header("SFX")]
@@ -60,11 +62,12 @@ public class GameMenuUI : MonoBehaviour
         gameMenusGO.SetActive(false);
         playerManager = FindObjectOfType<PlayerManager>();
         playerAnimatorHandler = FindObjectOfType<PlayerAnimatorHandler>();
+        shopUI = GetComponent<ShopUI>();
 
         SwitchMenus();
     }
 
-    public void ReverseGameMenuUI()
+    public void ReverseGameMenuUI(bool isShopping)
     {
         if(gameMenusGO.activeInHierarchy)
         {
@@ -75,6 +78,7 @@ public class GameMenuUI : MonoBehaviour
             bagUI.CloseBag();
             cellphoneUI.CloseCellphone();
             bookUI.CloseBook();
+            shopUI.CloseShop();
 
             gameMenusGO.SetActive(false);
             SFXPlayer.Instance.PlaySFXAudioClip(closeGameMenusSFX);
@@ -84,12 +88,16 @@ public class GameMenuUI : MonoBehaviour
             if (playerManager.isInteractingWithUI)
                 return;
 
-            gameMenuIsOpen = true;
             playerManager.isInteractingWithUI = true;
             playerAnimatorHandler.animator.SetBool("isInteracting", true);
             gameMenusGO.SetActive(true);
-            SwitchMenus();
             SFXPlayer.Instance.PlaySFXAudioClip(openGameMenusSFX);
+
+            if (!isShopping)
+            {
+                gameMenuIsOpen = true;
+                SwitchMenus();
+            }
         }
     }
 
@@ -239,6 +247,10 @@ public class GameMenuUI : MonoBehaviour
             if (itemSlotUI.slotData.GetType() == typeof(Contact))
             {
                 cellphoneUI.activeContact = (Contact)itemSlotUI.slotData;
+            }
+            else if (itemSlotUI.slotData.GetType() == typeof(Item))
+            {
+                buyButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
             }
 
             SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);
