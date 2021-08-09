@@ -11,6 +11,7 @@ public class FragmentCounterUI : MonoBehaviour
     public TextMeshProUGUI adjustmentText;
 
     public AudioClip counterGoingUpSFX;
+    public AudioClip counterGoingDownSFX;
 
     float currentTotalDisplay;
     float currentAdjustmentDisplay;
@@ -32,7 +33,7 @@ public class FragmentCounterUI : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        InvokeRepeating("CounterSFX", 0f, 0.05f);
+        InvokeRepeating("CountUpSFX", 0f, 0.05f);
 
         while (currentTotalDisplay < playerInventory.fragmentInventory)
         {
@@ -68,9 +69,9 @@ public class FragmentCounterUI : MonoBehaviour
         adjustmentText.text = currentAdjustmentDisplay.ToString();
         adjustmentText.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        SFXPlayer.Instance.PlaySFXAudioClip(counterGoingDownSFX, 0.6f);
 
-        InvokeRepeating("CounterSFX", 0f, 0.05f);
+        yield return new WaitForSeconds(1f);
 
         while (currentTotalDisplay > playerInventory.fragmentInventory)
         {
@@ -87,8 +88,6 @@ public class FragmentCounterUI : MonoBehaviour
             yield return null;
         }
 
-        CancelInvoke();
-
         isCounting = false;
 
         yield return new WaitForSeconds(1f);
@@ -99,8 +98,9 @@ public class FragmentCounterUI : MonoBehaviour
         }
     }
 
-    private void CounterSFX()
+    private void CountUpSFX()
     {
         SFXPlayer.Instance.PlaySFXAudioClip(counterGoingUpSFX, 0.02f);
     }
+
 }
