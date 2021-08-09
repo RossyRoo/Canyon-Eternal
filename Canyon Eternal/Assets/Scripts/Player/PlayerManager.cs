@@ -22,6 +22,8 @@ public class PlayerManager : CharacterManager
     public InteractableUI interactableUI;
     public LayerMask interactableLayers;
 
+    public AreaNameText areaNameText;
+
     public Vector3 nextSpawnPoint;
     public int nextDoorNum;
 
@@ -117,6 +119,11 @@ public class PlayerManager : CharacterManager
             if (int.Parse(doorsInRoom[i].name) == nextDoorNum)
             {
                 transform.position = doorsInRoom[i].transform.position;
+                
+                if(doorsInRoom[i].newAreaNameText != null)
+                {
+                    StartCoroutine(areaNameText.ShowAreaName(doorsInRoom[i].newAreaNameText));
+                }
             }
         }
 

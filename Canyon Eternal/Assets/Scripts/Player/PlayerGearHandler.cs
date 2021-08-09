@@ -79,7 +79,7 @@ public class PlayerGearHandler : MonoBehaviour
     private void ActivateGearThree()
     {
         //Decrease enemy awareness
-        Debug.Log("Activating gear three");
+        //Debug.Log("Activating gear three");
     }
 
     private void ActivateGearFour()

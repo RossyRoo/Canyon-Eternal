@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    public bool leadsToNextRoom;
-    public bool leadsToPreviousRoom;
+    [Header("New Location")]
     public Room otherRoom;
     public int doorNum = 0;
+    public string newAreaNameText;
+
 
     [Header("Lock and Key")]
     [Tooltip("If there is no lock, leave as null.")]
@@ -30,26 +31,11 @@ public class Door : Interactable
         {
             SceneChangeManager sceneChangeManager = playerManager.GetComponentInParent<SceneChangeManager>();
 
-            if (leadsToNextRoom)
+            if (otherRoom != null)
             {
                 playerManager.nextDoorNum = doorNum;
 
-                StartCoroutine(SceneChangeManager.Instance.ChangeScene(sceneChangeManager.roomList[sceneChangeManager.currentBuildIndex + 1].sceneNum));
-            }
-            else if (leadsToPreviousRoom)
-            {
-                playerManager.nextDoorNum = doorNum;
-
-                StartCoroutine(SceneChangeManager.Instance.ChangeScene(sceneChangeManager.roomList[sceneChangeManager.currentBuildIndex - 1].sceneNum));
-            }
-            else
-            {
-                if (otherRoom != null)
-                {
-                    playerManager.nextDoorNum = doorNum;
-
-                    StartCoroutine(SceneChangeManager.Instance.ChangeScene(otherRoom.sceneNum));
-                }
+                StartCoroutine(SceneChangeManager.Instance.ChangeScene(otherRoom.sceneNum));
             }
 
             playerStats.EnableInvulnerability(1.5f);

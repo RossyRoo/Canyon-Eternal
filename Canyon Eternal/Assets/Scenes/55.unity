@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -217,10 +217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: a700e4b5e86874a5797b1259a0f10bfa, type: 2}
   doorNum: 1
+  newAreaNameText: Bluff
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
@@ -15620,10 +15619,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: bd7b0f6a0c40b4a739ed167bd6d0a17e, type: 2}
   doorNum: 2
+  newAreaNameText: Bluff
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}

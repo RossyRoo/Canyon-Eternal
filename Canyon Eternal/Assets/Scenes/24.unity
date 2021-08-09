@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -362,10 +362,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 1
-  leadsToPreviousRoom: 0
-  otherRoom: {fileID: 0}
+  otherRoom: {fileID: 11400000, guid: 382e535b8283748689908548ac462c33, type: 2}
   doorNum: 1
+  newAreaNameText: 
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
@@ -29884,10 +29883,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: eb948d6ef225e4cebb92d6de4a3b6c6a, type: 2}
   doorNum: 1
+  newAreaNameText: 
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
@@ -30063,10 +30061,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 1
-  otherRoom: {fileID: 0}
+  otherRoom: {fileID: 11400000, guid: 20fb23de7b06d4653885101f9a1a04ae, type: 2}
   doorNum: 2
+  newAreaNameText: Ruins
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}

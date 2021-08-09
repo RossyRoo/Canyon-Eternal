@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594749882}
   m_LocalRotation: {x: -0, y: -0, z: 0.00000074505806, w: 1}
-  m_LocalPosition: {x: -5, y: -1.6, z: 0}
+  m_LocalPosition: {x: -5, y: 65.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 793827633}
@@ -217,10 +217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: 5a648abf814414fa2a70e0884d67f0f1, type: 2}
   doorNum: 1
+  newAreaNameText: Castle
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
@@ -15620,10 +15619,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: 495409646e7bc4729a12ea8a8bc4cef4, type: 2}
   doorNum: 2
+  newAreaNameText: 
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
