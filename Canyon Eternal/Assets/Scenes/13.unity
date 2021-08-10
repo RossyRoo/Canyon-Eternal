@@ -172,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1577253739
 Transform:
   m_ObjectHideFlags: 0
@@ -180,13 +180,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577253738}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071066, w: 0.70710707}
-  m_LocalPosition: {x: 64.5, y: -15, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.00000014901161, w: 1}
+  m_LocalPosition: {x: 64.5, y: -64.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 793827633}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1577253740
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -250,10 +250,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 1
-  leadsToPreviousRoom: 0
-  otherRoom: {fileID: 0}
-  doorNum: 1
+  otherRoom: {fileID: 11400000, guid: e6f2c1d8da7a4489697b268e1949f89f, type: 2}
+  doorNum: 3
+  newAreaNameText: 
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
@@ -296,10 +295,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: 8d8d5687a92d44c9fb6c875ebc380af4, type: 2}
   doorNum: 1
+  newAreaNameText: 
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
@@ -534,10 +532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: enter
-  leadsToNextRoom: 0
-  leadsToPreviousRoom: 0
   otherRoom: {fileID: 11400000, guid: 0d6e6f203d5b84319a05bd58864d9644, type: 2}
   doorNum: 3
+  newAreaNameText: 
   requiredItem: {fileID: 0}
   lockedDoorMessageGO: {fileID: 0}
   lockedSFX: {fileID: 0}
