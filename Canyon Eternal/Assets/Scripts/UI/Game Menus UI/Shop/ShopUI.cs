@@ -15,6 +15,8 @@ public class ShopUI : MonoBehaviour
 
     GameObject activeShopkeeperGO;
 
+    public bool shopIsOpen;
+
     private void Awake()
     {
         gameMenuUI = GetComponent<GameMenuUI>();
@@ -38,6 +40,7 @@ public class ShopUI : MonoBehaviour
         playerManager.isInteractingWithUI = true;
         playerAnimatorHandler.animator.SetBool("isInteracting", true);
         gameMenuUI.gameMenusGO.SetActive(true);
+        shopIsOpen = true;
         //Load Interface and Info panel
         gameMenuUI.RefreshGrid(true);
 
@@ -71,15 +74,23 @@ public class ShopUI : MonoBehaviour
         SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.openGameMenusSFX);
     }
 
+    
     public void CloseShop()
     {
-        gameMenuUI.buyButton.SetActive(false);
+        if(shopIsOpen)
+        {
+            shopIsOpen = false;
 
-        //ObjectPool objectPool = FindObjectOfType<ObjectPool>();
-        //Instantiate(activeShopkeeperGO.GetComponent<ShopTrigger>().shopkeeperGoodbye, objectPool.transform.position, Quaternion.identity);
+            gameMenuUI.buyButton.SetActive(false);
 
-        activeShopkeeperGO.GetComponent<Usable>().enabled = true;
+            //ObjectPool objectPool = FindObjectOfType<ObjectPool>();
+            //Instantiate(activeShopkeeperGO.GetComponent<ShopTrigger>().shopkeeperGoodbye, objectPool.transform.position, Quaternion.identity);
+
+            activeShopkeeperGO.GetComponent<Usable>().enabled = true;
+        }
+
     }
+    
 
     public void BuyItem(DataSlotUI dataSlotUI)
     {

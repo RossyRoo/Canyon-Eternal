@@ -214,6 +214,12 @@ public class GameMenuUI : MonoBehaviour
         {
             cellphoneUI.CloseCellphone();
             bagUI.CloseBag();
+
+            if(currentSubmenuIndex == 2) //DOING THIS BECAUSE WE ARENT USING THE JOURNAL
+            {
+                currentSubmenuIndex = 0;
+            }
+
             bookUI.OpenBook(currentSubmenuIndex);
         }
         else if (currentMenuIndex == 1)

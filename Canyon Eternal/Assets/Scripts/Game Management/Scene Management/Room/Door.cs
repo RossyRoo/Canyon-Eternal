@@ -9,7 +9,6 @@ public class Door : Interactable
     public int doorNum = 0;
     public string newAreaNameText;
 
-
     [Header("Lock and Key")]
     [Tooltip("If there is no lock, leave as null.")]
     public Item requiredItem;

@@ -43,12 +43,9 @@ public class BookUI : MonoBehaviour
         }
         else if(currentSubmenuIndex == 1)
         {
-            OpenJournal();
-        }
-        else
-        {
             OpenBestiary();
         }
+
     }
 
     public void CloseBook()
@@ -181,13 +178,24 @@ public class BookUI : MonoBehaviour
 
     #endregion
 
+    /*
     #region Journal
     public void OpenJournal()
     {
         gameMenuUI.submenuNameText.text = "Journal";
         gameMenuUI.RefreshGrid(true);
         gameMenuUI.mapUIGO.SetActive(false);
+
+        for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
+        {
+            if (i < playerProgression.journalEntryInventory.Count)
+            {
+                gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().slotData = playerProgression.journalEntryInventory[i];
+                gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerProgression.journalEntryInventory[i].dataIcon;
+            }
+        }
     }
     #endregion
+    */
 
 }

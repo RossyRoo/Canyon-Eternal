@@ -26,7 +26,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("Photo Inventory")]
     public List<Photo> photoInventory;
 
-    [Header("Lore Entry Collection")]
+    [Header("Artifact Entry Collection")]
     public List<DataObject> artifactInventory;
 
 
