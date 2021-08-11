@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 4059426414987419213, guid: 0360b6cb906de430e9dd58891ecde16a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4059426414987419213, guid: 0360b6cb906de430e9dd58891ecde16a,
         type: 3}
@@ -34347,7 +34347,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 53ad116d5b1f7439f81813567787fa11, type: 2}
+  - {fileID: 2100000, guid: 46882b7527123431f9366d5eb64d8b92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -45637,6 +45637,80 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1001 &2364042890256132628
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 63.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181113, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181119, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_Name
+      value: Fast Travel Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364042889919181119, guid: 1eb159a9a08ca4c17abaa1b046ef8700,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1eb159a9a08ca4c17abaa1b046ef8700, type: 3}
 --- !u!66 &2848852141939191049
 CompositeCollider2D:
   m_ObjectHideFlags: 0
