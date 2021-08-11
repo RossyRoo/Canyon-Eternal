@@ -39,6 +39,7 @@ public class GameMenuUI : MonoBehaviour
     public GameObject equipButton;
     public GameObject buyButton;
     public GameObject equipmentOverviewButton;
+    public GameObject fastTravelButton;
 
     [Header("SFX")]
     public AudioClip closeGameMenusSFX;

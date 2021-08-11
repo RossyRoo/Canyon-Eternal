@@ -127,9 +127,14 @@ public class PlayerManager : CharacterManager
             }
         }
 
-        if (!GetComponentInChildren<PlayerProgression>().roomsDiscovered.Contains(currentRoom))
+        if (!playerProgression.roomsDiscovered.Contains(currentRoom))
         {
-            GetComponentInChildren<PlayerProgression>().roomsDiscovered.Add(currentRoom);
+            playerProgression.roomsDiscovered.Add(currentRoom);
+
+            if(currentRoom.isFastTravelPoint)
+            {
+                playerProgression.fastTravelLocationsDiscovered.Add(currentRoom);
+            }
         }
 
     }

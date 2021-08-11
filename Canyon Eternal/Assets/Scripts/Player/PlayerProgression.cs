@@ -18,6 +18,7 @@ public class PlayerProgression : MonoBehaviour
 
     [Header("Exploration")]
     public List<Room> roomsDiscovered;
+    public List<Room> fastTravelLocationsDiscovered;
 
 
     private void Awake()

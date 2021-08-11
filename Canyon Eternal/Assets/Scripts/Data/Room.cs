@@ -7,7 +7,7 @@ public class Room : ScriptableObject
 {
     [Header("INFO")]
     public bool isCheckpoint;
-    //[HideInInspector]
+    public bool isFastTravelPoint;
     public int sceneNum;
     public AudioClip roomAudio;
 }

@@ -7,12 +7,12 @@ public class FastTravel : Interactable
     public override void Interact(PlayerManager playerManager, PlayerStats playerStats)
     {
         base.Interact(playerManager, playerStats);
-        OpenFastTravelMenu();
+        TriggerOpenFastTravelMenu();
     }
 
-    public void OpenFastTravelMenu()
+    public void TriggerOpenFastTravelMenu()
     {
-        Debug.Log("Opening fast travel menu");
+        FindObjectOfType<FastTravelUI>().OpenFastTravel();
     }
 }
  
