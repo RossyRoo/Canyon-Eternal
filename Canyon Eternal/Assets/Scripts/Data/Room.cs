@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Room Data")]
-public class Room : ScriptableObject
+public class Room : DataObject
 {
     [Header("INFO")]
     public bool isCheckpoint;

@@ -12,6 +12,7 @@ public class GameMenuUI : MonoBehaviour
     CellphoneUI cellphoneUI;
     BookUI bookUI;
     ShopUI shopUI;
+    FastTravelUI fastTravelUI;
     int currentMenuIndex = 0;
     int currentSubmenuIndex = 0;
     //[HideInInspector]
@@ -64,6 +65,7 @@ public class GameMenuUI : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         playerAnimatorHandler = FindObjectOfType<PlayerAnimatorHandler>();
         shopUI = GetComponent<ShopUI>();
+        fastTravelUI = GetComponent<FastTravelUI>();
 
         SwitchMenus();
     }
@@ -80,6 +82,7 @@ public class GameMenuUI : MonoBehaviour
             cellphoneUI.CloseCellphone();
             bookUI.CloseBook();
             shopUI.CloseShop();
+            fastTravelUI.CloseFastTravel();
 
             gameMenusGO.SetActive(false);
             SFXPlayer.Instance.PlaySFXAudioClip(closeGameMenusSFX);
@@ -258,6 +261,10 @@ public class GameMenuUI : MonoBehaviour
             else if (itemSlotUI.slotData.GetType() == typeof(Item))
             {
                 buyButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
+            }
+            else if(itemSlotUI.slotData.GetType() == typeof(Room))
+            {
+                fastTravelButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
             }
 
             SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);

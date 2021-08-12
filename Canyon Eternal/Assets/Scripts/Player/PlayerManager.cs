@@ -110,6 +110,7 @@ public class PlayerManager : CharacterManager
     public void OnLoadScene(Room currentRoom)
     {
         animator = GetComponentInChildren<Animator>();
+        playerProgression = GetComponentInChildren<PlayerProgression>();
 
         animator.SetBool("isInteracting", false);
 
@@ -131,7 +132,7 @@ public class PlayerManager : CharacterManager
         {
             playerProgression.roomsDiscovered.Add(currentRoom);
 
-            if(currentRoom.isFastTravelPoint)
+            if(currentRoom.isFastTravelPoint && !playerProgression.fastTravelLocationsDiscovered.Contains(currentRoom))
             {
                 playerProgression.fastTravelLocationsDiscovered.Add(currentRoom);
             }
@@ -230,3 +231,4 @@ public class PlayerManager : CharacterManager
 
 
 }
+

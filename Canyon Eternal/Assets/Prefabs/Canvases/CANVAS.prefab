@@ -16590,6 +16590,7 @@ MonoBehaviour:
   equipButton: {fileID: 6289454846623371443}
   buyButton: {fileID: 3375857368654079972}
   equipmentOverviewButton: {fileID: 1831005956498778324}
+  fastTravelButton: {fileID: 5956923814827852577}
   closeGameMenusSFX: {fileID: 8300000, guid: 480a00a764a6cc2449bcb68db985ff85, type: 3}
   openGameMenusSFX: {fileID: 8300000, guid: 510200be4cc85024f9087b0acf44aa47, type: 3}
   openScrapbookSFX: {fileID: 8300000, guid: 41d4fbc75950742488cfd44e6c79a69a, type: 3}
@@ -16695,6 +16696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f73bd2dea3ed42b0b0714782a57bc96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fastTravelIsOpen: 0
 --- !u!1 &2783541889381817903
 GameObject:
   m_ObjectHideFlags: 0
@@ -31930,7 +31932,7 @@ GameObject:
   - component: {fileID: 3536196493748990705}
   - component: {fileID: 8335994120126408328}
   - component: {fileID: 5936970070876380693}
-  - component: {fileID: 8980840082903000579}
+  - component: {fileID: 4830882833171481387}
   m_Layer: 5
   m_Name: Travel Button
   m_TagString: Untagged
@@ -32038,18 +32040,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1325711186925140619}
-        m_MethodName: BuyItem
+      - m_Target: {fileID: 7151138985204324378}
+        m_MethodName: InitiateFastTravelSequence
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8980840082903000579}
+          m_ObjectArgument: {fileID: 4830882833171481387}
           m_ObjectArgumentAssemblyTypeName: DataSlotUI, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8980840082903000579
+--- !u!114 &4830882833171481387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

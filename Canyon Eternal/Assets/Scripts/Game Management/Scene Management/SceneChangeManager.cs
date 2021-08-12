@@ -55,7 +55,7 @@ public class SceneChangeManager : MonoBehaviour
 
             FindObjectOfType<ScreenFader>().FadeToBlack();
 
-            SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 0.02f, 0.25f);
+            SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 0.2f, 0.25f);
 
             yield return new WaitForSeconds(1f);
 
