@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Weapons/Projectile")]
+[CreateAssetMenu(menuName = "Data/Item/Weapon/Projectile")]
 public class StandardProjectile : Weapon
 {
     [Header("PROJECTILE PARAMETERS")]

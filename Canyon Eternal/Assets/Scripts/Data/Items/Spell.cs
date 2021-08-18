@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Weapons/Spell")]
+[CreateAssetMenu(menuName = "Data/Item/Weapon/Spell")]
 public class Spell : Weapon
 {
     [Header("SPELL PARAMETERS")]

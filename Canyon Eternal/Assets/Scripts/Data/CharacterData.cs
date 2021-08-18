@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Data / Character Data")]
+[CreateAssetMenu(menuName = "Character / Character")]
 
 public class CharacterData : DataObject
 {
