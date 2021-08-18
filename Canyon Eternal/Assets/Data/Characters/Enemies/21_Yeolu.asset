@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e89efed69f949b28f659ea0b1b0969, type: 3}
+  m_Name: 21_Yeolu
+  m_EditorClassIdentifier: 
+  dataName: Yeolu
+  dataDescription: Insert enemy description here
+  dataIcon: {fileID: -9195003854285370001, guid: 4bb6af59e97e94953ab4db5f72d5d94e,
+    type: 3}
+  characterContact: {fileID: 0}
+  characterID: 48
+  isSingleEncounter: 0
+  torsoSprites:
+  - {fileID: 21300000, guid: 097305ebafce443d1b192a0d4d93aa65, type: 3}
+  - {fileID: 21300000, guid: 097305ebafce443d1b192a0d4d93aa65, type: 3}
+  - {fileID: 21300000, guid: 4c2149aeff7a8437ca3a4603e9a7932f, type: 3}
+  - {fileID: 21300000, guid: bd0730c378a904ccda47bf5eac1d5e5b, type: 3}
+  - {fileID: 21300000, guid: bd0730c378a904ccda47bf5eac1d5e5b, type: 3}
+  - {fileID: 21300000, guid: bd0730c378a904ccda47bf5eac1d5e5b, type: 3}
+  - {fileID: 21300000, guid: ae449958f74fd444aa8eaf2d080aa51a, type: 3}
+  - {fileID: 21300000, guid: 097305ebafce443d1b192a0d4d93aa65, type: 3}
+  canPursue: 1
+  canAttack: 1
+  canEvade: 0
+  detectionRadius: 30
+  attackRange: 10
+  evadeRange: 5
+  moveSpeed: 5000
+  startingMaxHealth: 50000
+  currentMaxHealth: 0
+  healAmount: 1
+  invulnerabilityFrames: 0.4
+  enemyAttacks:
+  - {fileID: 0}
+  fragmentDrop: 500
+  footstepSFX: []
+  hardCollisionSFX: {fileID: 0}
+  consumeHealItemSFX: []
+  deathRattleSFX: {fileID: 8300000, guid: 27c01c9102f2eb942871784cef13628f, type: 3}

@@ -28,7 +28,7 @@ public class CharacterData : DataObject
     [Range(0, 8000)] public float moveSpeed = 5000f;
 
     [Header("HEALTH")]
-    [Range(4, 2000)] public int startingMaxHealth;
+    [Range(100, 70000)] public int startingMaxHealth;
     public int currentMaxHealth;
     public int healAmount;
     public float invulnerabilityFrames = 0.4f;
