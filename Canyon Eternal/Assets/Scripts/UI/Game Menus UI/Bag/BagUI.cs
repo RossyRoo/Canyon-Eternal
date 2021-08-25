@@ -14,6 +14,8 @@ public class BagUI : MonoBehaviour
     public GameObject currentWeaponButton;
     public GameObject currentGearButton;
 
+    public List<Item> typesOfItemsInInventory;
+
     private void Awake()
     {
         gameMenuUI = GetComponent<GameMenuUI>();
@@ -63,6 +65,17 @@ public class BagUI : MonoBehaviour
 
     #region Inventory
 
+    public void CountInventoryItems()
+    {
+        for (int i = 0; i < playerInventory.itemInventory.Count; i++)
+        {
+            if(!typesOfItemsInInventory.Contains(playerInventory.itemInventory[i]))
+            {
+                typesOfItemsInInventory.Add(playerInventory.itemInventory[i]);
+            }
+        }
+    }
+
     public void OpenItemInventory()
     {
         gameMenuUI.submenuNameText.text = "Inventory";
@@ -70,19 +83,36 @@ public class BagUI : MonoBehaviour
         gameMenuUI.equipButton.SetActive(false);
         gameMenuUI.RefreshGrid(true);
 
+        CountInventoryItems();
 
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
             Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
             DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
-            if (i < playerInventory.itemInventory.Count)
+            if (i < typesOfItemsInInventory.Count)
             {
                 itemSlotUI.slotData = playerInventory.itemInventory[i];
 
                 myItemIcon.sprite = playerInventory.itemInventory[i].dataIcon;
                 myItemIcon.gameObject.SetActive(true);
+
+                for (int j = 0; j < playerInventory.itemInventory.Count; j++)
+                {
+                    if(itemSlotUI.slotData == playerInventory.itemInventory[i])
+                    {
+                        itemSlotUI.duplicates++;
+                    }
+                }
+
+                if (itemSlotUI.duplicates > 1)
+                {
+                    itemSlotUI.duplicateCountText.gameObject.SetActive(true);
+                    itemSlotUI.duplicateCountText.text = itemSlotUI.duplicates.ToString();
+                }
             }
+
+
         }
     }
 

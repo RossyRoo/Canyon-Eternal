@@ -6,4 +6,7 @@ using TMPro;
 public class DataSlotUI : MonoBehaviour
 {
     public DataObject slotData;
+
+    public int duplicates;
+    public TextMeshProUGUI duplicateCountText;
 }
