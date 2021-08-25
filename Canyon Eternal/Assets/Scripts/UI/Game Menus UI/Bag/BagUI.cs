@@ -86,6 +86,20 @@ public class BagUI : MonoBehaviour
         }
     }
 
+    public void UseConsumable(DataSlotUI dataSlotUI)
+    {
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+
+        if (dataSlotUI.slotData.GetType() == typeof(Consumable))
+        {
+            Debug.Log("Using item");
+            //Run Consumable Effect
+            //Destroy Consumable
+            //Close Info panel
+        }
+
+    }
+
     #endregion
 
     #region Artifacts

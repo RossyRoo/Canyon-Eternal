@@ -41,6 +41,7 @@ public class GameMenuUI : MonoBehaviour
     public GameObject buyButton;
     public GameObject equipmentOverviewButton;
     public GameObject fastTravelButton;
+    public GameObject useButton;
 
     [Header("SFX")]
     public AudioClip closeGameMenusSFX;
@@ -265,6 +266,17 @@ public class GameMenuUI : MonoBehaviour
             else if(itemSlotUI.slotData.GetType() == typeof(Room))
             {
                 fastTravelButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
+            }
+
+            //Check if Item is Usable
+            if(itemSlotUI.slotData.GetType() == typeof(Consumable))
+            {
+                useButton.SetActive(true);
+                useButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
+            }
+            else
+            {
+                useButton.SetActive(false);
             }
 
             SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);
