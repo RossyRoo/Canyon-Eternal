@@ -9,6 +9,7 @@ public class BagUI : MonoBehaviour
     GameMenuUI gameMenuUI;
     PlayerInventory playerInventory;
     PlayerMeleeHandler playerMeleeHandler;
+    PlayerEffectsHandler playerEffectsHandler;
 
     public GameObject currentSpellButton;
     public GameObject currentWeaponButton;
@@ -19,6 +20,7 @@ public class BagUI : MonoBehaviour
     private void Awake()
     {
         gameMenuUI = GetComponent<GameMenuUI>();
+        playerEffectsHandler = FindObjectOfType<PlayerEffectsHandler>();
     }
 
     public void OpenBag(int currentSubmenuIndex)
@@ -65,13 +67,14 @@ public class BagUI : MonoBehaviour
 
     #region Inventory
 
-    public void CountInventoryItems()
+    public void CountInventoryItemTypes()
     {
         for (int i = 0; i < playerInventory.itemInventory.Count; i++)
         {
             if(!typesOfItemsInInventory.Contains(playerInventory.itemInventory[i]))
             {
                 typesOfItemsInInventory.Add(playerInventory.itemInventory[i]);
+                Debug.Log("Player has " + playerInventory.itemInventory[i].dataName);
             }
         }
     }
@@ -82,9 +85,12 @@ public class BagUI : MonoBehaviour
         gameMenuUI.equipmentUIGO.SetActive(false);
         gameMenuUI.equipButton.SetActive(false);
         gameMenuUI.RefreshGrid(true);
+        CountInventoryItemTypes();
+        DisplayItemInventoryGrid();
+    }
 
-        CountInventoryItems();
-
+    private void DisplayItemInventoryGrid()
+    {
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
             Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
@@ -97,19 +103,27 @@ public class BagUI : MonoBehaviour
                 myItemIcon.sprite = playerInventory.itemInventory[i].dataIcon;
                 myItemIcon.gameObject.SetActive(true);
 
+                //Calculate duplicates
+                itemSlotUI.duplicates = 0;
                 for (int j = 0; j < playerInventory.itemInventory.Count; j++)
                 {
-                    if(itemSlotUI.slotData == playerInventory.itemInventory[i])
+                    if (itemSlotUI.slotData == playerInventory.itemInventory[i])
                     {
                         itemSlotUI.duplicates++;
                     }
                 }
 
-                if (itemSlotUI.duplicates > 1)
+                if (itemSlotUI.duplicates != 0)
                 {
                     itemSlotUI.duplicateCountText.gameObject.SetActive(true);
                     itemSlotUI.duplicateCountText.text = itemSlotUI.duplicates.ToString();
                 }
+                else
+                {
+                    typesOfItemsInInventory.Remove(itemSlotUI);
+                    gameMenuUI.infoPanel.SetActive(false);
+                }
+
             }
 
 
@@ -122,11 +136,22 @@ public class BagUI : MonoBehaviour
 
         if (dataSlotUI.slotData.GetType() == typeof(Consumable))
         {
-            Debug.Log("Using item");
-            //Run Consumable Effect
-            //Destroy Consumable
-            //Close Info panel
+            //FEED ITEM NAME INTO EFFECT HANDLER
+            playerEffectsHandler.UseItem(dataSlotUI.slotData.dataName);
+
+            //REMOVE ITEM FROM INVENTORY
+            for (int i = 0; i < playerInventory.itemInventory.Count; i++)
+            {
+                if(playerInventory.itemInventory[i].dataName == dataSlotUI.slotData.dataName)
+                {
+                    playerInventory.itemInventory.Remove(playerInventory.itemInventory[i]);
+                    
+                    OpenItemInventory();
+                    return;
+                }
+            }
         }
+
 
     }
 
