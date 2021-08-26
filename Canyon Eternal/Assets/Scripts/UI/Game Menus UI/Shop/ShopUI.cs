@@ -101,19 +101,31 @@ public class ShopUI : MonoBehaviour
     {
         Item selectedItem = (Item)dataSlotUI.slotData;
 
-        if(playerInventory.fragmentInventory >= selectedItem.itemValue)
-        {
-            playerInventory.itemInventory.Add(selectedItem);
-            playerInventory.AdjustFragmentInventory(-selectedItem.itemValue);
 
-            if(selectedItem.isRare)
+        if (playerInventory.fragmentInventory >= selectedItem.itemValue)
+        {
+            if (!selectedItem.isRare ||
+                selectedItem.isRare && !playerInventory.itemInventory.Contains(selectedItem))
             {
-                activeShopkeeperGO.GetComponent<ShopTrigger>().shopInventory.Remove(selectedItem);
-                activeShopkeeperInventory.Remove(selectedItem);
-                gameMenuUI.RefreshGrid(true);
-                RefreshShopInventory();
-                gameMenuUI.infoPanel.SetActive(false);
+                playerInventory.itemInventory.Add(selectedItem);
+                playerInventory.AdjustFragmentInventory(-selectedItem.itemValue);
+                if(selectedItem.isRare)
+                {
+                    gameMenuUI.RefreshGrid(true);
+                    RefreshShopInventory();
+                    gameMenuUI.infoPanel.SetActive(false);
+                }
+            }
+            else
+            {
+                Debug.Log("You already bought this");
             }
         }
+        else
+        {
+            Debug.Log("You cant afford this");
+
+        }
+
     }
 }

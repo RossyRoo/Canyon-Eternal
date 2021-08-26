@@ -8,6 +8,7 @@ public class GameMenuUI : MonoBehaviour
 {
     PlayerAnimatorHandler playerAnimatorHandler;
     PlayerManager playerManager;
+    PlayerInventory playerInventory;
     BagUI bagUI;
     CellphoneUI cellphoneUI;
     BookUI bookUI;
@@ -40,6 +41,7 @@ public class GameMenuUI : MonoBehaviour
     public GameObject callButton;
     public GameObject equipButton;
     public GameObject buyButton;
+    public GameObject purchasedBanner;
     public GameObject equipmentOverviewButton;
     public GameObject fastTravelButton;
     public GameObject useButton;
@@ -71,6 +73,7 @@ public class GameMenuUI : MonoBehaviour
         cellphoneUI = GetComponent<CellphoneUI>();
         gameMenusGO.SetActive(false);
         playerManager = FindObjectOfType<PlayerManager>();
+        playerInventory = FindObjectOfType<PlayerInventory>();
         playerAnimatorHandler = FindObjectOfType<PlayerAnimatorHandler>();
         shopUI = GetComponent<ShopUI>();
         fastTravelUI = GetComponent<FastTravelUI>();
@@ -281,7 +284,16 @@ public class GameMenuUI : MonoBehaviour
             else if (itemSlotUI.slotData.GetType() == typeof(Item)
                 || itemSlotUI.slotData.GetType() == typeof(Consumable))
             {
-                buyButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
+                Item itemForSale = (Item)itemSlotUI.slotData;
+                if(playerInventory.itemInventory.Contains(itemForSale) && itemForSale.isRare)
+                {
+                    purchasedBanner.SetActive(true);
+                }
+                else
+                {
+                    purchasedBanner.SetActive(false);
+                    buyButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
+                }
             }
             else if(itemSlotUI.slotData.GetType() == typeof(Room))
             {
