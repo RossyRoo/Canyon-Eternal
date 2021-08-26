@@ -41,10 +41,10 @@ public class GameMenuUI : MonoBehaviour
     public GameObject callButton;
     public GameObject equipButton;
     public GameObject buyButton;
-    public GameObject purchasedBanner;
     public GameObject equipmentOverviewButton;
     public GameObject fastTravelButton;
     public GameObject useButton;
+    public GameObject purchasedBanner;
 
     [Header("SPRITES")]
     public Sprite[] menuTypeSprite;
@@ -87,7 +87,7 @@ public class GameMenuUI : MonoBehaviour
         {
             gameMenuIsOpen = false;
             playerManager.isInteractingWithUI = false;
-            playerAnimatorHandler.animator.SetBool("isInteracting", false);
+            //playerAnimatorHandler.animator.SetBool("isInteracting", false);
 
             bagUI.CloseBag();
             cellphoneUI.CloseCellphone();
@@ -104,7 +104,7 @@ public class GameMenuUI : MonoBehaviour
                 return;
 
             playerManager.isInteractingWithUI = true;
-            playerAnimatorHandler.animator.SetBool("isInteracting", true);
+            //playerAnimatorHandler.animator.SetBool("isInteracting", true);
             gameMenusGO.SetActive(true);
             SFXPlayer.Instance.PlaySFXAudioClip(openGameMenusSFX);
 
@@ -116,6 +116,49 @@ public class GameMenuUI : MonoBehaviour
         }
     }
 
+    private void SwitchMenus()
+    {
+        interfacePanel.GetComponent<Image>().enabled = true;
+
+        if (currentMenuIndex == 0)
+        {
+            cellphoneUI.CloseCellphone();
+            bagUI.CloseBag();
+
+            if (currentSubmenuIndex == 2) //DOING THIS BECAUSE WE ARENT USING THE JOURNAL
+            {
+                currentSubmenuIndex = 0;
+            }
+
+            bookUI.OpenBook(currentSubmenuIndex);
+
+            menuTypeIcon.sprite = menuTypeSprite[0];
+            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[0];
+            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[0];
+        }
+        else if (currentMenuIndex == 1)
+        {
+            cellphoneUI.CloseCellphone();
+            bookUI.CloseBook();
+            bagUI.OpenBag(currentSubmenuIndex);
+
+            menuTypeIcon.sprite = menuTypeSprite[1];
+            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[1];
+            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[1];
+        }
+        else
+        {
+            bookUI.CloseBook();
+            bagUI.CloseBag();
+            cellphoneUI.OpenCellphone(currentSubmenuIndex);
+
+            menuTypeIcon.sprite = menuTypeSprite[2];
+            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[2];
+            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[2];
+        }
+
+        infoPanel.SetActive(false);
+    }
 
     #region Cycle Menus
 
@@ -221,94 +264,40 @@ public class GameMenuUI : MonoBehaviour
 
     #endregion
 
-    private void SwitchMenus()
+    #region Submenu Navigation
+
+    public void SelectDataSlot(DataSlotUI itemSlotUI)
     {
-        interfacePanel.GetComponent<Image>().enabled = true;
 
-        if (currentMenuIndex == 0)
+        if(itemSlotUI.slotData != null)
         {
-            cellphoneUI.CloseCellphone();
-            bagUI.CloseBag();
-
-            if(currentSubmenuIndex == 2) //DOING THIS BECAUSE WE ARENT USING THE JOURNAL
-            {
-                currentSubmenuIndex = 0;
-            }
-
-            bookUI.OpenBook(currentSubmenuIndex);
-
-            menuTypeIcon.sprite = menuTypeSprite[0];
-            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[0];
-            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[0];
-        }
-        else if (currentMenuIndex == 1)
-        {
-            cellphoneUI.CloseCellphone();
-            bookUI.CloseBook();
-            bagUI.OpenBag(currentSubmenuIndex);
-
-            menuTypeIcon.sprite = menuTypeSprite[1];
-            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[1];
-            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[1];
-        }
-        else
-        {
-            bookUI.CloseBook();
-            bagUI.CloseBag();
-            cellphoneUI.OpenCellphone(currentSubmenuIndex);
-
-            menuTypeIcon.sprite = menuTypeSprite[2];
-            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[2];
-            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[2];
-        }
-
-        infoPanel.SetActive(false);
-    }
-
-    public void SelectItem(DataSlotUI itemSlotUI)
-    {
-        DataObject itemToDisplay = itemSlotUI.slotData;
-
-        if(itemToDisplay != null)
-        {
-            infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataName;
-            infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataDescription;
-            infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.dataIcon;
-
+            //INFO PANEL
+            infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemSlotUI.slotData.dataName;
+            infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemSlotUI.slotData.dataDescription;
+            infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemSlotUI.slotData.dataIcon;
             infoPanel.SetActive(true);
+
+            //TURN OFF BUTTONS
+            callButton.SetActive(false);
+            buyButton.SetActive(false);
+            fastTravelButton.SetActive(false);
+            useButton.SetActive(false);
 
             if (itemSlotUI.slotData.GetType() == typeof(Contact))
             {
-                cellphoneUI.activeContact = (Contact)itemSlotUI.slotData;
+                SelectContact((Contact)itemSlotUI.slotData);
             }
-            else if (itemSlotUI.slotData.GetType() == typeof(Item)
-                || itemSlotUI.slotData.GetType() == typeof(Consumable))
+            else if (shopUI.shopIsOpen)
             {
-                Item itemForSale = (Item)itemSlotUI.slotData;
-                if(playerInventory.itemInventory.Contains(itemForSale) && itemForSale.isRare)
-                {
-                    purchasedBanner.SetActive(true);
-                }
-                else
-                {
-                    purchasedBanner.SetActive(false);
-                    buyButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
-                }
+                SelectShopItem((Item)itemSlotUI.slotData);
             }
             else if(itemSlotUI.slotData.GetType() == typeof(Room))
             {
-                fastTravelButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
+                SelectFastTravelRoom((Room)itemSlotUI.slotData);
             }
-
-            //Check if Item is Usable
-            if(itemSlotUI.slotData.GetType() == typeof(Consumable) && !shopUI.shopIsOpen)
+            else if(itemSlotUI.slotData.GetType() == typeof(Consumable) && !shopUI.shopIsOpen)
             {
-                useButton.SetActive(true);
-                useButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
-            }
-            else
-            {
-                useButton.SetActive(false);
+                SelectConsumableItem((Consumable)itemSlotUI.slotData);
             }
 
             SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);
@@ -318,6 +307,40 @@ public class GameMenuUI : MonoBehaviour
             SFXPlayer.Instance.PlaySFXAudioClip(errorUIButtonSFX);
         }
     }
+
+    private void SelectContact(Contact contactToCall)
+    {
+        callButton.SetActive(true);
+        cellphoneUI.activeContact = contactToCall;
+    }
+
+    private void SelectShopItem(Item itemToBuy)
+    {
+        if (playerInventory.itemInventory.Contains(itemToBuy) && itemToBuy.isRare)
+        {
+            buyButton.SetActive(false);
+            purchasedBanner.SetActive(true);
+        }
+        else
+        {
+            buyButton.SetActive(true);
+            purchasedBanner.SetActive(false);
+            buyButton.GetComponent<DataSlotUI>().slotData = itemToBuy;
+        }
+    }
+
+    private void SelectConsumableItem(Consumable consumableToUse)
+    {
+        useButton.SetActive(true);
+        useButton.GetComponent<DataSlotUI>().slotData = consumableToUse;
+    }
+
+    private void SelectFastTravelRoom(Room fastTravelRoomDestination)
+    {
+        fastTravelButton.SetActive(true);
+        fastTravelButton.GetComponent<DataSlotUI>().slotData = fastTravelRoomDestination;
+    }
+
 
     public void CycleInterfacePages()
     {
@@ -360,5 +383,7 @@ public class GameMenuUI : MonoBehaviour
             interfaceGrid.SetActive(true);
         }
     }
+
+    #endregion
 }
 

@@ -11,7 +11,6 @@ public class ShopUI : MonoBehaviour
     PlayerInventory playerInventory;
     PlayerManager playerManager;
     PlayerAnimatorHandler playerAnimatorHandler;
-    BookUI bookUI;
 
     GameObject activeShopkeeperGO;
     List<Item> activeShopkeeperInventory;
@@ -21,7 +20,6 @@ public class ShopUI : MonoBehaviour
     private void Awake()
     {
         gameMenuUI = GetComponent<GameMenuUI>();
-        bookUI = GetComponent<BookUI>();
     }
 
     public void OpenShop(string shopkeeperName, List<Item> thisShopkeeperInventory, GameObject thisShopkeeper)
@@ -31,6 +29,7 @@ public class ShopUI : MonoBehaviour
         playerManager = FindObjectOfType<PlayerManager>();
         playerAnimatorHandler = FindObjectOfType<PlayerAnimatorHandler>();
         activeShopkeeperGO = thisShopkeeper;
+        activeShopkeeperInventory = thisShopkeeperInventory;
         //Set UI elements
         gameMenuUI.menuNameText.text = shopkeeperName;
         gameMenuUI.submenuNameText.text = "Shop";
@@ -46,7 +45,6 @@ public class ShopUI : MonoBehaviour
         shopIsOpen = true;
         //Load Interface and Info panel
         gameMenuUI.RefreshGrid(true);
-        activeShopkeeperInventory = thisShopkeeperInventory;
         RefreshShopInventory();
 
         //FX
@@ -113,18 +111,19 @@ public class ShopUI : MonoBehaviour
                 {
                     gameMenuUI.RefreshGrid(true);
                     RefreshShopInventory();
-                    gameMenuUI.infoPanel.SetActive(false);
+                    gameMenuUI.buyButton.SetActive(false);
+                    gameMenuUI.purchasedBanner.SetActive(true);
+
                 }
             }
             else
             {
-                Debug.Log("You already bought this");
+                //ALREADY BOUGHT THIS ITEM, PLAY ERROR NOISE
             }
         }
         else
         {
-            Debug.Log("You cant afford this");
-
+            //CANT AFFORD THIS ITEM, PLAY ERROR NOISE
         }
 
     }

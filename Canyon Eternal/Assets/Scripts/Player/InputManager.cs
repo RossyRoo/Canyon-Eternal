@@ -114,6 +114,7 @@ public class InputManager : MonoBehaviour
         if(melee_Input)
         {
             if (playerManager.isInteracting
+                || playerManager.isInteractingWithUI
                 || playerStats.currentStamina < playerInventory.activeWeapon.staminaCost
                 || playerMeleeHandler.currentAttackCooldownTime > 0)
                 return;
@@ -155,7 +156,9 @@ public class InputManager : MonoBehaviour
     {
         if(dash_Input)
         {
-            if (playerManager.isInteracting || playerStats.currentStamina < 1 || playerManager.isFalling)
+            if (playerManager.isInteracting
+                || playerManager.isInteractingWithUI
+                || playerStats.currentStamina < 1 || playerManager.isFalling)
                 return;
 
             playerManager.isDashing = true;

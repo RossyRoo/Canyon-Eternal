@@ -1521,7 +1521,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7451306462615585372}
@@ -3986,7 +3986,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 6837343898325439714}
@@ -4821,7 +4821,7 @@ RectTransform:
   - {fileID: 3688207528233422873}
   - {fileID: 6891175979716748420}
   m_Father: {fileID: 1098841267985886875}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6547,7 +6547,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1857421856394962732}
@@ -12260,7 +12260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -76.9, y: -35.6}
+  m_AnchoredPosition: {x: -76.9, y: -28.1}
   m_SizeDelta: {x: 154, y: 43.96878}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2974627115116073933
@@ -12320,8 +12320,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16529,7 +16529,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 4056224274531317203}
@@ -17048,12 +17048,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8155504271093308801}
-  m_Father: {fileID: 6096907850626436012}
-  m_RootOrder: 1
+  m_Father: {fileID: 1098841267985886875}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.5, y: 0.3}
+  m_AnchoredPosition: {x: -57.93999, y: -103.47997}
   m_SizeDelta: {x: 167.13275, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6641271706341765697
@@ -20451,7 +20451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6096907850626436012
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20464,7 +20464,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8358447377884375022}
-  - {fileID: 7388596068429338836}
   m_Father: {fileID: 1087676042220264306}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21628,7 +21627,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7490632821514632272}
@@ -22892,7 +22891,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7583823508428120648}
@@ -23179,7 +23178,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 929191884049716994}
@@ -23631,7 +23630,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8183653661214510147}
@@ -23946,7 +23945,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1561428950585197018}
@@ -24914,7 +24913,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 950325648882186811}
@@ -25556,7 +25555,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7097827210028995356}
@@ -26584,6 +26583,7 @@ RectTransform:
   - {fileID: 5126945004459758460}
   - {fileID: 6775474830884168606}
   - {fileID: 8350459393474510517}
+  - {fileID: 7388596068429338836}
   - {fileID: 1087676042220264306}
   m_Father: {fileID: 581849335879053153}
   m_RootOrder: 1
@@ -26908,7 +26908,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8307322045208033333}
@@ -29517,7 +29517,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7139403482898687009}
@@ -30565,7 +30565,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 6865250548541656364}
@@ -32147,7 +32147,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 4979151856300307102}
@@ -34357,7 +34357,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1242496615245839736}
@@ -34514,7 +34514,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3699396131053504261}
@@ -36433,7 +36433,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2434833009226048347}
@@ -38400,7 +38400,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7454451805293413026}
@@ -40098,7 +40098,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3681157147553935659}
@@ -41706,7 +41706,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5453419994896742285}
@@ -49085,7 +49085,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1025054397480788072}
@@ -51118,7 +51118,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 264903870756555633}
@@ -51350,7 +51350,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7553813711178472567}
-        m_MethodName: SelectItem
+        m_MethodName: SelectDataSlot
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 7192709857004800649}

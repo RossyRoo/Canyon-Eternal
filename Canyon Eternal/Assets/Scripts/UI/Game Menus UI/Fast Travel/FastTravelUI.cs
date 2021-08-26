@@ -30,13 +30,13 @@ public class FastTravelUI : MonoBehaviour
         //Set UI elements
         gameMenuUI.menuNameText.text = "Select";
         gameMenuUI.submenuNameText.text = "Location";
-        bookUI.worldMapUIGO.SetActive(false);
+        gameMenuUI.mapUIGO.SetActive(false);
         gameMenuUI.interfacePanel.GetComponent<Image>().enabled = true;
         gameMenuUI.fastTravelButton.SetActive(true);
 
         //Put player in UI mode
         playerManager.isInteractingWithUI = true;
-        playerAnimatorHandler.animator.SetBool("isInteracting", true);
+        //playerAnimatorHandler.animator.SetBool("isInteracting", true);
         gameMenuUI.gameMenusGO.SetActive(true);
         fastTravelIsOpen = true;
 
