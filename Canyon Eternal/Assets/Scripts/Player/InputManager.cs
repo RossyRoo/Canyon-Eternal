@@ -114,7 +114,7 @@ public class InputManager : MonoBehaviour
         if(melee_Input)
         {
             if (playerManager.isInteracting
-                || playerStats.currentStamina < playerInventory.weaponsInventory[0].staminaCost
+                || playerStats.currentStamina < playerInventory.activeWeapon.staminaCost
                 || playerMeleeHandler.currentAttackCooldownTime > 0)
                 return;
 

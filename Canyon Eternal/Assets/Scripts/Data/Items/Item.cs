@@ -8,9 +8,5 @@ public class Item : DataObject
 {
     [Header("ITEM")]
     public int itemValue;
-
-    public static implicit operator Item(DataSlotUI v)
-    {
-        throw new NotImplementedException();
-    }
+ 
 }

@@ -4,8 +4,29 @@ using UnityEngine;
 
 public class PlayerEffectsHandler : MonoBehaviour
 {
-    public void UseItem(string itemName)
+    public void UseItem(Item item)
     {
-        Debug.Log("Using " + itemName);
+        if(item.dataName == "Potion")
+        {
+            Debug.Log("Using POTION");
+        }
+        else if (item.dataName == "Cure")
+        {
+            Debug.Log("Using CURE");
+        }
+        else if(item.dataName == "Tent")
+        {
+            Debug.Log("Using TENT");
+        }
+        else if (item.dataName == "Coffee")
+        {
+            Debug.Log("Using COFFEE");
+
+        }
+        else if(item.dataName == "Smoke Bomb")
+        {
+            Debug.Log("Using SMOKE BOMB");
+
+        }
     }
 }
