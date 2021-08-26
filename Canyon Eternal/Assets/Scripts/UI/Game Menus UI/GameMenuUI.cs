@@ -22,9 +22,10 @@ public class GameMenuUI : MonoBehaviour
     public GameObject gameMenusGO;
     public TextMeshProUGUI menuNameText;
     public TextMeshProUGUI submenuNameText;
+    public Image menuTypeIcon;
 
     [Header("INTERFACE")]
-    public GameObject interfaceBackground;
+    public GameObject interfacePanel;
     public GameObject interfaceGrid;
     public GameObject[] interfacePages;
     [HideInInspector]public int interfacePageIndex = 0;
@@ -42,6 +43,12 @@ public class GameMenuUI : MonoBehaviour
     public GameObject equipmentOverviewButton;
     public GameObject fastTravelButton;
     public GameObject useButton;
+
+    [Header("SPRITES")]
+    public Sprite[] menuTypeSprite;
+    public Sprite [] interfacePanelSprites;
+    public Sprite[] infoPanelSprites;
+
 
     [Header("SFX")]
     public AudioClip closeGameMenusSFX;
@@ -213,7 +220,7 @@ public class GameMenuUI : MonoBehaviour
 
     private void SwitchMenus()
     {
-        interfaceBackground.GetComponent<Image>().enabled = true;
+        interfacePanel.GetComponent<Image>().enabled = true;
 
         if (currentMenuIndex == 0)
         {
@@ -226,18 +233,30 @@ public class GameMenuUI : MonoBehaviour
             }
 
             bookUI.OpenBook(currentSubmenuIndex);
+
+            menuTypeIcon.sprite = menuTypeSprite[0];
+            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[0];
+            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[0];
         }
         else if (currentMenuIndex == 1)
         {
             cellphoneUI.CloseCellphone();
             bookUI.CloseBook();
             bagUI.OpenBag(currentSubmenuIndex);
+
+            menuTypeIcon.sprite = menuTypeSprite[1];
+            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[1];
+            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[1];
         }
         else
         {
             bookUI.CloseBook();
             bagUI.CloseBag();
             cellphoneUI.OpenCellphone(currentSubmenuIndex);
+
+            menuTypeIcon.sprite = menuTypeSprite[2];
+            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[2];
+            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[2];
         }
 
         infoPanel.SetActive(false);

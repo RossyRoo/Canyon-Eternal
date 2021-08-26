@@ -31,7 +31,7 @@ public class FastTravelUI : MonoBehaviour
         gameMenuUI.menuNameText.text = "Select";
         gameMenuUI.submenuNameText.text = "Location";
         bookUI.worldMapUIGO.SetActive(false);
-        gameMenuUI.interfaceBackground.GetComponent<Image>().enabled = true;
+        gameMenuUI.interfacePanel.GetComponent<Image>().enabled = true;
         gameMenuUI.fastTravelButton.SetActive(true);
 
         //Put player in UI mode

@@ -58,7 +58,7 @@ public class BookUI : MonoBehaviour
     public void OpenMap()
     {
         gameMenuUI.submenuNameText.text = "Map";
-        gameMenuUI.interfaceBackground.GetComponent<Image>().enabled = false;
+        gameMenuUI.interfacePanel.GetComponent<Image>().enabled = false;
         gameMenuUI.RefreshGrid(false);
         gameMenuUI.mapUIGO.SetActive(true);
 

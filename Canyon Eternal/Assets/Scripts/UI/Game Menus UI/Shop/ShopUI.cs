@@ -34,7 +34,7 @@ public class ShopUI : MonoBehaviour
         gameMenuUI.menuNameText.text = shopkeeperName;
         gameMenuUI.submenuNameText.text = "Shop";
         bookUI.worldMapUIGO.SetActive(false);
-        gameMenuUI.interfaceBackground.GetComponent<Image>().enabled = true;
+        gameMenuUI.interfacePanel.GetComponent<Image>().enabled = true;
         gameMenuUI.buyButton.SetActive(true);
         //Put player in UI mode
         playerManager.isInteractingWithUI = true;
