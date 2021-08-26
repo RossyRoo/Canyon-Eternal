@@ -6,7 +6,6 @@ public class ShopTrigger : MonoBehaviour
 {
     public string shopkeeperName;
     public List<Item> shopInventory;
-    public GameObject shopkeeperGoodbye;
 
     public void TriggerOpenShop()
     {

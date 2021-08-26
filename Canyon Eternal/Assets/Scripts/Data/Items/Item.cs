@@ -8,5 +8,7 @@ public class Item : DataObject
 {
     [Header("ITEM")]
     public int itemValue;
- 
+    public bool isRare;
+
+
 }

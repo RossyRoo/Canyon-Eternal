@@ -41,12 +41,12 @@ public class PlayerInventory : MonoBehaviour
 
         if(adjustment >= 0)
         {
-            Debug.Log("Starting add money coroutine");
+            Debug.Log("Increasing by: " + adjustment);
             StartCoroutine(fragmentCounterUI.IncreaseFragmentCountUI(adjustment));
         }
         else
         {
-            Debug.Log("Starting lose money coroutine");
+            Debug.Log("Decreasing fragments by: " + adjustment);
             StartCoroutine(fragmentCounterUI.DecreaseFragmentCountUI(adjustment));
         }
     }

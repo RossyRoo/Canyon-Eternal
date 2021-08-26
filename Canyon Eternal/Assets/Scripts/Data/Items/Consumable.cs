@@ -5,5 +5,4 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Item/Consumable")]
 public class Consumable : Item
 {
-    
 }

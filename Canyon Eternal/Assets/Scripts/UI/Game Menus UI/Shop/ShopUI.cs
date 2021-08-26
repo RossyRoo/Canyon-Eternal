@@ -14,6 +14,7 @@ public class ShopUI : MonoBehaviour
     BookUI bookUI;
 
     GameObject activeShopkeeperGO;
+    List<Item> activeShopkeeperInventory;
 
     public bool shopIsOpen;
 
@@ -23,7 +24,7 @@ public class ShopUI : MonoBehaviour
         bookUI = GetComponent<BookUI>();
     }
 
-    public void OpenShop(string shopkeeperName, List<Item> shopInventory, GameObject thisShopkeeper)
+    public void OpenShop(string shopkeeperName, List<Item> thisShopkeeperInventory, GameObject thisShopkeeper)
     {
         //Find references
         playerInventory = FindObjectOfType<PlayerInventory>();
@@ -33,9 +34,11 @@ public class ShopUI : MonoBehaviour
         //Set UI elements
         gameMenuUI.menuNameText.text = shopkeeperName;
         gameMenuUI.submenuNameText.text = "Shop";
-        bookUI.worldMapUIGO.SetActive(false);
+        gameMenuUI.mapUIGO.SetActive(false);
         gameMenuUI.interfacePanel.GetComponent<Image>().enabled = true;
         gameMenuUI.buyButton.SetActive(true);
+        gameMenuUI.infoPanel.GetComponent<Image>().sprite = gameMenuUI.infoPanelSprites[1];
+        gameMenuUI.interfacePanel.GetComponent<Image>().sprite = gameMenuUI.interfacePanelSprites[1];
         //Put player in UI mode
         playerManager.isInteractingWithUI = true;
         playerAnimatorHandler.animator.SetBool("isInteracting", true);
@@ -43,7 +46,15 @@ public class ShopUI : MonoBehaviour
         shopIsOpen = true;
         //Load Interface and Info panel
         gameMenuUI.RefreshGrid(true);
+        activeShopkeeperInventory = thisShopkeeperInventory;
+        RefreshShopInventory();
 
+        //FX
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.openGameMenusSFX);
+    }
+
+    private void RefreshShopInventory()
+    {
         for (int i = 0; i < gameMenuUI.interfacePages.Length; i++)
         {
             if (i == 0)
@@ -62,18 +73,15 @@ public class ShopUI : MonoBehaviour
             Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
             DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
-            if (i < shopInventory.Count)
+            if (i < activeShopkeeperInventory.Count)
             {
-                itemSlotUI.slotData = shopInventory[i];
+                itemSlotUI.slotData = activeShopkeeperInventory[i];
 
-                myItemIcon.sprite = shopInventory[i].dataIcon;
+                myItemIcon.sprite = activeShopkeeperInventory[i].dataIcon;
                 myItemIcon.gameObject.SetActive(true);
             }
         }
-        //FX
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.openGameMenusSFX);
     }
-
     
     public void CloseShop()
     {
@@ -82,9 +90,6 @@ public class ShopUI : MonoBehaviour
             shopIsOpen = false;
 
             gameMenuUI.buyButton.SetActive(false);
-
-            //ObjectPool objectPool = FindObjectOfType<ObjectPool>();
-            //Instantiate(activeShopkeeperGO.GetComponent<ShopTrigger>().shopkeeperGoodbye, objectPool.transform.position, Quaternion.identity);
 
             activeShopkeeperGO.GetComponent<Usable>().enabled = true;
         }
@@ -98,7 +103,17 @@ public class ShopUI : MonoBehaviour
 
         if(playerInventory.fragmentInventory >= selectedItem.itemValue)
         {
+            playerInventory.itemInventory.Add(selectedItem);
             playerInventory.AdjustFragmentInventory(-selectedItem.itemValue);
+
+            if(selectedItem.isRare)
+            {
+                activeShopkeeperGO.GetComponent<ShopTrigger>().shopInventory.Remove(selectedItem);
+                activeShopkeeperInventory.Remove(selectedItem);
+                gameMenuUI.RefreshGrid(true);
+                RefreshShopInventory();
+                gameMenuUI.infoPanel.SetActive(false);
+            }
         }
     }
 }

@@ -278,7 +278,8 @@ public class GameMenuUI : MonoBehaviour
             {
                 cellphoneUI.activeContact = (Contact)itemSlotUI.slotData;
             }
-            else if (itemSlotUI.slotData.GetType() == typeof(Item))
+            else if (itemSlotUI.slotData.GetType() == typeof(Item)
+                || itemSlotUI.slotData.GetType() == typeof(Consumable))
             {
                 buyButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
             }
@@ -288,7 +289,7 @@ public class GameMenuUI : MonoBehaviour
             }
 
             //Check if Item is Usable
-            if(itemSlotUI.slotData.GetType() == typeof(Consumable))
+            if(itemSlotUI.slotData.GetType() == typeof(Consumable) && !shopUI.shopIsOpen)
             {
                 useButton.SetActive(true);
                 useButton.GetComponent<DataSlotUI>().slotData = itemSlotUI.slotData;
