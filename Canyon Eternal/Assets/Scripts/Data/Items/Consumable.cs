@@ -5,4 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Item/Consumable")]
 public class Consumable : Item
 {
+    public int healAmount;
 }

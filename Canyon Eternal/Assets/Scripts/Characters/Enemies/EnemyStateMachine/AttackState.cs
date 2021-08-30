@@ -17,8 +17,15 @@ public class AttackState : EnemyStateMachine
 
         if (currentAttack != null)
         {
-            PerformAttack(enemyManager, enemyStats, enemyAnimatorHandler);
-            return pursueState;
+            if(!currentAttack.isRanged)
+            {
+                PerformMeleeAttack(enemyManager, enemyStats, enemyAnimatorHandler);
+            }
+            else
+            {
+                PerformRangedAttack(enemyManager, enemyStats, enemyAnimatorHandler);
+            }
+            //return pursueState;
         }
 
         return pursueState;
@@ -64,9 +71,9 @@ public class AttackState : EnemyStateMachine
 
     }
 
-    private void PerformAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
+    private void PerformMeleeAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        if(currentAttack != null)
+        //if(currentAttack != null)
         {
             Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
 
@@ -88,4 +95,24 @@ public class AttackState : EnemyStateMachine
 
     }
 
+
+    private void PerformRangedAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
+    {
+        Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+
+        enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
+        enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
+
+        StartCoroutine(enemyStats.HandleBlockVulnerability(currentAttack));
+        //Instantiate and fire projectile
+
+        if (currentAttack.chargeForce != 999f)
+        {
+            Vector2 force = (targetDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
+            enemyManager.rb.AddForce(force);
+        }
+
+        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+        currentAttack = null;
+    }
 } 

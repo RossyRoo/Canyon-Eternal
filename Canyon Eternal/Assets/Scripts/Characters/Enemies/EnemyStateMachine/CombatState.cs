@@ -10,6 +10,7 @@ public class CombatState : EnemyStateMachine
     public DeathState deathState;
     public StunnedState stunnedState;
     public EvadeState evadeState;
+    public ItemState itemState;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
@@ -25,6 +26,15 @@ public class CombatState : EnemyStateMachine
         if (enemyManager.isStunned)
         {
             return stunnedState;
+        }
+
+        //ADD RANDOM CHANCE TO THIS
+        if(itemState != null
+            && itemState.consumableStock.Count > 0
+            && enemyStats.currentHealth <= (enemyStats.characterData.startingMaxHealth / 3))
+        {
+            Debug.Log("Using Item");
+            return itemState;
         }
 
         if (enemyManager.currentRecoveryTime <= 0

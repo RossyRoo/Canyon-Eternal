@@ -12,6 +12,8 @@ public class PursueState : EnemyStateMachine
     public EvadeState evadeState;
     public DeathState deathState;
     public StunnedState stunnedState;
+    public ItemState itemState;
+    public SummonState summonState;
 
     [Header("Pathfinding Data")]
     public float nextWaypointDistance = 3f;
@@ -33,15 +35,36 @@ public class PursueState : EnemyStateMachine
 
         #region Handle State Switching
 
+        //MIGHT DIE
+        if (enemyManager.isDead)
+        {
+            return deathState;
+        }
+
+        //MIGHT BECOME STUNNED
+        if (enemyManager.isStunned)
+        {
+            return stunnedState;
+        }
+
+        //MIGHT DISENGAGE
+        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)
+        {
+            enemyManager.DisengagePlayer();
+            enemyManager.currentTarget = null;
+            return scoutState;
+        }
+
+        //MIGHT EVADE
         if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade && !enemyManager.currentTarget.GetComponent<PlayerManager>().isDashing)
         {
             if (Random.value < 0.05f) //percent chance they will evade
             {
                 return evadeState;
             }
-
         }
 
+        //MIGHT ATTACK
         if (enemyManager.currentRecoveryTime <= 0
             && enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange
             && enemyStats.characterData.canAttack
@@ -50,22 +73,27 @@ public class PursueState : EnemyStateMachine
             return attackState;
         }
 
-        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)
+        //MIGHT USE ITEM
+        if (itemState.consumableStock.Count > 0
+            && enemyStats.currentHealth <= (enemyStats.characterData.startingMaxHealth / 3))
         {
-            enemyManager.DisengagePlayer();
-            enemyManager.currentTarget = null;
-            return scoutState;
+            if (Random.value < 0.05f) //percent chance they will evade
+            {
+                Debug.Log("Using Item");
+                return itemState;
+            }
         }
 
-        if (enemyManager.isDead)
+        //MIGHT SUMMON
+        if(summonState.summons.Length > 0)
         {
-            return deathState;
+            if (Random.value < 0.05f) //percent chance they will summon
+            {
+                Debug.Log("Doing Summon");
+                return summonState;
+            }
         }
 
-        if (enemyManager.isStunned)
-        {
-            return stunnedState;
-        }
 
         return this;
 
