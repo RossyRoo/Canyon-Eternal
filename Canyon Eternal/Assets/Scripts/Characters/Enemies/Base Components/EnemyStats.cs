@@ -7,9 +7,10 @@ public class EnemyStats : CharacterStats
     EnemyManager enemyManager;
     EnemyAnimatorHandler enemyAnimatorHandler;
     EnemyHealthBarUI enemyHealthBarUI;
-    public CharacterBarkUI characterBarkUI;
 
+    [HideInInspector] public CharacterBarkUI characterBarkUI;
     [HideInInspector] public DamageCollider[] enemyWeapons;
+
 
     private void Awake()
     {

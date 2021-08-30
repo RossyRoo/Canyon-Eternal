@@ -39,6 +39,7 @@ public class EnemyManager : CharacterManager
     private void Start()
     {
         GenerateTrackingWall();
+        SetUpEnemyInventory();
 
         if(currentState == null)
         {
@@ -61,6 +62,15 @@ public class EnemyManager : CharacterManager
     }
 
     #region State Machine
+
+    private void SetUpEnemyInventory()
+    {
+        for (int i = 0; i < enemyStats.characterData.consumableItems.Count; i++)
+        {
+            Debug.Log("Adding to my consumables");
+            GetComponentInChildren<ItemState>().myConsumables.Add(enemyStats.characterData.consumableItems[i]);
+        }
+    }
 
     private void HandleStateMachine()
     {

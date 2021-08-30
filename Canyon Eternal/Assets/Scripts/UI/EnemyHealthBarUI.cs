@@ -73,7 +73,7 @@ public class EnemyHealthBarUI : MonoBehaviour
         }
     }
 
-    private void DisplayHealthBar()
+    public void DisplayHealthBar()
     {
         if (timeUntilHealthBarIsHidden <= 0)
         {

@@ -7,6 +7,6 @@ public class CharacterStats : MonoBehaviour
     [Header("CHARACTER DATA CARD")]
     public CharacterData characterData;
 
-    public float currentHealth;
+    [HideInInspector]public float currentHealth;
 
 }

@@ -500,6 +500,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da5197e07562e42f18fb2837d957768a, type: 2}
   - {fileID: 11400000, guid: ac07209eb0797468588c2291b21df833, type: 2}
   - {fileID: 11400000, guid: 572a1dd88ef504e67b4e35503d5bd787, type: 2}
+  - {fileID: 11400000, guid: 51b1a9f7391fb4784939f26a1291384f, type: 2}
   currentBuildIndex: 0
   currentCheckpoint: 0
   sceneChangeTriggered: 0
@@ -850,10 +851,15 @@ PrefabInstance:
         type: 3}
       propertyPath: activeCM
       value: 
-      objectReference: {fileID: 8241642506693674305}
+      objectReference: {fileID: 7630036917094497178}
     - target: {fileID: 4757138668946452798, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
         type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703012110348060997, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
+        type: 3}
+      propertyPath: m_AmplitudeGain
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8467465798682274485, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
@@ -923,9 +929,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c4b7274015e445cd884b1ae5e1f3d2e, type: 3}
---- !u!114 &8241642506693674305 stripped
+--- !u!114 &7630036917094497178 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7400969421758269441, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
+  m_CorrespondingSourceObject: {fileID: 9022647862250059482, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
     type: 3}
   m_PrefabInstance: {fileID: 1501304288105893184}
   m_PrefabAsset: {fileID: 0}

@@ -30,7 +30,7 @@ public class CombatState : EnemyStateMachine
 
         //ADD RANDOM CHANCE TO THIS
         if(itemState != null
-            && itemState.consumableStock.Count > 0
+            && enemyStats.characterData.consumableItems.Count > 0
             && enemyStats.currentHealth <= (enemyStats.characterData.startingMaxHealth / 3))
         {
             Debug.Log("Using Item");

@@ -37,14 +37,19 @@ public class CharacterData : DataObject
     public EnemyAttackAction[] enemyAttacks; //Attacks enemy can use
 
     [Header("DROPS")]
+    public List <Consumable> randomLootDrops;
+    public List<Consumable> consumableItems;
     public int fragmentDrop;
 
     [Header("SFX")]
 
     public AudioClip[] footstepSFX;
     public AudioClip hardCollisionSFX;
-
     public AudioClip[] consumeHealItemSFX;
     public AudioClip deathRattleSFX;
+
+    [Header("Summons")]
+    public List<GameObject> summons;
+
 
 }

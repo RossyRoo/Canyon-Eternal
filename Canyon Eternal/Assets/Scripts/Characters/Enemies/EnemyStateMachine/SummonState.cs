@@ -6,7 +6,6 @@ public class SummonState : EnemyStateMachine
 {
     public PursueState pursueState;
 
-    public GameObject[] summons;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {

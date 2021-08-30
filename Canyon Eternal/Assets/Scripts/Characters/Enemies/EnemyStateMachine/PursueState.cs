@@ -74,7 +74,8 @@ public class PursueState : EnemyStateMachine
         }
 
         //MIGHT USE ITEM
-        if (itemState.consumableStock.Count > 0
+        if (enemyStats.characterData.consumableItems.Count > 0
+            && !itemState.allConsumablesUsed
             && enemyStats.currentHealth <= (enemyStats.characterData.startingMaxHealth / 3))
         {
             if (Random.value < 0.05f) //percent chance they will evade
@@ -85,9 +86,9 @@ public class PursueState : EnemyStateMachine
         }
 
         //MIGHT SUMMON
-        if(summonState.summons.Length > 0)
+        if(enemyStats.characterData.summons.Count > 0)
         {
-            if (Random.value < 0.05f) //percent chance they will summon
+            if (Random.value < 0.001f) //percent chance they will summon
             {
                 Debug.Log("Doing Summon");
                 return summonState;

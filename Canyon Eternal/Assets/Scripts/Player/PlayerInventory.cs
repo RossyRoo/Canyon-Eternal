@@ -41,12 +41,10 @@ public class PlayerInventory : MonoBehaviour
 
         if(adjustment >= 0)
         {
-            Debug.Log("Increasing by: " + adjustment);
             StartCoroutine(fragmentCounterUI.IncreaseFragmentCountUI(adjustment));
         }
         else
         {
-            Debug.Log("Decreasing fragments by: " + adjustment);
             StartCoroutine(fragmentCounterUI.DecreaseFragmentCountUI(adjustment));
         }
     }

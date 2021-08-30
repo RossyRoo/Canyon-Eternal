@@ -6,4 +6,5 @@ using UnityEngine;
 public class Consumable : Item
 {
     public int healAmount;
+    public GameObject useVFX;
 }

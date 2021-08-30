@@ -34,14 +34,18 @@ MonoBehaviour:
   attackRange: 12
   evadeRange: 5
   moveSpeed: 4053
-  startingMaxHealth: 1000
+  startingMaxHealth: 300
   currentMaxHealth: 0
   healAmount: 1
   invulnerabilityFrames: 0.4
   enemyAttacks:
   - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
+  randomLootDrops: []
+  consumableItems:
+  - {fileID: 11400000, guid: 7f4fa119ce8cf4ae0b0b7d61e97b632c, type: 2}
   fragmentDrop: 10
   footstepSFX: []
   hardCollisionSFX: {fileID: 0}
   consumeHealItemSFX: []
   deathRattleSFX: {fileID: 8300000, guid: 27c01c9102f2eb942871784cef13628f, type: 3}
+  summons: []
