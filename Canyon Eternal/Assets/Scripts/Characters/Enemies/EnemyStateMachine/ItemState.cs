@@ -27,6 +27,8 @@ public class ItemState : EnemyStateMachine
 
     private void UseHealItem(EnemyStats enemyStats)
     {
+        float amountHealed = enemyStats.currentHealth;
+
         enemyStats.currentHealth += (myConsumables[0].healAmount * 100f);
 
         if(enemyStats.currentHealth > enemyStats.characterData.startingMaxHealth)
@@ -34,7 +36,9 @@ public class ItemState : EnemyStateMachine
             enemyStats.currentHealth = enemyStats.characterData.startingMaxHealth;
         }
 
-        enemyStats.GetComponentInChildren<EnemyHealthBarUI>().DisplayHealthBar();
+        amountHealed = enemyStats.currentHealth - amountHealed;
+
+        StartCoroutine(enemyStats.GetComponentInChildren<EnemyHealthBarUI>().SetHealthCoroutine(false, enemyStats.currentHealth, false, amountHealed));
 
         if(myConsumables[0].useVFX != null)
         {
@@ -44,7 +48,6 @@ public class ItemState : EnemyStateMachine
         }
 
         myConsumables.Remove(myConsumables[0]);
-        //Run use item animation and wait for it to complete
 
     }
 }

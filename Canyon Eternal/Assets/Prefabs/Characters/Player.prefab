@@ -5949,6 +5949,7 @@ MonoBehaviour:
   staminaRecoveryBuffer: 0.25
   maxLunchBoxCapacity: 5
   currentLunchBoxCapacity: 0
+  consumeHealItemSFX: {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
 --- !u!114 &8652666736338822579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5961,6 +5962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d6c28e839904ac894fb5eb40ff67e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepSFX:
+  - {fileID: 8300000, guid: 7e05e7e9554edff4ebf0eeee083cc3de, type: 3}
   fallingSFX: {fileID: 8300000, guid: ad95219b6c14c234a8d09bb82bfc96fa, type: 3}
   hardCollisionSFX: {fileID: 8300000, guid: ed451b18ef0dc8d4692175cbd845831c, type: 3}
   dashSFX: {fileID: 8300000, guid: 5062dea39f7daa94b8184b6e984e14bd, type: 3}

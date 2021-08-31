@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerParticleHandler : MonoBehaviour
 {
     PlayerManager playerManager;
+    PlayerStats playerStats;
 
     ObjectPool objectPool;
 
@@ -30,6 +31,7 @@ public class PlayerParticleHandler : MonoBehaviour
     private void Awake()
     {
         playerManager = GetComponentInParent<PlayerManager>();
+        playerStats = GetComponentInParent<PlayerStats>();
         objectPool = FindObjectOfType<ObjectPool>();
     }
 
@@ -54,9 +56,7 @@ public class PlayerParticleHandler : MonoBehaviour
 
     public void SpawnHealVFX()
     {
-        PlayerStats playerStats = GetComponentInParent<PlayerStats>();
-
-        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.consumeHealItemSFX[playerStats.currentLunchBoxCapacity - 1]);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerStats.consumeHealItemSFX);
 
         GameObject healVFXGO = Instantiate(healVFX, mainTarget.position, Quaternion.identity);
         healVFXGO.GetComponent<ParticleSystemRenderer>().material = healMats[playerStats.currentLunchBoxCapacity - 1];

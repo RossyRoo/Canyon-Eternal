@@ -338,7 +338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pursueState: {fileID: 7663633016329567714}
-  summons: []
 --- !u!1 &5387827857472947618
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pursueState: {fileID: 7663633016329567714}
-  consumableStock: []
+  myConsumables: []
+  allConsumablesUsed: 0
 --- !u!1 &5758626950902334513
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pursueState: {fileID: 7663633016329567714}
+  deathState: {fileID: 7663633015214005397}
+  stunnedState: {fileID: 6577152630831515639}
 --- !u!1 &7663633015135824942
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class PlayerLocomotion : MonoBehaviour
     PlayerManager playerManager;
     PlayerParticleHandler playerParticleHandler;
 
+    public AudioClip[] footstepSFX;
     public AudioClip fallingSFX;
     public AudioClip hardCollisionSFX;
 
@@ -20,6 +21,7 @@ public class PlayerLocomotion : MonoBehaviour
     public float startDashTime;
     public Transform dashFXTransform;
     private bool dashFXTriggered;
+
 
     private void Awake()
     {
@@ -126,7 +128,7 @@ public class PlayerLocomotion : MonoBehaviour
             if (playerManager.isDashing)
             {
                 dashTime = 0;
-                SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.hardCollisionSFX, 0.4f);
+                SFXPlayer.Instance.PlaySFXAudioClip(hardCollisionSFX, 0.4f);
                 CinemachineManager.Instance.Shake(12, 0.35f);
             }
         }

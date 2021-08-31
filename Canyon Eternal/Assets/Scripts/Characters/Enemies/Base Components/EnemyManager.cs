@@ -67,7 +67,6 @@ public class EnemyManager : CharacterManager
     {
         for (int i = 0; i < enemyStats.characterData.consumableItems.Count; i++)
         {
-            Debug.Log("Adding to my consumables");
             GetComponentInChildren<ItemState>().myConsumables.Add(enemyStats.characterData.consumableItems[i]);
         }
     }

@@ -44,7 +44,7 @@ public class EnemyStats : CharacterStats
 
         currentHealth -= damageHealth;
 
-        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(currentHealth, isCriticalHit, damageHealth));
+        StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(true, currentHealth, isCriticalHit, damageHealth));
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
 

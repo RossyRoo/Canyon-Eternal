@@ -78,9 +78,8 @@ public class PursueState : EnemyStateMachine
             && !itemState.allConsumablesUsed
             && enemyStats.currentHealth <= (enemyStats.characterData.startingMaxHealth / 3))
         {
-            if (Random.value < 0.05f) //percent chance they will evade
+            if (Random.value < 0.001f) //percent chance they will evade
             {
-                Debug.Log("Using Item");
                 return itemState;
             }
         }

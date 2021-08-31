@@ -29,7 +29,11 @@ public class PlayerStats : CharacterStats
     [Header("Lunchbox")]
     public int maxLunchBoxCapacity = 5;
     public int currentLunchBoxCapacity;
-    
+
+    [Header("SFX")]
+    public AudioClip consumeHealItemSFX;
+
+
 
     private void Awake()
     {

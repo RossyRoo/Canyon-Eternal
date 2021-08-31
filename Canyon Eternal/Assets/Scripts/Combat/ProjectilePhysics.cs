@@ -12,11 +12,11 @@ public class ProjectilePhysics : MonoBehaviour
     public Spell spellProjectileData;
 
     //MY PARAMETERS
-    float myLaunchForce;
+    float myLaunchForce = 0;
     float myExplosionRadius;
     GameObject myCollisionVFX;
     AudioClip myCollisionSFX;
-    bool isEnemyProjectile;
+    public bool isEnemyProjectile;
 
     bool isFired;
     Vector2 direction;
@@ -63,6 +63,7 @@ public class ProjectilePhysics : MonoBehaviour
 
     private void FlyStraight()
     {
+        Debug.Log(myLaunchForce);
         damageCollider.EnableDamageCollider();
         rb.velocity = direction * myLaunchForce;
         Destroy(gameObject, 10f);

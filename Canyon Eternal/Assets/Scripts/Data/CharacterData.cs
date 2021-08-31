@@ -9,20 +9,6 @@ public class CharacterData : DataObject
     [Header("Basic Info")]
     public Contact characterContact;
     public int characterID;
-    public bool isSingleEncounter;
-
-    [Header("Sprites")]
-    public Sprite[] torsoSprites;
-
-    [Header("BEHAVIORS")]
-    public bool canPursue;
-    public bool canAttack;
-    public bool canEvade;
-
-    [Header("AI Detection")]
-    public float detectionRadius = 15f;      //Distance at which enemy can spot the player
-    [HideInInspector] public float attackRange = 0f;          //Distance enemy needs to enter attack state
-    [HideInInspector] public float evadeRange = 5f;           //Distance enemy will back off target
 
     [Header("MOVEMENT")]
     [Range(0, 8000)] public float moveSpeed = 5000f;
@@ -33,6 +19,22 @@ public class CharacterData : DataObject
     public int healAmount;
     public float invulnerabilityFrames = 0.4f;
 
+    [Header("Sprites")]
+    public Sprite[] torsoSprites;
+
+    [Header("ENEMY STATS")]
+    public bool isSingleEncounter;
+
+    [Header("Behaviors")]
+    public bool canPursue;
+    public bool canAttack;
+    public bool canEvade;
+
+    [Header("AI Detection")]
+    public float detectionRadius = 15f;      //Distance at which enemy can spot the player
+    [HideInInspector] public float attackRange = 0f;          //Distance enemy needs to enter attack state
+    [HideInInspector] public float evadeRange = 5f;           //Distance enemy will back off target
+
     [Header("Weapons And Attacks")]
     public EnemyAttackAction[] enemyAttacks; //Attacks enemy can use
 
@@ -42,10 +44,7 @@ public class CharacterData : DataObject
     public int fragmentDrop;
 
     [Header("SFX")]
-
-    public AudioClip[] footstepSFX;
-    public AudioClip hardCollisionSFX;
-    public AudioClip[] consumeHealItemSFX;
+    
     public AudioClip deathRattleSFX;
 
     [Header("Summons")]

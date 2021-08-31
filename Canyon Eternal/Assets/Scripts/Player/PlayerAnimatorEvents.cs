@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerAnimatorEvents : CharacterAnimatorEvents
 {
-    PlayerStats playerStats;
-
+    PlayerLocomotion playerLocomotion;
     PlayerParticleHandler playerParticleHandler;
 
     ObjectPool objectPool;
 
     private void Awake()
     {
-        playerStats = GetComponentInParent<PlayerStats>();
+        playerLocomotion = GetComponentInParent<PlayerLocomotion>();
         playerParticleHandler = GetComponent<PlayerParticleHandler>();
 
         objectPool = FindObjectOfType<ObjectPool>();
@@ -35,8 +34,8 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
 
         if (instantiatedFootstepsCount <= 2)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(playerStats.characterData.footstepSFX
-                [Random.Range(0, playerStats.characterData.footstepSFX.Length)], 0.1f);
+            SFXPlayer.Instance.PlaySFXAudioClip(playerLocomotion.footstepSFX
+                [Random.Range(0, playerLocomotion.footstepSFX.Length)], 0.1f);
 
             playerParticleHandler.SpawnLittleDustCloudVFX();
         }

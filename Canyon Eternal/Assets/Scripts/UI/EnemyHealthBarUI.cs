@@ -14,7 +14,7 @@ public class EnemyHealthBarUI : MonoBehaviour
     bool healthIsDecreasing = false;
 
     float timeUntilHealthBarDrains = 0.4f;
-    float healthDecreaseRate = 20;
+    float healthDecreaseRate = 100;
     float timeUntilHealthBarIsHidden = 0f;
     float timeUntilDamageTextIsHidden = 0f;
 
@@ -98,21 +98,31 @@ public class EnemyHealthBarUI : MonoBehaviour
         }
     }
 
-    public IEnumerator SetHealthCoroutine(float health, bool isCriticalHit, float damage)
+    public IEnumerator SetHealthCoroutine(bool isLosingHealth, float health, bool isCriticalHit, float damage)
     {
-        damageText.text = damage.ToString();
         timeUntilHealthBarIsHidden = 3f;
         timeUntilDamageTextIsHidden = 0.8f;
 
+        //DAMAGE TEXT
+        damageText.text = damage.ToString();
         damageText.gameObject.SetActive(true);
-        if (!isCriticalHit)
+
+        if (isLosingHealth)
         {
-            damageTextAnimator.Play("DamageTextShake");
+            if (!isCriticalHit)
+            {
+                damageTextAnimator.Play("DamageTextShake");
+            }
+            else
+            {
+                damageTextAnimator.Play("CriticalTextShake");
+            }
         }
         else
         {
-            damageTextAnimator.Play("CriticalTextShake");
+            damageTextAnimator.Play("HealTextShake");
         }
+
 
         damageSlider.value = currentHealth;
         currentHealth = health;
