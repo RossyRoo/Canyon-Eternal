@@ -18,7 +18,7 @@ public class ProjectilePhysics : MonoBehaviour
     AudioClip myCollisionSFX;
     public bool isEnemyProjectile;
 
-    bool isFired;
+    public bool isFired;
     Vector2 direction;
 
 
@@ -90,6 +90,7 @@ public class ProjectilePhysics : MonoBehaviour
 
                 SpawnCollisionVFX();
                 SFXPlayer.Instance.PlaySFXAudioClip(myCollisionSFX);
+                Debug.Log("DESTROY THIS");
 
                 Destroy(gameObject);
             }

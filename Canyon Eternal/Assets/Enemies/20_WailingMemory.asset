@@ -18,7 +18,11 @@ MonoBehaviour:
     type: 3}
   characterContact: {fileID: 0}
   characterID: 20
-  isSingleEncounter: 0
+  moveSpeed: 5000
+  startingMaxHealth: 1000
+  currentMaxHealth: 0
+  healAmount: 1
+  invulnerabilityFrames: 0.4
   torsoSprites:
   - {fileID: 21300000, guid: 097305ebafce443d1b192a0d4d93aa65, type: 3}
   - {fileID: 21300000, guid: 097305ebafce443d1b192a0d4d93aa65, type: 3}
@@ -28,21 +32,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bd0730c378a904ccda47bf5eac1d5e5b, type: 3}
   - {fileID: 21300000, guid: ae449958f74fd444aa8eaf2d080aa51a, type: 3}
   - {fileID: 21300000, guid: 097305ebafce443d1b192a0d4d93aa65, type: 3}
+  isSingleEncounter: 0
   canPursue: 1
   canAttack: 1
   canEvade: 0
   detectionRadius: 30
   attackRange: 10
   evadeRange: 5
-  moveSpeed: 5000
-  startingMaxHealth: 1000
-  currentMaxHealth: 0
-  healAmount: 1
-  invulnerabilityFrames: 0.4
   enemyAttacks:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 47a0bf721e2fd4f4e8be6ea256b06739, type: 2}
+  randomLootDrops: []
+  consumableItems: []
   fragmentDrop: 10
-  footstepSFX: []
-  hardCollisionSFX: {fileID: 0}
-  consumeHealItemSFX: []
   deathRattleSFX: {fileID: 8300000, guid: 27c01c9102f2eb942871784cef13628f, type: 3}
+  summons: []

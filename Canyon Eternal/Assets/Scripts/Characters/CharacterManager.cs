@@ -5,8 +5,7 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public TrackingWall myWallPrefab;
-
-    //[HideInInspector]
+    [HideInInspector]
     public TrackingWall myWall;
 
     [HideInInspector]
@@ -22,7 +21,6 @@ public class CharacterManager : MonoBehaviour
     public bool isFalling;
     public bool isConversing;
     public bool isInCombat;
-
 
     [Header("Combat")]
     public bool isAttacking;
