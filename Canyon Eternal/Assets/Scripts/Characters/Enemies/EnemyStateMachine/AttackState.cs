@@ -8,7 +8,7 @@ public class AttackState : EnemyStateMachine
     public DeathState deathState;
     public StunnedState stunnedState;
 
-    EnemyAttackAction currentAttack;
+    public EnemyAttackAction currentAttack;
 
     [Tooltip("Use this until you add acceleration and deceleration to attacks")]
     private float chargeForceMultiplier = 5000f;
@@ -41,6 +41,12 @@ public class AttackState : EnemyStateMachine
         if (currentAttack == null && !attackActivated)
         {
             GetNewAttack(enemyManager, enemyStats);
+        }
+
+        if(currentAttack == null)
+        {
+            BreakAttack(enemyManager);
+            return pursueState;
         }
 
         if (currentAttack != null && !attackActivated)
@@ -94,6 +100,7 @@ public class AttackState : EnemyStateMachine
     private IEnumerator PerformAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
         attackActivated = true;
+
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
 
         yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Charge up the attack (reload if you have a preparation animation
@@ -101,8 +108,7 @@ public class AttackState : EnemyStateMachine
         enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
         enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
 
-        StartCoroutine(enemyStats.HandleBlockVulnerability(currentAttack));
-
+        StartCoroutine(enemyStats.HandleBlockVulnerability(currentAttack)); //Enemy is vulnerable to block for 1/2 their attacks recovery time
 
         if (!currentAttack.isRanged)
         {
@@ -145,5 +151,17 @@ public class AttackState : EnemyStateMachine
         }
     }
 
+    public void BreakAttack(EnemyManager enemyManager)
+    {
+        if(attackActivated && !attackComplete)
+        {
+            enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+        }
+        
+        attackComplete = false;
+        attackActivated = false;
+        currentAttack = null;
+        enemyManager.currentState = pursueState;
+    }
 
 } 

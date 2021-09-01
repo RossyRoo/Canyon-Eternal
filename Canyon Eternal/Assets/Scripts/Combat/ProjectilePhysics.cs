@@ -63,7 +63,6 @@ public class ProjectilePhysics : MonoBehaviour
 
     private void FlyStraight()
     {
-        Debug.Log(myLaunchForce);
         damageCollider.EnableDamageCollider();
         rb.velocity = direction * myLaunchForce;
         Destroy(gameObject, 10f);

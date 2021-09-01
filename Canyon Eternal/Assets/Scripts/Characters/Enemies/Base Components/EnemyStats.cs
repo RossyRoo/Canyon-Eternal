@@ -7,6 +7,7 @@ public class EnemyStats : CharacterStats
     EnemyManager enemyManager;
     EnemyAnimatorHandler enemyAnimatorHandler;
     EnemyHealthBarUI enemyHealthBarUI;
+    AttackState attackState;
 
     [HideInInspector] public CharacterBarkUI characterBarkUI;
     [HideInInspector] public DamageCollider[] enemyWeapons;
@@ -17,6 +18,7 @@ public class EnemyStats : CharacterStats
         enemyManager = GetComponent<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         enemyHealthBarUI = GetComponentInChildren<EnemyHealthBarUI>();
+        attackState = GetComponentInChildren<AttackState>();
         characterBarkUI = GetComponentInChildren<CharacterBarkUI>();
         enemyWeapons = GetComponentsInChildren<DamageCollider>();
     }
@@ -43,6 +45,7 @@ public class EnemyStats : CharacterStats
         EnableInvulnerability(characterData.invulnerabilityFrames);
 
         currentHealth -= damageHealth;
+        attackState.BreakAttack(enemyManager);
 
         StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(true, currentHealth, isCriticalHit, damageHealth));
 
