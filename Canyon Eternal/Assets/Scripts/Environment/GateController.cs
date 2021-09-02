@@ -8,7 +8,6 @@ public class GateController : MonoBehaviour
     public EnemyManager[] encounterEnemies;
     public AudioClip encounterMusic;
 
-    //[HideInInspector]
     public List<GameObject> gates;
     PlayerManager playerManager;
     public AudioClip gateSFX;
