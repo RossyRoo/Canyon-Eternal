@@ -19,7 +19,7 @@ MonoBehaviour:
   characterContact: {fileID: 0}
   characterID: 35
   moveSpeed: 5000
-  startingMaxHealth: 5000
+  startingMaxHealth: 225
   currentMaxHealth: 0
   healAmount: 1
   invulnerabilityFrames: 0.4
@@ -35,13 +35,13 @@ MonoBehaviour:
   isSingleEncounter: 1
   canPursue: 1
   canAttack: 1
-  canEvade: 0
+  canEvade: 1
   detectionRadius: 30
-  attackRange: 10
+  attackRange: 35
   evadeRange: 5
   enemyAttacks:
   - {fileID: 11400000, guid: 2053e37b93f9e4f43a34ca8c2e82dd9f, type: 2}
-  - {fileID: 11400000, guid: 47a0bf721e2fd4f4e8be6ea256b06739, type: 2}
+  - {fileID: 11400000, guid: dfedc1779bed54a9d912e7f44cde1818, type: 2}
   randomLootDrops: []
   consumableItems: []
   fragmentDrop: 50

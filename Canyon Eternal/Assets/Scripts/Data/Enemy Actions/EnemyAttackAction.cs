@@ -8,7 +8,6 @@ public class EnemyAttackAction : EnemyActions
     [TextArea]
     public string comment;
 
-    public int attackScore = 3;
     public float recoveryTime = 1f;
 
     public float spaceNeededToStartAttack= 0;

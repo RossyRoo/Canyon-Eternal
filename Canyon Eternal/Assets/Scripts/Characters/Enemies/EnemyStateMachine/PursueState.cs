@@ -31,69 +31,60 @@ public class PursueState : EnemyStateMachine
 
         MoveTowardsTarget(enemyManager, enemyStats);
 
-        enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
-
         #region Handle State Switching
 
-        //MIGHT DIE
-        if (enemyManager.isDead)
+        if (enemyManager.isDead)//MIGHT DIE
         {
             return deathState;
         }
 
-        //MIGHT BECOME STUNNED
-        if (enemyManager.isStunned)
+        if (enemyManager.isStunned)//MIGHT BECOME STUNNED
         {
             return stunnedState;
         }
 
-        //MIGHT DISENGAGE
-        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)
+        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)//MIGHT DISENGAGE
         {
             enemyManager.DisengagePlayer();
             enemyManager.currentTarget = null;
             return scoutState;
         }
-
-        //MIGHT EVADE
-        if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade && !enemyManager.currentTarget.GetComponent<PlayerManager>().isDashing)
+        
+        if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade
+            && !enemyManager.currentTarget.GetComponent<PlayerManager>().isDashing)//MIGHT EVADE
         {
-            if (Random.value < 0.05f) //percent chance they will evade
+            if (Random.value < 0.001f) //percent chance they will evade
             {
                 return evadeState;
             }
         }
 
-        //MIGHT ATTACK
         if (enemyManager.currentRecoveryTime <= 0
             && enemyManager.distanceFromTarget <= enemyStats.characterData.attackRange
             && enemyStats.characterData.canAttack
-            && !enemyManager.isInteracting)
+            && !enemyManager.isInteracting)//Will attack if they can
         {
             return attackState;
         }
 
-        //MIGHT USE ITEM
         if (enemyStats.characterData.consumableItems.Count > 0
             && !itemState.allConsumablesUsed
-            && enemyStats.currentHealth <= (enemyStats.characterData.startingMaxHealth / 3))
+            && enemyStats.currentHealth <= (enemyStats.characterData.startingMaxHealth / 3))//Chance they will use item if they can
         {
-            if (Random.value < 0.001f) //percent chance they will evade
+            if (Random.value < 0.001f)
             {
                 return itemState;
             }
         }
 
-        //MIGHT SUMMON
-        if(enemyStats.characterData.summons.Count > 0)
+        if(enemyStats.characterData.summons.Count > 0)//Chance they will summon minions if they can
         {
-            if (Random.value < 0.001f) //percent chance they will summon
+            if (Random.value < 0.001f)
             {
                 Debug.Log("Doing Summon");
                 return summonState;
             }
         }
-
 
         return this;
 
@@ -126,6 +117,7 @@ public class PursueState : EnemyStateMachine
             return;
 
         Vector2 targetDirection = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
+        enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
 
         enemyManager.rb.AddForce(targetDirection * enemyStats.characterData.moveSpeed * Time.deltaTime);
 

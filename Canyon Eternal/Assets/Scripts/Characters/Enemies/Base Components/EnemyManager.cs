@@ -21,7 +21,6 @@ public class EnemyManager : CharacterManager
     public LayerMask collisionLayers;
 
 
-
     private void Awake()
     {
         enemyStats = GetComponent<EnemyStats>();

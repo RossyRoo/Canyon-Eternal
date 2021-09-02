@@ -6,7 +6,8 @@ public class EvadeState : EnemyStateMachine
 {
     public PursueState pursueState;
 
-    float safeDistanceBuffer = 2f;
+    float evadeSpeedMultiplier = 1.5f;
+    float safeDistanceBuffer = 10f;
     float evadeRecoveryTime = 0.5f;
     float evadeRecoveryStartTime = 0.5f;
     bool reachedEvadeDistance = false;
@@ -15,20 +16,21 @@ public class EvadeState : EnemyStateMachine
     {
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
         enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+        Vector2 force = (-targetDirection.normalized * Time.deltaTime) * (enemyStats.characterData.moveSpeed * evadeSpeedMultiplier);
 
-        Vector2 force = (-targetDirection.normalized * Time.deltaTime) * enemyStats.characterData.moveSpeed;
+        //UPDATE ANIMATIONS SO YOU FACE TOWARD PLAYER AND DO DASH ANIMATION
 
-
-        if (enemyManager.distanceFromTarget > enemyStats.characterData.attackRange + safeDistanceBuffer || reachedEvadeDistance)
+        if (!reachedEvadeDistance &&
+            enemyManager.distanceFromTarget > safeDistanceBuffer)
         {
             reachedEvadeDistance = true;
         }
-        else
+
+        if(!reachedEvadeDistance)
         {
             enemyManager.rb.AddForce(force);
         }
-
-        if (reachedEvadeDistance)
+        else
         {
             evadeRecoveryTime -= Time.deltaTime;
         }
@@ -39,8 +41,6 @@ public class EvadeState : EnemyStateMachine
             reachedEvadeDistance = false;
             return pursueState;
         }
-
-
 
         return this;
     }

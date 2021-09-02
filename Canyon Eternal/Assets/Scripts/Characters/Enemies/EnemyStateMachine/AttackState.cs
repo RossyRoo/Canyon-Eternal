@@ -19,31 +19,30 @@ public class AttackState : EnemyStateMachine
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        //MIGHT DIE
-        if (enemyManager.isDead)
+        if (enemyManager.isDead) //Dies if dead
         {
             return deathState;
         }
 
-        //MIGHT BECOME STUNNED
-        if (enemyManager.isStunned)
+        if (enemyManager.isStunned) //Stunned if stunned
         {
             return stunnedState;
         }
 
-        if (attackComplete)
+        if (attackComplete) //pursues if attack complete
         {
             attackComplete = false;
             attackActivated = false;
+            enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             return pursueState;
         }
 
-        if (currentAttack == null && !attackActivated)
+        if (currentAttack == null && !attackActivated) //gets new attack if none is selected and attack hasnt been started
         {
             GetNewAttack(enemyManager, enemyStats);
         }
 
-        if(currentAttack == null)
+        if(currentAttack == null) //pursues if no attacks were available
         {
             BreakAttack(enemyManager);
             return pursueState;
@@ -58,41 +57,45 @@ public class AttackState : EnemyStateMachine
 
     }
 
+
     private void GetNewAttack(EnemyManager enemyManager, EnemyStats enemyStats)
     {
         float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
-
-        int maxScore = 0;
+        bool meleeCombatAvailable = false;
+        List<EnemyAttackAction> possibleAttacks = new List<EnemyAttackAction>();
 
         for (int i = 0; i < enemyStats.characterData.enemyAttacks.Length; i++)
         {
             if (distanceFromTarget <= enemyStats.characterData.enemyAttacks[i].shortestDistanceNeededToAttack
                 && distanceFromTarget >= enemyStats.characterData.enemyAttacks[i].spaceNeededToStartAttack)
             {
-                maxScore += enemyStats.characterData.enemyAttacks[i].attackScore;
+                possibleAttacks.Add(enemyStats.characterData.enemyAttacks[i]);
+
+                if(!enemyStats.characterData.enemyAttacks[i].isRanged)
+                {
+                    meleeCombatAvailable = true;
+                }
             }
         }
 
-        int randomValue = Random.Range(0, maxScore);
-        int temporaryScore = 0;
-
-        for (int i = 0; i < enemyStats.characterData.enemyAttacks.Length; i++)
+        if(meleeCombatAvailable)
         {
-            EnemyAttackAction enemyAttackAction = enemyStats.characterData.enemyAttacks[i];
-
-            if (distanceFromTarget <= enemyAttackAction.shortestDistanceNeededToAttack
-                && distanceFromTarget >= enemyAttackAction.spaceNeededToStartAttack)
+            for (int i = 0; i < possibleAttacks.Count; i++)
             {
-                if (currentAttack != null)
-                    return;
-
-                temporaryScore += enemyAttackAction.attackScore;
-
-                if (temporaryScore > randomValue)
+                if(possibleAttacks[i].isRanged)
                 {
-                    currentAttack = enemyAttackAction;
+                    possibleAttacks.Remove(possibleAttacks[i]);
                 }
             }
+        }
+
+        if(possibleAttacks.Count > 0)
+        {
+            currentAttack = possibleAttacks[Random.Range(0, possibleAttacks.Count)];
+        }
+        else
+        {
+            currentAttack = null;
         }
 
     }
@@ -100,8 +103,11 @@ public class AttackState : EnemyStateMachine
     private IEnumerator PerformAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
         attackActivated = true;
+        enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+
+        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
 
         yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Charge up the attack (reload if you have a preparation animation
 
@@ -119,7 +125,6 @@ public class AttackState : EnemyStateMachine
             HandleRangedAttack(enemyManager, targetDirection);
         }
 
-        enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
 
         yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Charge up the attack (reload if you have a preparation animation
 
@@ -129,8 +134,6 @@ public class AttackState : EnemyStateMachine
 
     private void HandleRangedAttack(EnemyManager enemyManager, Vector3 targetDirection)
     {
-        enemyManager.rb.velocity = Vector3.zero;
-
         float projectileAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
         GameObject projectileGO = Instantiate(currentAttack.projectilePrefab.GOPrefab, transform.position, Quaternion.Euler(Vector3.forward * (projectileAngle + 90f)));
         ProjectilePhysics projectilePhysics = projectileGO.GetComponent<ProjectilePhysics>();
@@ -160,6 +163,7 @@ public class AttackState : EnemyStateMachine
         
         attackComplete = false;
         attackActivated = false;
+        enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         currentAttack = null;
         enemyManager.currentState = pursueState;
     }
