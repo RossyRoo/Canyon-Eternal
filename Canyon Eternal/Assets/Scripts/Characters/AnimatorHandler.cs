@@ -36,7 +36,7 @@ public class CharacterAnimatorHandler : MonoBehaviour
         animator.SetInteger("moveY_Int", Mathf.FloorToInt(moveY));
         animator.SetBool("isMoving", isMoving);
     }
-
+    /*
     public void UpdateSprite(float moveX, float moveY, CharacterData characterData)
     {
         if(moveX == 0 && moveY == -1)
@@ -71,5 +71,5 @@ public class CharacterAnimatorHandler : MonoBehaviour
         {
             torsoSpriteRenderer.sprite = characterData.torsoSprites[7];
         }
-    }
+    }*/
 }

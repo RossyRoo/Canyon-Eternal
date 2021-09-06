@@ -17,7 +17,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     public Transform strikeTransform;
     Transform parentOverride;
     DamageCollider meleeDamageCollider;
-    public GameObject meleeMotionVFX;
+    //public GameObject meleeMotionVFX;
 
     [HideInInspector]
     public float currentAttackCooldownTime;
@@ -103,7 +103,7 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         playerStats.LoseStamina(playerInventory.activeWeapon.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
-        PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
+        //PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
 
         yield return new WaitForSeconds(playerInventory.activeWeapon.closeDamageColliderBuffer); 
         meleeDamageCollider.DisableDamageCollider(); //DISABLE DAMAGE COLLIDER
@@ -120,7 +120,7 @@ public class PlayerMeleeHandler : MonoBehaviour
             playerManager.rb.AddForce((playerManager.lastMoveDirection * playerInventory.activeWeapon.attackMomentum));
         }
     }
-
+    /*
     private void PlayMeleeVFX()
     {
         SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeWeapon.swingWeaponSFX[Random.Range(0, playerInventory.activeWeapon.swingWeaponSFX.Length)]);
@@ -157,6 +157,7 @@ public class PlayerMeleeHandler : MonoBehaviour
         meleeMotionVFXGO.GetComponentInChildren<Animator>().Play(playerInventory.activeWeapon.attackAnimations[0]);
         Destroy(meleeMotionVFXGO, 1f);
     }
+    */
 
     public void TickAttackCooldown()
     {

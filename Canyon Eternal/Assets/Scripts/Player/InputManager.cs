@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
+    public Vector2 mouseInput;
 
     public bool melee_Input;
     public bool chargeSpell_Input;
@@ -29,6 +30,10 @@ public class InputManager : MonoBehaviour
     public bool cycleMenuRight_Input;
     public bool cycleSubmenuLeft_Input;
     public bool cycleSubmenuRight_Input;
+
+    //VARIABLES
+    
+    public float rotateSpeed = 10f;
 
 
     private void Awake()
@@ -48,6 +53,9 @@ public class InputManager : MonoBehaviour
         if(playerControls==null)
         {
             playerControls = new PlayerControls();
+
+            //ROTATION
+            playerControls.PlayerMovement.Rotate.performed += i => mouseInput = i.ReadValue<Vector2>();
 
             //MOVEMENT
             playerControls.PlayerMovement.Move.performed += i => moveInput = i.ReadValue<Vector2>();
@@ -93,6 +101,7 @@ public class InputManager : MonoBehaviour
 
     public void HandleAllInputs()
     {
+        HandleMouseInput();
         HandleMeleeInput();
         HandleChargeSpellInput();
         HandleCastSpellInput();
@@ -108,6 +117,18 @@ public class InputManager : MonoBehaviour
             HandleCycleSubmenuInput();
         }
     }
+
+    private void HandleMouseInput()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(mouseInput);
+        Vector2 relativePosition = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        float angle = (Mathf.Atan2(relativePosition.y, relativePosition.x) * Mathf.Rad2Deg) - 90;
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation,
+            Time.deltaTime * rotateSpeed);
+    }
+
     #region Handle Combat Input
     private void HandleMeleeInput()
     {

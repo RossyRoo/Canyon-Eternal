@@ -19,8 +19,8 @@ public class CharacterData : DataObject
     public int healAmount;
     public float invulnerabilityFrames = 0.4f;
 
-    [Header("Sprites")]
-    public Sprite[] torsoSprites;
+    //[Header("Sprites")]
+    //public Sprite[] torsoSprites;
 
     [Header("ENEMY STATS")]
     public bool isSingleEncounter;

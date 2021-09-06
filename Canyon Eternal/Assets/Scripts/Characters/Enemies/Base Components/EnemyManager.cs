@@ -151,7 +151,7 @@ public class EnemyManager : CharacterManager
             isMoving = false;
         }
 
-        enemyAnimatorHandler.UpdateSprite(lastMoveDirection.x, lastMoveDirection.y, enemyStats.characterData);
+        //enemyAnimatorHandler.UpdateSprite(lastMoveDirection.x, lastMoveDirection.y, enemyStats.characterData);
     }
 
     public void EngagePlayer()
@@ -174,5 +174,9 @@ public class EnemyManager : CharacterManager
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
 
 }

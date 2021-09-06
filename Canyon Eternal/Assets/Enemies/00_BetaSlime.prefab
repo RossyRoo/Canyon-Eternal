@@ -135,10 +135,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029480457, y: 0.07606983}
+  m_Offset: {x: 0.00538218, y: -0.0006866455}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -149,7 +149,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.135972, y: 4.909712}
+  m_Size: {x: 2.7851694, y: 2.030365}
   m_EdgeRadius: 0
 --- !u!114 &1134303067
 MonoBehaviour:
@@ -275,7 +275,7 @@ SpriteRenderer:
   m_SortingLayerID: -957212773
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be1013118e0884c68bcccb637c25d081, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 4170450973767946579}
   - component: {fileID: 3451020769818308922}
   m_Layer: 9
-  m_Name: Slime Vessel
+  m_Name: 00_BetaSlime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +390,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.04700756, y: 0.10337353}
+  m_Offset: {x: -0.02843523, y: -0.00068473816}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -401,7 +401,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.116194, y: 3.4456272}
+  m_Size: {x: 3.0218906, y: 2.3347206}
   m_EdgeRadius: 0
 --- !u!114 &4170450973767946576
 MonoBehaviour:
