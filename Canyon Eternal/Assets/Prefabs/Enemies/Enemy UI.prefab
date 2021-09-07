@@ -635,7 +635,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4400799973097820286}
-  - component: {fileID: 4400799973097820287}
   m_Layer: 9
   m_Name: Health Bar
   m_TagString: Untagged
@@ -664,22 +663,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 3.24}
   m_SizeDelta: {x: 100, y: 39.20175}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4400799973097820287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4400799973097820273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af0b7f16740e1404d9dc21251b5d0283, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 4400799972705538720}
-  damageSlider: {fileID: 4400799972814230559}
-  damageText: {fileID: 4400799971697089707}
-  currentHealth: 0
 --- !u!1 &4400799973731439847
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +676,7 @@ GameObject:
   - component: {fileID: 4400799973731439842}
   - component: {fileID: 4400799973731439845}
   - component: {fileID: 1331448950}
+  - component: {fileID: 4464006553927097473}
   m_Layer: 9
   m_Name: Enemy UI
   m_TagString: Untagged
@@ -794,6 +778,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barkIcon: {fileID: 262647829256592988}
+--- !u!114 &4464006553927097473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4400799973731439847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0b7f16740e1404d9dc21251b5d0283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 4400799972705538720}
+  damageSlider: {fileID: 4400799972814230559}
+  damageText: {fileID: 4400799971697089707}
+  currentHealth: 0
 --- !u!1 &8845323152651180650
 GameObject:
   m_ObjectHideFlags: 0

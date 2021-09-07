@@ -17,35 +17,23 @@ MonoBehaviour:
   dataIcon: {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
   characterContact: {fileID: 0}
   characterID: 0
+  moveSpeed: 4000
+  startingMaxHealth: 50
+  currentMaxHealth: 0
+  healAmount: 1
+  invulnerabilityFrames: 0.4
   isSingleEncounter: 0
-  torsoSprites:
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
-  - {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
   canPursue: 1
   canAttack: 1
   canEvade: 1
   detectionRadius: 15
   attackRange: 12
   evadeRange: 5
-  moveSpeed: 4000
-  startingMaxHealth: 100
-  currentMaxHealth: 0
-  healAmount: 1
-  invulnerabilityFrames: 0.4
   enemyAttacks:
   - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
   randomLootDrops: []
   consumableItems: []
   fragmentDrop: 1
-  footstepSFX: []
-  hardCollisionSFX: {fileID: 0}
-  consumeHealItemSFX: []
   deathRattleSFX: {fileID: 8300000, guid: 27c01c9102f2eb942871784cef13628f, type: 3}
   summons:
   - {fileID: 0}

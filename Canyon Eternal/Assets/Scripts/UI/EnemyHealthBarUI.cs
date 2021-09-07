@@ -10,6 +10,7 @@ public class EnemyHealthBarUI : MonoBehaviour
     public Slider damageSlider;
     public TextMeshProUGUI damageText;
     Animator damageTextAnimator;
+    public EnemyManager enemyManager;
 
     bool healthIsDecreasing = false;
 
@@ -57,6 +58,8 @@ public class EnemyHealthBarUI : MonoBehaviour
     {
         if(healthSlider != null)
         {
+            FollowEnemy();
+
             timeUntilHealthBarIsHidden = timeUntilHealthBarIsHidden - Time.deltaTime;
             timeUntilDamageTextIsHidden = timeUntilDamageTextIsHidden - Time.deltaTime;
 
@@ -71,6 +74,7 @@ public class EnemyHealthBarUI : MonoBehaviour
                 Destroy(damageText.gameObject);
             }
         }
+
     }
 
     public void DisplayHealthBar()
@@ -131,5 +135,11 @@ public class EnemyHealthBarUI : MonoBehaviour
         yield return new WaitForSeconds(timeUntilHealthBarDrains);
 
         healthIsDecreasing = true;
+    }
+
+    private void FollowEnemy()
+    {
+        transform.position = enemyManager.transform.position;
+
     }
 }

@@ -45,13 +45,13 @@ public class EnemyManager : CharacterManager
         {
             currentState = GetComponentInChildren<ScoutState>();
         }
-
     }
 
     private void Update()
     {
         HandleRecoveryTimer();
         HandleStateMachine();
+        Rotate();
 
         isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
     }
@@ -152,6 +152,7 @@ public class EnemyManager : CharacterManager
             isMoving = false;
         }
 
+        Debug.Log("current move direction: " + currentMoveDirection);
         //enemyAnimatorHandler.UpdateSprite(lastMoveDirection.x, lastMoveDirection.y, enemyStats.characterData);
 
     }
@@ -175,6 +176,25 @@ public class EnemyManager : CharacterManager
         {
             playerManager.enemiesEngaged.Remove(this);
         }
+    }
+
+    private void Rotate()
+    {
+        float offset = -90f;
+
+        if (currentTarget != null)
+        {
+            Vector2 direction = (Vector2)currentTarget.transform.position - (Vector2)transform.position;
+            direction.Normalize();
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
+        }
+        else
+        {
+            float angle = Mathf.Atan2(currentMoveDirection.y, currentMoveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
+        }
+
     }
 
 
