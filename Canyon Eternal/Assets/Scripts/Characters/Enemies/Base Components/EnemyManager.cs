@@ -8,6 +8,7 @@ public class EnemyManager : CharacterManager
 {
     EnemyStats enemyStats;
     EnemyAnimatorHandler enemyAnimatorHandler;
+    public GameObject myBodySprite;
 
     [HideInInspector]
     public Seeker seeker;
@@ -57,7 +58,7 @@ public class EnemyManager : CharacterManager
 
     private void FixedUpdate()
     {
-        UpdateRotationByVelocity();
+        UpdateMoveDirection();
     }
 
     #region State Machine
@@ -106,7 +107,7 @@ public class EnemyManager : CharacterManager
 
     #endregion
 
-    private void UpdateRotationByVelocity()
+    private void UpdateMoveDirection()
     {
         Vector2 rawMoveDirection;
 
@@ -152,7 +153,9 @@ public class EnemyManager : CharacterManager
         }
 
         //enemyAnimatorHandler.UpdateSprite(lastMoveDirection.x, lastMoveDirection.y, enemyStats.characterData);
+
     }
+
 
     public void EngagePlayer()
     {
@@ -174,9 +177,5 @@ public class EnemyManager : CharacterManager
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.gameObject.name);
-    }
 
 }

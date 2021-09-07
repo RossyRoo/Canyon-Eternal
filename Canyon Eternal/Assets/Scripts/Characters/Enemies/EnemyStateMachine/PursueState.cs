@@ -30,6 +30,7 @@ public class PursueState : EnemyStateMachine
         }
 
         MoveTowardsTarget(enemyManager, enemyStats);
+        RotateTowardsTarget(enemyManager);
 
         #region Handle State Switching
 
@@ -128,6 +129,15 @@ public class PursueState : EnemyStateMachine
         {
             currentWaypoint++;
         }
+    }
+
+    private void RotateTowardsTarget(EnemyManager enemyManager)
+    {
+        float offset = -90f;
+        Vector2 direction = (Vector2)enemyManager.currentTarget.transform.position - (Vector2)transform.position;
+        direction.Normalize();
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        enemyManager.myBodySprite.transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 
 
