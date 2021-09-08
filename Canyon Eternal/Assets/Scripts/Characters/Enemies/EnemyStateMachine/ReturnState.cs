@@ -11,14 +11,13 @@ public class ReturnState : EnemyStateMachine
     public DeathState deathState;
     public StunnedState stunnedState;
 
+    float nextWaypointDistance = 3f;
+    Path path;
+    int currentWaypoint = 0;
+    bool pursuePathfindingInitiated = false;
+
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        #region Move to Start Position
-
-
-        Debug.Log("RETURNING TO: " + scoutState.startPosition.position);
-
-        #endregion
 
         #region State Switching
 
@@ -39,14 +38,62 @@ public class ReturnState : EnemyStateMachine
 
         if (Vector2.Distance(enemyManager.transform.position, scoutState.startPosition.position) <= 5f)
         {
-            Debug.Log("Made it home");
             return scoutState;
         }
 
         #endregion
 
+        #region Move to Start Position
+        if (!pursuePathfindingInitiated)
+        {
+            Debug.Log("Going home initiated");
+            pursuePathfindingInitiated = true;
+            StartCoroutine(InitiateReturnPathfinding(enemyManager));
+        }
+
+        MoveTowardsTarget(enemyManager, enemyStats);
+
+        Debug.Log("Distance from start point: " + Vector2.Distance(enemyManager.transform.position, scoutState.startPosition.position));
+        #endregion
 
         return this;
+    }
+
+    private IEnumerator InitiateReturnPathfinding(EnemyManager enemyManager)
+    {
+        if (enemyManager.seeker.IsDone())
+        {
+            enemyManager.seeker.StartPath(enemyManager.rb.position, scoutState.startPosition.position, OnPathComplete);
+        }
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(InitiateReturnPathfinding(enemyManager));
+    }
+
+    void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    private void MoveTowardsTarget(EnemyManager enemyManager, EnemyStats enemyStats)
+    {
+        if (path == null || currentWaypoint >= path.vectorPath.Count)
+            return;
+
+        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
+        Vector2 force = dir * enemyStats.characterData.moveSpeed * Time.deltaTime;
+
+        enemyManager.rb.AddForce(force);
+
+        float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
+
+        if (distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
     }
 
 }

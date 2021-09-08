@@ -66,11 +66,13 @@ public class ScoutState : EnemyStateMachine
 
         if (enemyManager.isDead)
         {
+            patrolPathfindingInitiated = false;
             return deathState;
         }
 
         if (enemyManager.isStunned)
         {
+            patrolPathfindingInitiated = false;
             return stunnedState;
         }
 
@@ -79,13 +81,15 @@ public class ScoutState : EnemyStateMachine
             StartCoroutine(enemyStats.characterBarkUI.DisplayBarkIcon(0));
             enemyManager.EngagePlayer();
             enemyManager.isMoving = true;
+
+            patrolPathfindingInitiated = false;
             return pursueState;
         }
 
         #endregion
 
         #region Handle Patrol
-
+        
         if(canPatrol)
         {
             if (!patrolPathfindingInitiated)
@@ -141,6 +145,10 @@ public class ScoutState : EnemyStateMachine
     #region Waypoint Finding
     public IEnumerator FollowPresetWaypoints(EnemyManager enemyManager, EnemyStats enemyStats)
     {
+        if (enemyManager.currentState != this)
+        {
+            yield break;
+        }
 
         if (waypointIndex <= waypoints.Length - 1)
         {
@@ -166,10 +174,14 @@ public class ScoutState : EnemyStateMachine
 
     public IEnumerator FollowPresetWaypointsRandomly(EnemyManager enemyManager, EnemyStats enemyStats)
     {
+        if (enemyManager.currentState != this)
+        {
+            yield break;
+        }
+
         Vector2 patrolDirection = (waypoints[waypointIndex].position - transform.position).normalized;
 
         enemyManager.rb.AddForce(patrolDirection * (enemyStats.characterData.moveSpeed / 3) * Time.deltaTime);
-
 
         if (Vector2.Distance(transform.position, waypoints[waypointIndex].position) <= 1)
         {
@@ -177,6 +189,7 @@ public class ScoutState : EnemyStateMachine
 
             yield return new WaitForSeconds(Random.Range(minIdleTime, maxIdleTime));
         }
+
 
         yield return new WaitForFixedUpdate();
         StartCoroutine(FollowPresetWaypointsRandomly(enemyManager, enemyStats));
