@@ -7,13 +7,14 @@ public class PursueState : EnemyStateMachine
 {
 
     [Header("STATE TRANSITIONS")]
-    public ScoutState scoutState;
+    
     public AttackState attackState;
     public EvadeState evadeState;
     public DeathState deathState;
     public StunnedState stunnedState;
     public ItemState itemState;
     public SummonState summonState;
+    public ReturnState returnState;
 
     float nextWaypointDistance = 3f;
     Path path;
@@ -34,11 +35,11 @@ public class PursueState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 4f)//MIGHT DISENGAGE
+        if (enemyManager.distanceFromTarget > enemyStats.characterData.detectionRadius * 5f)//MIGHT DISENGAGE
         {
             enemyManager.DisengagePlayer();
             enemyManager.currentTarget = null;
-            return scoutState;
+            return returnState;
         }
 
         if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade
@@ -79,7 +80,6 @@ public class PursueState : EnemyStateMachine
 
         #endregion
 
-        
         #region Pursuit
 
         if (!pursuePathfindingInitiated)
