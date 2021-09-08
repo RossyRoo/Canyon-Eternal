@@ -152,9 +152,6 @@ public class EnemyManager : CharacterManager
             isMoving = false;
         }
 
-        Debug.Log("current move direction: " + currentMoveDirection);
-        //enemyAnimatorHandler.UpdateSprite(lastMoveDirection.x, lastMoveDirection.y, enemyStats.characterData);
-
     }
 
 

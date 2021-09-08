@@ -18,7 +18,6 @@ public class DamageCollider : MonoBehaviour
 
     [Header("Knockback Settings")]
     public CharacterManager knockbackTarget;
-    public Vector2 knockbackDirection;
     public float knockbackForce = 10f;
     private float knockbackTime;
     public float startKnockbackTime = 0.02f;
@@ -135,7 +134,7 @@ public class DamageCollider : MonoBehaviour
 
             if (weaponData.criticalDamageSFX != null)
             {
-                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)]);
+                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)], 0.1f);
 
                 if (criticalHitActivated)
                 {
@@ -167,11 +166,11 @@ public class DamageCollider : MonoBehaviour
             else
             {
                 knockbackTime -= Time.deltaTime;
-                knockbackTarget.rb.AddForce(knockbackDirection * knockbackForce);
+                knockbackTarget.rb.AddForce(-knockbackTarget.transform.up * knockbackForce);
 
                 if(myCharacterManager.GetComponent<PlayerManager>())
                 {
-                    myCharacterManager.rb.AddForce(-knockbackDirection * knockbackForce * 10);
+                    myCharacterManager.rb.AddForce(-myCharacterManager.transform.up * knockbackForce * 10);
                 }
             }
         }

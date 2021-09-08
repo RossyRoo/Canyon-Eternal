@@ -17,7 +17,10 @@ public class PlayerMeleeHandler : MonoBehaviour
     public Transform strikeTransform;
     Transform parentOverride;
     DamageCollider meleeDamageCollider;
-    //public GameObject meleeMotionVFX;
+
+    [Header("Weapon Swing VFX")]
+    public GameObject meleeMotionVFX;
+    public Transform meleeMotionVFXTransform;
 
     [HideInInspector]
     public float currentAttackCooldownTime;
@@ -96,14 +99,14 @@ public class PlayerMeleeHandler : MonoBehaviour
     public IEnumerator HandleMeleeAttack()
     {
         currentAttackCooldownTime = playerInventory.activeWeapon.attackCooldownTime; //START COOLDOWN TIMER
-        meleeDamageCollider.knockbackDirection = playerManager.lastMoveDirection;
         playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeWeapon.attackAnimations[Random.Range(0, playerInventory.activeWeapon.attackAnimations.Length)], true); //PLAY ATTACK ANIMATION
 
         yield return new WaitForSeconds(playerInventory.activeWeapon.openDamageColliderBuffer);
 
         playerStats.LoseStamina(playerInventory.activeWeapon.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
-        //PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
+        PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
+        SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeWeapon.swingWeaponSFX[Random.Range(0, playerInventory.activeWeapon.swingWeaponSFX.Length)]);
 
         yield return new WaitForSeconds(playerInventory.activeWeapon.closeDamageColliderBuffer); 
         meleeDamageCollider.DisableDamageCollider(); //DISABLE DAMAGE COLLIDER
@@ -115,49 +118,22 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public void AdjustAttackMomentum()
     {
+        
         if (attackMomentumActivated)
         {
-            playerManager.rb.AddForce((playerManager.lastMoveDirection * playerInventory.activeWeapon.attackMomentum));
+            playerManager.rb.AddForce((playerManager.transform.up * playerInventory.activeWeapon.attackMomentum));
         }
+        
     }
-    /*
+    
     private void PlayMeleeVFX()
     {
-        SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeWeapon.swingWeaponSFX[Random.Range(0, playerInventory.activeWeapon.swingWeaponSFX.Length)]);
-
-        Vector3 currentEulerAngles = Vector3.zero;
-        Vector3 currentPosition = transform.position;
-
-        #region Get Rotation of Motion VFX
-        if (playerManager.lastMoveDirection == new Vector2(0,1))
-        {
-            currentEulerAngles = new Vector3(0, 0, 0);
-            currentPosition = transform.position + new Vector3(0, 4, 0);
-        }
-        else if(playerManager.lastMoveDirection == new Vector2(0, -1))
-        {
-            currentEulerAngles = new Vector3(0, 0, 180);
-            currentPosition = transform.position + new Vector3(0, -4, 0);
-        }
-        else if (playerManager.lastMoveDirection == new Vector2(-1, 0))
-        {
-            currentEulerAngles = new Vector3(0, 0, 90);
-            currentPosition = transform.position + new Vector3(-4, 0, 0);
-        }
-        else if (playerManager.lastMoveDirection == new Vector2(1, 0))
-        {
-            currentEulerAngles = new Vector3(0, 0, -90);
-            currentPosition = transform.position + new Vector3(4, 0, 0);
-        }
-
-        #endregion
-
-        GameObject meleeMotionVFXGO = Instantiate(meleeMotionVFX, currentPosition, Quaternion.Euler(currentEulerAngles));
+        GameObject meleeMotionVFXGO = Instantiate(meleeMotionVFX, meleeMotionVFXTransform.position, transform.rotation);
         meleeMotionVFXGO.transform.parent = transform;
         meleeMotionVFXGO.GetComponentInChildren<Animator>().Play(playerInventory.activeWeapon.attackAnimations[0]);
         Destroy(meleeMotionVFXGO, 1f);
     }
-    */
+    
 
     public void TickAttackCooldown()
     {

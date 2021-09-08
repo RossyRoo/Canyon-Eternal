@@ -57,14 +57,12 @@ public class PlayerLocomotion : MonoBehaviour
             {
                 playerAnimatorHandler.UpdateIntAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
                 playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
-                //playerAnimatorHandler.UpdateSprite(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, playerStats.characterData);
             }
             else
             {
                 playerManager.lastMoveDirection = playerManager.currentMoveDirection;
                 playerAnimatorHandler.UpdateIntAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
                 playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
-                //playerAnimatorHandler.UpdateSprite(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, playerStats.characterData);
             }
         }
 
@@ -86,7 +84,16 @@ public class PlayerLocomotion : MonoBehaviour
                 }
 
                 dashTime -= Time.deltaTime;
+            if (playerManager.isMoving)
+            {
                 playerManager.rb.AddForce(playerManager.lastMoveDirection * dashSpeed);
+            }
+            else
+            {
+                playerManager.rb.AddForce(playerManager.transform.up * dashSpeed);
+
+            }
+
         }
     }
 

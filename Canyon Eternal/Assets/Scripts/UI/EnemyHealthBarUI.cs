@@ -19,7 +19,7 @@ public class EnemyHealthBarUI : MonoBehaviour
     float timeUntilHealthBarIsHidden = 0f;
     float timeUntilDamageTextIsHidden = 0f;
 
-    public float currentHealth;
+    [HideInInspector]public float currentHealth;
 
     private void Awake()
     {
@@ -140,6 +140,5 @@ public class EnemyHealthBarUI : MonoBehaviour
     private void FollowEnemy()
     {
         transform.position = enemyManager.transform.position;
-
     }
 }

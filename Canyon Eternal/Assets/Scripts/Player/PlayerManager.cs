@@ -76,6 +76,7 @@ public class PlayerManager : CharacterManager
     {
         isInteracting = animator.GetBool("isInteracting");
         isAttacking = animator.GetBool("isAttacking");
+        isMoving = animator.GetBool("isMoving");
     }
 
     private void ResetInputLate()

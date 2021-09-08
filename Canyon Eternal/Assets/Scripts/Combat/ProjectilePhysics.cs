@@ -100,7 +100,6 @@ public class ProjectilePhysics : MonoBehaviour
     {
         myLaunchForce = newLaunchForce;
         direction = newDirection;
-        damageCollider.knockbackDirection = direction;
         isFired = true;
         transform.parent = FindObjectOfType<ObjectPool>().transform;
     }
