@@ -10,12 +10,12 @@ public class EnemyStats : CharacterStats
     AttackState attackState;
 
     public CharacterBarkUI characterBarkUI;
-    [HideInInspector] public DamageCollider[] enemyWeapons;
+    DamageCollider[] enemyWeapons;
 
 
     private void Awake()
     {
-        enemyManager = GetComponent<EnemyManager>();
+        enemyManager = GetComponentInChildren<EnemyManager>();
         enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         attackState = GetComponentInChildren<AttackState>();
         enemyWeapons = GetComponentsInChildren<DamageCollider>();
@@ -98,11 +98,7 @@ public class EnemyStats : CharacterStats
         enemyWeapons[0].DisableDamageCollider();
     }
 
-    public IEnumerator HandleBlockVulnerability(EnemyAttackAction enemyAttackAction)
-    {
-        enemyManager.isVulnerableToBlock = true;
-        yield return new WaitForSeconds(enemyAttackAction.recoveryTime / 2);
-        enemyManager.isVulnerableToBlock = false;
-    }
     #endregion
+
+
 }

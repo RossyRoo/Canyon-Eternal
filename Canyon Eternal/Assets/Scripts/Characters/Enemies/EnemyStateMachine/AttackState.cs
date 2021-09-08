@@ -13,7 +13,6 @@ public class AttackState : EnemyStateMachine
     [Tooltip("Use this until you add acceleration and deceleration to attacks")]
     private float chargeForceMultiplier = 5000f;
 
-
     bool attackActivated = false;
     bool attackComplete = false;
 
@@ -48,9 +47,14 @@ public class AttackState : EnemyStateMachine
             return pursueState;
         }
 
-        if (currentAttack != null && !attackActivated)
+        if (currentAttack != null)
         {
-            StartCoroutine(PerformAttack(enemyManager, enemyStats, enemyAnimatorHandler));
+            if(!attackActivated)
+            {
+                StartCoroutine(PerformAttack(enemyManager, enemyStats, enemyAnimatorHandler));
+            }
+
+            HandleAttackMomentum(enemyManager);
         }
 
         return this;
@@ -112,17 +116,16 @@ public class AttackState : EnemyStateMachine
         yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Charge up the attack (reload if you have a preparation animation
 
         enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-        enemyAnimatorHandler.UpdateFloatAnimationValues(targetDirection.normalized.x, targetDirection.normalized.y, false);
 
-        StartCoroutine(enemyStats.HandleBlockVulnerability(currentAttack)); //Enemy is vulnerable to block for 1/2 their attacks recovery time
+        StartCoroutine(HandleBlockVulnerability(enemyManager)); //Enemy is vulnerable to block for 1/2 their attacks recovery time
 
-        if (!currentAttack.isRanged)
+        if (currentAttack.isRanged)
         {
-            HandleMeleeAttack(enemyStats, enemyManager, targetDirection);
+            HandleRangedAttack(enemyManager, targetDirection);
         }
         else
         {
-            HandleRangedAttack(enemyManager, targetDirection);
+            StartCoroutine(enemyStats.HandleAttackDamageColliders(currentAttack));
         }
 
 
@@ -143,15 +146,19 @@ public class AttackState : EnemyStateMachine
         SFXPlayer.Instance.PlaySFXAudioClip(currentAttack.projectilePrefab.launchSFX, 0.05f);
     }
 
-    private void HandleMeleeAttack(EnemyStats enemyStats, EnemyManager enemyManager, Vector3 targetDirection)
+    private void HandleAttackMomentum(EnemyManager enemyManager)
     {
-        StartCoroutine(enemyStats.HandleAttackDamageColliders(currentAttack));
+        Vector2 chargeDirection = enemyManager.currentTarget.transform.position - transform.position;
+        Vector2 chargeForce = (chargeDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
 
-        if (currentAttack.chargeForce != 999f)
-        {
-            Vector2 force = (targetDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
-            enemyManager.rb.AddForce(force);
-        }
+        enemyManager.rb.AddForce(chargeForce);
+    }
+
+    public IEnumerator HandleBlockVulnerability(EnemyManager enemyManager)
+    {
+        enemyManager.isVulnerableToBlock = true;
+        yield return new WaitForSeconds(currentAttack.recoveryTime / 2);
+        enemyManager.isVulnerableToBlock = false;
     }
 
     public void BreakAttack(EnemyManager enemyManager)

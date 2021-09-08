@@ -10,7 +10,6 @@ public class PlayerStats : CharacterStats
     [HideInInspector]public LunchboxMeter lunchboxMeter;
 
     PlayerManager playerManager;
-    PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
     public bool isBuffed = false;
@@ -41,7 +40,6 @@ public class PlayerStats : CharacterStats
         staminaMeter = FindObjectOfType<StaminaMeter>();
         lunchboxMeter = FindObjectOfType<LunchboxMeter>();
         playerManager = GetComponent<PlayerManager>();
-        playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
     }
 
@@ -108,7 +106,7 @@ public class PlayerStats : CharacterStats
     #endregion
 
     #region Health
-    public void LoseHealth(float damageHealth, string damageAnimation = "TakeDamage")
+    public void LoseHealth(float damageHealth)
     {
         if (playerManager.isInvulnerable
             || playerManager.isDead)
@@ -120,7 +118,6 @@ public class PlayerStats : CharacterStats
         currentHealth -= damageHealth;
         heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);
 
-        playerAnimatorHandler.PlayTargetAnimation(damageAnimation, false);
         SFXPlayer.Instance.PlaySFXAudioClip(playerDamageSFX);
 
         playerParticleHandler.SpawnImpactVFX();

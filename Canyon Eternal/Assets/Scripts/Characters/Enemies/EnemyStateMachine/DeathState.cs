@@ -39,6 +39,6 @@ public class DeathState : EnemyStateMachine
         
         yield return new WaitForSeconds(0.5f);
         Destroy(enemyManager.myWall.gameObject);
-        Destroy(enemyManager.gameObject);
+        Destroy(enemyStats.gameObject);
     }
 }

@@ -7,10 +7,9 @@ public class PlayerManager : CharacterManager
     InputManager inputManager;
     PlayerLocomotion playerLocomotion;
     PlayerStats playerStats;
-    Animator animator;
+    [HideInInspector]public Animator animator;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
-    PlayerAnimatorHandler playerAnimatorHandler;
     PlayerProgression playerProgression;
 
     public bool isInteractingWithUI;
@@ -32,7 +31,6 @@ public class PlayerManager : CharacterManager
     private void Awake()
     {
         playerProgression = GetComponentInChildren<PlayerProgression>();
-        playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
         inputManager = GetComponent<InputManager>();
@@ -89,7 +87,6 @@ public class PlayerManager : CharacterManager
         inputManager.chargeSpell_Input = false;
         inputManager.castSpell_Input = false;
 
-        //UI
         inputManager.openMenu_Input = false;
         inputManager.cycleMenuLeft_Input = false;
         inputManager.cycleMenuRight_Input = false;
@@ -97,13 +94,14 @@ public class PlayerManager : CharacterManager
         inputManager.cycleSubmenuRight_Input = false;
     }
 
-    public IEnumerator HandleDeathCoroutine(string deathAnimation = "Death")
+    public IEnumerator HandleDeathCoroutine()
     {
         isDead = true;
         playerProgression.AdjustVesselLevel(1);
-        playerAnimatorHandler.PlayTargetAnimation(deathAnimation, true);
+        animator.SetBool("isInteracting", true);
+
         yield return new WaitForSeconds(1f);
-        //Drop fragments
+
         playerStats.SetStartingStats();
         StartCoroutine(SceneChangeManager.Instance.LoadOutsideLastFort(this));
     }
@@ -218,8 +216,6 @@ public class PlayerManager : CharacterManager
         }
         isInteractingWithUI = true;
         animator.SetBool("isInteracting", true);
-
-        playerAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, false);
     }
 
     public void ExitConversationState()

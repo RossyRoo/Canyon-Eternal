@@ -18,16 +18,16 @@ MonoBehaviour:
   characterContact: {fileID: 0}
   characterID: 0
   moveSpeed: 4000
-  startingMaxHealth: 50
+  startingMaxHealth: 35
   currentMaxHealth: 0
   healAmount: 1
   invulnerabilityFrames: 0.4
   isSingleEncounter: 0
   canPursue: 1
   canAttack: 1
-  canEvade: 1
+  canEvade: 0
   detectionRadius: 15
-  attackRange: 12
+  attackRange: 25
   evadeRange: 5
   enemyAttacks:
   - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
@@ -35,5 +35,4 @@ MonoBehaviour:
   consumableItems: []
   fragmentDrop: 1
   deathRattleSFX: {fileID: 8300000, guid: 27c01c9102f2eb942871784cef13628f, type: 3}
-  summons:
-  - {fileID: 0}
+  summons: []

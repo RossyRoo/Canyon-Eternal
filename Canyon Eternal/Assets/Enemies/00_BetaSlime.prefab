@@ -631,7 +631,6 @@ MonoBehaviour:
   stunnedState: {fileID: 8571079036710396069}
   itemState: {fileID: 3173294331035928930}
   summonState: {fileID: 9119116686420964806}
-  nextWaypointDistance: 3
 --- !u!1 &5412294465843444047
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,10 +757,9 @@ GameObject:
   - component: {fileID: 6245586911825301372}
   - component: {fileID: 8019964413059245898}
   - component: {fileID: 6245586911825301363}
-  - component: {fileID: 6245586911825301360}
   - component: {fileID: 4659218177621765913}
   m_Layer: 9
-  m_Name: Components
+  m_Name: Manager
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,7 +815,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02843523, y: -0.00068473816}
+  m_Offset: {x: -0.024701595, y: -0.023284912}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -828,7 +826,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0218906, y: 2.3347206}
+  m_Size: {x: 2.7111921, y: 1.9494171}
   m_EdgeRadius: 0
 --- !u!114 &6245586911825301363
 MonoBehaviour:
@@ -862,7 +860,6 @@ MonoBehaviour:
   isDashing: 0
   currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
-  myBodySprite: {fileID: 4659218176951731675}
   seeker: {fileID: 0}
   currentState: {fileID: 0}
   currentTarget: {fileID: 0}
@@ -871,23 +868,6 @@ MonoBehaviour:
   collisionLayers:
     serializedVersion: 2
     m_Bits: 271360
---- !u!114 &6245586911825301360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6245586911825301361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d05b42790c4d480ba301dac36e0d04c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: c32b177921b704a2dab08254aa6764b3, type: 2}
-  currentHealth: 0
-  enemyHealthBarUI: {fileID: 8883277016678124721}
-  characterBarkUI: {fileID: 5094955665474362438}
-  enemyWeapons: []
 --- !u!114 &4659218177621765913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,7 +923,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6245586911924849162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: -0.34, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4659218177140581579}
@@ -1144,6 +1124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8019964411553147189}
+  - component: {fileID: 6367445450877648391}
   m_Layer: 0
   m_Name: 00_BetaSlime
   m_TagString: Untagged
@@ -1167,6 +1148,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6367445450877648391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8019964411553147190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d05b42790c4d480ba301dac36e0d04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 11400000, guid: c32b177921b704a2dab08254aa6764b3, type: 2}
+  currentHealth: 0
+  enemyHealthBarUI: {fileID: 8883277016678124721}
+  characterBarkUI: {fileID: 5094955665474362438}
 --- !u!1 &8019964411769452789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,13 +1296,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8019964413101459835}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00538218, y: -0.0006866455}
+  m_Offset: {x: -0.013227463, y: -0.017547607}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1316,7 +1313,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7851694, y: 2.030365}
+  m_Size: {x: 3.1013088, y: 2.328064}
   m_EdgeRadius: 0
 --- !u!114 &8019964413101459832
 MonoBehaviour:
@@ -1338,7 +1335,6 @@ MonoBehaviour:
   canDamageEnemy: 1
   canDamagePlayer: 1
   knockbackTarget: {fileID: 0}
-  knockbackDirection: {x: 0, y: 0}
   knockbackForce: 100
   startKnockbackTime: 0.02
   weaponData: {fileID: 11400000, guid: b04116d140bd74126a8a700b8067d097, type: 2}

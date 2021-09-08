@@ -15,23 +15,14 @@ public class PursueState : EnemyStateMachine
     public ItemState itemState;
     public SummonState summonState;
 
-    [Header("Pathfinding Data")]
-    public float nextWaypointDistance = 3f;
+    float nextWaypointDistance = 3f;
     Path path;
     int currentWaypoint = 0;
     bool pursuePathfindingInitiated = false;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
-        if (!pursuePathfindingInitiated)
-        {
-            StartCoroutine(InitiatePursuePathfinding(enemyManager));
-            pursuePathfindingInitiated = true;
-        }
-
-        MoveTowardsTarget(enemyManager, enemyStats);
-
-        #region Handle State Switching
+        #region State Switching
 
         if (enemyManager.isDead)//MIGHT DIE
         {
@@ -49,7 +40,7 @@ public class PursueState : EnemyStateMachine
             enemyManager.currentTarget = null;
             return scoutState;
         }
-        
+
         if (enemyManager.distanceFromTarget < enemyStats.characterData.evadeRange && enemyStats.characterData.canEvade
             && !enemyManager.currentTarget.GetComponent<PlayerManager>().isDashing)//MIGHT EVADE
         {
@@ -77,7 +68,7 @@ public class PursueState : EnemyStateMachine
             }
         }
 
-        if(enemyStats.characterData.summons.Count > 0)//Chance they will summon minions if they can
+        if (enemyStats.characterData.summons.Count > 0)//Chance they will summon minions if they can
         {
             if (Random.value < 0.001f)
             {
@@ -86,11 +77,25 @@ public class PursueState : EnemyStateMachine
             }
         }
 
-        return this;
-
         #endregion
 
+        
+        #region Pursuit
+
+        if (!pursuePathfindingInitiated)
+        {
+            pursuePathfindingInitiated = true;
+            StartCoroutine(InitiatePursuePathfinding(enemyManager));
+        }
+        
+        MoveTowardsTarget(enemyManager, enemyStats);
+        
+        #endregion
+
+        return this;
     }
+
+    #region Pathfinding
 
     private IEnumerator InitiatePursuePathfinding(EnemyManager enemyManager)
     {
@@ -98,7 +103,7 @@ public class PursueState : EnemyStateMachine
         {
             enemyManager.seeker.StartPath(enemyManager.rb.position, enemyManager.currentTarget.transform.position, OnPathComplete);
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(InitiatePursuePathfinding(enemyManager));
     }
 
@@ -113,24 +118,22 @@ public class PursueState : EnemyStateMachine
 
     private void MoveTowardsTarget(EnemyManager enemyManager, EnemyStats enemyStats)
     {
-        if (path == null)
+        if (path == null || currentWaypoint >= path.vectorPath.Count)
             return;
 
-        Vector2 targetDirection = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
-        enemyManager.distanceFromTarget = Vector2.Distance(enemyManager.rb.position, enemyManager.currentTarget.transform.position);
+        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - enemyManager.rb.position).normalized;
+        Vector2 force = dir * enemyStats.characterData.moveSpeed * Time.deltaTime;
 
-        enemyManager.rb.AddForce(targetDirection * enemyStats.characterData.moveSpeed * Time.deltaTime);
-
+        enemyManager.rb.AddForce(force);
 
         float distance = Vector2.Distance(enemyManager.rb.position, path.vectorPath[currentWaypoint]);
 
-        if(distance < nextWaypointDistance)
+        if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
     }
 
-
-
+    #endregion
 
 }

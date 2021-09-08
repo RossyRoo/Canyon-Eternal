@@ -121,7 +121,7 @@ public class DamageCollider : MonoBehaviour
 
             if (collision.tag == "Enemy" && canDamageEnemy)
             {
-                EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+                EnemyStats enemyStats = collision.GetComponentInParent<EnemyStats>();
 
                 if (enemyStats != null)
                 {

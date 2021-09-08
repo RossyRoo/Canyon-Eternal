@@ -8,7 +8,6 @@ public class EnemyManager : CharacterManager
 {
     EnemyStats enemyStats;
     EnemyAnimatorHandler enemyAnimatorHandler;
-    public GameObject myBodySprite;
 
     [HideInInspector]
     public Seeker seeker;
@@ -24,7 +23,7 @@ public class EnemyManager : CharacterManager
 
     private void Awake()
     {
-        enemyStats = GetComponent<EnemyStats>();
+        enemyStats = GetComponentInParent<EnemyStats>();
 
         if (enemyStats.characterData.isSingleEncounter && FindObjectOfType<PlayerStats>().GetComponentInChildren<PlayerProgression>().enemiesEncountered.Contains(enemyStats.characterData))
         {
@@ -53,12 +52,18 @@ public class EnemyManager : CharacterManager
         HandleStateMachine();
         Rotate();
 
+        if (currentTarget != null)
+        {
+            distanceFromTarget = Vector2.Distance(rb.position, currentTarget.transform.position);
+        }
+
         isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
     }
 
     private void FixedUpdate()
     {
         UpdateMoveDirection();
+
     }
 
     #region State Machine
@@ -143,12 +148,10 @@ public class EnemyManager : CharacterManager
         if (currentMoveDirection != Vector2.zero)
         {
             lastMoveDirection = currentMoveDirection;
-            enemyAnimatorHandler.UpdateFloatAnimationValues(currentMoveDirection.x, currentMoveDirection.y, isMoving);
             isMoving = true;
         }
         else
         {
-            enemyAnimatorHandler.UpdateFloatAnimationValues(lastMoveDirection.x, lastMoveDirection.y, isMoving);
             isMoving = false;
         }
 
@@ -178,18 +181,22 @@ public class EnemyManager : CharacterManager
     private void Rotate()
     {
         float offset = -90f;
+        float rotationSpeed = 5f;
 
         if (currentTarget != null)
         {
             Vector2 direction = (Vector2)currentTarget.transform.position - (Vector2)transform.position;
             direction.Normalize();
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.forward * (angle + offset)), Time.deltaTime * rotationSpeed);
+            
         }
         else
         {
-            float angle = Mathf.Atan2(currentMoveDirection.y, currentMoveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
+            //float angle = Mathf.Atan2(currentMoveDirection.y, currentMoveDirection.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.forward * (angle + offset)), Time.deltaTime * rotationSpeed);
+
         }
 
     }

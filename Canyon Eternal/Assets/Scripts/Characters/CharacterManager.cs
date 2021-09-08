@@ -31,6 +31,7 @@ public class CharacterManager : MonoBehaviour
     public bool isStunned;
     public bool isDashing;
 
+    [Header("Movement")]
     public Vector2 currentMoveDirection;
     public Vector2 lastMoveDirection;
 

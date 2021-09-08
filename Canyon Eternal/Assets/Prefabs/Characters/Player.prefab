@@ -5894,8 +5894,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01185894, y: 0.011081696}
-  m_Size: {x: 2.1002216, y: 2.294899}
+  m_Offset: {x: -0.008701801, y: 0.03864551}
+  m_Size: {x: 2.3487377, y: 2.6817625}
   m_Direction: 0
 --- !u!50 &8652666736338822577
 Rigidbody2D:
@@ -5950,6 +5950,7 @@ MonoBehaviour:
   isDashing: 0
   currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
+  animator: {fileID: 0}
   isInteractingWithUI: 0
   interactionPopupGO: {fileID: 0}
   itemPopupGO: {fileID: 0}
@@ -6031,9 +6032,9 @@ MonoBehaviour:
   fallingSFX: {fileID: 8300000, guid: ad95219b6c14c234a8d09bb82bfc96fa, type: 3}
   hardCollisionSFX: {fileID: 8300000, guid: ed451b18ef0dc8d4692175cbd845831c, type: 3}
   dashSFX: {fileID: 8300000, guid: 5062dea39f7daa94b8184b6e984e14bd, type: 3}
-  dashSpeed: 4000
-  dashTime: 0.2
-  startDashTime: 0.12
+  dashSpeed: 3250
+  dashTime: 0.18
+  startDashTime: 0.18
   dashFXTransform: {fileID: 104431047}
 --- !u!114 &1284162258
 MonoBehaviour:

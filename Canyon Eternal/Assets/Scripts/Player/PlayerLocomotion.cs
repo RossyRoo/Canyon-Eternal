@@ -53,16 +53,14 @@ public class PlayerLocomotion : MonoBehaviour
             }
 
             //UPDATE ANIMS
-            if (playerManager.currentMoveDirection.x == 0 && playerManager.currentMoveDirection.y == 0)
+            if (playerManager.currentMoveDirection.x != 0 || playerManager.currentMoveDirection.y != 0)
             {
-                playerAnimatorHandler.UpdateIntAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
-                playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.lastMoveDirection.x, playerManager.lastMoveDirection.y, false);
+                playerManager.animator.SetBool("isMoving", true);
+                playerManager.lastMoveDirection = playerManager.currentMoveDirection;
             }
             else
             {
-                playerManager.lastMoveDirection = playerManager.currentMoveDirection;
-                playerAnimatorHandler.UpdateIntAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
-                playerAnimatorHandler.UpdateFloatAnimationValues(playerManager.currentMoveDirection.x, playerManager.currentMoveDirection.y, true);
+                playerManager.animator.SetBool("isMoving", false);
             }
         }
 
@@ -91,9 +89,7 @@ public class PlayerLocomotion : MonoBehaviour
             else
             {
                 playerManager.rb.AddForce(playerManager.transform.up * dashSpeed);
-
             }
-
         }
     }
 
@@ -154,10 +150,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     private IEnumerator HandleFalling()
     {
-        Debug.Log("Run Falling Coroutine");
         playerManager.isFalling = true;
-
-        playerAnimatorHandler.UpdateFloatAnimationValues(0, -1, false);
 
         yield return new WaitForSeconds(0.75f);
 
@@ -166,7 +159,8 @@ public class PlayerLocomotion : MonoBehaviour
         SFXPlayer.Instance.PlaySFXAudioClip(fallingSFX, 0.5f);
         playerParticleHandler.SpawnBigDustCloudVFX();
 
-        StartCoroutine(playerManager.HandleDeathCoroutine("Fall"));
+        //SPAWN NEAR PIT INSTEAD OF DYING
+        StartCoroutine(playerManager.HandleDeathCoroutine());
         CancelInvoke("ApplyFallForce");
         playerManager.isFalling = false;
     }
