@@ -16,6 +16,8 @@ public class PursueState : EnemyStateMachine
     public SummonState summonState;
     public ReturnState returnState;
 
+
+    float pursuitBuffer = 0.2f;
     float nextWaypointDistance = 3f;
     Path path;
     int currentWaypoint = 0;
@@ -87,9 +89,10 @@ public class PursueState : EnemyStateMachine
             pursuePathfindingInitiated = true;
             StartCoroutine(InitiatePursuePathfinding(enemyManager));
         }
-        
+
         MoveTowardsTarget(enemyManager, enemyStats);
-        
+
+
         #endregion
 
         return this;
@@ -99,6 +102,7 @@ public class PursueState : EnemyStateMachine
 
     private IEnumerator InitiatePursuePathfinding(EnemyManager enemyManager)
     {
+        yield return new WaitForSeconds(pursuitBuffer);
         if (enemyManager.seeker.IsDone() && enemyManager.currentTarget != null)
         {
             enemyManager.seeker.StartPath(enemyManager.rb.position, enemyManager.currentTarget.transform.position, OnPathComplete);

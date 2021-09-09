@@ -17,7 +17,7 @@ MonoBehaviour:
   dataIcon: {fileID: 21300000, guid: 1cf585216d10a43cd9fe65f2b3daf5fa, type: 3}
   characterContact: {fileID: 0}
   characterID: 1
-  moveSpeed: 4053
+  moveSpeed: 2000
   startingMaxHealth: 100
   currentMaxHealth: 0
   healAmount: 1
@@ -25,12 +25,12 @@ MonoBehaviour:
   isSingleEncounter: 1
   canPursue: 1
   canAttack: 1
-  canEvade: 1
-  detectionRadius: 22
+  canEvade: 0
+  detectionRadius: 15
   attackRange: 15
   evadeRange: 5
   enemyAttacks:
-  - {fileID: 11400000, guid: 6546b7d95657b46f6baee2e3cd0ae3fc, type: 2}
+  - {fileID: 11400000, guid: 34c0a8207fd55495aa1dca6bf8c80bd8, type: 2}
   randomLootDrops: []
   consumableItems:
   - {fileID: 11400000, guid: 7f4fa119ce8cf4ae0b0b7d61e97b632c, type: 2}

@@ -60,6 +60,7 @@ public class EnemyManager : CharacterManager
 
         isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
         isAttacking = enemyAnimatorHandler.animator.GetBool("isAttacking");
+        enemyAnimatorHandler.animator.SetBool("isMoving", isMoving);
     }
 
     private void FixedUpdate()

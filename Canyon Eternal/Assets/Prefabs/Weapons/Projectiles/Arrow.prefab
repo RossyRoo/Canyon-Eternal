@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2386400630290685019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.47, y: -0.99, z: 0}
-  m_LocalScale: {x: 0.7, y: -0.7, z: 0.7}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -148,6 +148,7 @@ MonoBehaviour:
     type: 2}
   spellProjectileData: {fileID: 0}
   isEnemyProjectile: 0
+  isFired: 0
 --- !u!114 &-7072923029392143523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +169,5 @@ MonoBehaviour:
   canDamageEnemy: 0
   canDamagePlayer: 1
   knockbackTarget: {fileID: 0}
-  knockbackDirection: {x: 0, y: 0}
   knockbackForce: 10
-  startKnockbackTime: 0.02
   weaponData: {fileID: 11400000, guid: bf2b1af708e034b45a57e2ea1c355966, type: 2}

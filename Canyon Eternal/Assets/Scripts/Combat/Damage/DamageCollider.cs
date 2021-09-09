@@ -134,7 +134,7 @@ public class DamageCollider : MonoBehaviour
 
             if (weaponData.criticalDamageSFX != null)
             {
-                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)], 0.1f);
+                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)], 0.05f);
 
                 if (criticalHitActivated)
                 {
@@ -166,9 +166,12 @@ public class DamageCollider : MonoBehaviour
             else
             {
                 knockbackTime -= Time.deltaTime;
-                knockbackTarget.rb.AddForce(-knockbackTarget.transform.up * knockbackForce);
+                if(knockbackTarget != null)
+                {
+                    knockbackTarget.rb.AddForce(-knockbackTarget.transform.up * knockbackForce);
+                }
 
-                if(myCharacterManager.GetComponent<PlayerManager>())
+                if (myCharacterManager.GetComponent<PlayerManager>())
                 {
                     myCharacterManager.rb.AddForce(-myCharacterManager.transform.up * knockbackForce * 10);
                 }

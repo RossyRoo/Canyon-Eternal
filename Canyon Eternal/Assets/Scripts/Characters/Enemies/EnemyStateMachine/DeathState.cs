@@ -20,24 +20,26 @@ public class DeathState : EnemyStateMachine
     {
         runningDeathCoroutine = true;
 
+        enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        enemyStats.currentHealth = 0;
         enemyStats.DisableAllDamageColliders();
         enemyManager.DisengagePlayer();
 
+        enemyAnimatorHandler.PlayTargetAnimation("Death", true);
+        SFXPlayer.Instance.PlaySFXAudioClip(enemyStats.characterData.deathRattleSFX,0.1f);
+
+
+        //GIVE STUFF TO PLAYER
         PlayerStats playerStats = FindObjectOfType<PlayerStats>();
         playerStats.GetComponent<PlayerInventory>().AdjustFragmentInventory(enemyStats.characterData.fragmentDrop);
-
         PlayerProgression playerProgression = playerStats.GetComponentInChildren<PlayerProgression>();
-
         if(!playerProgression.enemiesEncountered.Contains(enemyStats.characterData))
         {
             playerProgression.enemiesEncountered.Add(enemyStats.characterData);
         }
-
-        enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
-        enemyAnimatorHandler.PlayTargetAnimation("Death", true);
         
         yield return new WaitForSeconds(0.5f);
+
         Destroy(enemyManager.myWall.gameObject);
         Destroy(enemyStats.gameObject);
     }

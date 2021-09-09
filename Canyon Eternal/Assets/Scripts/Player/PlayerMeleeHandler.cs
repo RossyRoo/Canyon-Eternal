@@ -106,7 +106,7 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerStats.LoseStamina(playerInventory.activeWeapon.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
         PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
-        SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeWeapon.swingWeaponSFX[Random.Range(0, playerInventory.activeWeapon.swingWeaponSFX.Length)]);
+        SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeWeapon.swingWeaponSFX[Random.Range(0, playerInventory.activeWeapon.swingWeaponSFX.Length)], 0.1f);
 
         yield return new WaitForSeconds(playerInventory.activeWeapon.closeDamageColliderBuffer); 
         meleeDamageCollider.DisableDamageCollider(); //DISABLE DAMAGE COLLIDER
