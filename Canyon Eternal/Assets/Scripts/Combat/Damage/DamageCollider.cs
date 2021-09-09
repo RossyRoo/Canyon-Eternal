@@ -20,7 +20,7 @@ public class DamageCollider : MonoBehaviour
     public CharacterManager knockbackTarget;
     public float knockbackForce = 10f;
     private float knockbackTime;
-    public float startKnockbackTime = 0.02f;
+    float startKnockbackTime = 0.04f;
     private bool knockbackFlag;
 
     [Header("Damage Stats")]

@@ -17,6 +17,7 @@ public class EnemyManager : CharacterManager
     public PlayerStats currentTarget;
     public float distanceFromTarget;
     public float currentRecoveryTime;
+    public float currentMomentumTime = 0;
 
     public LayerMask collisionLayers;
 
@@ -58,12 +59,12 @@ public class EnemyManager : CharacterManager
         }
 
         isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
+        isAttacking = enemyAnimatorHandler.animator.GetBool("isAttacking");
     }
 
     private void FixedUpdate()
     {
-        UpdateMoveDirection();
-
+        CheckForMovement(); //THIS SHOULD BE DONE IN THE STATES?
     }
 
     #region State Machine
@@ -100,6 +101,10 @@ public class EnemyManager : CharacterManager
         {
             currentRecoveryTime -= Time.deltaTime;
         }
+        else
+        {
+            isAttacking = false;
+        }
 
         if (isInteracting)
         {
@@ -112,51 +117,69 @@ public class EnemyManager : CharacterManager
 
     #endregion
 
-    private void UpdateMoveDirection()
+    #region Movement / Rotation
+    
+    private void CheckForMovement()
     {
-        Vector2 rawMoveDirection;
-
-        rawMoveDirection.x = Mathf.RoundToInt(rb.velocity.x);
-        rawMoveDirection.y = Mathf.RoundToInt(rb.velocity.y);
-
-        if (rawMoveDirection.x == 0)
+        if (Mathf.RoundToInt(rb.velocity.x) > 0 || Mathf.RoundToInt(rb.velocity.y) > 0)
         {
-            currentMoveDirection.x = 0;
-        }
-        else if (rawMoveDirection.x > 0)
-        {
-            currentMoveDirection.x = 1;
-        }
-        else
-        {
-            currentMoveDirection.x = -1;
-        }
-
-        if (rawMoveDirection.y == 0)
-        {
-            currentMoveDirection.y = 0;
-        }
-        else if (rawMoveDirection.y > 0)
-        {
-            currentMoveDirection.y = 1;
-        }
-        else
-        {
-            currentMoveDirection.y = -1;
-        }
-
-        if (currentMoveDirection != Vector2.zero)
-        {
-            lastMoveDirection = currentMoveDirection;
             isMoving = true;
         }
         else
         {
             isMoving = false;
         }
-
     }
 
+    private void Rotate()
+    {
+        float offset = -90f;
+        float rotationSpeed = 10f;
+
+        if (currentTarget != null && currentMomentumTime <= 0) //PURSUIT ROTATION
+        {
+            Vector2 direction = (Vector2)currentTarget.transform.position - (Vector2)transform.position;
+            direction.Normalize();
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.forward * (angle + offset)), Time.deltaTime * rotationSpeed);
+        }
+        else if(currentTarget != null && currentMomentumTime > 0) //ATTACK ROTATION
+        {
+            float angle = Mathf.Atan2(transform.up.y, transform.up.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.forward * (angle + offset)), Time.deltaTime * rotationSpeed);
+        }
+        else  //IDLE ROTATION
+        {
+            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.forward * (angle + offset)), Time.deltaTime * rotationSpeed);
+        }
+    }
+
+    public IEnumerator ApplyAttackMomentum(EnemyAttackAction currentAttack, Vector2 targetDirection)
+    {
+        if(currentMomentumTime == 0)
+        {
+            currentMomentumTime = currentAttack.chargeDuration;
+        }
+
+        if (currentMomentumTime > 0)
+        {
+            Vector2 chargeForce = (targetDirection.normalized * currentAttack.chargeForce * Time.deltaTime);
+            rb.AddForce(chargeForce);
+        }
+        else
+        {
+            currentMomentumTime = 0;
+            yield break;
+        }
+
+        yield return new WaitForEndOfFrame();
+
+        currentMomentumTime -= Time.deltaTime;
+        StartCoroutine(ApplyAttackMomentum(currentAttack, targetDirection));
+    }
+
+    #endregion
 
     public void EngagePlayer()
     {
@@ -178,28 +201,7 @@ public class EnemyManager : CharacterManager
         }
     }
 
-    private void Rotate()
-    {
-        float offset = -90f;
-        float rotationSpeed = 5f;
 
-        if (currentTarget != null)
-        {
-            Vector2 direction = (Vector2)currentTarget.transform.position - (Vector2)transform.position;
-            direction.Normalize();
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.forward * (angle + offset)), Time.deltaTime * rotationSpeed);
-            
-        }
-        else
-        {
-            //float angle = Mathf.Atan2(currentMoveDirection.y, currentMoveDirection.x) * Mathf.Rad2Deg;
-            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.forward * (angle + offset)), Time.deltaTime * rotationSpeed);
-
-        }
-
-    }
 
 
 }

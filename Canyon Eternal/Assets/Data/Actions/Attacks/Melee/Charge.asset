@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionAnimation: Charge
   comment: 
-  recoveryTime: 1
+  recoveryTime: 2
   spaceNeededToStartAttack: 0
-  shortestDistanceNeededToAttack: 25
-  prepareAttackTime: 0
+  shortestDistanceNeededToAttack: 15
+  prepareAttackTime: 0.2
   openDamageColliderBuffer: 0.1
   closeDamageColliderBuffer: 0.6
-  chargeForce: 49.8
+  chargeForce: 6000
+  chargeDuration: 0.6
   isRanged: 0
   projectilePrefab: {fileID: 0}

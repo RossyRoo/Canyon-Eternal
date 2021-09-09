@@ -264,6 +264,7 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   distanceFromTarget: 0
   currentRecoveryTime: 0
+  currentMomentumTime: 0
   collisionLayers:
     serializedVersion: 2
     m_Bits: 271360
@@ -599,7 +600,6 @@ MonoBehaviour:
   canDamagePlayer: 1
   knockbackTarget: {fileID: 0}
   knockbackForce: 100
-  startKnockbackTime: 0.02
   weaponData: {fileID: 11400000, guid: b04116d140bd74126a8a700b8067d097, type: 2}
 --- !u!1 &8019964413277457191
 GameObject:

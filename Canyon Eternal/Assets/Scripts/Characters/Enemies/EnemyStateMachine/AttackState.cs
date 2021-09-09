@@ -10,14 +10,12 @@ public class AttackState : EnemyStateMachine
 
     public EnemyAttackAction currentAttack;
 
-    [Tooltip("Use this until you add acceleration and deceleration to attacks")]
-    private float chargeForceMultiplier = 5000f;
-
     bool attackActivated = false;
     bool attackComplete = false;
 
     public override EnemyStateMachine Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
+        #region Death/Stun Switching
         if (enemyManager.isDead) //Dies if dead
         {
             return deathState;
@@ -28,23 +26,12 @@ public class AttackState : EnemyStateMachine
             return stunnedState;
         }
 
-        if (attackComplete) //pursues if attack complete
-        {
-            attackComplete = false;
-            attackActivated = false;
-            enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            return pursueState;
-        }
+        #endregion
 
+        #region Attacking
         if (currentAttack == null && !attackActivated) //gets new attack if none is selected and attack hasnt been started
         {
             GetNewAttack(enemyManager, enemyStats);
-        }
-
-        if(currentAttack == null) //pursues if no attacks were available
-        {
-            BreakAttack(enemyManager);
-            return pursueState;
         }
 
         if (currentAttack != null)
@@ -54,12 +41,31 @@ public class AttackState : EnemyStateMachine
                 StartCoroutine(PerformAttack(enemyManager, enemyStats, enemyAnimatorHandler));
             }
 
-            HandleAttackMomentum(enemyManager);
         }
+        #endregion
+
+        #region Pursue If Finished Or Unable To Attack
+
+        if (currentAttack == null) //pursues if no attacks were available
+        {
+            BreakAttack(enemyManager);
+            return pursueState;
+        }
+
+        if (attackComplete) //pursues when attack is complete
+        {
+            attackComplete = false;
+            attackActivated = false;
+            currentAttack = null;
+            enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            return pursueState;
+        }
+        #endregion
 
         return this;
 
     }
+
 
 
     private void GetNewAttack(EnemyManager enemyManager, EnemyStats enemyStats)
@@ -107,35 +113,29 @@ public class AttackState : EnemyStateMachine
     private IEnumerator PerformAttack(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
     {
         attackActivated = true;
-        enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-
-        Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
-
         enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
+        enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;        //In ranged combat, we might use transform.up instead
 
         yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Charge up the attack (reload if you have a preparation animation
 
         enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-
+        StartCoroutine(enemyManager.ApplyAttackMomentum(currentAttack, targetDirection));
         StartCoroutine(HandleBlockVulnerability(enemyManager)); //Enemy is vulnerable to block for 1/2 their attacks recovery time
 
         if (currentAttack.isRanged)
         {
-            HandleRangedAttack(enemyManager, targetDirection);
+            HandleRangedAttack(targetDirection);
         }
         else
         {
             StartCoroutine(enemyStats.HandleAttackDamageColliders(currentAttack));
         }
 
-
-        yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Charge up the attack (reload if you have a preparation animation
-
-        currentAttack = null;
         attackComplete = true;
     }
 
-    private void HandleRangedAttack(EnemyManager enemyManager, Vector3 targetDirection)
+    private void HandleRangedAttack(Vector3 targetDirection)
     {
         float projectileAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
         GameObject projectileGO = Instantiate(currentAttack.projectilePrefab.GOPrefab, transform.position, Quaternion.Euler(Vector3.forward * (projectileAngle + 90f)));
@@ -144,14 +144,6 @@ public class AttackState : EnemyStateMachine
         projectilePhysics.Launch(currentAttack.projectilePrefab.launchForce, targetDirection.normalized);
 
         SFXPlayer.Instance.PlaySFXAudioClip(currentAttack.projectilePrefab.launchSFX, 0.05f);
-    }
-
-    private void HandleAttackMomentum(EnemyManager enemyManager)
-    {
-        Vector2 chargeDirection = enemyManager.currentTarget.transform.position - transform.position;
-        Vector2 chargeForce = (chargeDirection.normalized * currentAttack.chargeForce * Time.deltaTime) * chargeForceMultiplier;
-
-        enemyManager.rb.AddForce(chargeForce);
     }
 
     public IEnumerator HandleBlockVulnerability(EnemyManager enemyManager)
@@ -167,12 +159,11 @@ public class AttackState : EnemyStateMachine
         {
             enemyManager.currentRecoveryTime = currentAttack.recoveryTime;
         }
-        
+
         attackComplete = false;
         attackActivated = false;
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         currentAttack = null;
-        enemyManager.currentState = pursueState;
     }
 
 } 
