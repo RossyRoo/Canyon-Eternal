@@ -21,6 +21,8 @@ public class PlayerLocomotion : MonoBehaviour
     public float startDashTime;
     public Transform dashFXTransform;
     private bool dashFXTriggered;
+    public Vector2 currentDashDirection;
+    public Vector2 currentDashForce;
 
 
     private void Awake()
@@ -70,26 +72,19 @@ public class PlayerLocomotion : MonoBehaviour
     #region Dash
     public void HandleDash()
     {
-            if(dashTime <= 0)
+        if(dashTime <= 0)
+        {
+            StopDash();
+        }
+        else
+        {
+            if(!dashFXTriggered)
             {
-                StopDash();
+                StartDash();
             }
-            else
-            {
-                if(!dashFXTriggered)
-                {
-                    StartDash();
-                }
 
-                dashTime -= Time.deltaTime;
-            if (playerManager.isMoving)
-            {
-                playerManager.rb.AddForce(playerManager.lastMoveDirection * dashSpeed);
-            }
-            else
-            {
-                playerManager.rb.AddForce(playerManager.transform.up * dashSpeed);
-            }
+            dashTime -= Time.deltaTime;
+            playerManager.rb.AddForce(currentDashDirection * dashSpeed);
         }
     }
 
@@ -97,12 +92,21 @@ public class PlayerLocomotion : MonoBehaviour
     {
         dashFXTriggered = true;
 
+        if(playerManager.isMoving)
+        {
+            currentDashDirection = playerManager.lastMoveDirection;
+        }
+        else
+        {
+            currentDashDirection = playerManager.transform.up;
+        }
+
         playerAnimatorHandler.PlayTargetAnimation("Dash", false);
         ReverseDashThroughEnemies();
         playerStats.LoseStamina(1);
         playerStats.EnableInvulnerability(startDashTime);
 
-        SFXPlayer.Instance.PlaySFXAudioClip(dashSFX);
+        SFXPlayer.Instance.PlaySFXAudioClip(dashSFX, 0.1f);
         playerParticleHandler.SpawnBigDustCloudVFX();
     }
 

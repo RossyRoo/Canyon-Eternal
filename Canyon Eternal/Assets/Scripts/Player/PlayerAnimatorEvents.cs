@@ -32,7 +32,7 @@ public class PlayerAnimatorEvents : CharacterAnimatorEvents
             }
         }
 
-        if (instantiatedFootstepsCount <= 2)
+        if (instantiatedFootstepsCount <= 3)
         {
             SFXPlayer.Instance.PlaySFXAudioClip(playerLocomotion.footstepSFX
                 [Random.Range(0, playerLocomotion.footstepSFX.Length)], 0.1f);
