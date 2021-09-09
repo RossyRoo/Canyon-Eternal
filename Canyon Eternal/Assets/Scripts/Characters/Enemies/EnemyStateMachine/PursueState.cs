@@ -17,7 +17,7 @@ public class PursueState : EnemyStateMachine
     public ReturnState returnState;
 
 
-    float pursuitBuffer = 0.2f;
+    float pursuitBuffer = 0.25f;
     float nextWaypointDistance = 3f;
     Path path;
     int currentWaypoint = 0;

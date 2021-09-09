@@ -117,11 +117,13 @@ public class AttackState : EnemyStateMachine
         enemyManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         Vector2 targetDirection = enemyManager.currentTarget.transform.position - transform.position;        //In ranged combat, we might use transform.up instead
 
-        yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Charge up the attack (reload if you have a preparation animation
+        yield return new WaitForSeconds(currentAttack.prepareAttackTime);
 
         enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
         StartCoroutine(enemyManager.ApplyAttackMomentum(currentAttack, targetDirection));
         StartCoroutine(HandleBlockVulnerability(enemyManager)); //Enemy is vulnerable to block for 1/2 their attacks recovery time
+
+        yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Time for arrow to get shot
 
         if (currentAttack.isRanged)
         {
