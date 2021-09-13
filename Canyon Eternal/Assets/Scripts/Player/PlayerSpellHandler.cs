@@ -12,11 +12,7 @@ public class PlayerSpellHandler : MonoBehaviour
     PlayerParticleHandler playerParticleHandler;
 
     float currentSpellChargeTime;
-    GameObject projectilePointerVFXGO;
     [HideInInspector] public GameObject currentSpellGO;
-
-    [Header("Parameters")]
-    public GameObject projectilePointerVFXPrefab;
 
     [Header("Spell Casting SFX")]
     public AudioClip cancelSpellSFX;
@@ -98,12 +94,9 @@ public class PlayerSpellHandler : MonoBehaviour
 
         if (playerInventory.activeSpell.isProjectile)
         {
-            currentSpellGO = Instantiate(playerInventory.activeSpell.GOPrefab, transform.position, Quaternion.identity);
+            currentSpellGO = Instantiate(playerInventory.activeSpell.GOPrefab, transform.position, Quaternion.Euler(0, 0, 90));
             currentSpellGO.transform.parent = playerManager.transform;
 
-            projectilePointerVFXGO = Instantiate(projectilePointerVFXPrefab, transform.position, Quaternion.identity);
-            projectilePointerVFXGO.transform.parent = transform;
-            StartCoroutine(RotatePointer());
         }
         else
         {
@@ -111,57 +104,7 @@ public class PlayerSpellHandler : MonoBehaviour
         }
     }
 
-    private IEnumerator RotatePointer()
-    {
 
-        if (playerManager.isCastingSpell && playerInventory.activeSpell.isProjectile)
-        {
-            int lastMoveDirectionXInt = Mathf.RoundToInt(playerManager.lastMoveDirection.x);
-            int lastMoveDirectionYInt = Mathf.RoundToInt(playerManager.lastMoveDirection.y);
-            Vector2 lastMoveDirectionInt = new Vector2(lastMoveDirectionXInt, lastMoveDirectionYInt);
-
-            if (lastMoveDirectionInt == Vector2.up)
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 90);
-            }
-            else if (lastMoveDirectionInt == Vector2.down)
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 270);
-            }
-            else if (lastMoveDirectionInt == Vector2.left)
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 180);
-            }
-            else if (lastMoveDirectionInt == Vector2.right)
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-            else if (lastMoveDirectionInt == new Vector2(-1, 1))
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 135);
-            }
-            else if (lastMoveDirectionInt == new Vector2(1, 1))
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 45);
-            }
-            else if (lastMoveDirectionInt == new Vector2(-1, -1))
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 225);
-            }
-            else if (lastMoveDirectionInt == new Vector2(1, -1))
-            {
-                projectilePointerVFXGO.transform.localRotation = Quaternion.Euler(0, 0, 315);
-            }
-        }
-        else
-        {
-            yield break;
-        }
-
-
-        yield return new WaitForFixedUpdate();
-        StartCoroutine(RotatePointer());
-    }
 
     public void HandleAllSpellCasting()
     {
@@ -190,8 +133,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
     private void CastProjectile()
     {
-        Destroy(projectilePointerVFXGO);
-        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(playerInventory.activeSpell.launchForce, playerManager.lastMoveDirection);
+        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(playerInventory.activeSpell.launchForce, transform.up);
     }
 
     private void CastAOE()
