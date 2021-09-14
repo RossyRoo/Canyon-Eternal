@@ -84,18 +84,19 @@ public class DamageCollider : MonoBehaviour
         {
             if (currentTarget != null && !currentTarget.isInvulnerable)
             {
-                knockbackFlag = true;
-
-                DetermineCriticalHit();
-                CalculateElementalDamage();
-
                 if (collision.tag == "Player" && canDamagePlayer)
                 {
+                    knockbackFlag = true;
+                    DetermineCriticalHit();
+                    CalculateElementalDamage();
                     collision.GetComponent<PlayerStats>().LoseHealth(damage, true);
                 }
 
                 if (collision.tag == "Enemy" && canDamageEnemy)
                 {
+                    knockbackFlag = true;
+                    DetermineCriticalHit();
+                    CalculateElementalDamage();
                     collision.GetComponentInParent<EnemyStats>().LoseHealth(damage, criticalHitActivated);
                 }
             }
@@ -166,22 +167,19 @@ public class DamageCollider : MonoBehaviour
         {
             if (FindObjectOfType<WeatherSystem>().currentWeatherPattern == weaponData.damageType)
             {
-                Debug.Log("Elemental Boost");
                 elementalBoost = 0.2f;
             }
 
             if (randValue < 0.2 + elementalBoost)
             {
-                Debug.Log("You dealt elemental damage");
                 damage += weaponData.minDamage;
-                GameObject collisionVFXGO = Instantiate(weaponData.elementalCollisionVFX, collisionTransform.position, Quaternion.identity);
+                GameObject collisionVFXGO = Instantiate(weaponData.collisionVFX[weaponData.damageType], collisionTransform.position, Quaternion.identity);
                 collisionVFXGO.transform.parent = objectPool.transform;
                 Destroy(collisionVFXGO, 1f);
             }
             else
             {
-                Debug.Log("You dealt normal damage");
-                GameObject collisionVFXGO = Instantiate(weaponData.normalCollisionVFX, collisionTransform.position, Quaternion.identity);
+                GameObject collisionVFXGO = Instantiate(weaponData.collisionVFX[weaponData.damageType], collisionTransform.position, Quaternion.identity);
                 collisionVFXGO.transform.parent = objectPool.transform;
                 Destroy(collisionVFXGO, 1f);
             }

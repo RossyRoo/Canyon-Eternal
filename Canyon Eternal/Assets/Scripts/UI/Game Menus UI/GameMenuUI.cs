@@ -316,7 +316,10 @@ public class GameMenuUI : MonoBehaviour
 
     private void SelectShopItem(Item itemToBuy)
     {
-        if (playerInventory.itemInventory.Contains(itemToBuy) && itemToBuy.isRare)
+        if (playerInventory.itemInventory.Contains(itemToBuy)
+            || itemToBuy.GetType() == typeof(Spell) && playerInventory.spellsInventory.Contains((Spell)itemToBuy)
+            || itemToBuy.GetType() == typeof(MeleeWeapon) && playerInventory.weaponsInventory.Contains((MeleeWeapon)itemToBuy)
+            && itemToBuy.isRare)
         {
             buyButton.SetActive(false);
             purchasedBanner.SetActive(true);

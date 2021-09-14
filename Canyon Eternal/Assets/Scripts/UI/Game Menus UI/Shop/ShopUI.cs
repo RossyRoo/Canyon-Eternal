@@ -41,6 +41,7 @@ public class ShopUI : MonoBehaviour
         //Put player in UI mode
         playerManager.isInteractingWithUI = true;
         playerAnimatorHandler.animator.SetBool("isInteracting", true);
+        playerAnimatorHandler.animator.SetBool("isMoving", false);
         gameMenuUI.gameMenusGO.SetActive(true);
         shopIsOpen = true;
         //Load Interface and Info panel
@@ -87,7 +88,11 @@ public class ShopUI : MonoBehaviour
         {
             shopIsOpen = false;
 
+            playerManager.isInteractingWithUI = false;
+            playerAnimatorHandler.animator.SetBool("isInteracting", false);
+
             gameMenuUI.buyButton.SetActive(false);
+            gameMenuUI.purchasedBanner.SetActive(false);
 
             activeShopkeeperGO.GetComponent<Usable>().enabled = true;
         }
@@ -105,15 +110,27 @@ public class ShopUI : MonoBehaviour
             if (!selectedItem.isRare ||
                 selectedItem.isRare && !playerInventory.itemInventory.Contains(selectedItem))
             {
-                playerInventory.itemInventory.Add(selectedItem);
+                if(selectedItem.GetType() == typeof(MeleeWeapon))
+                {
+                    playerInventory.weaponsInventory.Add((MeleeWeapon)selectedItem);
+                }
+                else if(selectedItem.GetType() == typeof(Spell))
+                {
+                    playerInventory.spellsInventory.Add((Spell)selectedItem);
+                }
+                else
+                {
+                    playerInventory.itemInventory.Add(selectedItem);
+                }
+
                 playerInventory.AdjustFragmentInventory(-selectedItem.itemValue);
+
                 if(selectedItem.isRare)
                 {
                     gameMenuUI.RefreshGrid(true);
                     RefreshShopInventory();
                     gameMenuUI.buyButton.SetActive(false);
                     gameMenuUI.purchasedBanner.SetActive(true);
-
                 }
             }
             else

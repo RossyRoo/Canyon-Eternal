@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ab8e07e39d3484589dd5a494795c0c, type: 3}
+  m_Name: Sleep Dart (Projectile)
+  m_EditorClassIdentifier: 
+  dataName: Sleep Dart
+  dataDescription: Sleep Dart
+  dataIcon: {fileID: 21300000, guid: 7ac2dab864080496a8a9e676f48e8843, type: 3}
+  staminaCost: 0
+  startingMinDamage: 0
+  startingMaxDamage: 0
+  minDamage: 0
+  maxDamage: 1
+  damageType: 0
+  criticalChance: 0
+  knockbackForce: 0
+  collisionVFX:
+  - {fileID: 634610278021651082, guid: f26e4bfb7138a4eebb1f0453f795e647, type: 3}
+  - {fileID: 1621278099982264210, guid: 8d9dfaf31af9d4f4ebb3d7da25ff25d1, type: 3}
+  - {fileID: 3801012901521723010, guid: f9b95d972708d4674b9ed20e6bac9683, type: 3}
+  - {fileID: 6931138413873056042, guid: e718aac0c956e455f8894c300acbd8c6, type: 3}
+  - {fileID: 8074518296657121161, guid: fa7fe550862ab4db0a7abaa7f59429d4, type: 3}
+  - {fileID: 3010365972562825433, guid: e3032f204f6f144f098c5cd32ca28eb1, type: 3}
+  - {fileID: 4266577199125186363, guid: 0aede419998ba4b1eb1a6bc6ffb0729e, type: 3}
+  - {fileID: 5957669007311728847, guid: 87b4f02980db64df9b52726a09202df7, type: 3}
+  damageSFX:
+  - {fileID: 8300000, guid: 9065d9bb4c3b8cd469b1ee1b2e8c0c49, type: 3}
+  criticalDamageSFX: {fileID: 8300000, guid: 75f2d5cc82e52244ea273b7e32259d15, type: 3}
+  explosionRadius: 0
+  launchForce: 75
+  GOPrefab: {fileID: 2386400630290685019, guid: ef42b40f184ac4b8184e938c63f21653,
+    type: 3}
+  launchSFX: {fileID: 8300000, guid: a1f2bc9efe2d58b479259e1c395aaa00, type: 3}
+  collisionSFX: {fileID: 8300000, guid: 9065d9bb4c3b8cd469b1ee1b2e8c0c49, type: 3}

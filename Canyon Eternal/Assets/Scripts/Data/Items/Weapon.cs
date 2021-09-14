@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Weapon : DataObject
+public class Weapon : Item
 {
     [Header("WEAPON PARAMETERS")]
     public int staminaCost = 1;
@@ -15,8 +15,7 @@ public class Weapon : DataObject
     public int damageType;
     [Range(0,1)]public float criticalChance;
     public float knockbackForce = 100f;
-    public GameObject normalCollisionVFX;
-    public GameObject elementalCollisionVFX;
+    public GameObject [] collisionVFX;
     public AudioClip [] damageSFX;
     public AudioClip criticalDamageSFX;
 }

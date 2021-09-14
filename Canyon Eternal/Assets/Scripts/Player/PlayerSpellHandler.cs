@@ -87,7 +87,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
         playerStats.LoseStamina(playerInventory.activeSpell.staminaCost);
 
-        playerAnimatorHandler.PlayTargetAnimation("ChargeComplete", true);
+        playerAnimatorHandler.PlayTargetAnimation("Charge Complete", true);
         playerParticleHandler.SpawnChargeCompleteVFX(playerInventory.activeSpell.chargeCompleteVFX);
         Destroy(playerParticleHandler.currentChargeVFXGO);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellCompleteSFX);
