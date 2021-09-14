@@ -125,6 +125,9 @@ public class AttackState : EnemyStateMachine
 
         yield return new WaitForSeconds(currentAttack.prepareAttackTime); // Time for arrow to get shot
 
+        if (currentAttack == null) //If attack was interrupted and enemy killed, stop attack
+            yield break;
+
         if (currentAttack.isRanged)
         {
             HandleRangedAttack(targetDirection);

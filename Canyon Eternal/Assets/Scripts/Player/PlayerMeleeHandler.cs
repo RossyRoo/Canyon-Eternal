@@ -103,6 +103,8 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         yield return new WaitForSeconds(playerInventory.activeWeapon.openDamageColliderBuffer);
 
+        attackMomentumActivated = true; //ENABLE ATTACK MOMENTUM
+
         playerStats.LoseStamina(playerInventory.activeWeapon.staminaCost); //DRAIN STAMINA
         meleeDamageCollider.EnableDamageCollider(); //ENABLE DAMAGE COLLIDER
         PlayMeleeVFX(); //PLAY SWING SFX AND MOTION VFX
@@ -110,20 +112,15 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         yield return new WaitForSeconds(playerInventory.activeWeapon.closeDamageColliderBuffer); 
         meleeDamageCollider.DisableDamageCollider(); //DISABLE DAMAGE COLLIDER
-
-        attackMomentumActivated = true; //ENABLE ATTACK MOMENTUM
-        yield return new WaitForSeconds(0.1f);
         attackMomentumActivated = false; //DISABLE ATTACK MOMENTUM
     }
 
     public void AdjustAttackMomentum()
     {
-        
         if (attackMomentumActivated)
         {
             playerManager.rb.AddForce((playerManager.transform.up * playerInventory.activeWeapon.attackMomentum));
         }
-        
     }
     
     private void PlayMeleeVFX()

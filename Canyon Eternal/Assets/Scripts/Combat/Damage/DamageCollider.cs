@@ -5,49 +5,39 @@ using UnityEngine;
 public class DamageCollider : MonoBehaviour
 {
     ObjectPool objectPool;
+    Collider2D damageCollider;
+    float damage = 1;
+    bool criticalHitActivated;
+    //KNOCKBACK PARAMETERS
+    CharacterManager currentTarget;
+    float knockbackForce;
+    float knockbackTime;
+    float startKnockbackTime = 0.04f;
+    bool knockbackFlag;
 
-    [HideInInspector]public Collider2D damageCollider;
+    [Header("Collider Parameters")]
+    public Weapon weaponData;
     public Transform collisionTransform;
-    public CharacterManager myCharacterManager;
-
-    [Header("Collider Type")]
     public bool dealsConstantDamage;
-    public bool targetIsWithinRange;
+    public bool targetIsWithinRange = false;
     public bool canDamageEnemy = true;
     public bool canDamagePlayer = true;
 
-    [Header("Knockback Settings")]
-    public CharacterManager knockbackTarget;
-    public float knockbackForce = 10f;
-    private float knockbackTime;
-    float startKnockbackTime = 0.04f;
-    private bool knockbackFlag;
-
-    [Header("Damage Stats")]
-    public Weapon weaponData;
-    float damage = 1;
-    bool criticalHitActivated;
 
     private void Awake()
     {
         objectPool = FindObjectOfType<ObjectPool>();
         damageCollider = GetComponent<Collider2D>();
-        damageCollider.isTrigger = true;
-        targetIsWithinRange = false;
+
+        knockbackTime = startKnockbackTime;
+        knockbackForce = weaponData.knockbackForce;
+        weaponData.minDamage = weaponData.startingMinDamage;
+        weaponData.maxDamage = weaponData.startingMaxDamage;
 
         if (!dealsConstantDamage)
         {
             damageCollider.enabled = false;
         }
-
-        if (weaponData != null)
-        {
-            knockbackForce = weaponData.knockbackForce;
-            weaponData.minDamage = weaponData.startingMinDamage;
-            weaponData.maxDamage = weaponData.startingMaxDamage;
-        }
-
-        knockbackTime = startKnockbackTime;
     }
 
     private void Update()
@@ -72,22 +62,12 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
+        currentTarget = collision.gameObject.GetComponent<CharacterManager>();
 
-        if (characterCollision != null)
+        if (currentTarget != null)
         {
-            knockbackTarget = characterCollision;
             targetIsWithinRange = true;
             StartCoroutine(DealDamage(collision.gameObject));
-        }
-
-        if(collision.gameObject.transform != transform.parent
-            && weaponData != null
-            && weaponData.collisionVFX != null)
-        {
-            GameObject collisionVFXGO = Instantiate(weaponData.collisionVFX, collisionTransform.position, Quaternion.identity);
-            collisionVFXGO.transform.parent = objectPool.transform;
-            Destroy(collisionVFXGO, 1f);
         }
     }
 
@@ -102,56 +82,32 @@ public class DamageCollider : MonoBehaviour
     {
         if (targetIsWithinRange)
         {
-            if (knockbackTarget.isInvulnerable)
+            if (currentTarget != null && !currentTarget.isInvulnerable)
             {
-                yield break;
-            }
+                knockbackFlag = true;
 
-            RollForCriticalHit();
+                DetermineCriticalHit();
+                CalculateElementalDamage();
 
-            if (collision.tag == "Player" && canDamagePlayer)
-            {
-                PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-
-                if (playerStats != null)
+                if (collision.tag == "Player" && canDamagePlayer)
                 {
-                    playerStats.LoseHealth(damage, true);
-                }
-            }
-
-            if (collision.tag == "Enemy" && canDamageEnemy)
-            {
-                EnemyStats enemyStats = collision.GetComponentInParent<EnemyStats>();
-
-                if (enemyStats != null)
-                {
-                    enemyStats.LoseHealth(damage, criticalHitActivated);
-                    knockbackFlag = true;
+                    collision.GetComponent<PlayerStats>().LoseHealth(damage, true);
                 }
 
-                CinemachineManager.Instance.Shake(7f, 0.25f);
-            }
-
-            if (weaponData.criticalDamageSFX != null)
-            {
-                SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)], 0.05f);
-
-                if (criticalHitActivated)
+                if (collision.tag == "Enemy" && canDamageEnemy)
                 {
-                    SFXPlayer.Instance.PlaySFXAudioClip(weaponData.criticalDamageSFX);
+                    collision.GetComponentInParent<EnemyStats>().LoseHealth(damage, criticalHitActivated);
                 }
             }
-
-
-            myCharacterManager = GetComponentInParent<CharacterManager>();
 
             yield return new WaitForFixedUpdate();
             StartCoroutine(DealDamage(collision));
         }
         else
+        {
             yield break;
+        }
     }
-
 
     private void HandleKnockback()
     {
@@ -160,41 +116,77 @@ public class DamageCollider : MonoBehaviour
             if (knockbackTime <= 0)
             {
                 knockbackFlag = false;
-                knockbackTarget = null;
+                currentTarget = null;
                 knockbackTime = startKnockbackTime;
             }
             else
             {
                 knockbackTime -= Time.deltaTime;
-                if(knockbackTarget != null)
+                if(currentTarget != null)
                 {
-                    knockbackTarget.rb.AddForce(-knockbackTarget.transform.up * knockbackForce);
+                    currentTarget.rb.AddForce(-currentTarget.transform.up * knockbackForce);
                 }
 
-                if (myCharacterManager.GetComponent<PlayerManager>())
+                if (GetComponentInParent<PlayerManager>())
                 {
-                    myCharacterManager.rb.AddForce(-myCharacterManager.transform.up * knockbackForce * 10);
+                    PlayerManager playerManager = GetComponentInParent<PlayerManager>();
+                    playerManager.rb.AddForce(-playerManager.transform.up * knockbackForce * 10);
                 }
             }
         }
     }
 
-    private void RollForCriticalHit()
-    {
-        if (weaponData != null)
-        {
-            float randValue = Random.value;
+    #region Damage and Status Calculation
 
-            if (randValue < 1 - weaponData.criticalChance)
+    private void DetermineCriticalHit()
+    {
+        float randValue = Random.value;
+
+        if (randValue < 1 - weaponData.criticalChance)
+        {
+            damage = Mathf.RoundToInt(Random.Range(weaponData.minDamage, weaponData.maxDamage));
+            SFXPlayer.Instance.PlaySFXAudioClip(weaponData.damageSFX[Random.Range(0, weaponData.damageSFX.Length)], 0.05f);
+            criticalHitActivated = false;
+        }
+        else
+        {
+            damage = Mathf.RoundToInt(weaponData.maxDamage * 2);
+            SFXPlayer.Instance.PlaySFXAudioClip(weaponData.criticalDamageSFX);
+            criticalHitActivated = true;
+        }
+    }
+
+    private void CalculateElementalDamage()
+    {
+        float randValue = Random.value;
+
+        float elementalBoost = 0;
+
+        if (weaponData.damageType > 0)
+        {
+            if (FindObjectOfType<WeatherSystem>().currentWeatherPattern == weaponData.damageType)
             {
-                damage = Mathf.RoundToInt(Random.Range(weaponData.minDamage, weaponData.maxDamage));
-                criticalHitActivated = false;
+                Debug.Log("Elemental Boost");
+                elementalBoost = 0.2f;
+            }
+
+            if (randValue < 0.2 + elementalBoost)
+            {
+                Debug.Log("You dealt elemental damage");
+                damage += weaponData.minDamage;
+                GameObject collisionVFXGO = Instantiate(weaponData.elementalCollisionVFX, collisionTransform.position, Quaternion.identity);
+                collisionVFXGO.transform.parent = objectPool.transform;
+                Destroy(collisionVFXGO, 1f);
             }
             else
             {
-                damage = Mathf.RoundToInt(weaponData.maxDamage * 2);
-                criticalHitActivated = true;
+                Debug.Log("You dealt normal damage");
+                GameObject collisionVFXGO = Instantiate(weaponData.normalCollisionVFX, collisionTransform.position, Quaternion.identity);
+                collisionVFXGO.transform.parent = objectPool.transform;
+                Destroy(collisionVFXGO, 1f);
             }
         }
     }
+
+    #endregion
 }

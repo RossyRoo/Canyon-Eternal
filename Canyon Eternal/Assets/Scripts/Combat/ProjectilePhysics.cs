@@ -49,14 +49,14 @@ public class ProjectilePhysics : MonoBehaviour
         {
             myLaunchForce = standardProjectileData.launchForce;
             myExplosionRadius = standardProjectileData.explosionRadius;
-            myCollisionVFX = standardProjectileData.collisionVFX;
+            myCollisionVFX = standardProjectileData.normalCollisionVFX;
             myCollisionSFX = standardProjectileData.collisionSFX;
         }
         else if (spellProjectileData != null)
         {
             myLaunchForce = spellProjectileData.launchForce;
             myExplosionRadius = spellProjectileData.explosionRadius;
-            myCollisionVFX = spellProjectileData.collisionVFX;
+            myCollisionVFX = spellProjectileData.normalCollisionVFX;
             myCollisionSFX = spellProjectileData.collisionSFX;
         }
     }

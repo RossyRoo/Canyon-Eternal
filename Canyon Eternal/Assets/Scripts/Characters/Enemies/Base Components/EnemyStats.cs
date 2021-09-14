@@ -48,6 +48,7 @@ public class EnemyStats : CharacterStats
         StartCoroutine(enemyHealthBarUI.SetHealthCoroutine(true, currentHealth, isCriticalHit, damageHealth));
 
         enemyAnimatorHandler.PlayTargetAnimation(damageAnimation, true);
+        CinemachineManager.Instance.Shake(7f, 0.25f);
 
         if (currentHealth <= 0)
         {

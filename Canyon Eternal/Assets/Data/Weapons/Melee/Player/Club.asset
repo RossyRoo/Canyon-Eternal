@@ -20,9 +20,12 @@ MonoBehaviour:
   startingMaxDamage: 14
   minDamage: 12
   maxDamage: 14
+  damageType: 1
   criticalChance: 0
   knockbackForce: 200
-  collisionVFX: {fileID: 3801012901521723010, guid: fb50b77ac2cac46dba4cdeb41515422f,
+  normalCollisionVFX: {fileID: 3801012901521723010, guid: fb50b77ac2cac46dba4cdeb41515422f,
+    type: 3}
+  elementalCollisionVFX: {fileID: 634610278021651082, guid: f26e4bfb7138a4eebb1f0453f795e647,
     type: 3}
   damageSFX:
   - {fileID: 8300000, guid: a5afba8007cd4e14fb2929e6ccf59e27, type: 3}
@@ -32,9 +35,9 @@ MonoBehaviour:
   isThrust: 0
   isSlash: 0
   isStrike: 1
-  attackMomentum: 0
-  openDamageColliderBuffer: 0.1
-  closeDamageColliderBuffer: 0.25
+  attackMomentum: 500
+  openDamageColliderBuffer: 0.04
+  closeDamageColliderBuffer: 0.08
   attackCooldownTime: 0.5
   modelPrefab: {fileID: 8638964557053719766, guid: d32554c03a7954949b231d4787ee5918,
     type: 3}
