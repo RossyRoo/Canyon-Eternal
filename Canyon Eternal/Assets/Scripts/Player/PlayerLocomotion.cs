@@ -24,6 +24,8 @@ public class PlayerLocomotion : MonoBehaviour
     public Vector2 currentDashDirection;
     public Vector2 currentDashForce;
 
+    Vector3 temporaryFallSpawnPoint = Vector3.zero;
+
 
     private void Awake()
     {
@@ -155,18 +157,24 @@ public class PlayerLocomotion : MonoBehaviour
     private IEnumerator HandleFalling()
     {
         playerManager.isFalling = true;
+        playerManager.animator.SetBool("isMoving", false);
 
         yield return new WaitForSeconds(0.75f);
 
         CinemachineManager.Instance.LosePlayer();
 
+        playerManager.SwitchSpriteVisibility(false);
+
         SFXPlayer.Instance.PlaySFXAudioClip(fallingSFX, 0.5f);
         playerParticleHandler.SpawnBigDustCloudVFX();
 
-        //SPAWN NEAR PIT INSTEAD OF DYING
-        StartCoroutine(playerManager.HandleDeathCoroutine());
-        CancelInvoke("ApplyFallForce");
-        playerManager.isFalling = false;
+        playerStats.LoseHealth(1f, false);
+
+        if(!playerManager.isDead)
+        {
+            SceneChangeManager sceneChangeManager = FindObjectOfType<SceneChangeManager>();
+            StartCoroutine(sceneChangeManager.ChangeScene(sceneChangeManager.currentBuildIndex));
+        }
     }
 
     #endregion

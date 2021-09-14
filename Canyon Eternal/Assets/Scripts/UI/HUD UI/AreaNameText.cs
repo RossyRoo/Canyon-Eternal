@@ -6,12 +6,8 @@ using TMPro;
 public class AreaNameText : MonoBehaviour
 {
     public TextMeshProUGUI areaNameText;
-    Animator areaNameTextAnimator;
+    public Animator areaNameTextAnimator;
 
-    private void Awake()
-    {
-        areaNameTextAnimator = GetComponent<Animator>();
-    }
 
     public IEnumerator ShowAreaName(string areaName)
     {

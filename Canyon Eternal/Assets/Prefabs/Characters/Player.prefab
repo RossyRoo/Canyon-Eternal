@@ -5962,6 +5962,12 @@ MonoBehaviour:
   nextSpawnPoint: {x: 0, y: 0, z: 0}
   nextDoorNum: 1
   enemiesEngaged: []
+  bodySprites:
+  - {fileID: 1248169868}
+  - {fileID: 899616532}
+  - {fileID: 3132717889393365865}
+  - {fileID: 1518488390}
+  - {fileID: 931197913}
 --- !u!114 &3785282042947835105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6006,12 +6012,12 @@ MonoBehaviour:
   lunchboxMeter: {fileID: 0}
   isBuffed: 0
   playerDamageSFX: {fileID: 8300000, guid: 812f8f76c01e6dc4bb653fa92f82d463, type: 3}
-  startingMaxStamina: 4
+  startingMaxStamina: 8
   currentMaxStamina: 0
   currentStamina: 0
   staminaRecoverySpeed: 2
   staminaRecoveryTimer: 0
-  staminaRecoveryBuffer: 0.25
+  staminaRecoveryBuffer: 0.5
   maxLunchBoxCapacity: 5
   currentLunchBoxCapacity: 0
   consumeHealItemSFX: {fileID: 8300000, guid: 578713499c4333541885f497bccbbd7a, type: 3}
@@ -6096,8 +6102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c7d7625fcb14f718c40eaeb2d78c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fragmentInventory: 1223
-  activeWeapon: {fileID: 11400000, guid: 032d6f98eaec14cb7a780c9e439588c0, type: 2}
+  fragmentInventory: 0
+  activeWeapon: {fileID: 11400000, guid: 79507e403e97f41608379e1e6e8eef76, type: 2}
   weaponsInventory:
   - {fileID: 11400000, guid: 815987064f75b469d8ddd1d895b24a87, type: 2}
   - {fileID: 11400000, guid: c86e8144340bf490c99f359dbd4c9b4d, type: 2}
@@ -6148,8 +6154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpellGO: {fileID: 0}
-  projectilePointerVFXPrefab: {fileID: 630692850903603627, guid: e581584112d784a6bae4e1aa65e986d7,
-    type: 3}
   cancelSpellSFX: {fileID: 8300000, guid: 7bddb0c4df5ed104bbaa81edcb1641a5, type: 3}
   chargeSpellSFX: {fileID: 8300000, guid: 51c228f8c07dbc64a9eb15b34f4f0788, type: 3}
   chargeSpellCompleteSFX: {fileID: 8300000, guid: d4245b844365e1345aeb50e175e5b930,

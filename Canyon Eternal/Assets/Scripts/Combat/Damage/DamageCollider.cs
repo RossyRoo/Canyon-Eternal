@@ -115,7 +115,7 @@ public class DamageCollider : MonoBehaviour
 
                 if (playerStats != null)
                 {
-                    playerStats.LoseHealth(damage);
+                    playerStats.LoseHealth(damage, true);
                 }
             }
 

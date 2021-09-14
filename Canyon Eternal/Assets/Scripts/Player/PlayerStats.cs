@@ -106,23 +106,25 @@ public class PlayerStats : CharacterStats
     #endregion
 
     #region Health
-    public void LoseHealth(float damageHealth)
+    public void LoseHealth(float damageHealth, bool playFX)
     {
         if (playerManager.isInvulnerable
             || playerManager.isDead)
             return;
 
-        TimeStop timeStop = FindObjectOfType<TimeStop>();
 
         EnableInvulnerability(characterData.invulnerabilityFrames);
         currentHealth -= damageHealth;
         heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);
 
-        SFXPlayer.Instance.PlaySFXAudioClip(playerDamageSFX);
-
-        playerParticleHandler.SpawnImpactVFX();
-        timeStop.StopTime(0.005f, 1000, 0.1f);
-        CinemachineManager.Instance.Shake(10f, 0.5f);
+        if(playFX)
+        {
+            TimeStop timeStop = FindObjectOfType<TimeStop>();
+            SFXPlayer.Instance.PlaySFXAudioClip(playerDamageSFX);
+            playerParticleHandler.SpawnImpactVFX();
+            timeStop.StopTime(0.005f, 1000, 0.1f);
+            CinemachineManager.Instance.Shake(10f, 0.5f);
+        }
 
         if (currentHealth <= 0)
         {

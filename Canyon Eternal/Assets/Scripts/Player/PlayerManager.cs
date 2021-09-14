@@ -28,6 +28,8 @@ public class PlayerManager : CharacterManager
 
     public List<EnemyManager> enemiesEngaged;
 
+    public SpriteRenderer[] bodySprites;
+
     private void Awake()
     {
         playerProgression = GetComponentInChildren<PlayerProgression>();
@@ -110,8 +112,9 @@ public class PlayerManager : CharacterManager
     {
         animator = GetComponentInChildren<Animator>();
         playerProgression = GetComponentInChildren<PlayerProgression>();
-
+        SwitchSpriteVisibility(true);
         animator.SetBool("isInteracting", false);
+        isFalling = false;
 
         Door[] doorsInRoom = FindObjectsOfType<Door>();
         for (int i = 0; i < doorsInRoom.Length; i++)
@@ -225,6 +228,14 @@ public class PlayerManager : CharacterManager
     }
 
     #endregion
+
+    public void SwitchSpriteVisibility(bool isVisible)
+    {
+        for (int i = 0; i < bodySprites.Length; i++)
+        {
+            bodySprites[i].enabled = isVisible;
+        }
+    }
 
 
 }

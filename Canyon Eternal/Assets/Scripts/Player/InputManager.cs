@@ -120,6 +120,13 @@ public class InputManager : MonoBehaviour
 
     private void HandleMouseInput()
     {
+        if(playerManager.isFalling
+            || playerManager.isDead
+            || playerManager.isInteractingWithUI)
+        {
+            return;
+        }
+
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(mouseInput);
         Vector2 relativePosition = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         float angle = (Mathf.Atan2(relativePosition.y, relativePosition.x) * Mathf.Rad2Deg) - 90;
@@ -136,6 +143,7 @@ public class InputManager : MonoBehaviour
         {
             if (playerManager.isInteracting
                 || playerManager.isInteractingWithUI
+                || playerManager.isFalling
                 || playerStats.currentStamina < playerInventory.activeWeapon.staminaCost
                 || playerMeleeHandler.currentAttackCooldownTime > 0)
                 return;

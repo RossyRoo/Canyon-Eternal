@@ -47,7 +47,7 @@ public class SceneChangeManager : MonoBehaviour
         }
     }
 
-    public IEnumerator ChangeScene(int sceneNum = 999)
+    public IEnumerator ChangeScene(int sceneNum = 9999)
     {
         if (!sceneChangeTriggered)
         {
@@ -55,11 +55,11 @@ public class SceneChangeManager : MonoBehaviour
 
             FindObjectOfType<ScreenFader>().FadeToBlack();
 
-            SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 0.2f, 0.25f);
+            SFXPlayer.Instance.PlaySFXAudioClip(transitionAudioClip, 0.1f, 0.75f);
 
             yield return new WaitForSeconds(1f);
 
-            if (sceneNum != 999)
+            if (sceneNum != 9999)
             {
                 SceneManager.LoadScene(sceneNum);
             }
