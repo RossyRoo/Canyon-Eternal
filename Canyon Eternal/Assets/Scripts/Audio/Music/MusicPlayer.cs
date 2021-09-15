@@ -43,9 +43,10 @@ public class MusicPlayer : MonoBehaviour
 
 
     public void PlayMusicClip
-    (AudioClip audioClip, float volume = 1f)
+    (AudioClip audioClip, float volume = 0.5f)
     {
         audioSource.clip = audioClip;
+        audioSource.volume = volume;
         audioSource.Play();
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class WeatherSystem : MonoBehaviour
 {
     public SceneChangeManager sceneChangeManager;
+    public WeatherSFXPlayer weatherSFXPlayer;
 
     [Tooltip("1 = Calm. 2 = Sunny. 3 = Breezy. 4 = Rainy. 5 = Acid Rain. 6 = Foggy. 7 = Snowy.")]
     public int currentPattern = 1;
     public ParticleSystem [] weatherSystems;
+    public AudioClip[] weatherSFX;
     public float currentPatternTimeRemaining;
     public float minPatternDuration;
     public float maxPatternDuration;
@@ -20,9 +22,7 @@ public class WeatherSystem : MonoBehaviour
     {
         if (weatherSystems[currentPattern - 1].isPlaying)
         {
-            Debug.Log("Weather is playing");
-
-            if (!sceneChangeManager.currentRoom.possibleWeatherPatterns.Contains(currentPattern - 1))
+            if (!sceneChangeManager.currentRoom.possibleWeatherPatterns.Contains(currentPattern))
             {
                 Debug.Log("Need to hard change");
                 float nextBuffer = Random.Range(minPatternBuffer, maxPatternBuffer);
@@ -35,7 +35,7 @@ public class WeatherSystem : MonoBehaviour
         }
         else
         {
-            SoftPlayNewWeatherPattern();
+            HardPlayNewWeatherPattern();
         }
 
     }
@@ -68,6 +68,11 @@ public class WeatherSystem : MonoBehaviour
 
         weatherSystems[currentPattern - 1].Play();
 
+        if (weatherSFX[currentPattern - 1] != null)
+        {
+            weatherSFXPlayer.PlayWeatherSFX(weatherSFX[currentPattern - 1], 0.1f);
+        }
+
         Debug.Log("Soft playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
 
     }
@@ -78,6 +83,9 @@ public class WeatherSystem : MonoBehaviour
         {
             weatherSystems[currentPattern - 1].Stop();
         }
+
+        weatherSFXPlayer.StopWeatherSFX();
+
         Debug.Log("Soft stopping " + weatherSystems[currentPattern - 1].name);
     }
     #endregion
@@ -87,6 +95,9 @@ public class WeatherSystem : MonoBehaviour
     {
         weatherSystems[currentPattern - 1].Clear();
         weatherSystems[currentPattern - 1].Stop();
+
+        weatherSFXPlayer.StopWeatherSFX();
+
         Debug.Log("Hard stopping " + weatherSystems[currentPattern - 1].name);
     }
 
@@ -98,8 +109,12 @@ public class WeatherSystem : MonoBehaviour
         weatherSystems[currentPattern - 1].Simulate(weatherSystems[currentPattern - 1].main.duration * 2);
         weatherSystems[currentPattern - 1].Play();
 
-        Debug.Log("Hard playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
+        if (weatherSFX[currentPattern - 1] != null)
+        {
+            weatherSFXPlayer.PlayWeatherSFX(weatherSFX[currentPattern - 1], 0.1f);
+        }
 
+        Debug.Log("Hard playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
     }
 
     #endregion
