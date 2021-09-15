@@ -96,18 +96,6 @@ public class PlayerManager : CharacterManager
         inputManager.cycleSubmenuRight_Input = false;
     }
 
-    public IEnumerator HandleDeathCoroutine()
-    {
-        isDead = true;
-        playerProgression.AdjustVesselLevel(1);
-        animator.SetBool("isInteracting", true);
-
-        yield return new WaitForSeconds(1f);
-
-        playerStats.SetStartingStats();
-        StartCoroutine(SceneChangeManager.Instance.LoadOutsideLastFort(this));
-    }
-
     public void OnLoadScene(Room currentRoom)
     {
         animator = GetComponentInChildren<Animator>();

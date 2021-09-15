@@ -70,7 +70,7 @@ public class SceneChangeManager : MonoBehaviour
         }
     }
 
-    public IEnumerator LoadOutsideLastFort(PlayerManager playerManager)
+    public IEnumerator LoadOutsideLastFort(PlayerManager playerManager, PlayerStats playerStats)
     {
         sceneChangeTriggered = true;
 
@@ -79,6 +79,7 @@ public class SceneChangeManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         playerManager.isDead = false;
+        playerStats.SetStartingStats();
 
         CinemachineManager.Instance.FindPlayer(playerManager);
         playerManager.nextSpawnPoint = Vector3.zero;
@@ -94,7 +95,6 @@ public class SceneChangeManager : MonoBehaviour
 
     public void LoadSaveGame()
     {
-        //THIS should be the saved scene
         SceneManager.LoadScene(1);
     }
 

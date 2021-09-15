@@ -38,7 +38,21 @@ public class PlayerSpellHandler : MonoBehaviour
         }
     }
 
+    public void TickSpellChargeTimer()
+    {
+        if (playerManager.isChargingSpell)
+        {
+            currentSpellChargeTime -= Time.deltaTime;
 
+            if (currentSpellChargeTime < 0)
+            {
+                currentSpellChargeTime = playerInventory.activeSpell.chargeTime;
+                CompleteSpellCharge();
+            }
+        }
+    }
+
+    #region Charging
     public void ChargeSpell()
     {
         if (playerStats.currentStamina < playerInventory.activeSpell.staminaCost
@@ -54,30 +68,6 @@ public class PlayerSpellHandler : MonoBehaviour
 
         currentSpellChargeTime = playerInventory.activeSpell.chargeTime;
         playerManager.isChargingSpell = true;
-    }
-
-    public void CancelSpell()
-    {
-        playerAnimatorHandler.PlayTargetAnimation("Cancel", false);
-        Destroy(playerParticleHandler.currentChargeVFXGO);
-        SFXPlayer.Instance.PlaySFXAudioClip(cancelSpellSFX, 0.1f);
-
-        playerManager.isChargingSpell = false;
-        playerMeleeHandler.currentMeleeModel.SetActive(true);
-    }
-
-    public void TickSpellChargeTimer()
-    {
-        if (playerManager.isChargingSpell)
-        {
-            currentSpellChargeTime -= Time.deltaTime;
-
-            if (currentSpellChargeTime < 0)
-            {
-                currentSpellChargeTime = playerInventory.activeSpell.chargeTime;
-                CompleteSpellCharge();
-            }
-        }
     }
 
     private void CompleteSpellCharge()
@@ -103,23 +93,29 @@ public class PlayerSpellHandler : MonoBehaviour
             HandleAllSpellCasting();
         }
     }
+    #endregion
 
-
-
+    #region Casting
     public void HandleAllSpellCasting()
     {
         if(playerManager.isCastingSpell)
         {
             if(playerInventory.activeSpell.isProjectile)
             {
-                CastProjectile();
+                //CAST A PROJECTILE SPELL
+                currentSpellGO.GetComponent<ProjectilePhysics>().Launch(playerInventory.activeSpell.launchForce, transform.up);
             }
             else if(playerInventory.activeSpell.isAOE)
             {
-                CastAOE();
+                //CAST AN AOE SPELL
+                currentSpellGO = Instantiate(playerInventory.activeSpell.GOPrefab, transform.position, Quaternion.identity);
+                currentSpellGO.transform.parent = playerManager.transform;
+
+                Destroy(currentSpellGO, 0.5f);
             }
             else
             {
+                //CAST A BUFF SPELL
                 StartCoroutine(CastBuff());
             }
 
@@ -131,21 +127,6 @@ public class PlayerSpellHandler : MonoBehaviour
 
     }
 
-    private void CastProjectile()
-    {
-        currentSpellGO.GetComponent<ProjectilePhysics>().Launch(playerInventory.activeSpell.launchForce, transform.up);
-    }
-
-    private void CastAOE()
-    {
-        currentSpellGO = Instantiate(playerInventory.activeSpell.GOPrefab, transform.position, Quaternion.identity);
-        currentSpellGO.transform.parent = playerManager.transform;
-
-        //currentSpellGO.GetComponent<ProjectilePhysics>().Launch(activeSpell.launchForce, playerManager.lastMoveDirection);
-        Destroy(currentSpellGO, 0.5f);
-        Debug.Log("Casting AOE Spell");
-
-    }
 
     private IEnumerator CastBuff()
     {
@@ -168,4 +149,15 @@ public class PlayerSpellHandler : MonoBehaviour
 
         playerStats.isBuffed = false;
     }
+
+    public void CancelSpell()
+    {
+        playerAnimatorHandler.PlayTargetAnimation("Cancel", false);
+        Destroy(playerParticleHandler.currentChargeVFXGO);
+        SFXPlayer.Instance.PlaySFXAudioClip(cancelSpellSFX, 0.1f);
+
+        playerManager.isChargingSpell = false;
+        playerMeleeHandler.currentMeleeModel.SetActive(true);
+    }
+    #endregion
 }

@@ -129,7 +129,7 @@ public class PlayerStats : CharacterStats
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            StartCoroutine(playerManager.HandleDeathCoroutine());
+            StartCoroutine(HandleDeathCoroutine());
         }
     }
 
@@ -150,6 +150,18 @@ public class PlayerStats : CharacterStats
         {
             currentHealth = characterData.currentMaxHealth;
         }
+    }
+
+    public IEnumerator HandleDeathCoroutine()
+    {
+        playerManager.isDead = true;
+        playerManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponentInChildren<PlayerProgression>().AdjustVesselLevel(1);
+        playerManager.animator.SetBool("isInteracting", true);
+
+        yield return new WaitForSeconds(1f);
+
+        StartCoroutine(SceneChangeManager.Instance.LoadOutsideLastFort(playerManager, this));
     }
 
     #endregion
