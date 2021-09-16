@@ -125,12 +125,12 @@ public class WeatherSystem : MonoBehaviour
     {
         currentPattern = sceneChangeManager.currentRoom.possibleWeatherPatterns[Random.Range(0, sceneChangeManager.currentRoom.possibleWeatherPatterns.Count)];
 
-        weatherSystems[currentPattern - 1].Simulate(weatherSystems[currentPattern - 1].main.duration * 2);
+        weatherSystems[currentPattern - 1].Simulate(weatherSystems[currentPattern - 1].main.duration * 100);
         weatherSystems[currentPattern - 1].Play();
         ParticleSystem[] children = weatherSystems[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
         for (int i = 0; i < children.Length; i++)
         {
-            children[i].Simulate(weatherSystems[currentPattern - 1].main.duration * 2);
+            children[i].Simulate(weatherSystems[currentPattern - 1].main.duration * 100);
             children[i].Play();
         }
 
