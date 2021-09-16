@@ -8,7 +8,6 @@ public class PlayerSpellHandler : MonoBehaviour
     PlayerInventory playerInventory;
     PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
-    PlayerAnimatorHandler playerAnimatorHandler;
     PlayerParticleHandler playerParticleHandler;
 
     float currentSpellChargeTime;
@@ -26,7 +25,6 @@ public class PlayerSpellHandler : MonoBehaviour
         playerInventory = GetComponent<PlayerInventory>();
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
-        playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
 
         if (playerInventory.activeSpell == null)
@@ -59,10 +57,8 @@ public class PlayerSpellHandler : MonoBehaviour
             || playerInventory.activeSpell.isBuff && playerStats.isBuffed)
             return;
 
-        playerAnimatorHandler.animator.SetBool("isMoving", false);
         playerMeleeHandler.currentMeleeModel.SetActive(false);
 
-        playerAnimatorHandler.PlayTargetAnimation("Charge", true);
         playerParticleHandler.SpawnChargeVFX(playerInventory.activeSpell.chargeVFX);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellSFX, 0.05f);
 
@@ -77,7 +73,6 @@ public class PlayerSpellHandler : MonoBehaviour
 
         playerStats.LoseStamina(playerInventory.activeSpell.staminaCost);
 
-        playerAnimatorHandler.PlayTargetAnimation("Charge Complete", true);
         playerParticleHandler.SpawnChargeCompleteVFX(playerInventory.activeSpell.chargeCompleteVFX);
         Destroy(playerParticleHandler.currentChargeVFXGO);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellCompleteSFX);
@@ -120,7 +115,6 @@ public class PlayerSpellHandler : MonoBehaviour
             }
 
             playerManager.isCastingSpell = false;
-            playerAnimatorHandler.PlayTargetAnimation("Cast", false);
             SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeSpell.launchSFX);
             playerMeleeHandler.currentMeleeModel.SetActive(true);
         }
@@ -152,12 +146,17 @@ public class PlayerSpellHandler : MonoBehaviour
 
     public void CancelSpell()
     {
-        playerAnimatorHandler.PlayTargetAnimation("Cancel", false);
         Destroy(playerParticleHandler.currentChargeVFXGO);
         SFXPlayer.Instance.PlaySFXAudioClip(cancelSpellSFX, 0.1f);
 
         playerManager.isChargingSpell = false;
         playerMeleeHandler.currentMeleeModel.SetActive(true);
     }
+    #endregion
+
+    #region Buffs
+
+
+
     #endregion
 }

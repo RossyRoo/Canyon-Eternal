@@ -26,7 +26,7 @@ public class ProjectilePhysics : MonoBehaviour
     {
         DetermineProjectileData();
 
-        damageCollider = GetComponent<DamageCollider>();
+        damageCollider = GetComponentInChildren<DamageCollider>();
         rb = GetComponent<Rigidbody2D>();
     }
 

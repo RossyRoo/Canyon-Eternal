@@ -167,7 +167,7 @@ public class DamageCollider : MonoBehaviour
         {
             if (FindObjectOfType<WeatherManager>().currentPattern == weaponData.damageType)
             {
-                elementalBoost = 0.2f;
+                elementalBoost += 0.2f;
             }
 
             if (randValue < 0.2 + elementalBoost)
