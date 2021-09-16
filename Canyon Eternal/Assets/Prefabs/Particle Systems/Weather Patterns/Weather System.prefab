@@ -28579,7 +28579,7 @@ MonoBehaviour:
   sceneChangeManager: {fileID: 0}
   weatherSFXPlayer: {fileID: 0}
   currentPattern: 1
-  weatherSystems:
+  weatherPatterns:
   - {fileID: 9188223684616389712}
   - {fileID: 9108460009627153204}
   - {fileID: 9108460010264520394}
@@ -28596,8 +28596,33 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5d2c5bf2475e94c48ae80455c0ff3a8f, type: 3}
   - {fileID: 8300000, guid: b6332ad6763877a4e942bff06a4b99fc, type: 3}
   currentPatternTimeRemaining: 0
-  minPatternDuration: 300
-  maxPatternDuration: 600
+  minPatternDuration: 15
+  maxPatternDuration: 15
+  weatherTonerAnimator: {fileID: 0}
+  clearToWeatherAnimations:
+  - Clear
+  - ClearToSunny
+  - ClearToBreezy
+  - ClearToRainy
+  - ClearToAcidRain
+  - ClearToFoggy
+  - ClearToSnowy
+  weatherToClearAnimations:
+  - ClearTo
+  - SunnyToClear
+  - BreezyToClear
+  - RainyToClear
+  - AcidRainToClear
+  - FoggyToClear
+  - SnowyToClear
+  hardWeatherAnimations:
+  - Clear
+  - Sunny
+  - Breezy
+  - Rainy
+  - AcidRain
+  - Foggy
+  - Snowy
 --- !u!1 &9108460009205813796
 GameObject:
   m_ObjectHideFlags: 0

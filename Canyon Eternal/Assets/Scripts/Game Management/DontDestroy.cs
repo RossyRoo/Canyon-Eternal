@@ -9,7 +9,7 @@ public class DontDestroy : MonoBehaviour
     MusicPlayer musicPlayer;
     CinemachineManager cinemachineManager;
     SceneChangeManager sceneChangeManager;
-    WeatherSystem weatherSystem;
+    WeatherManager weatherSystem;
     ScreenFader screenFader;
     ObjectPool objectPool;
 
@@ -38,7 +38,7 @@ public class DontDestroy : MonoBehaviour
             cinemachineManager = dontDestroyDuplicate.GetComponentInChildren<CinemachineManager>();
             screenFader = dontDestroyDuplicate.GetComponentInChildren<ScreenFader>();
             objectPool = dontDestroyDuplicate.GetComponentInChildren<ObjectPool>();
-            weatherSystem = dontDestroyDuplicate.GetComponentInChildren<WeatherSystem>();
+            weatherSystem = dontDestroyDuplicate.GetComponentInChildren<WeatherManager>();
 
             sceneChangeManager.FindCurrentRoom(dontDestroyDuplicate.sceneChangeManager);
 
