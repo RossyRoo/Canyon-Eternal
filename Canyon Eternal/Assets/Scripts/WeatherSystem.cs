@@ -14,8 +14,8 @@ public class WeatherSystem : MonoBehaviour
     public float currentPatternTimeRemaining;
     public float minPatternDuration;
     public float maxPatternDuration;
-    float minPatternBuffer = 3f;
-    float maxPatternBuffer = 6f;
+    float minPatternBuffer = 5f;
+    float maxPatternBuffer = 8f;
 
 
     public void OnLoadScene()
@@ -24,7 +24,6 @@ public class WeatherSystem : MonoBehaviour
         {
             if (!sceneChangeManager.currentRoom.possibleWeatherPatterns.Contains(currentPattern))
             {
-                Debug.Log("Need to hard change");
                 float nextBuffer = Random.Range(minPatternBuffer, maxPatternBuffer);
 
                 currentPatternTimeRemaining = Random.Range(minPatternDuration, maxPatternDuration) + nextBuffer;
@@ -35,6 +34,9 @@ public class WeatherSystem : MonoBehaviour
         }
         else
         {
+            float nextBuffer = Random.Range(minPatternBuffer, maxPatternBuffer);
+
+            currentPatternTimeRemaining = Random.Range(minPatternDuration, maxPatternDuration) + nextBuffer;
             HardPlayNewWeatherPattern();
         }
 
@@ -68,12 +70,18 @@ public class WeatherSystem : MonoBehaviour
 
         weatherSystems[currentPattern - 1].Play();
 
+        ParticleSystem[] children= weatherSystems[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].Play();
+        }
+
         if (weatherSFX[currentPattern - 1] != null)
         {
             weatherSFXPlayer.PlayWeatherSFX(weatherSFX[currentPattern - 1], 0.1f);
         }
 
-        Debug.Log("Soft playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
+        //Debug.Log("Soft playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
 
     }
 
@@ -82,11 +90,16 @@ public class WeatherSystem : MonoBehaviour
         if (weatherSystems[currentPattern - 1].isPlaying)
         {
             weatherSystems[currentPattern - 1].Stop();
+            ParticleSystem[] children = weatherSystems[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
+            for (int i = 0; i < children.Length; i++)
+            {
+                 children[i].Stop();
+            }
         }
 
         weatherSFXPlayer.StopWeatherSFX();
 
-        Debug.Log("Soft stopping " + weatherSystems[currentPattern - 1].name);
+        //Debug.Log("Soft stopping " + weatherSystems[currentPattern - 1].name);
     }
     #endregion
 
@@ -95,10 +108,16 @@ public class WeatherSystem : MonoBehaviour
     {
         weatherSystems[currentPattern - 1].Clear();
         weatherSystems[currentPattern - 1].Stop();
+        ParticleSystem[] children = weatherSystems[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].Clear();
+            children[i].Stop();
+        }
 
         weatherSFXPlayer.StopWeatherSFX();
 
-        Debug.Log("Hard stopping " + weatherSystems[currentPattern - 1].name);
+        //Debug.Log("Hard stopping " + weatherSystems[currentPattern - 1].name);
     }
 
 
@@ -108,13 +127,19 @@ public class WeatherSystem : MonoBehaviour
 
         weatherSystems[currentPattern - 1].Simulate(weatherSystems[currentPattern - 1].main.duration * 2);
         weatherSystems[currentPattern - 1].Play();
+        ParticleSystem[] children = weatherSystems[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
+        for (int i = 0; i < children.Length; i++)
+        {
+            children[i].Simulate(weatherSystems[currentPattern - 1].main.duration * 2);
+            children[i].Play();
+        }
 
         if (weatherSFX[currentPattern - 1] != null)
         {
             weatherSFXPlayer.PlayWeatherSFX(weatherSFX[currentPattern - 1], 0.1f);
         }
 
-        Debug.Log("Hard playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
+        //Debug.Log("Hard playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
     }
 
     #endregion
