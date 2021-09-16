@@ -9,19 +9,21 @@ public class WeatherManager : MonoBehaviour
 
     [Tooltip("1 = Calm. 2 = Sunny. 3 = Breezy. 4 = Rainy. 5 = Acid Rain. 6 = Foggy. 7 = Snowy.")]
     public int currentPattern = 1;
-    public ParticleSystem [] weatherPatterns;
-    public AudioClip[] weatherSFX;
-    public float currentPatternTimeRemaining;
-    public float minPatternDuration;
-    public float maxPatternDuration;
-    float minPatternBuffer = 5f;
-    float maxPatternBuffer = 8f;
+    [SerializeField] ParticleSystem [] weatherPatterns;
+    [SerializeField] AudioClip[] weatherSFX;
+    [SerializeField] float currentPatternTimeRemaining;
+    [Tooltip("Minimum amount of time a weather pattern will play.")]
+    [SerializeField] float minPatternDuration;
+    [Tooltip("Maximum amount of time a weather pattern will play.")]
+    [SerializeField] float maxPatternDuration;
+    [Tooltip("Minimum amount of time between weather pattern playing.")]
+    [SerializeField] float minPatternBuffer = 4f;
+    [Tooltip("Maximum amount of time between weather pattern playing.")]
+    [SerializeField] float maxPatternBuffer = 8f;
 
     [Header("Screen Toner")]
     public Animator weatherTonerAnimator;
-    public string [] clearToWeatherAnimations;
-    public string [] weatherToClearAnimations;
-    public string[] hardWeatherAnimations;
+    public string[] weatherAnimations;
 
 
     public void OnLoadScene()
@@ -34,16 +36,17 @@ public class WeatherManager : MonoBehaviour
 
                 currentPatternTimeRemaining = Random.Range(minPatternDuration, maxPatternDuration) + nextBuffer;
 
-                HardStopPreviousWeatherPattern();
-                HardPlayNewWeatherPattern();
+                StopPreviousWeatherPattern(true);
+                StartCoroutine(PlayNewWeatherPattern(true, 0f));
             }
         }
         else
         {
-            float nextBuffer = Random.Range(minPatternBuffer, maxPatternBuffer);
+            currentPatternTimeRemaining = Random.Range(minPatternDuration, maxPatternDuration);
 
-            currentPatternTimeRemaining = Random.Range(minPatternDuration, maxPatternDuration) + nextBuffer;
-            HardPlayNewWeatherPattern();
+            currentPattern = sceneChangeManager.currentRoom.possibleWeatherPatterns[Random.Range(0, sceneChangeManager.currentRoom.possibleWeatherPatterns.Count)];
+
+            StartCoroutine(PlayNewWeatherPattern(true, 0f));
         }
 
     }
@@ -62,111 +65,79 @@ public class WeatherManager : MonoBehaviour
 
             if(sceneChangeManager.currentRoom.possibleWeatherPatterns.Count > 1) // If room has more than one weather type, take a pause and select a new one
             {
-                SoftStopPreviousWeatherPattern();
-                Invoke("SoftPlayNewWeatherPattern", nextBuffer);
+                StopPreviousWeatherPattern(false);
+
+                currentPattern = sceneChangeManager.currentRoom.possibleWeatherPatterns[Random.Range(0, sceneChangeManager.currentRoom.possibleWeatherPatterns.Count)];
+
+                StartCoroutine(PlayNewWeatherPattern(false, nextBuffer));
             }
         }
     }
 
 
-    #region Soft Weather Change
-    private void SoftPlayNewWeatherPattern()
-    {
-        currentPattern = sceneChangeManager.currentRoom.possibleWeatherPatterns[Random.Range(0, sceneChangeManager.currentRoom.possibleWeatherPatterns.Count)];
-
-        //PLAY ALL ASSOCIATED PARTICLE SYSTEMS
-        weatherPatterns[currentPattern - 1].Play();
-        ParticleSystem[] children= weatherPatterns[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
-        for (int i = 0; i < children.Length; i++)
-        {
-            children[i].Play();
-        }
-
-        //PLAY SCREEN TONER
-        weatherTonerAnimator.Play(clearToWeatherAnimations[currentPattern - 1]);
-
-        //PLAY WEATHER SFX
-        if (weatherSFX[currentPattern - 1] != null)
-        {
-            weatherSFXPlayer.PlayWeatherSFX(weatherSFX[currentPattern - 1], 0.1f);
-        }
-
-        //Debug.Log("Soft playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
-
-    }
-
-    private void SoftStopPreviousWeatherPattern()
+    private void StopPreviousWeatherPattern(bool isHardTransition)
     {
         //STOP ALL ASSOCIATED PARTICLE SYSTEMS
-        if (weatherPatterns[currentPattern - 1].isPlaying)
-        {
-            weatherPatterns[currentPattern - 1].Stop();
-            ParticleSystem[] children = weatherPatterns[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
-            for (int i = 0; i < children.Length; i++)
-            {
-                children[i].Clear();
-                children[i].Stop();
-            }
-        }
-
-        //PLAY SCREEN TONER
-        weatherTonerAnimator.Play(weatherToClearAnimations[currentPattern - 1]);
-
-        //STOP WEATHER SFX
-        weatherSFXPlayer.StopWeatherSFX();
-
-        //Debug.Log("Soft stopping " + weatherSystems[currentPattern - 1].name);
-    }
-    #endregion
-
-    #region Hard Weather Change
-    private void HardStopPreviousWeatherPattern()
-    {
-        //STOP ALL ASSOCIATED PARTICLE SYSTEMS
-        weatherPatterns[currentPattern - 1].Clear();
+        //weatherPatterns[currentPattern - 1].Clear();
         weatherPatterns[currentPattern - 1].Stop();
         ParticleSystem[] children = weatherPatterns[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
         for (int i = 0; i < children.Length; i++)
         {
-            children[i].Clear();
+            //children[i].Clear();
             children[i].Stop();
         }
 
         //PLAY SCREEN TONER
-        weatherTonerAnimator.Play(hardWeatherAnimations[currentPattern - 1]);
+        if(isHardTransition)
+        {
+            weatherTonerAnimator.Play("Clear");
+        }
+        else
+        {
+            weatherTonerAnimator.Play(weatherAnimations[currentPattern - 1] + "ToClear");
+        }
 
         //STOP WEATHER SFX
         weatherSFXPlayer.StopWeatherSFX();
-
-        //Debug.Log("Hard stopping " + weatherSystems[currentPattern - 1].name);
     }
 
 
-    private void HardPlayNewWeatherPattern()
+    private IEnumerator PlayNewWeatherPattern(bool isHardTransition, float timeBeforeWeatherChanges)
     {
-        currentPattern = sceneChangeManager.currentRoom.possibleWeatherPatterns[Random.Range(0, sceneChangeManager.currentRoom.possibleWeatherPatterns.Count)];
+        yield return new WaitForSeconds(timeBeforeWeatherChanges);
 
         //PLAY ALL ASSOCIATED PARTICLE SYSTEMS
-        weatherPatterns[currentPattern - 1].Simulate(weatherPatterns[currentPattern - 1].main.duration * 100);
+        if (isHardTransition)
+        {
+            weatherPatterns[currentPattern - 1].Simulate(weatherPatterns[currentPattern - 1].main.duration * 100);
+        }
         weatherPatterns[currentPattern - 1].Play();
         ParticleSystem[] children = weatherPatterns[currentPattern - 1].GetComponentsInChildren<ParticleSystem>();
         for (int i = 0; i < children.Length; i++)
         {
-            children[i].Simulate(weatherPatterns[currentPattern - 1].main.duration * 100);
+            if (isHardTransition)
+            {
+                children[i].Simulate(weatherPatterns[currentPattern - 1].main.duration * 100);
+            }
             children[i].Play();
         }
 
         //PLAY SCREEN TONER
-        weatherTonerAnimator.Play(hardWeatherAnimations[currentPattern - 1]);
+        if (isHardTransition)
+        {
+            weatherTonerAnimator.Play(weatherAnimations[currentPattern - 1]);
+            Debug.Log("Playing animation " + weatherAnimations[currentPattern - 1]);
+        }
+        else
+        {
+            weatherTonerAnimator.Play("ClearTo" + weatherAnimations[currentPattern - 1]);
+        }
 
         //PLAY WEATHER SFX
         if (weatherSFX[currentPattern - 1] != null)
         {
             weatherSFXPlayer.PlayWeatherSFX(weatherSFX[currentPattern - 1], 0.1f);
         }
-
-        //Debug.Log("Hard playing " + weatherSystems[currentPattern - 1].name + " for " + currentPatternTimeRemaining + " seconds.");
     }
 
-    #endregion
 }

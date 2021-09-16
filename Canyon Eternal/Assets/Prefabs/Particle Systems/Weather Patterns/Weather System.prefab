@@ -23812,7 +23812,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9108460009078172952}
   serializedVersion: 6
-  lengthInSec: 0.1
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -23887,8 +23887,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.5
+      scalar: 2
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24437,9 +24437,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 111, y: 124.54, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 100, y: 1, z: 1}
+    m_Scale: {x: 323.1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -24637,7 +24637,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1000
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -27721,7 +27721,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.9843137, b: 0.9411765, a: 0.40392157}
+      maxColor: {r: 0.6666667, g: 0.8745098, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -28596,26 +28596,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5d2c5bf2475e94c48ae80455c0ff3a8f, type: 3}
   - {fileID: 8300000, guid: b6332ad6763877a4e942bff06a4b99fc, type: 3}
   currentPatternTimeRemaining: 0
-  minPatternDuration: 15
-  maxPatternDuration: 15
+  minPatternDuration: 180
+  maxPatternDuration: 240
+  minPatternBuffer: 4
+  maxPatternBuffer: 8
   weatherTonerAnimator: {fileID: 0}
-  clearToWeatherAnimations:
-  - Clear
-  - ClearToSunny
-  - ClearToBreezy
-  - ClearToRainy
-  - ClearToAcidRain
-  - ClearToFoggy
-  - ClearToSnowy
-  weatherToClearAnimations:
-  - ClearTo
-  - SunnyToClear
-  - BreezyToClear
-  - RainyToClear
-  - AcidRainToClear
-  - FoggyToClear
-  - SnowyToClear
-  hardWeatherAnimations:
+  weatherAnimations:
   - Clear
   - Sunny
   - Breezy
@@ -28663,7 +28649,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9108460009205813796}
   serializedVersion: 6
-  lengthInSec: 0.1
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -28738,8 +28724,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1
-      minScalar: 0.5
+      scalar: 2
+      minScalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -29288,9 +29274,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 111, y: 124.54, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 100, y: 1, z: 1}
+    m_Scale: {x: 323.1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -29488,7 +29474,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1000
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2
