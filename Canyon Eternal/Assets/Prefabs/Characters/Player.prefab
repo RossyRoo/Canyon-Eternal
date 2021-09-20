@@ -6104,10 +6104,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragmentInventory: 0
   activeWeapon: {fileID: 11400000, guid: 79507e403e97f41608379e1e6e8eef76, type: 2}
-  weaponsInventory: []
-  activeSpell: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
-  spellsInventory: []
-  activeGear: {fileID: 0}
+  weaponsInventory:
+  - {fileID: 11400000, guid: 79507e403e97f41608379e1e6e8eef76, type: 2}
+  - {fileID: 11400000, guid: c58cee6c3fe324f909519759929d8691, type: 2}
+  - {fileID: 11400000, guid: 032d6f98eaec14cb7a780c9e439588c0, type: 2}
+  activeSpell: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
+  spellsInventory:
+  - {fileID: 11400000, guid: e879f95b3275e4f61a70dbf3e202915a, type: 2}
+  - {fileID: 11400000, guid: 247e73fa45e0b4ceab843705c2e80413, type: 2}
+  - {fileID: 11400000, guid: e519b891e623945d4ab956ab23346bf6, type: 2}
+  activeGear: {fileID: 11400000, guid: 9c9f61b6dc8954f5fb0faade7d90297c, type: 2}
   gearInventory:
   - {fileID: 11400000, guid: 9c9f61b6dc8954f5fb0faade7d90297c, type: 2}
   - {fileID: 11400000, guid: fd9ded26b2bcd4540a854c63ebf90a6b, type: 2}

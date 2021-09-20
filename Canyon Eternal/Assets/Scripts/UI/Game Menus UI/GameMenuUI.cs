@@ -48,8 +48,6 @@ public class GameMenuUI : MonoBehaviour
 
     [Header("SPRITES")]
     public Sprite[] menuTypeSprite;
-    public Sprite [] interfacePanelSprites;
-    public Sprite[] infoPanelSprites;
 
 
     [Header("SFX")]
@@ -133,8 +131,6 @@ public class GameMenuUI : MonoBehaviour
             bookUI.OpenBook(currentSubmenuIndex);
 
             menuTypeIcon.sprite = menuTypeSprite[0];
-            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[0];
-            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[0];
         }
         else if (currentMenuIndex == 1)
         {
@@ -143,8 +139,6 @@ public class GameMenuUI : MonoBehaviour
             bagUI.OpenBag(currentSubmenuIndex);
 
             menuTypeIcon.sprite = menuTypeSprite[1];
-            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[1];
-            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[1];
         }
         else
         {
@@ -153,8 +147,6 @@ public class GameMenuUI : MonoBehaviour
             cellphoneUI.OpenCellphone(currentSubmenuIndex);
 
             menuTypeIcon.sprite = menuTypeSprite[2];
-            infoPanel.GetComponent<Image>().sprite = infoPanelSprites[2];
-            interfacePanel.GetComponent<Image>().sprite = interfacePanelSprites[2];
         }
 
         infoPanel.SetActive(false);

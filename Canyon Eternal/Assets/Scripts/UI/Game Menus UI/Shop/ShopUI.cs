@@ -36,8 +36,6 @@ public class ShopUI : MonoBehaviour
         gameMenuUI.mapUIGO.SetActive(false);
         gameMenuUI.interfacePanel.GetComponent<Image>().enabled = true;
         gameMenuUI.buyButton.SetActive(true);
-        gameMenuUI.infoPanel.GetComponent<Image>().sprite = gameMenuUI.infoPanelSprites[1];
-        gameMenuUI.interfacePanel.GetComponent<Image>().sprite = gameMenuUI.interfacePanelSprites[1];
         //Put player in UI mode
         playerManager.isInteractingWithUI = true;
         playerAnimatorHandler.animator.SetBool("isInteracting", true);
