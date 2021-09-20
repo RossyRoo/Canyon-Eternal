@@ -15,6 +15,6 @@ public class SleepingBag : Interactable
     private void FullyRecover(PlayerManager playerManager)
     {
         PlayerStats playerStats = playerManager.GetComponent<PlayerStats>();
-        playerStats.RecoverHealth(8, true);
+        playerStats.RecoverHealth(8, true, false);
     }
 }

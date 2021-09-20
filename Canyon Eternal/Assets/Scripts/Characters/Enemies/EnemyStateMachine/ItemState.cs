@@ -29,7 +29,7 @@ public class ItemState : EnemyStateMachine
     {
         float amountHealed = enemyStats.currentHealth;
 
-        enemyStats.currentHealth += (myConsumables[0].healAmount * 100f);
+        enemyStats.currentHealth += (myConsumables[0].healthAmount * 100f);
 
         if(enemyStats.currentHealth > enemyStats.characterData.startingMaxHealth)
         {

@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
     PlayerBlockHandler playerBlockHandler;
+    PlayerParticleHandler playerParticleHandler;
     PlayerEffectsHandler playerEffectsHandler;
     GameMenuUI gameMenuUI;
 
@@ -47,6 +48,7 @@ public class InputManager : MonoBehaviour
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
         playerBlockHandler = GetComponent<PlayerBlockHandler>();
         playerEffectsHandler = FindObjectOfType<PlayerEffectsHandler>();
+        playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
 
         gameMenuUI = FindObjectOfType<GameMenuUI>();
     }
@@ -221,7 +223,8 @@ public class InputManager : MonoBehaviour
 
             if (playerStats.currentLunchBoxCapacity > 0 && playerStats.currentHealth < playerStats.characterData.startingMaxHealth)
             {
-                playerStats.RecoverHealth(playerStats.characterData.healAmount, false);
+                playerParticleHandler.SpawnHealVFX();
+                playerStats.RecoverHealth(playerStats.characterData.healAmount, false, false);
             }
         }
 

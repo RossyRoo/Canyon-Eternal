@@ -133,15 +133,13 @@ public class PlayerStats : CharacterStats
         }
     }
 
-    public void RecoverHealth(float recoveryHealth, bool isFullHeal)
+    public void RecoverHealth(float recoveryHealth, bool isFullHeal, bool isItem)
     {
         currentHealth += recoveryHealth;
         heartMeter.SetCurrentHealth(currentHealth, characterData.startingMaxHealth);
 
-        if(!isFullHeal)
+        if(!isFullHeal && !isItem)
         {
-            playerParticleHandler.SpawnHealVFX();
-
             currentLunchBoxCapacity -= 1;
             lunchboxMeter.SetCurrentLunchBox(currentLunchBoxCapacity);
         }

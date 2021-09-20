@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Item/Consumable")]
 public class Consumable : Item
 {
+    [Header("CONSUMABLES")]
     public AudioClip consumeSFX;
-    public int healAmount;
+    public int healthAmount;
+    public int staminaAmount;
+    public bool isPermanentUpgrade;
     public GameObject useVFX;
 }

@@ -208,12 +208,14 @@ public class PlayerManager : CharacterManager
         }
         isInteractingWithUI = true;
         animator.SetBool("isInteracting", true);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void ExitConversationState()
     {
         isInteractingWithUI = false;
         animator.SetBool("isInteracting", false);
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     #endregion
