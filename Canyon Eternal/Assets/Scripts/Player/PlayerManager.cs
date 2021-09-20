@@ -84,6 +84,7 @@ public class PlayerManager : CharacterManager
         inputManager.melee_Input = false;
         inputManager.dash_Input = false;
         inputManager.heal_Input = false;
+        inputManager.item_Input = false;
         inputManager.interact_Input = false;
         inputManager.block_Input = false;
         inputManager.chargeSpell_Input = false;

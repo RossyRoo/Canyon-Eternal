@@ -276,6 +276,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Item"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7755bc5-3b01-4d54-b9c9-99dc9dec5c14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -408,6 +416,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Spell"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fad0e48-d77b-4361-bbca-7aafa21185ec"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Item"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9a81c72-29d7-4c77-b28e-ee94347cceee"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -614,6 +644,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Block = m_PlayerActions.FindAction("Block", throwIfNotFound: true);
         m_PlayerActions_Spell = m_PlayerActions.FindAction("Spell", throwIfNotFound: true);
+        m_PlayerActions_Item = m_PlayerActions.FindAction("Item", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenMenu = m_UI.FindAction("OpenMenu", throwIfNotFound: true);
@@ -717,6 +748,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Block;
     private readonly InputAction m_PlayerActions_Spell;
+    private readonly InputAction m_PlayerActions_Item;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -727,6 +759,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Block => m_Wrapper.m_PlayerActions_Block;
         public InputAction @Spell => m_Wrapper.m_PlayerActions_Spell;
+        public InputAction @Item => m_Wrapper.m_PlayerActions_Item;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -754,6 +787,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Spell.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
                 @Spell.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
                 @Spell.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSpell;
+                @Item.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnItem;
+                @Item.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnItem;
+                @Item.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnItem;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -776,6 +812,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Spell.started += instance.OnSpell;
                 @Spell.performed += instance.OnSpell;
                 @Spell.canceled += instance.OnSpell;
+                @Item.started += instance.OnItem;
+                @Item.performed += instance.OnItem;
+                @Item.canceled += instance.OnItem;
             }
         }
     }
@@ -876,6 +915,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnSpell(InputAction.CallbackContext context);
+        void OnItem(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

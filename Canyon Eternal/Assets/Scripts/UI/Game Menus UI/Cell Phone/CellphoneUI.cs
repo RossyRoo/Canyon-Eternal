@@ -45,6 +45,7 @@ public class CellphoneUI : MonoBehaviour
 
     public void OpenContacts()
     {
+        int totalSlotsActive = 0;
         playerProgression = FindObjectOfType<PlayerProgression>();
 
         gameMenuUI.submenuNameText.text = "Contacts";
@@ -54,15 +55,19 @@ public class CellphoneUI : MonoBehaviour
 
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
-            Image myContactIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+            Image myContactIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
             DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
             if (i < playerProgression.collectedContacts.Count)
             {
+                totalSlotsActive += 1;
                 itemSlotUI.slotData = playerProgression.collectedContacts[i];
+                myContactIcon.gameObject.SetActive(true);
                 myContactIcon.sprite = playerProgression.collectedContacts[i].dataIcon;
             }
         }
+        gameMenuUI.SwitchNextPageButton(totalSlotsActive);
+
     }
 
 
@@ -99,6 +104,7 @@ public class CellphoneUI : MonoBehaviour
 
     public void OpenPhotos()
     {
+        int totalSlotsActive = 0;
         gameMenuUI.submenuNameText.text = "Photos";
         gameMenuUI.settingsUIGO.SetActive(false);
         gameMenuUI.callButton.SetActive(false);
@@ -106,17 +112,20 @@ public class CellphoneUI : MonoBehaviour
 
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
+            totalSlotsActive += 1;
             playerInventory = FindObjectOfType<PlayerInventory>();
             PlayerProgression playerProgression = FindObjectOfType<PlayerProgression>();
             DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
             if (i < playerInventory.photoInventory.Count)
             {
+                itemSlotUI.icon.gameObject.SetActive(true);
                 FindPhotoSlotIcons(i, playerInventory, playerProgression);
                 itemSlotUI.slotData = playerInventory.photoInventory[i];
                 gameMenuUI.interfaceGridSlots[i].SetActive(true);
             }
         }
+        gameMenuUI.SwitchNextPageButton(totalSlotsActive);
     }
 
     private void FindPhotoSlotIcons(int i, PlayerInventory playerInventory, PlayerProgression playerProgression)
@@ -126,25 +135,25 @@ public class CellphoneUI : MonoBehaviour
 
         if (playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent2)
         {
-            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon4;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon.sprite = playerInventory.photoInventory[i].photoIcon4;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon4;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption4;
         }
         else if(playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent2)
         {
-            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon3;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon.sprite = playerInventory.photoInventory[i].photoIcon3;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon3;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption3;
         }
         else if (playerProgression.playerVesselPercentage >= playerInventory.photoInventory[i].turningPercent1)
         {
-            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon2;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon.sprite = playerInventory.photoInventory[i].photoIcon2;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon2;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption2;
         }
         else
         {
-            gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerInventory.photoInventory[i].photoIcon1;
+            gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon.sprite = playerInventory.photoInventory[i].photoIcon1;
             thisPhoto.dataIcon = playerInventory.photoInventory[i].photoIcon1;
             thisPhoto.dataDescription = playerInventory.photoInventory[i].photoCaption1;
         }

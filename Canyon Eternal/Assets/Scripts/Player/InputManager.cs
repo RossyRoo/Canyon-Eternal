@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
     PlayerBlockHandler playerBlockHandler;
+    PlayerEffectsHandler playerEffectsHandler;
     GameMenuUI gameMenuUI;
 
     //INPUT DECLARATIONS
@@ -24,6 +25,7 @@ public class InputManager : MonoBehaviour
     public bool dash_Input;
     public bool block_Input;
     public bool heal_Input;
+    public bool item_Input;
     public bool interact_Input;
     public bool openMenu_Input;
     public bool cycleMenuLeft_Input;
@@ -44,6 +46,7 @@ public class InputManager : MonoBehaviour
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
         playerBlockHandler = GetComponent<PlayerBlockHandler>();
+        playerEffectsHandler = FindObjectOfType<PlayerEffectsHandler>();
 
         gameMenuUI = FindObjectOfType<GameMenuUI>();
     }
@@ -77,6 +80,9 @@ public class InputManager : MonoBehaviour
             //HEAL
             playerControls.PlayerActions.Heal.performed += i => heal_Input = true;
 
+            //ITEM
+            playerControls.PlayerActions.Item.performed += i => item_Input = true;
+
             //INTERACT
             playerControls.PlayerActions.Interact.performed += i => interact_Input = true;
 
@@ -108,6 +114,7 @@ public class InputManager : MonoBehaviour
         HandleDashInput();
         HandleBlockInput();
         HandleHealInput();
+        HandleItemInput();
         HandleMenuInput();
         HandleCloseInput();
 
@@ -218,6 +225,16 @@ public class InputManager : MonoBehaviour
             }
         }
 
+    }
+
+    private void HandleItemInput()
+    {
+        if(item_Input)
+        {
+            if (playerManager.isDead || playerManager.isConversing)
+                return;
+            playerEffectsHandler.UseConsumable(playerInventory.activeItem);
+        }
     }
 
     #endregion

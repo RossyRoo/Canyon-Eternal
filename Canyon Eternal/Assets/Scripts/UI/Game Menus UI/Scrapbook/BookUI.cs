@@ -167,10 +167,14 @@ public class BookUI : MonoBehaviour
 
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
+            Image myEnemyIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
+            DataSlotUI enemySlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
+
             if (i < playerProgression.enemiesEncountered.Count)
             {
-                gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().slotData = playerProgression.enemiesEncountered[i];
-                gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerProgression.enemiesEncountered[i].dataIcon;
+                myEnemyIcon.gameObject.SetActive(true);
+                enemySlotUI.slotData = playerProgression.enemiesEncountered[i];
+                myEnemyIcon.sprite = playerProgression.enemiesEncountered[i].dataIcon;
             }
         }
     }

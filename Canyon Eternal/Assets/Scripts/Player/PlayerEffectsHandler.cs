@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class PlayerEffectsHandler : MonoBehaviour
 {
-    public void UseItem(Item item)
+    public void UseConsumable(Consumable consumable)
     {
-        if(item.dataName == "Potion")
+        SFXPlayer.Instance.PlaySFXAudioClip(consumable.consumeSFX);
+        Debug.Log("USING AN ITEM");
+
+        if(consumable.dataName == "Lo Potion")
         {
             Debug.Log("Using POTION");
         }
-        else if (item.dataName == "Cure")
+        else if (consumable.dataName == "Cure")
         {
             Debug.Log("Using CURE");
         }
-        else if(item.dataName == "Tent")
+        else if(consumable.dataName == "Tent")
         {
             Debug.Log("Using TENT");
         }
-        else if (item.dataName == "Coffee")
+        else if (consumable.dataName == "Coffee")
         {
             Debug.Log("Using COFFEE");
 
         }
-        else if(item.dataName == "Smoke Bomb")
+        else if(consumable.dataName == "Smoke Bomb")
         {
             Debug.Log("Using SMOKE BOMB");
 

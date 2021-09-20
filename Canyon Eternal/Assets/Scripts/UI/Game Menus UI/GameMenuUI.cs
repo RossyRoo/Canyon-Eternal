@@ -29,6 +29,7 @@ public class GameMenuUI : MonoBehaviour
     public GameObject interfacePanel;
     public GameObject interfaceGrid;
     public GameObject[] interfacePages;
+    public GameObject nextPageButton;
     [HideInInspector]public int interfacePageIndex = 0;
     public Sprite emptyWindowSprite;
     public GameObject [] interfaceGridSlots;
@@ -60,7 +61,9 @@ public class GameMenuUI : MonoBehaviour
     public AudioClip switchCellphoneSubMenuSFX;
     public AudioClip switchBagSubMenuSFX;
     public AudioClip clickUIButtonSFX;
+    public AudioClip nextPageUIButtonSFX;
     public AudioClip errorUIButtonSFX;
+    public AudioClip equipItemSFX;
     public AudioClip phoneRingSFX;
 
 
@@ -308,10 +311,9 @@ public class GameMenuUI : MonoBehaviour
 
     private void SelectShopItem(Item itemToBuy)
     {
-        if (playerInventory.itemInventory.Contains(itemToBuy)
+        if (playerInventory.itemInventory.Contains(itemToBuy) && itemToBuy.isRare
             || itemToBuy.GetType() == typeof(Spell) && playerInventory.spellsInventory.Contains((Spell)itemToBuy)
-            || itemToBuy.GetType() == typeof(MeleeWeapon) && playerInventory.weaponsInventory.Contains((MeleeWeapon)itemToBuy)
-            && itemToBuy.isRare)
+            || itemToBuy.GetType() == typeof(MeleeWeapon) && playerInventory.weaponsInventory.Contains((MeleeWeapon)itemToBuy))
         {
             buyButton.SetActive(false);
             purchasedBanner.SetActive(true);
@@ -360,7 +362,19 @@ public class GameMenuUI : MonoBehaviour
             }
         }
 
-        SFXPlayer.Instance.PlaySFXAudioClip(clickUIButtonSFX);
+        SFXPlayer.Instance.PlaySFXAudioClip(nextPageUIButtonSFX);
+    }
+
+    public void SwitchNextPageButton(int numberOfSlotsActive)
+    {
+        if(numberOfSlotsActive <= 12)
+        {
+            nextPageButton.SetActive(false);
+        }
+        else
+        {
+            nextPageButton.SetActive(true);
+        }
     }
 
     public void RefreshGrid(bool turnBackOn)
@@ -369,7 +383,7 @@ public class GameMenuUI : MonoBehaviour
         {
             interfaceGridSlots[i].GetComponent<DataSlotUI>().slotData = null;
             interfaceGridSlots[i].GetComponent<DataSlotUI>().duplicateCountText.gameObject.SetActive(false);
-            interfaceGridSlots[i].GetComponent<Image>().sprite = emptyWindowSprite;
+            interfaceGridSlots[i].GetComponent<DataSlotUI>().icon.gameObject.SetActive(false);
         }
         interfaceGrid.SetActive(false);
 

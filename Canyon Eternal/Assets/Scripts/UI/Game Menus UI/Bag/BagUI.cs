@@ -94,13 +94,16 @@ public class BagUI : MonoBehaviour
 
     private void DisplayItemInventoryGrid()
     {
+        int totalSlotsActive = 0;
+
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
-            Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+            Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
             DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
             if (i < typesOfItemsInInventory.Count)
             {
+                totalSlotsActive += 1;
                 itemSlotUI.slotData = typesOfItemsInInventory[i];
                 myItemIcon.sprite = typesOfItemsInInventory[i].dataIcon;
                 myItemIcon.gameObject.SetActive(true);
@@ -123,19 +126,18 @@ public class BagUI : MonoBehaviour
 
             }
 
-
         }
+        gameMenuUI.SwitchNextPageButton(totalSlotsActive);
     }
 
     public void UseConsumable(DataSlotUI dataSlotUI)
     {
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
         Item consumedItem = null;
         int numOfConsumedItem = 0;
 
         if (dataSlotUI.slotData.GetType() == typeof(Consumable))
         {
-            playerEffectsHandler.UseItem((Item)dataSlotUI.slotData);
+            playerEffectsHandler.UseConsumable((Consumable)dataSlotUI.slotData);
 
             for (int i = 0; i < playerInventory.itemInventory.Count; i++)
             {
@@ -164,6 +166,8 @@ public class BagUI : MonoBehaviour
 
     public void OpenArtifacts()
     {
+        int totalSlotsActive = 0;
+
         gameMenuUI.submenuNameText.text = "Artifacts";
         gameMenuUI.equipmentUIGO.SetActive(false);
         gameMenuUI.equipButton.SetActive(false);
@@ -171,11 +175,12 @@ public class BagUI : MonoBehaviour
 
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
-            Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+            Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
             DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
             if (i < playerInventory.artifactInventory.Count)
             {
+                totalSlotsActive += 1;
                 itemSlotUI.slotData = playerInventory.artifactInventory[i];
 
                 myItemIcon.sprite = playerInventory.artifactInventory[i].dataIcon;
@@ -187,6 +192,7 @@ public class BagUI : MonoBehaviour
                 myItemIcon.sprite = gameMenuUI.emptyWindowSprite;
             }
         }
+        gameMenuUI.SwitchNextPageButton(totalSlotsActive);
     }
 
     #endregion
@@ -200,24 +206,25 @@ public class BagUI : MonoBehaviour
 
         currentSpellButton.GetComponent<DataSlotUI>().slotData =
             playerInventory.spellsInventory[0];
-        currentSpellButton.GetComponent<Image>().sprite =
-            playerInventory.spellsInventory[0].dataIcon;
+        currentSpellButton.GetComponent<DataSlotUI>().icon.sprite =
+            playerInventory.activeSpell.dataIcon;
 
         currentWeaponButton.GetComponent<DataSlotUI>().slotData =
             playerInventory.weaponsInventory[0];
-        currentWeaponButton.GetComponent<Image>().sprite =
-            playerInventory.weaponsInventory[0].dataIcon;
+        currentWeaponButton.GetComponent<DataSlotUI>().icon.sprite =
+            playerInventory.activeWeapon.dataIcon;
 
         currentGearButton.GetComponent<DataSlotUI>().slotData =
             playerInventory.gearInventory[0];
-        currentGearButton.GetComponent<Image>().sprite =
-            playerInventory.gearInventory[0].dataIcon;
+        currentGearButton.GetComponent<DataSlotUI>().icon.sprite =
+            playerInventory.activeGear.dataIcon;
 
         gameMenuUI.equipButton.SetActive(true);
     }
 
     public void SelectEquipmentToChange(DataSlotUI dataSlotUI)
     {
+        int totalSlotsActive = 0;
         DataObject itemToDisplay = dataSlotUI.slotData;
 
         if (itemToDisplay != null)
@@ -238,11 +245,12 @@ public class BagUI : MonoBehaviour
 
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
-                    Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+                    Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
                     DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
                     if (i < playerInventory.weaponsInventory.Count)
                     {
+                        totalSlotsActive += 1;
                         itemSlotUI.slotData = playerInventory.weaponsInventory[i];
 
                         myItemIcon.sprite = playerInventory.weaponsInventory[i].dataIcon;
@@ -256,11 +264,12 @@ public class BagUI : MonoBehaviour
 
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
-                    Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+                    Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
                     DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
                     if (i < playerInventory.spellsInventory.Count)
                     {
+                        totalSlotsActive += 1;
                         itemSlotUI.slotData = playerInventory.spellsInventory[i];
 
                         myItemIcon.sprite = playerInventory.spellsInventory[i].dataIcon;
@@ -274,11 +283,12 @@ public class BagUI : MonoBehaviour
 
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
-                    Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<Image>();
+                    Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
                     DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
                     if (i < playerInventory.gearInventory.Count)
                     {
+                        totalSlotsActive += 1;
                         itemSlotUI.slotData = playerInventory.gearInventory[i];
 
                         myItemIcon.sprite = playerInventory.gearInventory[i].dataIcon;
@@ -286,6 +296,7 @@ public class BagUI : MonoBehaviour
                     }
                 }
             }
+            gameMenuUI.SwitchNextPageButton(totalSlotsActive);
         }
         else
         {
@@ -322,7 +333,7 @@ public class BagUI : MonoBehaviour
 
     public void ChangeEquipment(DataSlotUI dataSlotUI)
     {
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.equipItemSFX);
 
         if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {

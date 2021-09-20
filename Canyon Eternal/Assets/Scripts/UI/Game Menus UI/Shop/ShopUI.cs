@@ -52,6 +52,8 @@ public class ShopUI : MonoBehaviour
 
     private void RefreshShopInventory()
     {
+        int totalSlotsActive = 0;
+
         for (int i = 0; i < gameMenuUI.interfacePages.Length; i++)
         {
             if (i == 0)
@@ -72,14 +74,17 @@ public class ShopUI : MonoBehaviour
 
             if (i < activeShopkeeperInventory.Count)
             {
+                totalSlotsActive += 1;
                 itemSlotUI.slotData = activeShopkeeperInventory[i];
 
                 myItemIcon.sprite = activeShopkeeperInventory[i].dataIcon;
                 myItemIcon.gameObject.SetActive(true);
             }
         }
+        gameMenuUI.SwitchNextPageButton(totalSlotsActive);
+
     }
-    
+
     public void CloseShop()
     {
         if(shopIsOpen)

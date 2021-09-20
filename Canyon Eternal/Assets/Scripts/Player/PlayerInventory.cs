@@ -21,6 +21,7 @@ public class PlayerInventory : MonoBehaviour
     public List<Gear> gearInventory;
 
     [Header("Item Inventory")]
+    public Consumable activeItem;
     public List<Item> itemInventory;
 
     [Header("Photo Inventory")]
