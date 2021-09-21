@@ -153,9 +153,9 @@ public class AttackState : EnemyStateMachine
 
     public IEnumerator HandleBlockVulnerability(EnemyManager enemyManager)
     {
-        enemyManager.isVulnerableToBlock = true;
+        enemyManager.isVulnerableToParry = true;
         yield return new WaitForSeconds(currentAttack.recoveryTime / 2);
-        enemyManager.isVulnerableToBlock = false;
+        enemyManager.isVulnerableToParry = false;
     }
 
     public void BreakAttack(EnemyManager enemyManager)

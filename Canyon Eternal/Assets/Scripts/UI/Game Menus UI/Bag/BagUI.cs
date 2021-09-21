@@ -397,9 +397,9 @@ public class BagUI : MonoBehaviour
             }
 
             playerInventory.activeWeapon = (MeleeWeapon)dataSlotUI.slotData;
-            playerMeleeHandler.DestroyMelee();
-            playerMeleeHandler.SetParentOverride();
-            playerMeleeHandler.LoadMelee();
+            playerMeleeHandler.DestroyMeleeModel();
+            playerMeleeHandler.SetMeleeParentOverride();
+            playerMeleeHandler.LoadMeleeModel();
         }
         else if (dataSlotUI.slotData.GetType() == typeof(Spell))
         {

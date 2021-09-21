@@ -82,11 +82,13 @@ public class PlayerManager : CharacterManager
     private void ResetInputLate()
     {
         inputManager.melee_Input = false;
+        inputManager.startBlock_Input = false;
+        inputManager.stopBlock_Input = false;
         inputManager.dash_Input = false;
         inputManager.heal_Input = false;
         inputManager.item_Input = false;
         inputManager.interact_Input = false;
-        inputManager.block_Input = false;
+        inputManager.parry_Input = false;
         inputManager.chargeSpell_Input = false;
         inputManager.castSpell_Input = false;
 

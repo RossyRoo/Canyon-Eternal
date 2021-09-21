@@ -26,8 +26,9 @@ public class CharacterManager : MonoBehaviour
     public bool isAttacking;
     public bool isChargingSpell;
     public bool isCastingSpell;
+    public bool isParrying;
+    public bool isVulnerableToParry;
     public bool isBlocking;
-    public bool isVulnerableToBlock;
     public bool isStunned;
     public bool isDashing;
 

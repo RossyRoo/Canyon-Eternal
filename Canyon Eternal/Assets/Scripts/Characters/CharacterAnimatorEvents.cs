@@ -8,11 +8,11 @@ public class CharacterAnimatorEvents : MonoBehaviour
 
     public void EnableVulnerabilityToBlock()
     {
-        characterManager.isVulnerableToBlock = true;
+        characterManager.isVulnerableToParry = true;
     }
 
     public void DisableVulnerabilityToBlock()
     {
-        characterManager.isVulnerableToBlock = false;
+        characterManager.isVulnerableToParry = false;
     }
 }

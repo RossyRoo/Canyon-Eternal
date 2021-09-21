@@ -6,38 +6,41 @@ public class BlockCollider : MonoBehaviour
 {
     public OffhandWeapon offhandWeaponData;
 
-    public CharacterManager myCharacter;
-    Collider2D blockCollider;
     public AudioClip blockCollisionSFX;
 
-    public bool targetIsWithinRange;
+    public bool parryMode;
+    public bool blockMode;
+    public bool canBlockEnemy = true;
+    public bool canBlockPlayer = true;
 
-    private void Awake()
-    {
-        myCharacter = GetComponentInParent<CharacterManager>();
-        blockCollider = GetComponent<Collider2D>();
-        blockCollider.isTrigger = true;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        targetIsWithinRange = true;
-
-        CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
-
-        if (characterCollision != null && characterCollision.transform != myCharacter.transform)
+        if(parryMode)
         {
-            if(characterCollision.isVulnerableToBlock)
-            {
-                characterCollision.isStunned = true;
+            CharacterManager characterCollision = collision.gameObject.GetComponent<CharacterManager>();
 
-                SFXPlayer.Instance.PlaySFXAudioClip(blockCollisionSFX, 0.05f);
+            if (characterCollision != null)
+            {
+                if (characterCollision.GetType() == typeof(EnemyManager) && canBlockEnemy
+                    || characterCollision.GetType() == typeof(PlayerManager) && canBlockPlayer)
+                {
+
+                    if (characterCollision.isVulnerableToParry)
+                    {
+                        characterCollision.isStunned = true;
+
+                        SFXPlayer.Instance.PlaySFXAudioClip(blockCollisionSFX, 0.05f);
+                    }
+                }
             }
         }
+        else if(blockMode)
+        {
+            Debug.Log("Guarded");
+        }
+
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        targetIsWithinRange = false;
-    }
+
 }

@@ -96,10 +96,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0029887557, y: -0.05719757}
+  m_Offset: {x: -0.0029888153, y: -0.7053247}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.75}
     oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3264132, y: 0.92341137}
+  m_Size: {x: 2.3264132, y: 0.8616847}
   m_EdgeRadius: 0
 --- !u!114 &7131736047382240203
 MonoBehaviour:
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offhandWeaponData: {fileID: 11400000, guid: eb9a7909cb976453aa75e1f9831c271a, type: 2}
-  myCharacter: {fileID: 0}
   blockCollisionSFX: {fileID: 8300000, guid: 84ae1e0aeff50d747aa4c2d2e5c060a0, type: 3}
   targetIsWithinRange: 0
+  canBlockEnemy: 1
+  canBlockPlayer: 0

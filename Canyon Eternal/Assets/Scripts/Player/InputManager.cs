@@ -11,7 +11,7 @@ public class InputManager : MonoBehaviour
     PlayerStats playerStats;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerSpellHandler playerSpellHandler;
-    PlayerBlockHandler playerBlockHandler;
+    PlayerOffhandHandler playerOffhandHandler;
     PlayerParticleHandler playerParticleHandler;
     ConsumableHandler consumableHandler;
     GameMenuUI gameMenuUI;
@@ -21,10 +21,12 @@ public class InputManager : MonoBehaviour
     public Vector2 mouseInput;
 
     public bool melee_Input;
+    public bool startBlock_Input;
+    public bool stopBlock_Input;
     public bool chargeSpell_Input;
     public bool castSpell_Input;
     public bool dash_Input;
-    public bool block_Input;
+    public bool parry_Input;
     public bool heal_Input;
     public bool item_Input;
     public bool interact_Input;
@@ -46,7 +48,7 @@ public class InputManager : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
-        playerBlockHandler = GetComponent<PlayerBlockHandler>();
+        playerOffhandHandler = GetComponent<PlayerOffhandHandler>();
         consumableHandler = FindObjectOfType<ConsumableHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
 
@@ -69,15 +71,19 @@ public class InputManager : MonoBehaviour
             //MELEE
             playerControls.PlayerActions.Melee.performed += i => melee_Input = true;
 
+            //PARRY
+            playerControls.PlayerActions.Parry.performed += i => parry_Input = true;
+
+            //BLOCK
+            playerControls.PlayerActions.Block.performed += i => startBlock_Input = true;
+            playerControls.PlayerActions.Block.canceled += i => stopBlock_Input = true;
+
             //SPELL
             playerControls.PlayerActions.Spell.performed += i => chargeSpell_Input = true;
             playerControls.PlayerActions.Spell.canceled += i => castSpell_Input = true;
 
             //DASH
             playerControls.PlayerActions.Dash.performed += i => dash_Input = true;
-
-            //BLOCK
-            playerControls.PlayerActions.Block.performed += i => block_Input = true;
 
             //HEAL
             playerControls.PlayerActions.Heal.performed += i => heal_Input = true;
@@ -111,10 +117,12 @@ public class InputManager : MonoBehaviour
     {
         HandleMouseInput();
         HandleMeleeInput();
+        HandleStartBlockInput();
+        HandleStopBlockInput();
         HandleChargeSpellInput();
         HandleCastSpellInput();
         HandleDashInput();
-        HandleBlockInput();
+        HandleParryInput();
         HandleHealInput();
         HandleItemInput();
         HandleMenuInput();
@@ -203,14 +211,37 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleBlockInput()
+    private void HandleParryInput()
     {
-        if(block_Input)
+        if(parry_Input)
         {
-            if (playerStats.currentStamina < 1 || playerManager.isInteracting)
+            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting)
                 return;
 
-            StartCoroutine(playerBlockHandler.HandleBlocking());
+            StartCoroutine(playerOffhandHandler.HandleParrying());
+        }
+    }
+
+    private void HandleStartBlockInput()
+    {
+        if(startBlock_Input)
+        {
+            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting)
+                return;
+
+            playerOffhandHandler.HandleStartBlock();
+            Debug.Log("Starting block");
+        }
+    }
+
+    private void HandleStopBlockInput()
+    {
+        if(stopBlock_Input && playerManager.isBlocking)
+        {
+            playerOffhandHandler.HandleStopBlock();
+
+            Debug.Log("Stopping block");
+
         }
     }
 

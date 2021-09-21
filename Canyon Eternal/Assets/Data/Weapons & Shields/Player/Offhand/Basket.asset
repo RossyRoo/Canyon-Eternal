@@ -28,4 +28,18 @@ MonoBehaviour:
   collisionVFX: []
   damageSFX: []
   criticalDamageSFX: {fileID: 0}
+  isThrust: 0
+  isSlash: 0
+  isStrike: 0
+  attackMomentum: 1000
+  openDamageColliderBuffer: 0
+  closeDamageColliderBuffer: 0.15
+  attackCooldownTime: 0.4
+  modelPrefab: {fileID: 5508132754238504420, guid: c4dae034a8ea348998a821687680e112,
+    type: 3}
+  attackAnimations:
+  - ShieldParry
+  - ShieldStartBlock
+  - ShieldStopBlock
+  swingWeaponSFX: []
   blockSpeedMultiplier: 0

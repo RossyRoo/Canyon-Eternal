@@ -249,7 +249,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Block",
+                    "name": "Parry",
                     "type": "Button",
                     "id": "a72f6c03-d39f-4ae1-b59d-e9b43224d22b",
                     "expectedControlType": "Button",
@@ -268,6 +268,14 @@
                     "name": "Item",
                     "type": "Button",
                     "id": "c7755bc5-3b01-4d54-b9c9-99dc9dec5c14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "678f03f0-4b88-4e95-a46c-409b897dff06",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -365,22 +373,22 @@
                 {
                     "name": "",
                     "id": "b2744532-4fc8-4ebe-b41c-7b8dddff2a80",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Block",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "f2ed56d6-33b3-47a5-bcd8-8979fa2918bc",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Block",
+                    "action": "Parry",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -425,6 +433,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed8b8e74-8705-42b8-aa4d-eb4e44aa690b",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95f80be7-f6c1-45b6-987b-3e35254f6e31",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -479,7 +509,7 @@
                 {
                     "name": "",
                     "id": "57d506a5-09cc-4bb3-bcd9-5302a2e29431",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/m",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",

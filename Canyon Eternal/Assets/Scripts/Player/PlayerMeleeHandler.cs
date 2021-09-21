@@ -15,7 +15,7 @@ public class PlayerMeleeHandler : MonoBehaviour
     public Transform thrustTransform;
     public Transform slashTransform;
     public Transform strikeTransform;
-    Transform parentOverride;
+    Transform meleeParentOverride;
     DamageCollider meleeDamageCollider;
 
     [Header("Weapon Swing VFX")]
@@ -36,52 +36,50 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         if (playerInventory.activeWeapon == null)
         {
-            if (playerInventory.weaponsInventory.Count != 0)
+            if (playerInventory.weaponsInventory.Count > 0)
             {
                 playerInventory.activeWeapon = playerInventory.weaponsInventory[0];
             }
         }
-
-        if(playerInventory.activeWeapon != null)
+        else
         {
-            SetParentOverride();
-            LoadMelee();
+            SetMeleeParentOverride();
+            LoadMeleeModel();
         }
-
     }
 
 
-    public void SetParentOverride()
+    public void SetMeleeParentOverride()
     {
         if (playerInventory.activeWeapon.isThrust)
         {
-            parentOverride = thrustTransform;
+            meleeParentOverride = thrustTransform;
         }
         else if (playerInventory.activeWeapon.isSlash)
         {
-            parentOverride = slashTransform;
+            meleeParentOverride = slashTransform;
         }
         else if (playerInventory.activeWeapon.isStrike)
         {
-            parentOverride = strikeTransform;
+            meleeParentOverride = strikeTransform;
         }
     }
 
-    public void DestroyMelee()
+    public void DestroyMeleeModel()
     {
         Destroy(currentMeleeModel);
         currentMeleeModel = null;
     }
 
 
-    public void LoadMelee()
+    public void LoadMeleeModel()
     {
         GameObject meleeModelPrefab = Instantiate(playerInventory.activeWeapon.modelPrefab) as GameObject;
         if (meleeModelPrefab != null)
         {
-            if (parentOverride != null)
+            if (meleeParentOverride != null)
             {
-                meleeModelPrefab.transform.parent = parentOverride;
+                meleeModelPrefab.transform.parent = meleeParentOverride;
             }
             else
             {
