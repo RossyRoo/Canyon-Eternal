@@ -328,8 +328,11 @@ public class GameMenuUI : MonoBehaviour
 
     private void SelectConsumableItem(Consumable consumableToUse)
     {
-        useButton.SetActive(true);
-        useButton.GetComponent<DataSlotUI>().slotData = consumableToUse;
+        if(currentSubmenuIndex == 1)
+        {
+            useButton.SetActive(true);
+            useButton.GetComponent<DataSlotUI>().slotData = consumableToUse;
+        }
     }
 
     private void SelectFastTravelRoom(Room fastTravelRoomDestination)

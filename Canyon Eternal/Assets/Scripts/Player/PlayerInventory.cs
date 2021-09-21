@@ -20,8 +20,12 @@ public class PlayerInventory : MonoBehaviour
     public Gear activeGear;
     public List<Gear> gearInventory;
 
+    [Header("Offhand Inventory")]
+    public OffhandWeapon activeOffhandWeapon;
+    public List<OffhandWeapon> offhandWeaponInventory;
+
     [Header("Item Inventory")]
-    public Consumable activeItem;
+    public Consumable activeConsumable;
     public List<Item> itemInventory;
 
     [Header("Photo Inventory")]

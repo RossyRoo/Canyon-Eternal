@@ -235,10 +235,10 @@ public class InputManager : MonoBehaviour
         if (item_Input)
         {
             if (playerManager.isDead || playerManager.isConversing ||
-                playerInventory.activeItem == null || !playerInventory.itemInventory.Contains(playerInventory.activeItem))
+                playerInventory.activeConsumable == null || !playerInventory.itemInventory.Contains(playerInventory.activeConsumable))
                 return;
 
-            consumableHandler.HandlePlayerConsumable(playerInventory.activeItem, playerStats);
+            consumableHandler.HandlePlayerConsumable(playerInventory.activeConsumable, playerStats);
         }
     }
 

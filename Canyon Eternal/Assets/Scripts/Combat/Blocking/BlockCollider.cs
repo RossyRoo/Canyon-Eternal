@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BlockCollider : MonoBehaviour
 {
+    public OffhandWeapon offhandWeaponData;
+
     public CharacterManager myCharacter;
     Collider2D blockCollider;
     public AudioClip blockCollisionSFX;
