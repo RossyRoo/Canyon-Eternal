@@ -47,14 +47,10 @@ public class PlayerOffhandHandler : MonoBehaviour
         {
             if (offhandParentOverride != null)
             {
-                offhandModelPrefab.transform.parent = offhandParentOverride;
+                offhandModelPrefab.transform.SetParent(offhandParentOverride);
+                offhandModelPrefab.transform.localScale = playerInventory.activeOffhandWeapon.modelPrefab.transform.localScale;
             }
-            else
-            {
-                offhandModelPrefab.transform.parent = transform;
-            }
-            offhandModelPrefab.transform.localPosition = Vector3.zero;
-            offhandModelPrefab.transform.localRotation = Quaternion.identity;
+
         }
 
         currentOffhandModel = offhandModelPrefab;
@@ -68,20 +64,26 @@ public class PlayerOffhandHandler : MonoBehaviour
 
     public void HandleStartBlock()
     {
+        BlockCollider blockCollider = currentOffhandModel.GetComponent<BlockCollider>();
+
         playerManager.isBlocking = true;
 
         playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeOffhandWeapon.attackAnimations[1], true);
 
-        currentOffhandModel.SetActive(true);
+        currentOffhandModel.GetComponent<Collider2D>().enabled = true;
+        blockCollider.blockMode = true;
     }
 
     public void HandleStopBlock()
     {
+        BlockCollider blockCollider = currentOffhandModel.GetComponent<BlockCollider>();
+
         playerManager.isBlocking = false;
 
         playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeOffhandWeapon.attackAnimations[2], true);
 
-        currentOffhandModel.SetActive(false);
+        blockCollider.blockMode = false;
+        currentOffhandModel.GetComponent<Collider2D>().enabled = false;
     }
 
     public IEnumerator HandleParrying()
@@ -96,12 +98,12 @@ public class PlayerOffhandHandler : MonoBehaviour
         playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeOffhandWeapon.attackAnimations[0], true);
         SFXPlayer.Instance.PlaySFXAudioClip(blockMissedSFX, 0.3f, 0.2f);
 
-        currentOffhandModel.SetActive(true);
+        currentOffhandModel.GetComponent<Collider2D>().enabled = true;
         blockCollider.parryMode = true;
 
         yield return new WaitForSeconds(blockDuration);
 
-        currentOffhandModel.SetActive(false);
+        currentOffhandModel.GetComponent<Collider2D>().enabled = false;
         playerManager.isParrying = false;
         blockCollider.parryMode = false;
     }

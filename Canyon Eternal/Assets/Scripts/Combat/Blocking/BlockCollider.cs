@@ -37,10 +37,16 @@ public class BlockCollider : MonoBehaviour
         }
         else if(blockMode)
         {
-            Debug.Log("Guarded");
+            DamageCollider damageColliderCollision = collision.gameObject.GetComponent<DamageCollider>();
+
+            if (damageColliderCollision != null)
+            {
+                StartCoroutine(damageColliderCollision.TemporarilyDisableDamage(0.5f));
+            }
         }
 
     }
+
 
 
 }

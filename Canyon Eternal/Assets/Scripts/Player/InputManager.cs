@@ -230,7 +230,6 @@ public class InputManager : MonoBehaviour
                 return;
 
             playerOffhandHandler.HandleStartBlock();
-            Debug.Log("Starting block");
         }
     }
 
@@ -239,9 +238,6 @@ public class InputManager : MonoBehaviour
         if(stopBlock_Input && playerManager.isBlocking)
         {
             playerOffhandHandler.HandleStopBlock();
-
-            Debug.Log("Stopping block");
-
         }
     }
 

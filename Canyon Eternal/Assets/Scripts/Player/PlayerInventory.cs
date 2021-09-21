@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     FragmentCounterUI fragmentCounterUI;
+    QuickSlotUI quickSlotUI;
 
     public int fragmentInventory;
 
@@ -28,6 +29,10 @@ public class PlayerInventory : MonoBehaviour
     public Consumable activeConsumable;
     public List<Item> itemInventory;
 
+    /*[Header("Quick Select")]
+    public List<MeleeWeapon> quickWeapons = new List<MeleeWeapon>(2);*/
+
+
     [Header("Photo Inventory")]
     public List<Photo> photoInventory;
 
@@ -38,6 +43,9 @@ public class PlayerInventory : MonoBehaviour
     private void Awake()
     {
         fragmentCounterUI = FindObjectOfType<FragmentCounterUI>();
+        quickSlotUI = FindObjectOfType<QuickSlotUI>();
+
+        quickSlotUI.UpdateQuickSlotIcons(this);
     }
 
     public void AdjustFragmentInventory(int adjustment)

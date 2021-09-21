@@ -22,6 +22,7 @@ public class DamageCollider : MonoBehaviour
     public bool targetIsWithinRange = false;
     public bool canDamageEnemy = true;
     public bool canDamagePlayer = true;
+    public bool isBeingBlocked;
 
 
     private void Awake()
@@ -84,20 +85,23 @@ public class DamageCollider : MonoBehaviour
         {
             if (currentTarget != null && !currentTarget.isInvulnerable)
             {
-                if (collision.tag == "Player" && canDamagePlayer)
-                {
-                    knockbackFlag = true;
-                    DetermineCriticalHit();
-                    CalculateElementalDamage();
-                    collision.GetComponent<PlayerStats>().LoseHealth(damage, true);
-                }
+                knockbackFlag = true;
 
-                if (collision.tag == "Enemy" && canDamageEnemy)
+                if(!isBeingBlocked)
                 {
-                    knockbackFlag = true;
-                    DetermineCriticalHit();
-                    CalculateElementalDamage();
-                    collision.GetComponentInParent<EnemyStats>().LoseHealth(damage, criticalHitActivated);
+                    if (collision.tag == "Player" && canDamagePlayer)
+                    {
+                        DetermineCriticalHit();
+                        CalculateElementalDamage();
+                        collision.GetComponent<PlayerStats>().LoseHealth(damage, true);
+                    }
+
+                    if (collision.tag == "Enemy" && canDamageEnemy)
+                    {
+                        DetermineCriticalHit();
+                        CalculateElementalDamage();
+                        collision.GetComponentInParent<EnemyStats>().LoseHealth(damage, criticalHitActivated);
+                    }
                 }
             }
 
@@ -187,4 +191,13 @@ public class DamageCollider : MonoBehaviour
     }
 
     #endregion
+
+    public IEnumerator TemporarilyDisableDamage(float disableDuration)
+    {
+        Debug.Log("Disabling damage collider");
+        isBeingBlocked = true;
+        yield return new WaitForSeconds(disableDuration);
+        isBeingBlocked = false;
+        Debug.Log("Enabling damage collider");
+    }
 }

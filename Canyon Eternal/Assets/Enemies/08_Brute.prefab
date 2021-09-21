@@ -1022,8 +1022,9 @@ MonoBehaviour:
   isAttacking: 0
   isChargingSpell: 0
   isCastingSpell: 0
+  isParrying: 0
+  isVulnerableToParry: 0
   isBlocking: 0
-  isVulnerableToBlock: 0
   isStunned: 0
   isDashing: 0
   currentMoveDirection: {x: 0, y: 0}
@@ -1177,6 +1178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638964557053719766, guid: 3afea6df9a7654197bb419278028d9d3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3afea6df9a7654197bb419278028d9d3, type: 3}

@@ -440,6 +440,8 @@ public class BagUI : MonoBehaviour
             playerInventory.activeOffhandWeapon = (OffhandWeapon)dataSlotUI.slotData;
 
         }
+
+        FindObjectOfType<QuickSlotUI>().UpdateQuickSlotIcons(playerInventory);
     }
     #endregion
 }

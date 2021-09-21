@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7260146906959923640}
   - component: {fileID: 2623529574185679127}
   - component: {fileID: 7131736047382240203}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5508132754238504420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.46, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1.2, y: -1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offhandWeaponData: {fileID: 11400000, guid: 02388c8ca1c9c4a7bb24935f9e95f82a, type: 2}
   blockCollisionSFX: {fileID: 8300000, guid: 84ae1e0aeff50d747aa4c2d2e5c060a0, type: 3}
-  targetIsWithinRange: 0
+  parryMode: 0
+  blockMode: 0
   canBlockEnemy: 1
   canBlockPlayer: 0
