@@ -9,17 +9,17 @@ public class WeatherManager : MonoBehaviour
 
     [Tooltip("1 = Calm. 2 = Sunny. 3 = Breezy. 4 = Rainy. 5 = Acid Rain. 6 = Foggy. 7 = Snowy.")]
     public int currentPattern = 1;
-    [SerializeField] ParticleSystem [] weatherPatterns;
-    [SerializeField] AudioClip[] weatherSFX;
-    [SerializeField] float currentPatternTimeRemaining;
+    public ParticleSystem [] weatherPatterns;
+    public AudioClip[] weatherSFX;
+    public float currentPatternTimeRemaining;
     [Tooltip("Minimum amount of time a weather pattern will play.")]
-    [SerializeField] float minPatternDuration;
+    public float minPatternDuration;
     [Tooltip("Maximum amount of time a weather pattern will play.")]
-    [SerializeField] float maxPatternDuration;
+    public float maxPatternDuration;
     [Tooltip("Minimum amount of time between weather pattern playing.")]
-    [SerializeField] float minPatternBuffer = 4f;
+    public float minPatternBuffer = 4f;
     [Tooltip("Maximum amount of time between weather pattern playing.")]
-    [SerializeField] float maxPatternBuffer = 8f;
+    public float maxPatternBuffer = 8f;
 
     [Header("Screen Toner")]
     public Animator weatherTonerAnimator;

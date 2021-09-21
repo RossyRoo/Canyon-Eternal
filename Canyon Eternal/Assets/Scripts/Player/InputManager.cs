@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
     PlayerSpellHandler playerSpellHandler;
     PlayerBlockHandler playerBlockHandler;
     PlayerParticleHandler playerParticleHandler;
-    PlayerEffectsHandler playerEffectsHandler;
+    ConsumableHandler consumableHandler;
     GameMenuUI gameMenuUI;
 
     //INPUT DECLARATIONS
@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerSpellHandler = GetComponent<PlayerSpellHandler>();
         playerBlockHandler = GetComponent<PlayerBlockHandler>();
-        playerEffectsHandler = FindObjectOfType<PlayerEffectsHandler>();
+        consumableHandler = FindObjectOfType<ConsumableHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
 
         gameMenuUI = FindObjectOfType<GameMenuUI>();
@@ -232,11 +232,13 @@ public class InputManager : MonoBehaviour
 
     private void HandleItemInput()
     {
-        if(item_Input)
+        if (item_Input)
         {
-            if (playerManager.isDead || playerManager.isConversing)
+            if (playerManager.isDead || playerManager.isConversing ||
+                playerInventory.activeItem == null || !playerInventory.itemInventory.Contains(playerInventory.activeItem))
                 return;
-            playerEffectsHandler.UseConsumable(playerInventory.activeItem);
+
+            consumableHandler.HandlePlayerConsumable(playerInventory.activeItem, playerStats);
         }
     }
 

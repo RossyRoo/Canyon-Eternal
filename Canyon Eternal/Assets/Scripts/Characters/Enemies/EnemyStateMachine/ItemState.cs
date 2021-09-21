@@ -14,7 +14,7 @@ public class ItemState : EnemyStateMachine
 
         if(myConsumables.Count > 0)
         {
-            UseHealItem(enemyStats);
+            FindObjectOfType<ConsumableHandler>().HandleEnemyConsumable(myConsumables[0], enemyStats);
         }
         else
         {
@@ -25,29 +25,4 @@ public class ItemState : EnemyStateMachine
 
     }
 
-    private void UseHealItem(EnemyStats enemyStats)
-    {
-        float amountHealed = enemyStats.currentHealth;
-
-        enemyStats.currentHealth += (myConsumables[0].healthAmount * 100f);
-
-        if(enemyStats.currentHealth > enemyStats.characterData.startingMaxHealth)
-        {
-            enemyStats.currentHealth = enemyStats.characterData.startingMaxHealth;
-        }
-
-        amountHealed = enemyStats.currentHealth - amountHealed;
-
-        StartCoroutine(enemyStats.GetComponentInChildren<EnemyHealthBarUI>().SetHealthCoroutine(false, enemyStats.currentHealth, false, amountHealed));
-
-        if(myConsumables[0].useVFX != null)
-        {
-            GameObject useVFX = Instantiate(myConsumables[0].useVFX, transform.position, Quaternion.identity);
-            useVFX.transform.SetParent(FindObjectOfType<ObjectPool>().transform);
-            Destroy(useVFX, 2f);
-        }
-
-        myConsumables.Remove(myConsumables[0]);
-
-    }
 }

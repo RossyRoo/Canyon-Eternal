@@ -9,7 +9,7 @@ public class BagUI : MonoBehaviour
     GameMenuUI gameMenuUI;
     PlayerInventory playerInventory;
     PlayerMeleeHandler playerMeleeHandler;
-    PlayerEffectsHandler playerEffectsHandler;
+    ConsumableHandler playerEffectsHandler;
 
     public GameObject currentSpellButton;
     public GameObject currentWeaponButton;
@@ -20,7 +20,7 @@ public class BagUI : MonoBehaviour
     private void Awake()
     {
         gameMenuUI = GetComponent<GameMenuUI>();
-        playerEffectsHandler = FindObjectOfType<PlayerEffectsHandler>();
+        playerEffectsHandler = FindObjectOfType<ConsumableHandler>();
     }
 
     public void OpenBag(int currentSubmenuIndex)
@@ -132,30 +132,24 @@ public class BagUI : MonoBehaviour
 
     public void UseConsumable(DataSlotUI dataSlotUI)
     {
-        Item consumedItem = null;
+        PlayerStats playerStats = playerInventory.GetComponent<PlayerStats>();
         int numOfConsumedItem = 0;
 
-        if (dataSlotUI.slotData.GetType() == typeof(Consumable))
+        playerEffectsHandler.HandlePlayerConsumable((Consumable)dataSlotUI.slotData, playerStats);
+
+        for (int i = 0; i < playerInventory.itemInventory.Count; i++)
         {
-            playerEffectsHandler.UseConsumable((Consumable)dataSlotUI.slotData);
-
-            for (int i = 0; i < playerInventory.itemInventory.Count; i++)
+            if (playerInventory.itemInventory[i].dataName == dataSlotUI.slotData.dataName)
             {
-                if(playerInventory.itemInventory[i].dataName == dataSlotUI.slotData.dataName)
-                {
-                    numOfConsumedItem++;
-                    consumedItem = playerInventory.itemInventory[i];                    
-                }
+                numOfConsumedItem++;
             }
-
-            playerInventory.itemInventory.Remove(consumedItem);
-            if(numOfConsumedItem == 1)
-            {
-                gameMenuUI.infoPanel.SetActive(false);
-            }
-            OpenItemInventory();
-
         }
+
+        if (numOfConsumedItem <= 0)
+        {
+            gameMenuUI.infoPanel.SetActive(false);
+        }
+        OpenItemInventory();
 
 
     }
