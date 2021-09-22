@@ -12,26 +12,26 @@ public class PlayerInventory : MonoBehaviour
     [Header("Melee Inventory")]
     public MeleeWeapon activeWeapon;
     public List<MeleeWeapon> weaponsInventory;
-
-    [Header("Spell Inventory")]
-    public Spell activeSpell;
-    public List<Spell> spellsInventory;
-
-    [Header("Gear Inventory")]
-    public Gear activeGear;
-    public List<Gear> gearInventory;
+    public MeleeWeapon[] quickWeaponSlots;
 
     [Header("Offhand Inventory")]
     public OffhandWeapon activeOffhandWeapon;
     public List<OffhandWeapon> offhandWeaponInventory;
+    public OffhandWeapon[] quickOffhandSlots;
+
+    [Header("Spell Inventory")]
+    public Spell activeSpell;
+    public List<Spell> spellsInventory;
+    public Spell[] quickSpellSlots;
 
     [Header("Item Inventory")]
     public Consumable activeConsumable;
     public List<Item> itemInventory;
+    public Item[] quickItemSlots;
 
-    /*[Header("Quick Select")]
-    public List<MeleeWeapon> quickWeapons = new List<MeleeWeapon>(2);*/
-
+    [Header("Gear Inventory")]
+    public Gear activeGear;
+    public List<Gear> gearInventory;
 
     [Header("Photo Inventory")]
     public List<Photo> photoInventory;

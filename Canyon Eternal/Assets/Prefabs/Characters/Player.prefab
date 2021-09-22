@@ -1123,22 +1123,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 79507e403e97f41608379e1e6e8eef76, type: 2}
   - {fileID: 11400000, guid: c58cee6c3fe324f909519759929d8691, type: 2}
   - {fileID: 11400000, guid: 032d6f98eaec14cb7a780c9e439588c0, type: 2}
-  activeSpell: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
-  spellsInventory:
-  - {fileID: 11400000, guid: e879f95b3275e4f61a70dbf3e202915a, type: 2}
-  - {fileID: 11400000, guid: 247e73fa45e0b4ceab843705c2e80413, type: 2}
-  - {fileID: 11400000, guid: e519b891e623945d4ab956ab23346bf6, type: 2}
-  activeGear: {fileID: 11400000, guid: 9c9f61b6dc8954f5fb0faade7d90297c, type: 2}
-  gearInventory:
-  - {fileID: 11400000, guid: 9c9f61b6dc8954f5fb0faade7d90297c, type: 2}
-  - {fileID: 11400000, guid: fd9ded26b2bcd4540a854c63ebf90a6b, type: 2}
-  - {fileID: 11400000, guid: 695e6c18c3baf4cf79a5004737890325, type: 2}
+  quickWeaponSlots:
+  - {fileID: 11400000, guid: 79507e403e97f41608379e1e6e8eef76, type: 2}
+  - {fileID: 11400000, guid: c58cee6c3fe324f909519759929d8691, type: 2}
   activeOffhandWeapon: {fileID: 11400000, guid: eb9a7909cb976453aa75e1f9831c271a,
     type: 2}
   offhandWeaponInventory:
   - {fileID: 11400000, guid: 7a0a4f55a01f24db3babab0b76e582f4, type: 2}
   - {fileID: 11400000, guid: 14ee74b385d9042caa4c3d299d688f70, type: 2}
   - {fileID: 11400000, guid: dc839946525ee413ebd5d4bf9f8a3d25, type: 2}
+  quickOffhandSlots:
+  - {fileID: 11400000, guid: 7a0a4f55a01f24db3babab0b76e582f4, type: 2}
+  - {fileID: 11400000, guid: 14ee74b385d9042caa4c3d299d688f70, type: 2}
+  activeSpell: {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  spellsInventory:
+  - {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  - {fileID: 11400000, guid: 247e73fa45e0b4ceab843705c2e80413, type: 2}
+  - {fileID: 11400000, guid: e519b891e623945d4ab956ab23346bf6, type: 2}
+  quickSpellSlots:
+  - {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  - {fileID: 11400000, guid: 247e73fa45e0b4ceab843705c2e80413, type: 2}
   activeConsumable: {fileID: 11400000, guid: 806947556a57741178a1fdcb5b13362c, type: 2}
   itemInventory:
   - {fileID: 11400000, guid: 897f3bf9602b849a29b6029e57463f2a, type: 2}
@@ -1154,6 +1158,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28ca4c0b8898c42548f08f1753227ab7, type: 2}
   - {fileID: 11400000, guid: 173e3befd8c564d1c96ff5eef77136e8, type: 2}
   - {fileID: 11400000, guid: a333d595ae26d46d59e4ff03cae5af62, type: 2}
+  quickItemSlots:
+  - {fileID: 11400000, guid: 897f3bf9602b849a29b6029e57463f2a, type: 2}
+  - {fileID: 11400000, guid: 806947556a57741178a1fdcb5b13362c, type: 2}
+  activeGear: {fileID: 11400000, guid: 9c9f61b6dc8954f5fb0faade7d90297c, type: 2}
+  gearInventory:
+  - {fileID: 11400000, guid: 9c9f61b6dc8954f5fb0faade7d90297c, type: 2}
+  - {fileID: 11400000, guid: fd9ded26b2bcd4540a854c63ebf90a6b, type: 2}
+  - {fileID: 11400000, guid: 695e6c18c3baf4cf79a5004737890325, type: 2}
   photoInventory:
   - {fileID: 11400000, guid: 7e4b5ac359c9842729a2f8dc4e4bc710, type: 2}
   - {fileID: 11400000, guid: 82a342675ed7943ffba887cddf320ecb, type: 2}

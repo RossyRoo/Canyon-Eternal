@@ -215,7 +215,7 @@ public class InputManager : MonoBehaviour
     {
         if(parry_Input)
         {
-            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting)
+            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
                 return;
 
             StartCoroutine(playerOffhandHandler.HandleParrying());
@@ -226,7 +226,7 @@ public class InputManager : MonoBehaviour
     {
         if(startBlock_Input)
         {
-            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting)
+            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
                 return;
 
             playerOffhandHandler.HandleStartBlock();
