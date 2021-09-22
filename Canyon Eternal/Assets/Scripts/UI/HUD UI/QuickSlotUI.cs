@@ -12,10 +12,49 @@ public class QuickSlotUI : MonoBehaviour
 
     public void UpdateQuickSlotIcons(PlayerInventory playerInventory)
     {
-        activeWeaponIcon.sprite = playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber].dataIcon;
-        activeOffhandIcon.sprite = playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].dataIcon;
-        activeSpellIcon.sprite = playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].dataIcon;
-        activeItemIcon.sprite = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber].dataIcon;
+        if(playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] != null)
+        {
+            activeWeaponIcon.enabled = true;
+            activeWeaponIcon.sprite = playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber].dataIcon;
+        }
+        else
+        {
+            activeWeaponIcon.sprite = null;
+            activeWeaponIcon.enabled = true;
+        }
 
+        if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] != null)
+        {
+            activeOffhandIcon.enabled = true;
+            activeOffhandIcon.sprite = playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].dataIcon;
+        }
+        else
+        {
+            activeOffhandIcon.sprite = null;
+            activeOffhandIcon.enabled = false;
+        }
+
+        if(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] != null)
+        {
+            activeSpellIcon.enabled = true;
+            activeSpellIcon.sprite = playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].dataIcon;
+        }
+        else
+        {
+            activeSpellIcon.enabled = false;
+            activeSpellIcon.sprite = null;
+        }
+
+        if(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] != null)
+        {
+            activeItemIcon.enabled = true;
+            activeItemIcon.sprite = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber].dataIcon;
+
+        }
+        else
+        {
+            activeItemIcon.enabled = false;
+            activeItemIcon.sprite = null;
+        }
     }
 }
