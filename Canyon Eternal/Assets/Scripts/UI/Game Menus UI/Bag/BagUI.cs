@@ -215,41 +215,41 @@ public class BagUI : MonoBehaviour
         gameMenuUI.equipmentUIGO.SetActive(true);
 
         quickWeaponSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickWeaponSlots[0];
+            playerInventory.weaponSlots[0];
         quickWeaponSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickWeaponSlots[0].dataIcon;
+            playerInventory.weaponSlots[0].dataIcon;
         quickWeaponSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickWeaponSlots[1];
+            playerInventory.weaponSlots[1];
         quickWeaponSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickWeaponSlots[1].dataIcon;
+            playerInventory.weaponSlots[1].dataIcon;
 
 
         quickOffhandSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickOffhandSlots[0];
+            playerInventory.offhandSlots[0];
         quickOffhandSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickOffhandSlots[0].dataIcon;
+            playerInventory.offhandSlots[0].dataIcon;
         quickOffhandSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickOffhandSlots[1];
+            playerInventory.offhandSlots[1];
         quickOffhandSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickOffhandSlots[1].dataIcon;
+            playerInventory.offhandSlots[1].dataIcon;
 
         quickSpellSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickSpellSlots[0];
+            playerInventory.spellSlots[0];
         quickSpellSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickSpellSlots[0].dataIcon;
+            playerInventory.spellSlots[0].dataIcon;
         quickSpellSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickSpellSlots[1];
+            playerInventory.spellSlots[1];
         quickSpellSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickSpellSlots[1].dataIcon;
+            playerInventory.spellSlots[1].dataIcon;
 
         quickConsumableSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickItemSlots[0];
+            playerInventory.consumableSlots[0];
         quickConsumableSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickItemSlots[0].dataIcon;
+            playerInventory.consumableSlots[0].dataIcon;
         quickConsumableSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.quickItemSlots[1];
+            playerInventory.consumableSlots[1];
         quickConsumableSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.quickItemSlots[1].dataIcon;
+            playerInventory.consumableSlots[1].dataIcon;
 
         activeGearButton.GetComponent<DataSlotUI>().slotData =
             playerInventory.activeGear;
@@ -261,7 +261,8 @@ public class BagUI : MonoBehaviour
 
     public void SelectEquipmentToChange(DataSlotUI dataSlotUI)
     {
-        //FIND THE QUICK SLOT NUM TO CHANGE HERE
+        quickSlotToChange = dataSlotUI.slotNum;
+
         int totalSlotsActive = 0;
         DataObject itemToDisplay = dataSlotUI.slotData;
 
@@ -279,7 +280,7 @@ public class BagUI : MonoBehaviour
 
             if(dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
             {
-                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.activeWeapon;
+                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber];
 
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
@@ -298,7 +299,7 @@ public class BagUI : MonoBehaviour
             }
             else if(dataSlotUI.slotData.GetType() == typeof(Spell))
             {
-                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.activeSpell;
+                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.spellSlots[playerInventory.activeSpellSlotNumber];
 
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
@@ -336,7 +337,7 @@ public class BagUI : MonoBehaviour
             }
             else if(dataSlotUI.slotData.GetType() == typeof(Consumable))
             {
-                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.activeConsumable;
+                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber];
 
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
@@ -358,7 +359,7 @@ public class BagUI : MonoBehaviour
             }
             else if(dataSlotUI.slotData.GetType() == typeof(OffhandWeapon))
             {
-                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.activeOffhandWeapon;
+                gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber];
 
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
@@ -418,32 +419,32 @@ public class BagUI : MonoBehaviour
 
         if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {
-            if(playerInventory.quickWeaponSlots[quickSlotToChange] == dataSlotUI.slotData)
+            if(playerInventory.weaponSlots[quickSlotToChange] == dataSlotUI.slotData)
             {
                 return;
             }
-            if(playerInventory.activeWeapon == playerInventory.quickWeaponSlots[quickSlotToChange])
+            if(playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] == playerInventory.weaponSlots[quickSlotToChange])
             {
-                playerInventory.activeWeapon = (MeleeWeapon)dataSlotUI.slotData;
+                playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] = (MeleeWeapon)dataSlotUI.slotData;
                 playerMeleeHandler.DestroyMeleeModel();
                 playerMeleeHandler.SetMeleeParentOverride();
                 playerMeleeHandler.LoadMeleeModel();
             }
-            playerInventory.quickWeaponSlots[quickSlotToChange] = (MeleeWeapon)dataSlotUI.slotData;
+            playerInventory.weaponSlots[quickSlotToChange] = (MeleeWeapon)dataSlotUI.slotData;
 
         }
 
         else if (dataSlotUI.slotData.GetType() == typeof(Spell))
         {
-            if (playerInventory.quickSpellSlots[quickSlotToChange] == dataSlotUI.slotData)
+            if (playerInventory.spellSlots[quickSlotToChange] == dataSlotUI.slotData)
             {
                 return;
             }
-            if(playerInventory.activeSpell == playerInventory.quickSpellSlots[quickSlotToChange])
+            if(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] == playerInventory.spellSlots[quickSlotToChange])
             {
-                playerInventory.activeSpell = (Spell)dataSlotUI.slotData;
+                playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] = (Spell)dataSlotUI.slotData;
             }
-            playerInventory.quickSpellSlots[quickSlotToChange] = (Spell)dataSlotUI.slotData;
+            playerInventory.spellSlots[quickSlotToChange] = (Spell)dataSlotUI.slotData;
         }
 
         else if(dataSlotUI.slotData.GetType() == typeof(Gear))
@@ -458,31 +459,31 @@ public class BagUI : MonoBehaviour
 
         else if(dataSlotUI.slotData.GetType() == typeof(Consumable))
         {
-            if (playerInventory.quickItemSlots[quickSlotToChange] == dataSlotUI.slotData)
+            if (playerInventory.consumableSlots[quickSlotToChange] == dataSlotUI.slotData)
             {
                 return;
             }
-            if(playerInventory.activeConsumable == playerInventory.quickItemSlots[quickSlotToChange])
+            if(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] == playerInventory.consumableSlots[quickSlotToChange])
             {
-                playerInventory.activeConsumable = (Consumable)dataSlotUI.slotData;
+                playerInventory.activeConsumableSlotNumber = quickSlotToChange;
             }
-            playerInventory.quickItemSlots[quickSlotToChange] = (Consumable)dataSlotUI.slotData;
+            playerInventory.consumableSlots[quickSlotToChange] = (Consumable)dataSlotUI.slotData;
 
         }
 
         else if(dataSlotUI.slotData.GetType() == typeof(OffhandWeapon))
         {
-            if (playerInventory.activeOffhandWeapon == dataSlotUI.slotData)
+            if (playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == dataSlotUI.slotData)
             {
                 return;
             }
-            if(playerInventory.activeOffhandWeapon == playerInventory.quickItemSlots[quickSlotToChange])
+            if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == playerInventory.offhandSlots[quickSlotToChange])
             {
-                playerInventory.activeOffhandWeapon = (OffhandWeapon)dataSlotUI.slotData;
+                playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] = (OffhandWeapon)dataSlotUI.slotData;
                 playerOffhandHandler.DestroyOffhandModel();
                 playerOffhandHandler.LoadOffhandModel();
             }
-            playerInventory.quickOffhandSlots[quickSlotToChange] = (OffhandWeapon)dataSlotUI.slotData;
+            playerInventory.offhandSlots[quickSlotToChange] = (OffhandWeapon)dataSlotUI.slotData;
 
         }
 

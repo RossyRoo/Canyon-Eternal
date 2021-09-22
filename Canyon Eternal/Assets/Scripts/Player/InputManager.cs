@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     PlayerParticleHandler playerParticleHandler;
     ConsumableHandler consumableHandler;
     GameMenuUI gameMenuUI;
+    QuickSlotUI quickSlotUI;
 
     //INPUT DECLARATIONS
     public Vector2 moveInput;
@@ -35,9 +36,14 @@ public class InputManager : MonoBehaviour
     public bool cycleMenuRight_Input;
     public bool cycleSubmenuLeft_Input;
     public bool cycleSubmenuRight_Input;
+    public bool dPadUp_Input;
+    public bool dPadDown_Input;
+    public bool dPadLeft_Input;
+    public bool dPadRight_Input;
+
 
     //VARIABLES
-    
+
     public float rotateSpeed = 10f;
 
 
@@ -51,6 +57,7 @@ public class InputManager : MonoBehaviour
         playerOffhandHandler = GetComponent<PlayerOffhandHandler>();
         consumableHandler = FindObjectOfType<ConsumableHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
+        quickSlotUI = FindObjectOfType<QuickSlotUI>();
 
         gameMenuUI = FindObjectOfType<GameMenuUI>();
     }
@@ -100,6 +107,11 @@ public class InputManager : MonoBehaviour
             playerControls.UI.CycleMenuRight.performed += i => cycleMenuRight_Input = true;
             playerControls.UI.CycleSubmenuLeft.performed += i => cycleSubmenuLeft_Input = true;
             playerControls.UI.CycleSubmenuRight.performed += i => cycleSubmenuRight_Input = true;
+            playerControls.UI.DPadUp.performed += i => dPadUp_Input = true;
+            playerControls.UI.DPadDown.performed += i => dPadDown_Input = true;
+            playerControls.UI.DPadLeft.performed += i => dPadLeft_Input = true;
+            playerControls.UI.DPadRight.performed += i => dPadRight_Input = true;
+
 
             //DIALOGUE SYSTEM
             InputDeviceManager.RegisterInputAction("Submit", playerControls.PlayerActions.Interact);
@@ -127,6 +139,10 @@ public class InputManager : MonoBehaviour
         HandleItemInput();
         HandleMenuInput();
         HandleCloseInput();
+        HandleDPadUp();
+        HandleDPadDown();
+        HandleDPadLeft();
+        HandleDPadRight();
 
         if(gameMenuUI.gameMenuIsOpen)
         {
@@ -161,7 +177,7 @@ public class InputManager : MonoBehaviour
             if (playerManager.isInteracting
                 || playerManager.isInteractingWithUI
                 || playerManager.isFalling
-                || playerStats.currentStamina < playerInventory.activeWeapon.staminaCost
+                || playerStats.currentStamina < playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber].staminaCost
                 || playerMeleeHandler.currentAttackCooldownTime > 0)
                 return;
 
@@ -215,7 +231,7 @@ public class InputManager : MonoBehaviour
     {
         if(parry_Input)
         {
-            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
+            if (playerStats.currentStamina < playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
                 return;
 
             StartCoroutine(playerOffhandHandler.HandleParrying());
@@ -226,7 +242,7 @@ public class InputManager : MonoBehaviour
     {
         if(startBlock_Input)
         {
-            if (playerStats.currentStamina < playerInventory.activeOffhandWeapon.staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
+            if (playerStats.currentStamina < playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
                 return;
 
             playerOffhandHandler.HandleStartBlock();
@@ -262,10 +278,10 @@ public class InputManager : MonoBehaviour
         if (item_Input)
         {
             if (playerManager.isDead || playerManager.isConversing ||
-                playerInventory.activeConsumable == null || !playerInventory.itemInventory.Contains(playerInventory.activeConsumable))
+                playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] == null || !playerInventory.itemInventory.Contains(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber]))
                 return;
 
-            consumableHandler.HandlePlayerConsumable(playerInventory.activeConsumable, playerStats);
+            consumableHandler.HandlePlayerConsumable(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber], playerStats);
         }
     }
 
@@ -318,4 +334,77 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+
+    #region D-Pad
+
+    private void HandleDPadUp()
+    {
+        if(dPadUp_Input)
+        {
+            if (playerInventory.activeSpellSlotNumber == 0)
+            {
+                playerInventory.activeSpellSlotNumber = 1;
+            }
+            else
+            {
+                playerInventory.activeSpellSlotNumber = 0;
+            }
+            quickSlotUI.UpdateQuickSlotIcons(playerInventory);
+        }
+    }
+
+    private void HandleDPadDown()
+    {
+        if (dPadDown_Input)
+        {
+            if (playerInventory.activeConsumableSlotNumber == 0)
+            {
+                playerInventory.activeConsumableSlotNumber = 1;
+            }
+            else
+            {
+                playerInventory.activeConsumableSlotNumber = 0;
+            }
+            quickSlotUI.UpdateQuickSlotIcons(playerInventory);
+        }
+    }
+
+    private void HandleDPadLeft()
+    {
+        if (dPadLeft_Input)
+        {
+            if (playerInventory.activeOffhandWeaponSlotNumber == 0)
+            {
+                playerInventory.activeOffhandWeaponSlotNumber = 1;
+            }
+            else
+            {
+                playerInventory.activeOffhandWeaponSlotNumber = 0;
+            }
+            playerOffhandHandler.DestroyOffhandModel();
+            playerOffhandHandler.LoadOffhandModel();
+            quickSlotUI.UpdateQuickSlotIcons(playerInventory);
+        }
+    }
+
+    private void HandleDPadRight()
+    {
+        if (dPadRight_Input)
+        {
+            if(playerInventory.activeWeaponSlotNumber == 0)
+            {
+                playerInventory.activeWeaponSlotNumber = 1;
+            }
+            else
+            {
+                playerInventory.activeWeaponSlotNumber = 0;
+            }
+            playerMeleeHandler.DestroyMeleeModel();
+            playerMeleeHandler.SetMeleeParentOverride();
+            playerMeleeHandler.LoadMeleeModel();
+            quickSlotUI.UpdateQuickSlotIcons(playerInventory);
+        }
+    }
+
+    #endregion
 }

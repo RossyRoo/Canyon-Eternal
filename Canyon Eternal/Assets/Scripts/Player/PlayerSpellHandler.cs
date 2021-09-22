@@ -27,11 +27,11 @@ public class PlayerSpellHandler : MonoBehaviour
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
 
-        if (playerInventory.activeSpell == null)
+        if (playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] == null)
         {
             if (playerInventory.spellsInventory.Count != 0)
             {
-                playerInventory.activeSpell = playerInventory.spellsInventory[0];
+                playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] = playerInventory.spellsInventory[0];
             }
         }
     }
@@ -44,7 +44,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
             if (currentSpellChargeTime < 0)
             {
-                currentSpellChargeTime = playerInventory.activeSpell.chargeTime;
+                currentSpellChargeTime = playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeTime;
                 CompleteSpellCharge();
             }
         }
@@ -53,16 +53,16 @@ public class PlayerSpellHandler : MonoBehaviour
     #region Charging
     public void ChargeSpell()
     {
-        if (playerStats.currentStamina < playerInventory.activeSpell.staminaCost
-            || playerInventory.activeSpell.isBuff && playerStats.isBuffed)
+        if (playerStats.currentStamina < playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].staminaCost
+            || playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].isBuff && playerStats.isBuffed)
             return;
 
         playerMeleeHandler.currentMeleeModel.SetActive(false);
 
-        playerParticleHandler.SpawnChargeVFX(playerInventory.activeSpell.chargeVFX);
+        playerParticleHandler.SpawnChargeVFX(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeVFX);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellSFX, 0.05f);
 
-        currentSpellChargeTime = playerInventory.activeSpell.chargeTime;
+        currentSpellChargeTime = playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeTime;
         playerManager.isChargingSpell = true;
     }
 
@@ -71,15 +71,15 @@ public class PlayerSpellHandler : MonoBehaviour
         playerManager.isChargingSpell = false;
         playerManager.isCastingSpell = true;
 
-        playerStats.LoseStamina(playerInventory.activeSpell.staminaCost);
+        playerStats.LoseStamina(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].staminaCost);
 
-        playerParticleHandler.SpawnChargeCompleteVFX(playerInventory.activeSpell.chargeCompleteVFX);
+        playerParticleHandler.SpawnChargeCompleteVFX(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeCompleteVFX);
         Destroy(playerParticleHandler.currentChargeVFXGO);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellCompleteSFX);
 
-        if (playerInventory.activeSpell.isProjectile)
+        if (playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].isProjectile)
         {
-            currentSpellGO = Instantiate(playerInventory.activeSpell.GOPrefab, transform.position, Quaternion.Euler(0, 0, 90));
+            currentSpellGO = Instantiate(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].GOPrefab, transform.position, Quaternion.Euler(0, 0, 90));
             currentSpellGO.transform.parent = playerManager.transform;
 
         }
@@ -95,15 +95,15 @@ public class PlayerSpellHandler : MonoBehaviour
     {
         if(playerManager.isCastingSpell)
         {
-            if(playerInventory.activeSpell.isProjectile)
+            if(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].isProjectile)
             {
                 //CAST A PROJECTILE SPELL
-                currentSpellGO.GetComponent<ProjectilePhysics>().Launch(playerInventory.activeSpell.launchForce, transform.up);
+                currentSpellGO.GetComponent<ProjectilePhysics>().Launch(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].launchForce, transform.up);
             }
-            else if(playerInventory.activeSpell.isAOE)
+            else if(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].isAOE)
             {
                 //CAST AN AOE SPELL
-                currentSpellGO = Instantiate(playerInventory.activeSpell.GOPrefab, transform.position, Quaternion.identity);
+                currentSpellGO = Instantiate(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].GOPrefab, transform.position, Quaternion.identity);
                 currentSpellGO.transform.parent = playerManager.transform;
 
                 Destroy(currentSpellGO, 0.5f);
@@ -115,7 +115,7 @@ public class PlayerSpellHandler : MonoBehaviour
             }
 
             playerManager.isCastingSpell = false;
-            SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.activeSpell.launchSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].launchSFX);
             playerMeleeHandler.currentMeleeModel.SetActive(true);
         }
 
@@ -125,16 +125,16 @@ public class PlayerSpellHandler : MonoBehaviour
     private IEnumerator CastBuff()
     {
         playerStats.isBuffed = true;
-        playerStats.ActivateHealthBuff(playerInventory.activeSpell.heartBuff);
-        playerStats.ActivateStaminaBuff(playerInventory.activeSpell.staminaBuff);
+        playerStats.ActivateHealthBuff(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].heartBuff);
+        playerStats.ActivateStaminaBuff(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].staminaBuff);
 
-        if (playerInventory.activeSpell.damagaMultiplierBuff != 0)
+        if (playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].damagaMultiplierBuff != 0)
         {
-            playerInventory.weaponsInventory[0].minDamage *= playerInventory.activeSpell.damagaMultiplierBuff;
-            playerInventory.weaponsInventory[0].maxDamage *= playerInventory.activeSpell.damagaMultiplierBuff;
+            playerInventory.weaponsInventory[0].minDamage *= playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].damagaMultiplierBuff;
+            playerInventory.weaponsInventory[0].maxDamage *= playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].damagaMultiplierBuff;
         }
 
-        yield return new WaitForSeconds(playerInventory.activeSpell.buffDuration);
+        yield return new WaitForSeconds(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].buffDuration);
 
         playerStats.DeactivateHealthBuff();
         playerStats.DeactivateStaminaBuff();

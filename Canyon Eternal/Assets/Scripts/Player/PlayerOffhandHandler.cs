@@ -25,11 +25,11 @@ public class PlayerOffhandHandler : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
 
-        if(playerInventory.activeOffhandWeapon == null)
+        if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == null)
         {
             if(playerInventory.offhandWeaponInventory.Count > 0)
             {
-                playerInventory.activeOffhandWeapon = playerInventory.offhandWeaponInventory[0];
+                playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] = playerInventory.offhandWeaponInventory[0];
             }
         }
         else
@@ -41,14 +41,14 @@ public class PlayerOffhandHandler : MonoBehaviour
 
     public void LoadOffhandModel()
     {
-        GameObject offhandModelPrefab = Instantiate(playerInventory.activeOffhandWeapon.modelPrefab) as GameObject;
+        GameObject offhandModelPrefab = Instantiate(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].modelPrefab) as GameObject;
 
         if (offhandModelPrefab != null)
         {
             if (offhandParentOverride != null)
             {
                 offhandModelPrefab.transform.SetParent(offhandParentOverride);
-                offhandModelPrefab.transform.localScale = playerInventory.activeOffhandWeapon.modelPrefab.transform.localScale;
+                offhandModelPrefab.transform.localScale = playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].modelPrefab.transform.localScale;
             }
 
         }
@@ -68,7 +68,7 @@ public class PlayerOffhandHandler : MonoBehaviour
 
         playerManager.isBlocking = true;
 
-        playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeOffhandWeapon.attackAnimations[1], true);
+        playerAnimatorHandler.PlayTargetAnimation(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].attackAnimations[1], true);
 
         currentOffhandModel.GetComponent<Collider2D>().enabled = true;
         blockCollider.blockMode = true;
@@ -80,7 +80,7 @@ public class PlayerOffhandHandler : MonoBehaviour
 
         playerManager.isBlocking = false;
 
-        playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeOffhandWeapon.attackAnimations[2], true);
+        playerAnimatorHandler.PlayTargetAnimation(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].attackAnimations[2], true);
 
         blockCollider.blockMode = false;
         currentOffhandModel.GetComponent<Collider2D>().enabled = false;
@@ -92,10 +92,10 @@ public class PlayerOffhandHandler : MonoBehaviour
 
         playerManager.isParrying = true;
 
-        playerStats.LoseStamina(playerInventory.activeOffhandWeapon.staminaCost);
+        playerStats.LoseStamina(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].staminaCost);
         playerStats.EnableInvulnerability(playerStats.characterData.invulnerabilityFrames);
 
-        playerAnimatorHandler.PlayTargetAnimation(playerInventory.activeOffhandWeapon.attackAnimations[0], true);
+        playerAnimatorHandler.PlayTargetAnimation(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].attackAnimations[0], true);
         SFXPlayer.Instance.PlaySFXAudioClip(blockMissedSFX, 0.3f, 0.2f);
 
         currentOffhandModel.GetComponent<Collider2D>().enabled = true;

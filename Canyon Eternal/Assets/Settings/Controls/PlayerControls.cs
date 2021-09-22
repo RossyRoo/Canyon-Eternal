@@ -516,6 +516,38 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DPadLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""0857b72e-9a4c-4d4b-9bab-ca9f76d1b4bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DPadRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""1531e35b-4f1d-424e-bf9c-039d0d30a623"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DPadUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef82d24e-0a27-46da-bbbe-de1aff506343"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DPadDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""51554818-e193-4056-be20-89644546154e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -628,6 +660,94 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""CycleSubmenuLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37947f2a-bffd-4d71-9f45-c49a95768acd"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""DPadLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efecf92d-c435-476d-8c6f-7793a3e2ae73"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DPadLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""246a79e9-60b6-46eb-8b5c-ba4d37460f92"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""DPadRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7864ab1b-7245-43c6-888e-551562da922f"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DPadRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7d29563-fb99-47d8-9dfb-b93f47673034"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""DPadUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""028b1a4d-e9be-4569-9813-f1f466d81614"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DPadUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22fdabdd-9690-4490-b01e-13b22d687c33"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""DPadDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4a5c0998-ec8a-4dcf-8be8-917e6a4b9f8d"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DPadDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -683,6 +803,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_UI_CycleMenuLeft = m_UI.FindAction("CycleMenuLeft", throwIfNotFound: true);
         m_UI_CycleSubmenuRight = m_UI.FindAction("CycleSubmenuRight", throwIfNotFound: true);
         m_UI_CycleSubmenuLeft = m_UI.FindAction("CycleSubmenuLeft", throwIfNotFound: true);
+        m_UI_DPadLeft = m_UI.FindAction("DPadLeft", throwIfNotFound: true);
+        m_UI_DPadRight = m_UI.FindAction("DPadRight", throwIfNotFound: true);
+        m_UI_DPadUp = m_UI.FindAction("DPadUp", throwIfNotFound: true);
+        m_UI_DPadDown = m_UI.FindAction("DPadDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -867,6 +991,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_CycleMenuLeft;
     private readonly InputAction m_UI_CycleSubmenuRight;
     private readonly InputAction m_UI_CycleSubmenuLeft;
+    private readonly InputAction m_UI_DPadLeft;
+    private readonly InputAction m_UI_DPadRight;
+    private readonly InputAction m_UI_DPadUp;
+    private readonly InputAction m_UI_DPadDown;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
@@ -876,6 +1004,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @CycleMenuLeft => m_Wrapper.m_UI_CycleMenuLeft;
         public InputAction @CycleSubmenuRight => m_Wrapper.m_UI_CycleSubmenuRight;
         public InputAction @CycleSubmenuLeft => m_Wrapper.m_UI_CycleSubmenuLeft;
+        public InputAction @DPadLeft => m_Wrapper.m_UI_DPadLeft;
+        public InputAction @DPadRight => m_Wrapper.m_UI_DPadRight;
+        public InputAction @DPadUp => m_Wrapper.m_UI_DPadUp;
+        public InputAction @DPadDown => m_Wrapper.m_UI_DPadDown;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -900,6 +1032,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CycleSubmenuLeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuLeft;
                 @CycleSubmenuLeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuLeft;
                 @CycleSubmenuLeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCycleSubmenuLeft;
+                @DPadLeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadLeft;
+                @DPadLeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadLeft;
+                @DPadLeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadLeft;
+                @DPadRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadRight;
+                @DPadRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadRight;
+                @DPadRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadRight;
+                @DPadUp.started -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadUp;
+                @DPadUp.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadUp;
+                @DPadUp.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadUp;
+                @DPadDown.started -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadDown;
+                @DPadDown.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadDown;
+                @DPadDown.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnDPadDown;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -919,6 +1063,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @CycleSubmenuLeft.started += instance.OnCycleSubmenuLeft;
                 @CycleSubmenuLeft.performed += instance.OnCycleSubmenuLeft;
                 @CycleSubmenuLeft.canceled += instance.OnCycleSubmenuLeft;
+                @DPadLeft.started += instance.OnDPadLeft;
+                @DPadLeft.performed += instance.OnDPadLeft;
+                @DPadLeft.canceled += instance.OnDPadLeft;
+                @DPadRight.started += instance.OnDPadRight;
+                @DPadRight.performed += instance.OnDPadRight;
+                @DPadRight.canceled += instance.OnDPadRight;
+                @DPadUp.started += instance.OnDPadUp;
+                @DPadUp.performed += instance.OnDPadUp;
+                @DPadUp.canceled += instance.OnDPadUp;
+                @DPadDown.started += instance.OnDPadDown;
+                @DPadDown.performed += instance.OnDPadDown;
+                @DPadDown.canceled += instance.OnDPadDown;
             }
         }
     }
@@ -964,5 +1120,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnCycleMenuLeft(InputAction.CallbackContext context);
         void OnCycleSubmenuRight(InputAction.CallbackContext context);
         void OnCycleSubmenuLeft(InputAction.CallbackContext context);
+        void OnDPadLeft(InputAction.CallbackContext context);
+        void OnDPadRight(InputAction.CallbackContext context);
+        void OnDPadUp(InputAction.CallbackContext context);
+        void OnDPadDown(InputAction.CallbackContext context);
     }
 }

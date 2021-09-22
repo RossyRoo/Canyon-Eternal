@@ -97,6 +97,11 @@ public class PlayerManager : CharacterManager
         inputManager.cycleMenuRight_Input = false;
         inputManager.cycleSubmenuLeft_Input = false;
         inputManager.cycleSubmenuRight_Input = false;
+        inputManager.dPadUp_Input = false;
+        inputManager.dPadDown_Input = false;
+        inputManager.dPadLeft_Input = false;
+        inputManager.dPadRight_Input = false;
+
     }
 
     public void OnLoadScene(Room currentRoom)

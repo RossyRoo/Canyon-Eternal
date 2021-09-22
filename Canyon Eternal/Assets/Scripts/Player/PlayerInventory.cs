@@ -10,24 +10,24 @@ public class PlayerInventory : MonoBehaviour
     public int fragmentInventory;
 
     [Header("Melee Inventory")]
-    public MeleeWeapon activeWeapon;
     public List<MeleeWeapon> weaponsInventory;
-    public MeleeWeapon[] quickWeaponSlots;
+    public MeleeWeapon[] weaponSlots;
+    public int activeWeaponSlotNumber;
 
     [Header("Offhand Inventory")]
-    public OffhandWeapon activeOffhandWeapon;
     public List<OffhandWeapon> offhandWeaponInventory;
-    public OffhandWeapon[] quickOffhandSlots;
+    public OffhandWeapon[] offhandSlots;
+    public int activeOffhandWeaponSlotNumber;
 
     [Header("Spell Inventory")]
-    public Spell activeSpell;
     public List<Spell> spellsInventory;
-    public Spell[] quickSpellSlots;
+    public Spell[] spellSlots;
+    public int activeSpellSlotNumber;
 
     [Header("Item Inventory")]
-    public Consumable activeConsumable;
     public List<Item> itemInventory;
-    public Item[] quickItemSlots;
+    public Consumable[] consumableSlots;
+    public int activeConsumableSlotNumber;
 
     [Header("Gear Inventory")]
     public Gear activeGear;

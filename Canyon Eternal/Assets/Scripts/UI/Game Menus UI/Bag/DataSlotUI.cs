@@ -11,4 +11,7 @@ public class DataSlotUI : MonoBehaviour
     public int duplicates;
     public TextMeshProUGUI duplicateCountText;
     public Image icon;
+
+    [Header("EQUIPMENT ONLY")]
+    public int slotNum;
 }

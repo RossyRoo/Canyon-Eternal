@@ -12,10 +12,10 @@ public class QuickSlotUI : MonoBehaviour
 
     public void UpdateQuickSlotIcons(PlayerInventory playerInventory)
     {
-        activeWeaponIcon.sprite = playerInventory.activeWeapon.dataIcon;
-        activeOffhandIcon.sprite = playerInventory.activeOffhandWeapon.dataIcon;
-        activeSpellIcon.sprite = playerInventory.activeSpell.dataIcon;
-        activeItemIcon.sprite = playerInventory.activeConsumable.dataIcon;
+        activeWeaponIcon.sprite = playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber].dataIcon;
+        activeOffhandIcon.sprite = playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].dataIcon;
+        activeSpellIcon.sprite = playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].dataIcon;
+        activeItemIcon.sprite = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber].dataIcon;
 
     }
 }
