@@ -176,6 +176,7 @@ public class InputManager : MonoBehaviour
         {
             if (playerManager.isInteracting
                 || playerManager.isInteractingWithUI
+                || playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] == null
                 || playerManager.isFalling
                 || playerStats.currentStamina < playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber].staminaCost
                 || playerMeleeHandler.currentAttackCooldownTime > 0)
@@ -189,7 +190,8 @@ public class InputManager : MonoBehaviour
     {
         if(chargeSpell_Input)
         {
-            if (playerManager.isInteracting || playerManager.isConversing)
+            if (playerManager.isInteracting || playerManager.isConversing
+                || playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] == null)
                 return;
 
             playerSpellHandler.ChargeSpell();
@@ -231,7 +233,9 @@ public class InputManager : MonoBehaviour
     {
         if(parry_Input)
         {
-            if (playerStats.currentStamina < playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
+            if (playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == null
+                || playerStats.currentStamina < playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].staminaCost
+                || playerManager.isInteracting || playerManager.isInteractingWithUI)
                 return;
 
             StartCoroutine(playerOffhandHandler.HandleParrying());
@@ -242,7 +246,9 @@ public class InputManager : MonoBehaviour
     {
         if(startBlock_Input)
         {
-            if (playerStats.currentStamina < playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].staminaCost || playerManager.isInteracting || playerManager.isInteractingWithUI)
+            if (playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == null
+                || playerStats.currentStamina < playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].staminaCost
+                || playerManager.isInteracting || playerManager.isInteractingWithUI)
                 return;
 
             playerOffhandHandler.HandleStartBlock();
@@ -277,8 +283,8 @@ public class InputManager : MonoBehaviour
     {
         if (item_Input)
         {
-            if (playerManager.isDead || playerManager.isConversing ||
-                playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] == null || !playerInventory.itemInventory.Contains(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber]))
+            if (playerManager.isDead || playerManager.isConversing
+                || playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] == null || !playerInventory.itemInventory.Contains(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber]))
                 return;
 
             consumableHandler.HandlePlayerConsumable(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber], playerStats);
@@ -287,6 +293,7 @@ public class InputManager : MonoBehaviour
 
     #endregion
 
+    #region Menus
     private void HandleMenuInput()
     {
         if (playerManager.isInteracting && !playerManager.isInteractingWithUI)
@@ -334,6 +341,7 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region D-Pad
 
@@ -381,8 +389,15 @@ public class InputManager : MonoBehaviour
             {
                 playerInventory.activeOffhandWeaponSlotNumber = 0;
             }
-            playerOffhandHandler.DestroyOffhandModel();
-            playerOffhandHandler.LoadOffhandModel();
+            if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] != null)
+            {
+                playerOffhandHandler.LoadOffhandModel();
+            }
+            else
+            {
+                playerOffhandHandler.DestroyOffhandModel();
+            }
+
             quickSlotUI.UpdateQuickSlotIcons(playerInventory);
         }
     }
@@ -399,9 +414,16 @@ public class InputManager : MonoBehaviour
             {
                 playerInventory.activeWeaponSlotNumber = 0;
             }
-            playerMeleeHandler.DestroyMeleeModel();
-            playerMeleeHandler.SetMeleeParentOverride();
-            playerMeleeHandler.LoadMeleeModel();
+            if(playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] != null)
+            {
+                playerMeleeHandler.SetMeleeParentOverride();
+                playerMeleeHandler.LoadMeleeModel();
+            }
+            else
+            {
+                playerMeleeHandler.DestroyMeleeModel();
+            }
+
             quickSlotUI.UpdateQuickSlotIcons(playerInventory);
         }
     }

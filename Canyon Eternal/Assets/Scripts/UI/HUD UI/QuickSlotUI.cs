@@ -20,7 +20,7 @@ public class QuickSlotUI : MonoBehaviour
         else
         {
             activeWeaponIcon.sprite = null;
-            activeWeaponIcon.enabled = true;
+            activeWeaponIcon.enabled = false;
         }
 
         if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] != null)

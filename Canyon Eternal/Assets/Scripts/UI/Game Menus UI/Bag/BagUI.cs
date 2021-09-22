@@ -12,6 +12,7 @@ public class BagUI : MonoBehaviour
     PlayerOffhandHandler playerOffhandHandler;
     ConsumableHandler playerEffectsHandler;
 
+    public Consumable testConsumable; //This is just so that I can tell the equipment what kind of menu to open for quick consumables
     public GameObject quickWeaponSlot1Button;
     public GameObject quickWeaponSlot2Button;
     public GameObject quickOffhandSlot1Button;
@@ -212,52 +213,156 @@ public class BagUI : MonoBehaviour
         gameMenuUI.submenuNameText.text = "Equipment";
         gameMenuUI.RefreshGrid(false);
         gameMenuUI.infoPanel.SetActive(false);
+        gameMenuUI.equipmentOverviewButton.SetActive(false);
         gameMenuUI.equipmentUIGO.SetActive(true);
 
-        quickWeaponSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.weaponSlots[0];
-        quickWeaponSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.weaponSlots[0].dataIcon;
-        quickWeaponSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.weaponSlots[1];
-        quickWeaponSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.weaponSlots[1].dataIcon;
-
-
-        quickOffhandSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.offhandSlots[0];
-        quickOffhandSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.offhandSlots[0].dataIcon;
-        quickOffhandSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.offhandSlots[1];
-        quickOffhandSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.offhandSlots[1].dataIcon;
-
-        quickSpellSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.spellSlots[0];
-        quickSpellSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.spellSlots[0].dataIcon;
-        quickSpellSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.spellSlots[1];
-        quickSpellSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.spellSlots[1].dataIcon;
-
-        quickConsumableSlot1Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.consumableSlots[0];
-        quickConsumableSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.consumableSlots[0].dataIcon;
-        quickConsumableSlot2Button.GetComponent<DataSlotUI>().slotData =
-            playerInventory.consumableSlots[1];
-        quickConsumableSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.consumableSlots[1].dataIcon;
-
-        activeGearButton.GetComponent<DataSlotUI>().slotData =
-            playerInventory.activeGear;
-        activeGearButton.GetComponent<DataSlotUI>().icon.sprite =
-            playerInventory.activeGear.dataIcon;
+        SetUpWeaponSlots();
+        SetUpOffhandSlots();
+        SetUpSpellSlots();
+        SetUpConsumableSlots();
+        SetUpGearSlots();
 
         gameMenuUI.equipButton.SetActive(true);
     }
+    #region Slots
+    private void SetUpWeaponSlots()
+    {
+        if (playerInventory.weaponSlots[0] != null)
+        {
+            quickWeaponSlot1Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickWeaponSlot1Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.weaponSlots[0];
+            quickWeaponSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.weaponSlots[0].dataIcon;
+        }
+        else
+        {
+            quickWeaponSlot1Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickWeaponSlot1Button.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[0];
+        }
+
+        if (playerInventory.weaponSlots[1] != null)
+        {
+            quickWeaponSlot2Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickWeaponSlot2Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.weaponSlots[1];
+            quickWeaponSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.weaponSlots[1].dataIcon;
+        }
+        else
+        {
+            quickWeaponSlot2Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickWeaponSlot2Button.GetComponent<DataSlotUI>().slotData = playerInventory.weaponsInventory[0];
+        }
+    }
+    private void SetUpOffhandSlots()
+    {
+        if (playerInventory.offhandSlots[0] != null)
+        {
+            quickOffhandSlot1Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickOffhandSlot1Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.offhandSlots[0];
+            quickOffhandSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.offhandSlots[0].dataIcon;
+        }
+        else
+        {
+            quickOffhandSlot1Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickOffhandSlot1Button.GetComponent<DataSlotUI>().slotData = playerInventory.offhandWeaponInventory[0];
+        }
+
+        if (playerInventory.offhandSlots[1] != null)
+        {
+            quickOffhandSlot2Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickOffhandSlot2Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.offhandSlots[1];
+            quickOffhandSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.offhandSlots[1].dataIcon;
+        }
+        else
+        {
+            quickOffhandSlot2Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickOffhandSlot2Button.GetComponent<DataSlotUI>().slotData = playerInventory.offhandWeaponInventory[0];
+        }
+    }
+    private void SetUpSpellSlots()
+    {
+        if (playerInventory.spellSlots[0] != null)
+        {
+            quickSpellSlot1Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickSpellSlot1Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.spellSlots[0];
+            quickSpellSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.spellSlots[0].dataIcon;
+        }
+        else
+        {
+            quickSpellSlot1Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickSpellSlot1Button.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[0];
+        }
+
+        if (playerInventory.spellSlots[1] != null)
+        {
+            quickSpellSlot2Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickSpellSlot2Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.spellSlots[1];
+            quickSpellSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.spellSlots[1].dataIcon;
+        }
+        else
+        {
+            quickSpellSlot2Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickSpellSlot2Button.GetComponent<DataSlotUI>().slotData = playerInventory.spellsInventory[0];
+        }
+    }
+    private void SetUpConsumableSlots()
+    {
+        if (playerInventory.consumableSlots[0] != null)
+        {
+            quickConsumableSlot1Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickConsumableSlot1Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.consumableSlots[0];
+            quickConsumableSlot1Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.consumableSlots[0].dataIcon;
+        }
+        else
+        {
+            quickConsumableSlot1Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickConsumableSlot1Button.GetComponent<DataSlotUI>().slotData = testConsumable;
+        }
+
+        if (playerInventory.consumableSlots[1] != null)
+        {
+            quickConsumableSlot2Button.GetComponent<DataSlotUI>().icon.enabled = true;
+            quickConsumableSlot2Button.GetComponent<DataSlotUI>().slotData =
+                playerInventory.consumableSlots[1];
+            quickConsumableSlot2Button.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.consumableSlots[1].dataIcon;
+        }
+        else
+        {
+            quickConsumableSlot2Button.GetComponent<DataSlotUI>().icon.enabled = false;
+            quickConsumableSlot2Button.GetComponent<DataSlotUI>().slotData = testConsumable;
+        }
+    }
+    private void SetUpGearSlots()
+    {
+        if(playerInventory.activeGear != null)
+        {
+            activeGearButton.GetComponent<DataSlotUI>().icon.enabled = true;
+            activeGearButton.GetComponent<DataSlotUI>().slotData =
+                playerInventory.activeGear;
+            activeGearButton.GetComponent<DataSlotUI>().icon.sprite =
+                playerInventory.activeGear.dataIcon;
+        }
+        else
+        {
+            activeGearButton.GetComponent<DataSlotUI>().icon.enabled = false;
+            activeGearButton.GetComponent<DataSlotUI>().slotData = playerInventory.gearInventory[0];
+        }
+
+    }
+    #endregion
 
     public void SelectEquipmentToChange(DataSlotUI dataSlotUI)
     {
@@ -275,7 +380,7 @@ public class BagUI : MonoBehaviour
             gameMenuUI.infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataName;
             gameMenuUI.infoPanel.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataDescription;
             gameMenuUI.infoPanel.transform.Find("Icon").GetComponent<Image>().sprite = itemToDisplay.dataIcon;
-            gameMenuUI.infoPanel.SetActive(true);
+            //gameMenuUI.infoPanel.SetActive(true);
             SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
 
             if(dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
@@ -426,7 +531,6 @@ public class BagUI : MonoBehaviour
             if(playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] == playerInventory.weaponSlots[quickSlotToChange])
             {
                 playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] = (MeleeWeapon)dataSlotUI.slotData;
-                playerMeleeHandler.DestroyMeleeModel();
                 playerMeleeHandler.SetMeleeParentOverride();
                 playerMeleeHandler.LoadMeleeModel();
             }
@@ -480,7 +584,6 @@ public class BagUI : MonoBehaviour
             if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == playerInventory.offhandSlots[quickSlotToChange])
             {
                 playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] = (OffhandWeapon)dataSlotUI.slotData;
-                playerOffhandHandler.DestroyOffhandModel();
                 playerOffhandHandler.LoadOffhandModel();
             }
             playerInventory.offhandSlots[quickSlotToChange] = (OffhandWeapon)dataSlotUI.slotData;

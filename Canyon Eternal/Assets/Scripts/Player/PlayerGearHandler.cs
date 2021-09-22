@@ -10,14 +10,6 @@ public class PlayerGearHandler : MonoBehaviour
     {
         playerInventory = GetComponent<PlayerInventory>();
 
-        if (playerInventory.activeGear == null)
-        {
-            if (playerInventory.gearInventory.Count != 0)
-            {
-                playerInventory.activeGear = playerInventory.gearInventory[0];
-            }
-        }
-
         if(playerInventory.activeGear != null)
         {
             InitializeGearEffect(playerInventory.activeGear.gearID);

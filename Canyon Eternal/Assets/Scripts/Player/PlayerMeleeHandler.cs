@@ -34,18 +34,12 @@ public class PlayerMeleeHandler : MonoBehaviour
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
 
 
-        if (playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] == null)
-        {
-            if (playerInventory.weaponsInventory.Count > 0)
-            {
-                playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] = playerInventory.weaponsInventory[0];
-            }
-        }
-        else
+        if (playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] != null)
         {
             SetMeleeParentOverride();
             LoadMeleeModel();
         }
+
     }
 
 
@@ -67,13 +61,19 @@ public class PlayerMeleeHandler : MonoBehaviour
 
     public void DestroyMeleeModel()
     {
-        Destroy(currentMeleeModel);
-        currentMeleeModel = null;
+        if(currentMeleeModel != null)
+        {
+            Destroy(currentMeleeModel);
+            currentMeleeModel = null;
+            meleeDamageCollider = null;
+        }
     }
 
 
     public void LoadMeleeModel()
     {
+        DestroyMeleeModel();
+
         GameObject meleeModelPrefab = Instantiate(playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber].modelPrefab) as GameObject;
         if (meleeModelPrefab != null)
         {
@@ -92,6 +92,7 @@ public class PlayerMeleeHandler : MonoBehaviour
 
         currentMeleeModel = meleeModelPrefab;
         meleeDamageCollider = currentMeleeModel.GetComponentInChildren<DamageCollider>();
+        meleeDamageCollider.FindComponents();
     }
 
     public IEnumerator HandleMeleeAttack()

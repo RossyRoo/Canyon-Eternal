@@ -26,14 +26,6 @@ public class PlayerSpellHandler : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerMeleeHandler = GetComponent<PlayerMeleeHandler>();
         playerParticleHandler = GetComponentInChildren<PlayerParticleHandler>();
-
-        if (playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] == null)
-        {
-            if (playerInventory.spellsInventory.Count != 0)
-            {
-                playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] = playerInventory.spellsInventory[0];
-            }
-        }
     }
 
     public void TickSpellChargeTimer()
@@ -57,7 +49,7 @@ public class PlayerSpellHandler : MonoBehaviour
             || playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].isBuff && playerStats.isBuffed)
             return;
 
-        playerMeleeHandler.currentMeleeModel.SetActive(false);
+        //playerMeleeHandler.currentMeleeModel.SetActive(false);
 
         playerParticleHandler.SpawnChargeVFX(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeVFX);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellSFX, 0.05f);
@@ -116,7 +108,7 @@ public class PlayerSpellHandler : MonoBehaviour
 
             playerManager.isCastingSpell = false;
             SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].launchSFX);
-            playerMeleeHandler.currentMeleeModel.SetActive(true);
+            //playerMeleeHandler.currentMeleeModel.SetActive(true);
         }
 
     }

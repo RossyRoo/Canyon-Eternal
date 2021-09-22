@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageCollider : MonoBehaviour
 {
     ObjectPool objectPool;
-    Collider2D damageCollider;
+    public Collider2D damageCollider;
     float damage = 1;
     bool criticalHitActivated;
     //KNOCKBACK PARAMETERS
@@ -27,8 +27,7 @@ public class DamageCollider : MonoBehaviour
 
     private void Awake()
     {
-        objectPool = FindObjectOfType<ObjectPool>();
-        damageCollider = GetComponent<Collider2D>();
+        FindComponents();
 
         knockbackTime = startKnockbackTime;
         knockbackForce = weaponData.knockbackForce;
@@ -41,12 +40,19 @@ public class DamageCollider : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
         HandleKnockback();
     }
 
     #region Enable/Disable Colliders
+
+    public void FindComponents()
+    {
+        damageCollider = GetComponent<Collider2D>();
+        objectPool = FindObjectOfType<ObjectPool>();
+    }
 
     public void EnableDamageCollider()
     {

@@ -25,22 +25,18 @@ public class PlayerOffhandHandler : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
 
-        if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == null)
-        {
-            if(playerInventory.offhandWeaponInventory.Count > 0)
-            {
-                playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] = playerInventory.offhandWeaponInventory[0];
-            }
-        }
-        else
+        if(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] != null)
         {
             LoadOffhandModel();
         }
+
     }
 
 
     public void LoadOffhandModel()
     {
+        DestroyOffhandModel();
+
         GameObject offhandModelPrefab = Instantiate(playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber].modelPrefab) as GameObject;
 
         if (offhandModelPrefab != null)
