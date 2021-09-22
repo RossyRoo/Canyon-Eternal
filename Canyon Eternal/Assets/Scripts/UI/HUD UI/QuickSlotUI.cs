@@ -41,8 +41,8 @@ public class QuickSlotUI : MonoBehaviour
         }
         else
         {
-            activeSpellIcon.enabled = false;
             activeSpellIcon.sprite = null;
+            activeSpellIcon.enabled = false;
         }
 
         if(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] != null)
@@ -53,8 +53,8 @@ public class QuickSlotUI : MonoBehaviour
         }
         else
         {
-            activeItemIcon.enabled = false;
             activeItemIcon.sprite = null;
+            activeItemIcon.enabled = false;
         }
     }
 }

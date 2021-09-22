@@ -41,6 +41,7 @@ public class GameMenuUI : MonoBehaviour
     public GameObject infoPanel;
     public GameObject callButton;
     public GameObject equipButton;
+    public GameObject unequipButton;
     public GameObject buyButton;
     public GameObject equipmentOverviewButton;
     public GameObject fastTravelButton;
@@ -79,6 +80,10 @@ public class GameMenuUI : MonoBehaviour
         shopUI = GetComponent<ShopUI>();
         fastTravelUI = GetComponent<FastTravelUI>();
 
+    }
+
+    private void Start()
+    {
         SwitchMenus();
     }
 
