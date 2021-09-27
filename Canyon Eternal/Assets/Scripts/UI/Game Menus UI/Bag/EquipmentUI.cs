@@ -10,7 +10,6 @@ public class EquipmentUI : MonoBehaviour
     PlayerInventory playerInventory;
     PlayerMeleeHandler playerMeleeHandler;
     PlayerOffhandHandler playerOffhandHandler;
-    ConsumableHandler consumableHandler;
 
     public Consumable testConsumable; //This is just so that I can tell the equipment what kind of menu to open for quick consumables
     public GameObject quickWeaponSlot1Button;
@@ -30,24 +29,25 @@ public class EquipmentUI : MonoBehaviour
         playerInventory = FindObjectOfType<PlayerInventory>();
         playerMeleeHandler = FindObjectOfType<PlayerMeleeHandler>();
         playerOffhandHandler = FindObjectOfType<PlayerOffhandHandler>();
-        consumableHandler = FindObjectOfType<ConsumableHandler>();
     }
 
     public void OpenEquipment()
     {
-        gameMenuUI.submenuNameText.text = "Equipment";
-        gameMenuUI.RefreshGrid(false);
-        gameMenuUI.infoPanel.SetActive(false);
-        gameMenuUI.equipmentOverviewButton.SetActive(false);
-        gameMenuUI.equipmentUIGO.SetActive(true);
+        if(gameMenuUI.currentMenuIndex == 1)
+        {
+            gameMenuUI.submenuNameText.text = "Equipment";
+            gameMenuUI.RefreshGrid(false);
+            gameMenuUI.infoPanel.SetActive(false);
+            gameMenuUI.backButton.SetActive(false);
+            gameMenuUI.equipmentUIGO.SetActive(true);
 
-        SetUpWeaponSlots();
-        SetUpOffhandSlots();
-        SetUpSpellSlots();
-        SetUpConsumableSlots();
-        SetUpGearSlots();
+            SetUpWeaponSlots();
+            SetUpOffhandSlots();
+            SetUpSpellSlots();
+            SetUpConsumableSlots();
+            SetUpGearSlots();
+        }
 
-        //gameMenuUI.equipButton.SetActive(true);
     }
 
     #region Slots
@@ -201,7 +201,7 @@ public class EquipmentUI : MonoBehaviour
         if (itemToDisplay != null)
         {
             gameMenuUI.interfaceGrid.SetActive(true);
-            gameMenuUI.equipmentOverviewButton.SetActive(true);
+            gameMenuUI.backButton.SetActive(true);
             gameMenuUI.equipmentUIGO.SetActive(false);
 
             gameMenuUI.infoPanel.transform.Find("Header").GetComponent<TextMeshProUGUI>().text = itemToDisplay.dataName;
@@ -270,12 +270,14 @@ public class EquipmentUI : MonoBehaviour
             {
                 gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber];
 
+
+
                 for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
                 {
                     Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
                     DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
-                    if (i < playerInventory.itemInventory.Count)
+                    if (i < GetConsumables().Count)
                     {
                         if (playerInventory.itemInventory[i].GetType() == typeof(Consumable))
                         {
@@ -316,87 +318,134 @@ public class EquipmentUI : MonoBehaviour
         }
     }
 
+    private List<Item> GetConsumables()
+    {
+        List<Item> consumableInventory = playerInventory.itemInventory; //MAKING LIST OF ONLY CONSUMABLES
+        for (int i = 0; i < consumableInventory.Count; i++)
+        {
+            if (consumableInventory[i].GetType() != typeof(Consumable))
+            {
+                consumableInventory.Remove(consumableInventory[i]);
+            }
+        }
+        return consumableInventory;
+    }
+
     public void SelectEquipmentToView(DataSlotUI dataSlotUI)
     {
-
-        if (dataSlotUI.slotData != null)
+        if(gameMenuUI.currentMenuIndex == 1 && gameMenuUI.currentSubmenuIndex == 0)
         {
-            if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
+            if (dataSlotUI.slotData != null)
             {
-                if(dataSlotUI.slotData == playerInventory.weaponSlots[quickSlotToChange])
+                int otherSlotNum;
+
+                if (quickSlotToChange == 0)
                 {
-                    gameMenuUI.unequipButton.SetActive(true);
-                    gameMenuUI.equipButton.SetActive(false);
-                    gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    otherSlotNum = 1;
                 }
                 else
                 {
-                    gameMenuUI.equipButton.SetActive(true);
-                    gameMenuUI.unequipButton.SetActive(false);
-                    gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    otherSlotNum = 0;
                 }
-            }
-            else if (dataSlotUI.slotData.GetType() == typeof(Spell))
-            {
-                if (dataSlotUI.slotData == playerInventory.spellSlots[quickSlotToChange])
+
+                if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
                 {
-                    gameMenuUI.unequipButton.SetActive(true);
-                    gameMenuUI.equipButton.SetActive(false);
-                    gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    if (dataSlotUI.slotData == playerInventory.weaponSlots[quickSlotToChange])
+                    {
+                        gameMenuUI.unequipButton.SetActive(true);
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else if (dataSlotUI.slotData != playerInventory.weaponSlots[otherSlotNum])
+                    {
+                        gameMenuUI.equipButton.SetActive(true);
+                        gameMenuUI.unequipButton.SetActive(false);
+                        gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else
+                    {
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.SetActive(false);
+                    }
                 }
-                else
+                else if (dataSlotUI.slotData.GetType() == typeof(Spell))
                 {
-                    gameMenuUI.equipButton.SetActive(true);
-                    gameMenuUI.unequipButton.SetActive(false);
-                    gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    if (dataSlotUI.slotData == playerInventory.spellSlots[quickSlotToChange])
+                    {
+                        gameMenuUI.unequipButton.SetActive(true);
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else if (dataSlotUI.slotData != playerInventory.spellSlots[otherSlotNum])
+                    {
+                        gameMenuUI.equipButton.SetActive(true);
+                        gameMenuUI.unequipButton.SetActive(false);
+                        gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else
+                    {
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.SetActive(false);
+                    }
                 }
-            }
-            else if (dataSlotUI.slotData.GetType() == typeof(Gear))
-            {
-                if (dataSlotUI.slotData == playerInventory.activeGear)
+                else if (dataSlotUI.slotData.GetType() == typeof(Gear))
                 {
-                    gameMenuUI.unequipButton.SetActive(true);
-                    gameMenuUI.equipButton.SetActive(false);
-                    gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    if (dataSlotUI.slotData == playerInventory.activeGear)
+                    {
+                        gameMenuUI.unequipButton.SetActive(true);
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else
+                    {
+                        gameMenuUI.equipButton.SetActive(true);
+                        gameMenuUI.unequipButton.SetActive(false);
+                        gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
                 }
-                else
+                else if (dataSlotUI.slotData.GetType() == typeof(OffhandWeapon))
                 {
-                    gameMenuUI.equipButton.SetActive(true);
-                    gameMenuUI.unequipButton.SetActive(false);
-                    gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    if (dataSlotUI.slotData == playerInventory.offhandSlots[quickSlotToChange])
+                    {
+                        gameMenuUI.unequipButton.SetActive(true);
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else if (dataSlotUI.slotData != playerInventory.offhandSlots[otherSlotNum])
+                    {
+                        gameMenuUI.equipButton.SetActive(true);
+                        gameMenuUI.unequipButton.SetActive(false);
+                        gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else
+                    {
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.SetActive(false);
+                    }
                 }
-            }
-            else if (dataSlotUI.slotData.GetType() == typeof(OffhandWeapon))
-            {
-                if (dataSlotUI.slotData == playerInventory.offhandSlots[quickSlotToChange])
+                else if (dataSlotUI.slotData.GetType() == typeof(Consumable))
                 {
-                    gameMenuUI.unequipButton.SetActive(true);
-                    gameMenuUI.equipButton.SetActive(false);
-                    gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
-                }
-                else
-                {
-                    gameMenuUI.equipButton.SetActive(true);
-                    gameMenuUI.unequipButton.SetActive(false);
-                    gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
-                }
-            }
-            else if (dataSlotUI.slotData.GetType() == typeof(Consumable))
-            {
-                if (dataSlotUI.slotData == playerInventory.consumableSlots[quickSlotToChange])
-                {
-                    gameMenuUI.unequipButton.SetActive(true);
-                    gameMenuUI.equipButton.SetActive(false);
-                    gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
-                }
-                else
-                {
-                    gameMenuUI.equipButton.SetActive(true);
-                    gameMenuUI.unequipButton.SetActive(false);
-                    gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    if (dataSlotUI.slotData == playerInventory.consumableSlots[quickSlotToChange])
+                    {
+                        gameMenuUI.unequipButton.SetActive(true);
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else if (dataSlotUI.slotData != playerInventory.consumableSlots[otherSlotNum])
+                    {
+                        gameMenuUI.equipButton.SetActive(true);
+                        gameMenuUI.unequipButton.SetActive(false);
+                        gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
+                    }
+                    else
+                    {
+                        gameMenuUI.equipButton.SetActive(false);
+                        gameMenuUI.unequipButton.SetActive(false);
+                    }
                 }
             }
         }
+        
     }
     #endregion
 

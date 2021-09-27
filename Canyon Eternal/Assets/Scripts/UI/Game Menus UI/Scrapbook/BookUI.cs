@@ -43,6 +43,7 @@ public class BookUI : MonoBehaviour
         }
         else if(currentSubmenuIndex == 1)
         {
+            gameMenuUI.backButton.SetActive(false);
             OpenBestiary();
         }
 
@@ -50,6 +51,7 @@ public class BookUI : MonoBehaviour
 
     public void CloseBook()
     {
+        gameMenuUI.backButton.SetActive(false);
         gameMenuUI.mapUIGO.SetActive(false);
         gameMenuUI.RefreshGrid(false);
     }
@@ -69,6 +71,7 @@ public class BookUI : MonoBehaviour
     {
         areaMapUIGO.SetActive(false);
         worldMapUIGO.SetActive(true);
+        gameMenuUI.backButton.SetActive(false);
 
         for (int i = 0; i < worldMapAreas.Length; i++)
         {
@@ -102,6 +105,7 @@ public class BookUI : MonoBehaviour
     {
         worldMapUIGO.SetActive(false);
         areaMapUIGO.SetActive(true);
+        gameMenuUI.backButton.SetActive(true);
 
         for (int i = 0; i < roomsInCurrentArea.Length; i++)
         {
@@ -134,6 +138,7 @@ public class BookUI : MonoBehaviour
         playerIcon.SetActive(false);
 
         areaMap.SetActive(true);
+        gameMenuUI.backButton.SetActive(true);
         currentAreaMap = areaMap;
 
         roomsInCurrentArea = currentAreaMap.GetComponentsInChildren<AreaSlot>();
@@ -141,19 +146,24 @@ public class BookUI : MonoBehaviour
         PrepareAreaMap();
 
         SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+
     }
 
     public void SwitchToWorldMap()
     {
-        playerIcon.SetActive(true);
-
-        for (int i = 0; i < areaMaps.Length; i++)
+        if (gameMenuUI.currentMenuIndex == 0)
         {
-            areaMaps[i].SetActive(false);
-        }
-        PrepareWorldMap();
+            playerIcon.SetActive(true);
 
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+            for (int i = 0; i < areaMaps.Length; i++)
+            {
+                areaMaps[i].SetActive(false);
+            }
+            PrepareWorldMap();
+
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+        }
+
     }
 
     #endregion
@@ -181,24 +191,5 @@ public class BookUI : MonoBehaviour
 
     #endregion
 
-    /*
-    #region Journal
-    public void OpenJournal()
-    {
-        gameMenuUI.submenuNameText.text = "Journal";
-        gameMenuUI.RefreshGrid(true);
-        gameMenuUI.mapUIGO.SetActive(false);
-
-        for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
-        {
-            if (i < playerProgression.journalEntryInventory.Count)
-            {
-                gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().slotData = playerProgression.journalEntryInventory[i];
-                gameMenuUI.interfaceGridSlots[i].GetComponent<Image>().sprite = playerProgression.journalEntryInventory[i].dataIcon;
-            }
-        }
-    }
-    #endregion
-    */
 
 }

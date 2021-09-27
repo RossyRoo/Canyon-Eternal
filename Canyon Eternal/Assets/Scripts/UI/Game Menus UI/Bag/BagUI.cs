@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using TMPro;
 
 public class BagUI : MonoBehaviour
@@ -58,7 +59,7 @@ public class BagUI : MonoBehaviour
     {
         gameMenuUI.equipButton.SetActive(false);
         gameMenuUI.unequipButton.SetActive(false);
-        gameMenuUI.equipmentOverviewButton.SetActive(false);
+        gameMenuUI.backButton.SetActive(false);
         gameMenuUI.RefreshGrid(false);
         gameMenuUI.equipmentUIGO.SetActive(false);
     }
@@ -83,13 +84,19 @@ public class BagUI : MonoBehaviour
         gameMenuUI.submenuNameText.text = "Inventory";
         gameMenuUI.equipmentUIGO.SetActive(false);
         gameMenuUI.equipButton.SetActive(false);
-        gameMenuUI.equipmentOverviewButton.SetActive(false);
+        gameMenuUI.backButton.SetActive(false);
 
         gameMenuUI.RefreshGrid(true);
 
+        SortItemInventory();
         CountItemClasses();
         DisplayItemInventoryGrid();
 
+    }
+
+    private void SortItemInventory()
+    {
+        playerInventory.itemInventory = playerInventory.itemInventory.OrderBy(x => x.dataName).ToList();
     }
 
     private void DisplayItemInventoryGrid()
@@ -109,19 +116,28 @@ public class BagUI : MonoBehaviour
                 myItemIcon.gameObject.SetActive(true);
 
                 
-                itemSlotUI.duplicates = 0; //Calculate duplicates
-                for (int j = 0; j < playerInventory.itemInventory.Count; j++)
-                {
-                    if (itemSlotUI.slotData == playerInventory.itemInventory[j])
-                    {
-                        itemSlotUI.duplicates++;
-                    }
-                }
+                itemSlotUI.duplicates = 0; 
 
-                if (itemSlotUI.duplicates != 0)
+                if(!typesOfItemsInInventory[i].isRare) //Calculate duplicates
                 {
-                    itemSlotUI.duplicateCountText.gameObject.SetActive(true);
-                    itemSlotUI.duplicateCountText.text = itemSlotUI.duplicates.ToString();
+                    for (int j = 0; j < playerInventory.itemInventory.Count; j++)
+                    {
+                        if (itemSlotUI.slotData == playerInventory.itemInventory[j])
+                        {
+                            itemSlotUI.duplicates++;
+                        }
+                    }
+
+                    if (itemSlotUI.duplicates != 0)
+                    {
+                        itemSlotUI.duplicateCountText.gameObject.SetActive(true);
+                        itemSlotUI.duplicateCountText.text = itemSlotUI.duplicates.ToString();
+                    }
+                    else
+                    {
+                        itemSlotUI.duplicateCountText.gameObject.SetActive(false);
+                    }
+
                 }
 
             }
@@ -165,7 +181,7 @@ public class BagUI : MonoBehaviour
         gameMenuUI.submenuNameText.text = "Artifacts";
         gameMenuUI.equipmentUIGO.SetActive(false);
         gameMenuUI.equipButton.SetActive(false);
-        gameMenuUI.equipmentOverviewButton.SetActive(false);
+        gameMenuUI.backButton.SetActive(false);
 
 
         gameMenuUI.RefreshGrid(true);

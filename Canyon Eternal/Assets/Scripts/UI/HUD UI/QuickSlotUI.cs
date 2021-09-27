@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class QuickSlotUI : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class QuickSlotUI : MonoBehaviour
     public Image activeOffhandIcon;
     public Image activeSpellIcon;
     public Image activeItemIcon;
+    public TextMeshProUGUI activeItemCountText;
 
     public void UpdateQuickSlotIcons(PlayerInventory playerInventory)
     {
@@ -49,12 +51,22 @@ public class QuickSlotUI : MonoBehaviour
         {
             activeItemIcon.enabled = true;
             activeItemIcon.sprite = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber].dataIcon;
-
+            activeItemCountText.gameObject.SetActive(true);
+            int count = 0;
+            for (int i = 0; i < playerInventory.itemInventory.Count; i++)
+            {
+                if (playerInventory.itemInventory[i] == playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber])
+                {
+                    count++;
+                }
+            }
+            activeItemCountText.text = count.ToString();
         }
         else
         {
             activeItemIcon.sprite = null;
             activeItemIcon.enabled = false;
+            activeItemCountText.gameObject.SetActive(false);
         }
     }
 }

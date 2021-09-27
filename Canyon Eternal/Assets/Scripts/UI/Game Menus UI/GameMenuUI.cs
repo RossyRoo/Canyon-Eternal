@@ -14,8 +14,8 @@ public class GameMenuUI : MonoBehaviour
     BookUI bookUI;
     ShopUI shopUI;
     FastTravelUI fastTravelUI;
-    int currentMenuIndex = 0;
-    int currentSubmenuIndex = 0;
+    public int currentMenuIndex = 0;
+    public int currentSubmenuIndex = 0;
     //[HideInInspector]
     public bool gameMenuIsOpen;
 
@@ -43,7 +43,7 @@ public class GameMenuUI : MonoBehaviour
     public GameObject equipButton;
     public GameObject unequipButton;
     public GameObject buyButton;
-    public GameObject equipmentOverviewButton;
+    public GameObject backButton;
     public GameObject fastTravelButton;
     public GameObject useButton;
     public GameObject purchasedBanner;
@@ -378,6 +378,10 @@ public class GameMenuUI : MonoBehaviour
         if(numberOfSlotsActive <= 12)
         {
             nextPageButton.SetActive(false);
+            if(interfacePageIndex > 0)
+            {
+                CycleInterfacePages();
+            }
         }
         else
         {
