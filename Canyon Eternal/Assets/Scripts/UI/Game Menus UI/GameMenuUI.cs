@@ -106,7 +106,7 @@ public class GameMenuUI : MonoBehaviour
             fastTravelUI.CloseFastTravel();
 
             gameMenusGO.SetActive(false);
-            SFXPlayer.Instance.PlaySFXAudioClip(closeGameMenusSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(closeGameMenusSFX, 0.15f);
         }
         else
         {
@@ -116,7 +116,7 @@ public class GameMenuUI : MonoBehaviour
             playerManager.isInteractingWithUI = true;
             //playerAnimatorHandler.animator.SetBool("isInteracting", true);
             gameMenusGO.SetActive(true);
-            SFXPlayer.Instance.PlaySFXAudioClip(openGameMenusSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(openGameMenusSFX, 0.15f);
 
             if (!isShopping)
             {
@@ -171,17 +171,17 @@ public class GameMenuUI : MonoBehaviour
         if(currentMenuIndex == 0)
         {
             currentMenuIndex++;
-            SFXPlayer.Instance.PlaySFXAudioClip(openBagSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(openBagSFX, 0.15f);
         }
         else if(currentMenuIndex == 1)
         {
             currentMenuIndex++;
-            SFXPlayer.Instance.PlaySFXAudioClip(openCellPhoneSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(openCellPhoneSFX, 0.15f);
         }
         else
         {
             currentMenuIndex = 0;
-            SFXPlayer.Instance.PlaySFXAudioClip(openScrapbookSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(openScrapbookSFX, 0.15f);
         }
 
         SwitchMenus();
@@ -192,17 +192,17 @@ public class GameMenuUI : MonoBehaviour
         if (currentMenuIndex == 0)
         {
             currentMenuIndex = 2;
-            SFXPlayer.Instance.PlaySFXAudioClip(openCellPhoneSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(openCellPhoneSFX, 0.15f);
         }
         else if (currentMenuIndex == 1)
         {
             currentMenuIndex--;
-            SFXPlayer.Instance.PlaySFXAudioClip(openScrapbookSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(openScrapbookSFX, 0.15f);
         }
         else
         {
             currentMenuIndex--;
-            SFXPlayer.Instance.PlaySFXAudioClip(openBagSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(openBagSFX, 0.15f);
         }
 
         SwitchMenus();
@@ -254,15 +254,15 @@ public class GameMenuUI : MonoBehaviour
     {
         if (currentMenuIndex == 0)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(switchScrapbookSubMenuSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(switchScrapbookSubMenuSFX, 0.15f);
         }
         else if (currentMenuIndex == 1)
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(switchBagSubMenuSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(switchBagSubMenuSFX, 0.15f);
         }
         else
         {
-            SFXPlayer.Instance.PlaySFXAudioClip(switchCellphoneSubMenuSFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(switchCellphoneSubMenuSFX, 0.15f);
         }
     }
 
