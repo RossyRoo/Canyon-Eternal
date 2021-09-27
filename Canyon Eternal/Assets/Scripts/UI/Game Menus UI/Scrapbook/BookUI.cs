@@ -151,19 +151,13 @@ public class BookUI : MonoBehaviour
 
     public void SwitchToWorldMap()
     {
-        if (gameMenuUI.currentMenuIndex == 0)
+        playerIcon.SetActive(true);
+
+        for (int i = 0; i < areaMaps.Length; i++)
         {
-            playerIcon.SetActive(true);
-
-            for (int i = 0; i < areaMaps.Length; i++)
-            {
-                areaMaps[i].SetActive(false);
-            }
-            PrepareWorldMap();
-
-            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.clickUIButtonSFX);
+            areaMaps[i].SetActive(false);
         }
-
+        PrepareWorldMap();
     }
 
     #endregion

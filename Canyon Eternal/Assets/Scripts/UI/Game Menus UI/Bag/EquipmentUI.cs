@@ -33,20 +33,17 @@ public class EquipmentUI : MonoBehaviour
 
     public void OpenEquipment()
     {
-        if(gameMenuUI.currentMenuIndex == 1)
-        {
-            gameMenuUI.submenuNameText.text = "Equipment";
-            gameMenuUI.RefreshGrid(false);
-            gameMenuUI.infoPanel.SetActive(false);
-            gameMenuUI.backButton.SetActive(false);
-            gameMenuUI.equipmentUIGO.SetActive(true);
+        gameMenuUI.submenuNameText.text = "Equipment";
+        gameMenuUI.RefreshGrid(false);
+        gameMenuUI.infoPanel.SetActive(false);
+        gameMenuUI.backButton.SetActive(false);
+        gameMenuUI.equipmentUIGO.SetActive(true);
 
-            SetUpWeaponSlots();
-            SetUpOffhandSlots();
-            SetUpSpellSlots();
-            SetUpConsumableSlots();
-            SetUpGearSlots();
-        }
+        SetUpWeaponSlots();
+        SetUpOffhandSlots();
+        SetUpSpellSlots();
+        SetUpConsumableSlots();
+        SetUpGearSlots();
 
     }
 
@@ -530,7 +527,9 @@ public class EquipmentUI : MonoBehaviour
 
     public void Unequip(DataSlotUI dataSlotUI)
     {
-        if(dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.unequipItemSFX);
+
+        if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {
             playerInventory.weaponSlots[quickSlotToChange] = null;
             playerMeleeHandler.DestroyMeleeModel();

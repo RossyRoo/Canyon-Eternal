@@ -7,6 +7,7 @@ using TMPro;
 public class GameMenuUI : MonoBehaviour
 {
     PlayerAnimatorHandler playerAnimatorHandler;
+    EquipmentUI equipmentUI;
     PlayerManager playerManager;
     PlayerInventory playerInventory;
     BagUI bagUI;
@@ -61,10 +62,12 @@ public class GameMenuUI : MonoBehaviour
     public AudioClip switchScrapbookSubMenuSFX;
     public AudioClip switchCellphoneSubMenuSFX;
     public AudioClip switchBagSubMenuSFX;
+    public AudioClip backButtonSFX;
     public AudioClip clickUIButtonSFX;
     public AudioClip nextPageUIButtonSFX;
     public AudioClip errorUIButtonSFX;
     public AudioClip equipItemSFX;
+    public AudioClip unequipItemSFX;
     public AudioClip phoneRingSFX;
 
 
@@ -72,6 +75,7 @@ public class GameMenuUI : MonoBehaviour
     {
         bagUI = GetComponent<BagUI>();
         bookUI = GetComponent<BookUI>();
+        equipmentUI = GetComponent<EquipmentUI>();
         cellphoneUI = GetComponent<CellphoneUI>();
         gameMenusGO.SetActive(false);
         playerManager = FindObjectOfType<PlayerManager>();
@@ -264,7 +268,7 @@ public class GameMenuUI : MonoBehaviour
 
     #endregion
 
-    #region Submenu Navigation
+    #region Buttons
 
     public void SelectDataSlot(DataSlotUI itemSlotUI)
     {
@@ -402,6 +406,20 @@ public class GameMenuUI : MonoBehaviour
         if(turnBackOn == true)
         {
             interfaceGrid.SetActive(true);
+        }
+    }
+
+    public void BackButton()
+    {
+        SFXPlayer.Instance.PlaySFXAudioClip(backButtonSFX);
+
+        if (currentMenuIndex == 0)
+        {
+            bookUI.SwitchToWorldMap();
+        }
+        else if (currentMenuIndex == 1)
+        {
+            equipmentUI.OpenEquipment();
         }
     }
 

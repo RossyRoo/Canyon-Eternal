@@ -11458,19 +11458,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3491118246698681233}
-        m_MethodName: OpenEquipment
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2792935184130832716}
-        m_MethodName: SwitchToWorldMap
+      - m_Target: {fileID: 7553813711178472567}
+        m_MethodName: BackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19497,10 +19486,12 @@ MonoBehaviour:
   switchCellphoneSubMenuSFX: {fileID: 8300000, guid: 0968b7c80fcfff64f8405d6e77af3ac9,
     type: 3}
   switchBagSubMenuSFX: {fileID: 8300000, guid: 054c73fbcfa0e284fb501f92c3380a3e, type: 3}
+  backButtonSFX: {fileID: 8300000, guid: 675cfc8d352c6d84193f54d6bcae4a03, type: 3}
   clickUIButtonSFX: {fileID: 8300000, guid: ef0e441252093f6418cff70a4fe8d819, type: 3}
   nextPageUIButtonSFX: {fileID: 8300000, guid: 0d15ed44448ea714492ee4b2b897b8ab, type: 3}
   errorUIButtonSFX: {fileID: 8300000, guid: f412354de29d3de4995e4bcba5118f61, type: 3}
-  equipItemSFX: {fileID: 8300000, guid: 2210c565a65efde408e930fe3741694f, type: 3}
+  equipItemSFX: {fileID: 8300000, guid: dc2dfadc331f4264f9e053d2cd5dfae6, type: 3}
+  unequipItemSFX: {fileID: 8300000, guid: 6411785108c68b949a323fd7f9243ec0, type: 3}
   phoneRingSFX: {fileID: 8300000, guid: 66d83536b8306dc46b01dc336bd473be, type: 3}
 --- !u!114 &3642598440416423524
 MonoBehaviour:
