@@ -23,6 +23,8 @@ public class EquipmentUI : MonoBehaviour
     public GameObject quickConsumableSlot2Button;
     public GameObject activeGearButton;
     public int quickSlotToChange;
+    public int otherSlotNum;
+
 
     private void Awake()
     {
@@ -199,6 +201,15 @@ public class EquipmentUI : MonoBehaviour
 
         if (itemToDisplay != null)
         {
+            if (quickSlotToChange == 0)
+            {
+                otherSlotNum = 1;
+            }
+            else
+            {
+                otherSlotNum = 0;
+            }
+
             gameMenuUI.interfaceGrid.SetActive(true);
             gameMenuUI.backButton.SetActive(true);
             gameMenuUI.equipmentUIGO.SetActive(false);
@@ -271,26 +282,16 @@ public class EquipmentUI : MonoBehaviour
                     Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
                     DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
-                    bagUI.CountItemClasses(GetConsumables());
-
-                    if (i < bagUI.typesOfItemsInInventory.Count)
+                    gameMenuUI.CountItemTypesInList(GetConsumables());
+                    
+                    if (i < gameMenuUI.CountItemTypesInList(GetConsumables()).Count)
                     {
-                        for (int j = 0; j < GetConsumables().Count; j++)
-                        {
-                            if (bagUI.typesOfItemsInInventory[i] == GetConsumables()[j])
-                            {
-                                itemSlotUI.duplicates++;
-                            }
-                        }
-
-                        itemSlotUI.duplicateCountText.gameObject.SetActive(true);
-                        itemSlotUI.duplicateCountText.text = itemSlotUI.duplicates.ToString();
-
                         totalSlotsActive += 1;
-                        itemSlotUI.slotData = bagUI.typesOfItemsInInventory[i];
 
+                        gameMenuUI.CountItemDuplicatesInList(gameMenuUI.CountItemTypesInList(GetConsumables())[i], itemSlotUI, GetConsumables());
 
-                        myItemIcon.sprite = bagUI.typesOfItemsInInventory[i].dataIcon;
+                        itemSlotUI.slotData = gameMenuUI.CountItemTypesInList(GetConsumables())[i];
+                        myItemIcon.sprite = gameMenuUI.CountItemTypesInList(GetConsumables())[i].dataIcon;
                         myItemIcon.gameObject.SetActive(true);
                     }
                 }
@@ -344,7 +345,6 @@ public class EquipmentUI : MonoBehaviour
         {
             if (dataSlotUI.slotData != null)
             {
-                int otherSlotNum;
                 if (quickSlotToChange == 0)
                 {
                     otherSlotNum = 1;
@@ -439,70 +439,51 @@ public class EquipmentUI : MonoBehaviour
 
         if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {
-            if (playerInventory.weaponSlots[quickSlotToChange] == dataSlotUI.slotData)
-            {
-                return;
-            }
+            playerInventory.weaponSlots[quickSlotToChange] = (MeleeWeapon)dataSlotUI.slotData;
+
             if (playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] == playerInventory.weaponSlots[quickSlotToChange])
             {
                 playerInventory.weaponSlots[playerInventory.activeWeaponSlotNumber] = (MeleeWeapon)dataSlotUI.slotData;
                 playerMeleeHandler.SetMeleeParentOverride();
                 playerMeleeHandler.LoadMeleeModel();
             }
-            playerInventory.weaponSlots[quickSlotToChange] = (MeleeWeapon)dataSlotUI.slotData;
-
         }
 
         else if (dataSlotUI.slotData.GetType() == typeof(Spell))
         {
-            if (playerInventory.spellSlots[quickSlotToChange] == dataSlotUI.slotData)
-            {
-                return;
-            }
+            playerInventory.spellSlots[quickSlotToChange] = (Spell)dataSlotUI.slotData;
+
             if (playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] == playerInventory.spellSlots[quickSlotToChange])
             {
                 playerInventory.spellSlots[playerInventory.activeSpellSlotNumber] = (Spell)dataSlotUI.slotData;
             }
-            playerInventory.spellSlots[quickSlotToChange] = (Spell)dataSlotUI.slotData;
-        }
-
-        else if (dataSlotUI.slotData.GetType() == typeof(Gear))
-        {
-            if (playerInventory.activeGear == dataSlotUI.slotData)
-            {
-                return;
-            }
-            playerInventory.activeGear = (Gear)dataSlotUI.slotData;
-            playerInventory.GetComponent<PlayerGearHandler>().InitializeGearEffect(playerInventory.activeGear.gearID);
         }
 
         else if (dataSlotUI.slotData.GetType() == typeof(Consumable))
         {
-            if (playerInventory.consumableSlots[quickSlotToChange] == dataSlotUI.slotData)
-            {
-                return;
-            }
+            playerInventory.consumableSlots[quickSlotToChange] = (Consumable)dataSlotUI.slotData;
+
             if (playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] == playerInventory.consumableSlots[quickSlotToChange])
             {
                 playerInventory.activeConsumableSlotNumber = quickSlotToChange;
             }
-            playerInventory.consumableSlots[quickSlotToChange] = (Consumable)dataSlotUI.slotData;
-
         }
 
         else if (dataSlotUI.slotData.GetType() == typeof(OffhandWeapon))
         {
-            if (playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == dataSlotUI.slotData)
-            {
-                return;
-            }
+            playerInventory.offhandSlots[quickSlotToChange] = (OffhandWeapon)dataSlotUI.slotData;
+
             if (playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] == playerInventory.offhandSlots[quickSlotToChange])
             {
                 playerInventory.offhandSlots[playerInventory.activeOffhandWeaponSlotNumber] = (OffhandWeapon)dataSlotUI.slotData;
                 playerOffhandHandler.LoadOffhandModel();
             }
-            playerInventory.offhandSlots[quickSlotToChange] = (OffhandWeapon)dataSlotUI.slotData;
+        }
 
+        else if (dataSlotUI.slotData.GetType() == typeof(Gear))
+        {
+            playerInventory.activeGear = (Gear)dataSlotUI.slotData;
+            playerInventory.GetComponent<PlayerGearHandler>().InitializeGearEffect(playerInventory.activeGear.gearID);
         }
 
         FindObjectOfType<QuickSlotUI>().UpdateQuickSlotIcons(playerInventory);
@@ -513,38 +494,74 @@ public class EquipmentUI : MonoBehaviour
 
     public void Unequip(DataSlotUI dataSlotUI)
     {
-        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.unequipItemSFX);
+        if (quickSlotToChange == 0)
+        {
+            otherSlotNum = 1;
+        }
+        else
+        {
+            otherSlotNum = 0;
+        }
 
         if (dataSlotUI.slotData.GetType() == typeof(MeleeWeapon))
         {
-            playerInventory.weaponSlots[quickSlotToChange] = null;
+            if(dataSlotUI.slotData == playerInventory.weaponSlots[quickSlotToChange])
+            {
+                playerInventory.weaponSlots[quickSlotToChange] = null;
+            }
+            else
+            {
+                playerInventory.weaponSlots[otherSlotNum] = null;
+            }
             playerMeleeHandler.DestroyMeleeModel();
         }
         else if(dataSlotUI.slotData.GetType() == typeof(OffhandWeapon))
         {
-            playerInventory.offhandSlots[quickSlotToChange] = null;
+            if (dataSlotUI.slotData == playerInventory.offhandSlots[quickSlotToChange])
+            {
+                playerInventory.offhandSlots[quickSlotToChange] = null;
+            }
+            else
+            {
+                playerInventory.offhandSlots[otherSlotNum] = null;
+            }
             playerOffhandHandler.DestroyOffhandModel();
         }
         else if(dataSlotUI.slotData.GetType() == typeof(Spell))
         {
-            playerInventory.spellSlots[quickSlotToChange] = null;
+            if (dataSlotUI.slotData == playerInventory.spellSlots[quickSlotToChange])
+            {
+                playerInventory.spellSlots[quickSlotToChange] = null;
+            }
+            else
+            {
+                playerInventory.spellSlots[otherSlotNum] = null;
+            }
 
         }
         else if(dataSlotUI.slotData.GetType() == typeof(Consumable))
         {
-            playerInventory.consumableSlots[quickSlotToChange] = null;
+            if (dataSlotUI.slotData == playerInventory.consumableSlots[quickSlotToChange])
+            {
+                playerInventory.consumableSlots[quickSlotToChange] = null;
+            }
+            else
+            {
+                playerInventory.consumableSlots[otherSlotNum] = null;
+            }
 
         }
         else if(dataSlotUI.slotData.GetType() == typeof(Gear))
         {
             playerInventory.activeGear = null;
-
         }
 
         FindObjectOfType<QuickSlotUI>().UpdateQuickSlotIcons(playerInventory);
         gameMenuUI.equipButton.GetComponent<DataSlotUI>().slotData = dataSlotUI.slotData;
         gameMenuUI.unequipButton.SetActive(false);
         gameMenuUI.equipButton.SetActive(true);
+
+        SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.unequipItemSFX);
     }
     #endregion
 }

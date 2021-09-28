@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 using TMPro;
 
 public class BagUI : MonoBehaviour
@@ -11,9 +10,6 @@ public class BagUI : MonoBehaviour
     PlayerInventory playerInventory;
     ConsumableHandler consumableHandler;
     EquipmentUI equipmentUI;
-
-
-    public List<Item> typesOfItemsInInventory;
 
 
     private void Awake()
@@ -66,21 +62,6 @@ public class BagUI : MonoBehaviour
 
     #region Inventory
 
-    public void CountItemClasses(List<Item> itemList)
-    {
-        playerInventory.itemInventory = playerInventory.itemInventory.OrderBy(x => x.dataName).ToList();
-
-        typesOfItemsInInventory.Clear();
-
-        for (int i = 0; i < itemList.Count; i++)
-        {
-            if(!typesOfItemsInInventory.Contains(playerInventory.itemInventory[i]))
-            {
-                typesOfItemsInInventory.Add(playerInventory.itemInventory[i]);
-            }
-        }
-    }
-
     public void OpenItemInventory()
     {
         gameMenuUI.submenuNameText.text = "Inventory";
@@ -90,7 +71,6 @@ public class BagUI : MonoBehaviour
 
         gameMenuUI.RefreshGrid(true);
 
-        CountItemClasses(playerInventory.itemInventory);
         DisplayItemInventoryGrid();
 
     }
@@ -99,40 +79,25 @@ public class BagUI : MonoBehaviour
     {
         int totalSlotsActive = 0;
 
+
         for (int i = 0; i < gameMenuUI.interfaceGridSlots.Length; i++)
         {
             Image myItemIcon = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>().icon;
             DataSlotUI itemSlotUI = gameMenuUI.interfaceGridSlots[i].GetComponent<DataSlotUI>();
 
-            if (i < typesOfItemsInInventory.Count)
+            if (i < gameMenuUI.CountItemTypesInList(playerInventory.itemInventory).Count)
             {
                 totalSlotsActive += 1;
-                itemSlotUI.slotData = typesOfItemsInInventory[i];
-                myItemIcon.sprite = typesOfItemsInInventory[i].dataIcon;
+                itemSlotUI.slotData = gameMenuUI.CountItemTypesInList(playerInventory.itemInventory)[i];
+                myItemIcon.sprite = gameMenuUI.CountItemTypesInList(playerInventory.itemInventory)[i].dataIcon;
                 myItemIcon.gameObject.SetActive(true);
 
                 
                 itemSlotUI.duplicates = 0; 
 
-                if(!typesOfItemsInInventory[i].isRare) //Calculate duplicates
+                if(!gameMenuUI.CountItemTypesInList(playerInventory.itemInventory)[i].isRare) //Calculate duplicates
                 {
-                    for (int j = 0; j < playerInventory.itemInventory.Count; j++)
-                    {
-                        if (itemSlotUI.slotData == playerInventory.itemInventory[j])
-                        {
-                            itemSlotUI.duplicates++;
-                        }
-                    }
-
-                    if (itemSlotUI.duplicates != 0)
-                    {
-                        itemSlotUI.duplicateCountText.gameObject.SetActive(true);
-                        itemSlotUI.duplicateCountText.text = itemSlotUI.duplicates.ToString();
-                    }
-                    else
-                    {
-                        itemSlotUI.duplicateCountText.gameObject.SetActive(false);
-                    }
+                    gameMenuUI.CountItemDuplicatesInList(itemSlotUI.slotData, itemSlotUI, playerInventory.itemInventory);
 
                 }
 

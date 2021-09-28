@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 using TMPro;
 
@@ -98,7 +99,6 @@ public class GameMenuUI : MonoBehaviour
         {
             gameMenuIsOpen = false;
             playerManager.isInteractingWithUI = false;
-            //playerAnimatorHandler.animator.SetBool("isInteracting", false);
 
             bagUI.CloseBag();
             cellphoneUI.CloseCellphone();
@@ -115,7 +115,6 @@ public class GameMenuUI : MonoBehaviour
                 return;
 
             playerManager.isInteractingWithUI = true;
-            //playerAnimatorHandler.animator.SetBool("isInteracting", true);
             gameMenusGO.SetActive(true);
             SFXPlayer.Instance.PlaySFXAudioClip(openGameMenusSFX, 0.15f);
 
@@ -423,6 +422,40 @@ public class GameMenuUI : MonoBehaviour
         {
             equipmentUI.OpenEquipment();
         }
+    }
+
+    #endregion
+
+    #region Duplicates
+
+    public List<Item> CountItemTypesInList(List<Item> itemList)
+    {
+        itemList = itemList.OrderBy(x => x.dataName).ToList();
+
+        List<Item> itemTypes = new List<Item>();
+
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            if (!itemTypes.Contains(itemList[i]))
+            {
+                itemTypes.Add(itemList[i]);
+            }
+        }
+        return itemTypes;
+    }
+
+    public void CountItemDuplicatesInList(DataObject itemToCount, DataSlotUI dataSlotToChange, List<Item> itemList)
+    {
+        for (int j = 0; j < itemList.Count; j++)
+        {
+            if (itemToCount == itemList[j])
+            {
+                dataSlotToChange.duplicates++;
+            }
+        }
+
+        dataSlotToChange.duplicateCountText.gameObject.SetActive(true);
+        dataSlotToChange.duplicateCountText.text = dataSlotToChange.duplicates.ToString();
     }
 
     #endregion
