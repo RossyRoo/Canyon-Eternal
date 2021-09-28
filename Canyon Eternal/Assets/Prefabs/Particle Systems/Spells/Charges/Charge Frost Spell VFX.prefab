@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4881746393167522155}
   - component: {fileID: 4881746393167522152}
   m_Layer: 0
-  m_Name: Charge Spell VFX
+  m_Name: Charge Frost Spell VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,8 +284,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2.5
-      minScalar: 1.5
+      scalar: 1.5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4709,7 +4709,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
+  - {fileID: 2100000, guid: f50f7640601464e5589e49da985e8819, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

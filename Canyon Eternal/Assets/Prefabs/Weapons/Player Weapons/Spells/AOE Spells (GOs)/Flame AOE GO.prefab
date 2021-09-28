@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2204171353132637289}
   - component: {fileID: 2204171353132637291}
   m_Layer: 16
-  m_Name: Fire Blast GO
+  m_Name: Flame AOE GO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,17 +89,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 05b4b096f430e4a0f951fa1759cfccf1, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
-  myCharacterManager: {fileID: 0}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
-  knockbackTarget: {fileID: 0}
-  knockbackDirection: {x: 0, y: 0}
-  knockbackForce: 10
-  startKnockbackTime: 0.02
-  weaponData: {fileID: 11400000, guid: 05b4b096f430e4a0f951fa1759cfccf1, type: 2}
+  isBeingBlocked: 0
 --- !u!1 &2224623710152315139
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +142,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -4900,7 +4896,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -9654,7 +9650,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -14408,7 +14404,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -19162,7 +19158,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -23916,7 +23912,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1

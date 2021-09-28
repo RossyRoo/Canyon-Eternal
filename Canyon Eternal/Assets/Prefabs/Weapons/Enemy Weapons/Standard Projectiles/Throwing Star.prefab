@@ -148,6 +148,7 @@ MonoBehaviour:
     type: 2}
   spellProjectileData: {fileID: 0}
   isEnemyProjectile: 0
+  isFired: 0
 --- !u!114 &-7072923029392143523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,14 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageCollider: {fileID: 0}
-  collisionTransform: {fileID: 0}
-  myCharacterManager: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 6672c008fca9343b697f2ce4f522f4a9, type: 2}
+  collisionTransform: {fileID: 2386400630290684996}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 0
   canDamagePlayer: 1
-  knockbackTarget: {fileID: 0}
-  knockbackDirection: {x: 0, y: 0}
-  knockbackForce: 10
-  startKnockbackTime: 0.02
-  weaponData: {fileID: 11400000, guid: 6672c008fca9343b697f2ce4f522f4a9, type: 2}
+  isBeingBlocked: 0

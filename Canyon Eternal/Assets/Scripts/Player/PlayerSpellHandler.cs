@@ -49,7 +49,6 @@ public class PlayerSpellHandler : MonoBehaviour
             || playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].isBuff && playerStats.isBuffed)
             return;
 
-        //playerMeleeHandler.currentMeleeModel.SetActive(false);
 
         playerParticleHandler.SpawnChargeVFX(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeVFX);
         SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellSFX, 0.05f);
@@ -65,9 +64,13 @@ public class PlayerSpellHandler : MonoBehaviour
 
         playerStats.LoseStamina(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].staminaCost);
 
-        playerParticleHandler.SpawnChargeCompleteVFX(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeCompleteVFX);
+        if(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeCompleteVFX != null)
+        {
+            playerParticleHandler.SpawnChargeCompleteVFX(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].chargeCompleteVFX);
+            SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellCompleteSFX);
+        }
+
         Destroy(playerParticleHandler.currentChargeVFXGO);
-        SFXPlayer.Instance.PlaySFXAudioClip(chargeSpellCompleteSFX);
 
         if (playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].isProjectile)
         {
@@ -98,7 +101,7 @@ public class PlayerSpellHandler : MonoBehaviour
                 currentSpellGO = Instantiate(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].GOPrefab, transform.position, Quaternion.identity);
                 currentSpellGO.transform.parent = playerManager.transform;
 
-                Destroy(currentSpellGO, 0.5f);
+                Destroy(currentSpellGO, 5f);
             }
             else
             {
@@ -108,7 +111,6 @@ public class PlayerSpellHandler : MonoBehaviour
 
             playerManager.isCastingSpell = false;
             SFXPlayer.Instance.PlaySFXAudioClip(playerInventory.spellSlots[playerInventory.activeSpellSlotNumber].launchSFX);
-            //playerMeleeHandler.currentMeleeModel.SetActive(true);
         }
 
     }

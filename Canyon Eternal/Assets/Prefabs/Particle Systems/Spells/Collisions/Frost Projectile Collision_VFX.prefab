@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 198760179}
   - component: {fileID: 198760178}
   m_Layer: 0
-  m_Name: Orange
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 8
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4709,7 +4709,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c0a5695bb2474bb9be69ac1fb65ebb4, type: 2}
+  - {fileID: 2100000, guid: f50f7640601464e5589e49da985e8819, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 233209014}
   - component: {fileID: 233209013}
   m_Layer: 0
-  m_Name: Yellow
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5038,7 +5038,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 8
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9463,7 +9463,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ab09c44a1f76412ba5436d588430135, type: 2}
+  - {fileID: 2100000, guid: f50f7640601464e5589e49da985e8819, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9520,7 +9520,7 @@ GameObject:
   - component: {fileID: 663563600}
   - component: {fileID: 663563599}
   m_Layer: 0
-  m_Name: Red
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9792,7 +9792,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 8
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14217,7 +14217,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
+  - {fileID: 2100000, guid: f50f7640601464e5589e49da985e8819, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14272,7 +14272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3142461857739340216}
   m_Layer: 0
-  m_Name: Fireball Collision_VFX
+  m_Name: Frost Projectile Collision_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14286,7 +14286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3142461857739340215}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 663563598}

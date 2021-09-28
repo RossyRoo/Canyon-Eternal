@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288066941}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.866, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1928937751290698194}
@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 0, b: 0, a: 1}
-      maxColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.8705691, b: 0, a: 1}
@@ -4709,7 +4709,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4a61493801cad46e39d08e35753956cd, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4822,7 +4822,7 @@ Transform:
   m_GameObject: {fileID: 360764334090083911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.15, y: -0.12, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 2
@@ -4866,7 +4866,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -4885,7 +4885,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360764334090083911}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -4913,14 +4913,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &1528970555093505336
 MonoBehaviour:
@@ -4934,12 +4934,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &558736922904239071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4969,7 +4971,7 @@ Transform:
   m_GameObject: {fileID: 558736922904239071}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.13, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 1
@@ -5013,7 +5015,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -5032,7 +5034,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558736922904239071}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -5060,14 +5062,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &7535287156656814006
 MonoBehaviour:
@@ -5081,12 +5083,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &633434732772376970
 GameObject:
   m_ObjectHideFlags: 0
@@ -5116,7 +5120,7 @@ Transform:
   m_GameObject: {fileID: 633434732772376970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.51, y: -1.47, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 8
@@ -5160,7 +5164,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -5179,7 +5183,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633434732772376970}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -5207,14 +5211,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &1085285332633870723
 MonoBehaviour:
@@ -5228,12 +5232,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &864837830958195231
 GameObject:
   m_ObjectHideFlags: 0
@@ -5263,7 +5269,7 @@ Transform:
   m_GameObject: {fileID: 864837830958195231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.29, y: 1.41, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 5
@@ -5307,7 +5313,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -5326,7 +5332,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864837830958195231}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -5354,14 +5360,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &3567819138819538623
 MonoBehaviour:
@@ -5375,12 +5381,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &1502486185837236579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5410,7 +5418,7 @@ Transform:
   m_GameObject: {fileID: 1502486185837236579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.88, y: -0.16, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 3
@@ -5454,7 +5462,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -5473,7 +5481,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502486185837236579}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -5501,14 +5509,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &410727851187867594
 MonoBehaviour:
@@ -5522,12 +5530,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &2204171351559060046
 GameObject:
   m_ObjectHideFlags: 0
@@ -5557,7 +5567,7 @@ Transform:
   m_GameObject: {fileID: 2204171351559060046}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.64, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 0
@@ -5601,7 +5611,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -5620,7 +5630,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2204171351559060046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -5648,14 +5658,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &1529456004992795282
 MonoBehaviour:
@@ -5669,12 +5679,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &2204171353132637292
 GameObject:
   m_ObjectHideFlags: 0
@@ -5773,7 +5785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2251094569859808170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.781, y: -0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1928937751290698194}
@@ -5969,7 +5981,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 0, b: 0, a: 1}
-      maxColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.8705691, b: 0, a: 1}
@@ -10456,7 +10468,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4a61493801cad46e39d08e35753956cd, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -10530,7 +10542,7 @@ Transform:
   m_GameObject: {fileID: 2752608056280314551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.38, y: -1.08, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 7
@@ -10574,7 +10586,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -10593,7 +10605,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2752608056280314551}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -10621,14 +10633,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &191439619824664573
 MonoBehaviour:
@@ -10642,12 +10654,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &3042478597175913090
 GameObject:
   m_ObjectHideFlags: 0
@@ -10710,7 +10724,7 @@ Transform:
   m_GameObject: {fileID: 3820108839281302410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.01, y: -0.16, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 4
@@ -10754,7 +10768,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -10773,7 +10787,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3820108839281302410}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -10801,14 +10815,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &6845573650296998586
 MonoBehaviour:
@@ -10822,12 +10836,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &5389892177403300123
 GameObject:
   m_ObjectHideFlags: 0
@@ -10857,7 +10873,7 @@ Transform:
   m_GameObject: {fileID: 5389892177403300123}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.6, y: 1.02, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 8942937125027670335}
   m_RootOrder: 6
@@ -10901,7 +10917,7 @@ SpriteRenderer:
   m_SortingLayerID: -2027116253
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 138896284450056618, guid: 4bb6af59e97e94953ab4db5f72d5d94e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb958d49e3ac48498810dc6a31e0405, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
@@ -10920,7 +10936,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5389892177403300123}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 5fd557800b6ea4892b27338564e322bb, type: 2}
   m_CullingMode: 0
@@ -10948,14 +10964,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.12, y: 5.12}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.92, y: 3.22}
   m_EdgeRadius: 0
 --- !u!114 &6167588057236472699
 MonoBehaviour:
@@ -10969,12 +10985,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &6728713129986468324
 GameObject:
   m_ObjectHideFlags: 0
@@ -11001,7 +11019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6728713129986468324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.409, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1928937751290698194}
@@ -11197,7 +11215,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 0, b: 0, a: 1}
-      maxColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.8705691, b: 0, a: 1}
@@ -15684,7 +15702,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4a61493801cad46e39d08e35753956cd, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

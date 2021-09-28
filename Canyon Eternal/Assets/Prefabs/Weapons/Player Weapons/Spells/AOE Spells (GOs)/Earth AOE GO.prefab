@@ -88,12 +88,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6468b7e8f7ed44b6b9e8e02facacb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageCollider: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 819a72e2f8b244d1e8ed0eca88824377, type: 2}
   collisionTransform: {fileID: 2204171353132637290}
   dealsConstantDamage: 1
   targetIsWithinRange: 0
   canDamageEnemy: 1
   canDamagePlayer: 0
+  isBeingBlocked: 0
 --- !u!1 &2224623710152315139
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +142,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -209,8 +211,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.05
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -378,8 +380,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -959,7 +961,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2000
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4803,7 +4805,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
+  - {fileID: 2100000, guid: 9a61bfed507f441f499bba9c4e81d0b6, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4894,7 +4896,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -4963,8 +4965,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.05
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5132,8 +5134,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5713,7 +5715,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2000
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9557,7 +9559,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ab09c44a1f76412ba5436d588430135, type: 2}
+  - {fileID: 2100000, guid: 9a61bfed507f441f499bba9c4e81d0b6, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9648,7 +9650,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -9717,8 +9719,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.05
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9886,8 +9888,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10467,7 +10469,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2000
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -14311,7 +14313,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c0a5695bb2474bb9be69ac1fb65ebb4, type: 2}
+  - {fileID: 2100000, guid: 9a61bfed507f441f499bba9c4e81d0b6, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14402,7 +14404,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -14471,8 +14473,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.05
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14640,8 +14642,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15221,7 +15223,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2000
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -19065,7 +19067,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
+  - {fileID: 2100000, guid: 9a61bfed507f441f499bba9c4e81d0b6, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -19156,7 +19158,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -19225,8 +19227,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.05
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19394,8 +19396,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19975,7 +19977,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2000
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -23819,7 +23821,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c0a5695bb2474bb9be69ac1fb65ebb4, type: 2}
+  - {fileID: 2100000, guid: 9a61bfed507f441f499bba9c4e81d0b6, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -23910,7 +23912,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 1
@@ -23979,8 +23981,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.05
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24148,8 +24150,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
-      minScalar: 3
+      scalar: 5
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24729,7 +24731,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2000
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -28573,7 +28575,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ab09c44a1f76412ba5436d588430135, type: 2}
+  - {fileID: 2100000, guid: 9a61bfed507f441f499bba9c4e81d0b6, type: 2}
   - {fileID: 2100000, guid: 5f39143e85bae4067ae424730ca76244, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

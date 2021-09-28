@@ -1059,6 +1059,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   currentHealth: 0
+  isPoisoned: 0
+  isFrozen: 0
+  isHypnotized: 0
   lunchboxMeter: {fileID: 0}
   isBuffed: 0
   playerDamageSFX: {fileID: 8300000, guid: 812f8f76c01e6dc4bb653fa92f82d463, type: 3}
@@ -1170,9 +1173,30 @@ MonoBehaviour:
   - {fileID: 0}
   activeOffhandWeaponSlotNumber: 0
   spellsInventory:
+  - {fileID: 11400000, guid: 9856df2f01ec24e8a9ff2867abacf2fc, type: 2}
+  - {fileID: 11400000, guid: 6049e3104fab645b595b73c0acde0051, type: 2}
   - {fileID: 11400000, guid: eb54407927e9c45daaee3e65585d76e4, type: 2}
+  - {fileID: 11400000, guid: 8f4c543f53a5f4ba79b902836b5fd2c5, type: 2}
+  - {fileID: 11400000, guid: 072d70b28040d413f8f504648d7f7b23, type: 2}
   - {fileID: 11400000, guid: 247e73fa45e0b4ceab843705c2e80413, type: 2}
+  - {fileID: 11400000, guid: 9c432bd175f8c47ff87c235518b0462d, type: 2}
+  - {fileID: 11400000, guid: a549a626cc8954443b9799a5445d0fe0, type: 2}
+  - {fileID: 11400000, guid: aef9c2679a8644305a84742b03462041, type: 2}
+  - {fileID: 11400000, guid: 819a72e2f8b244d1e8ed0eca88824377, type: 2}
+  - {fileID: 11400000, guid: 05b4b096f430e4a0f951fa1759cfccf1, type: 2}
+  - {fileID: 11400000, guid: 55ecd9f99a1f84fd7af21a0f4030dd61, type: 2}
+  - {fileID: 11400000, guid: 8ed989e7cab10459c9d7940ad138a334, type: 2}
+  - {fileID: 11400000, guid: ee7a5928444224d6b964a0c2557cf694, type: 2}
   - {fileID: 11400000, guid: e519b891e623945d4ab956ab23346bf6, type: 2}
+  - {fileID: 11400000, guid: 871283b3105064cd9b75b6651c735bb7, type: 2}
+  - {fileID: 11400000, guid: cc2d7303687da43218f195c696a80519, type: 2}
+  - {fileID: 11400000, guid: e879f95b3275e4f61a70dbf3e202915a, type: 2}
+  - {fileID: 11400000, guid: 9a8927c631875480bb290d96dec17556, type: 2}
+  - {fileID: 11400000, guid: c4ec714cfd9864991a666271d6bf9d66, type: 2}
+  - {fileID: 11400000, guid: 36d7d5467e3a047a991d9989e2e2fe87, type: 2}
+  - {fileID: 11400000, guid: ef0f95ad943ab4d6b975e64df7c0a7fb, type: 2}
+  - {fileID: 11400000, guid: 314aec6609c1d40c9b1ddc9ff4408b47, type: 2}
+  - {fileID: 11400000, guid: 1bb68452eca0e4c428a0981a53177d57, type: 2}
   spellSlots:
   - {fileID: 0}
   - {fileID: 0}
