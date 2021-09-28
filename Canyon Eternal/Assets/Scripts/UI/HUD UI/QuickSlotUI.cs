@@ -49,9 +49,6 @@ public class QuickSlotUI : MonoBehaviour
 
         if(playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber] != null)
         {
-            activeItemIcon.enabled = true;
-            activeItemIcon.sprite = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber].dataIcon;
-            activeItemCountText.gameObject.SetActive(true);
             int count = 0;
             for (int i = 0; i < playerInventory.itemInventory.Count; i++)
             {
@@ -60,7 +57,19 @@ public class QuickSlotUI : MonoBehaviour
                     count++;
                 }
             }
-            activeItemCountText.text = count.ToString();
+
+            if(count <= 0)
+            {
+                activeItemIcon.enabled = false;
+                activeItemCountText.gameObject.SetActive(false);
+            }
+            else
+            {
+                activeItemIcon.enabled = true;
+                activeItemIcon.sprite = playerInventory.consumableSlots[playerInventory.activeConsumableSlotNumber].dataIcon;
+                activeItemCountText.gameObject.SetActive(true);
+                activeItemCountText.text = count.ToString();
+            }
         }
         else
         {

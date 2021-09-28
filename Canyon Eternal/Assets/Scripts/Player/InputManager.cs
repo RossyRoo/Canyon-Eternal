@@ -169,6 +169,19 @@ public class InputManager : MonoBehaviour
             Time.deltaTime * rotateSpeed);
     }
 
+    private void HandleDashInput()
+    {
+        if (dash_Input)
+        {
+            if (playerManager.isInteracting
+                || playerManager.isInteractingWithUI
+                || playerStats.currentStamina < 1 || playerManager.isFalling)
+                return;
+
+            playerManager.isDashing = true;
+        }
+    }
+
     #region Handle Combat Input
     private void HandleMeleeInput()
     {
@@ -216,19 +229,6 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void HandleDashInput()
-    {
-        if(dash_Input)
-        {
-            if (playerManager.isInteracting
-                || playerManager.isInteractingWithUI
-                || playerStats.currentStamina < 1 || playerManager.isFalling)
-                return;
-
-            playerManager.isDashing = true;
-        }
-    }
-
     private void HandleParryInput()
     {
         if(parry_Input)
@@ -262,6 +262,7 @@ public class InputManager : MonoBehaviour
             playerOffhandHandler.HandleStopBlock();
         }
     }
+
 
     private void HandleHealInput()
     {

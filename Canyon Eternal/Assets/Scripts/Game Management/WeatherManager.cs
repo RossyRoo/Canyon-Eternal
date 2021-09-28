@@ -124,7 +124,6 @@ public class WeatherManager : MonoBehaviour
         if (isHardTransition)
         {
             weatherTonerAnimator.Play(weatherAnimations[currentPattern - 1]);
-            Debug.Log("Playing animation " + weatherAnimations[currentPattern - 1]);
         }
         else
         {

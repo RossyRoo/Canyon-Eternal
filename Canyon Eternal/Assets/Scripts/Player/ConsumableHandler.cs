@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ConsumableHandler : MonoBehaviour
 {
+    public QuickSlotUI quickSlotUI;
+
 
     public void HandleEnemyConsumable(Consumable consumable, EnemyStats enemyStats)
     {
@@ -54,6 +56,8 @@ public class ConsumableHandler : MonoBehaviour
 
         //REMOVE FROM INVENTORY
         playerInventory.itemInventory.Remove(consumable);
+        quickSlotUI.UpdateQuickSlotIcons(playerInventory);
+        
 
     }
 

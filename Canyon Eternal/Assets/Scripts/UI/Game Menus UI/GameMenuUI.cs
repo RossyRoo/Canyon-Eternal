@@ -399,6 +399,7 @@ public class GameMenuUI : MonoBehaviour
         for (int i = 0; i < interfaceGridSlots.Length; i++)
         {
             interfaceGridSlots[i].GetComponent<DataSlotUI>().slotData = null;
+            interfaceGridSlots[i].GetComponent<DataSlotUI>().duplicates = 0;
             interfaceGridSlots[i].GetComponent<DataSlotUI>().duplicateCountText.gameObject.SetActive(false);
             interfaceGridSlots[i].GetComponent<DataSlotUI>().icon.gameObject.SetActive(false);
         }

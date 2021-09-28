@@ -66,11 +66,13 @@ public class BagUI : MonoBehaviour
 
     #region Inventory
 
-    public void CountItemClasses()
+    public void CountItemClasses(List<Item> itemList)
     {
+        playerInventory.itemInventory = playerInventory.itemInventory.OrderBy(x => x.dataName).ToList();
+
         typesOfItemsInInventory.Clear();
 
-        for (int i = 0; i < playerInventory.itemInventory.Count; i++)
+        for (int i = 0; i < itemList.Count; i++)
         {
             if(!typesOfItemsInInventory.Contains(playerInventory.itemInventory[i]))
             {
@@ -88,15 +90,9 @@ public class BagUI : MonoBehaviour
 
         gameMenuUI.RefreshGrid(true);
 
-        SortItemInventory();
-        CountItemClasses();
+        CountItemClasses(playerInventory.itemInventory);
         DisplayItemInventoryGrid();
 
-    }
-
-    private void SortItemInventory()
-    {
-        playerInventory.itemInventory = playerInventory.itemInventory.OrderBy(x => x.dataName).ToList();
     }
 
     private void DisplayItemInventoryGrid()
