@@ -69,7 +69,7 @@ public class FragmentCounterUI : MonoBehaviour
         adjustmentText.text = currentAdjustmentDisplay.ToString();
         adjustmentText.gameObject.SetActive(true);
 
-        SFXPlayer.Instance.PlaySFXAudioClip(counterGoingDownSFX, 0.6f);
+        //SFXPlayer.Instance.PlaySFXAudioClip(counterGoingDownSFX, 0.6f);
 
         yield return new WaitForSeconds(1f);
 

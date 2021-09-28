@@ -68,6 +68,7 @@ public class GameMenuUI : MonoBehaviour
     public AudioClip errorUIButtonSFX;
     public AudioClip equipItemSFX;
     public AudioClip unequipItemSFX;
+    public AudioClip purchaseItemSFX;
     public AudioClip phoneRingSFX;
 
 

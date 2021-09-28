@@ -127,8 +127,9 @@ public class ShopUI : MonoBehaviour
                 }
 
                 playerInventory.AdjustFragmentInventory(-selectedItem.itemValue);
+                SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.purchaseItemSFX);
 
-                if(selectedItem.isRare)
+                if (selectedItem.isRare)
                 {
                     gameMenuUI.RefreshGrid(true);
                     RefreshShopInventory();
@@ -138,12 +139,12 @@ public class ShopUI : MonoBehaviour
             }
             else
             {
-                //ALREADY BOUGHT THIS ITEM, PLAY ERROR NOISE
+                SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
             }
         }
         else
         {
-            //CANT AFFORD THIS ITEM, PLAY ERROR NOISE
+            SFXPlayer.Instance.PlaySFXAudioClip(gameMenuUI.errorUIButtonSFX);
         }
 
     }
