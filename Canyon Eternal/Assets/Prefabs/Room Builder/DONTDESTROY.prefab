@@ -1081,6 +1081,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1882935357957997551}
     m_Modifications:
+    - target: {fileID: 4757138668946452798, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757138668946452798, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 54
+      objectReference: {fileID: 0}
     - target: {fileID: 8467465798682274485, guid: 5c4b7274015e445cd884b1ae5e1f3d2e,
         type: 3}
       propertyPath: m_Name
@@ -2169,6 +2179,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955942e68ee4047ac97be718ea2cf15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6650370073405143022 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1085554024, guid: c9b4ee7421ba2436f9b5dee02e15a722,
+    type: 3}
+  m_PrefabInstance: {fileID: 6650370074484378246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2381f3f8c0842609014fc38391165d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &5437754874508088046 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 1674236695952988264, guid: c9b4ee7421ba2436f9b5dee02e15a722,
@@ -2273,6 +2295,11 @@ PrefabInstance:
       propertyPath: interactableUI
       value: 
       objectReference: {fileID: 8308634094365546560}
+    - target: {fileID: 8652666737089679821, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
+        type: 3}
+      propertyPath: statusEffectUI
+      value: 
+      objectReference: {fileID: 6650370073405143022}
     - target: {fileID: 8652666737089679821, guid: 038cd22bcd5c14e2c9ed06f5df5e9c8a,
         type: 3}
       propertyPath: areaNameText

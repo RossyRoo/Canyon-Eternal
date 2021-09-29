@@ -182,7 +182,6 @@ public class DamageCollider : MonoBehaviour
 
             if (randValue < 0.2 + elementalBoost)
             {
-                Debug.Log("Weapon dealt its damage type");
                 damage += weaponData.minDamage;
                 GameObject collisionVFXGO = Instantiate(weaponData.collisionVFX[weaponData.damageType], collisionTransform.position, Quaternion.identity);
                 collisionVFXGO.transform.parent = objectPool.transform;
@@ -202,20 +201,16 @@ public class DamageCollider : MonoBehaviour
     {
         float randValue = Random.value;
 
-        if(randValue < 0.5)
+        if(randValue > 1 - weaponData.statusChance)
         {
-            Debug.Log("Status affliction");
-            if (weaponData.damageType == 5)//POISONED
+            Debug.Log("Weapon dealt status effect");
+            if (currentTarget.GetComponent<PlayerManager>())
             {
-                currentTarget.GetComponent<CharacterStats>().isPoisoned = true;
+                currentTarget.GetComponent<PlayerManager>().StartStatusEffect(weaponData.damageType);
             }
-            else if (weaponData.damageType == 6)//HYPNOTIZED
+            else if(currentTarget.GetComponent<EnemyStats>())
             {
-                currentTarget.GetComponent<CharacterStats>().isHypnotized = true;
-            }
-            else if (weaponData.damageType == 7)//FROZEN
-            {
-                currentTarget.GetComponent<CharacterStats>().isFrozen = true;
+                //INFLICT EFFECT ON ENEMY
             }
         }
     }

@@ -991,6 +991,9 @@ MonoBehaviour:
   isBlocking: 0
   isStunned: 0
   isDashing: 0
+  isPoisoned: 0
+  isFrozen: 0
+  isHypnotized: 0
   currentMoveDirection: {x: 0, y: 0}
   lastMoveDirection: {x: 0, y: -1}
   animator: {fileID: 0}
@@ -1001,6 +1004,8 @@ MonoBehaviour:
   interactableLayers:
     serializedVersion: 2
     m_Bits: 4096
+  statusEffectUI: {fileID: 0}
+  currentStatusTime: 0
   areaNameText: {fileID: 0}
   nextSpawnPoint: {x: 0, y: 0, z: 0}
   nextDoorNum: 1
@@ -1059,9 +1064,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 538104c6820aa47568d3cd39e978625a, type: 2}
   currentHealth: 0
-  isPoisoned: 0
-  isFrozen: 0
-  isHypnotized: 0
   lunchboxMeter: {fileID: 0}
   isBuffed: 0
   playerDamageSFX: {fileID: 8300000, guid: 812f8f76c01e6dc4bb653fa92f82d463, type: 3}

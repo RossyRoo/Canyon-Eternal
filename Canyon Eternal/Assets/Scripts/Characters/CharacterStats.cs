@@ -9,7 +9,5 @@ public class CharacterStats : MonoBehaviour
 
     [HideInInspector]public float currentHealth;
 
-    public bool isPoisoned;
-    public bool isFrozen;
-    public bool isHypnotized;
+    
 }

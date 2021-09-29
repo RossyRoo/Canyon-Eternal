@@ -23,6 +23,7 @@ MonoBehaviour:
   minDamage: 0
   maxDamage: 1
   damageType: 6
+  statusChance: 1
   criticalChance: 0
   knockbackForce: 0
   collisionVFX:
@@ -38,7 +39,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9065d9bb4c3b8cd469b1ee1b2e8c0c49, type: 3}
   criticalDamageSFX: {fileID: 8300000, guid: 75f2d5cc82e52244ea273b7e32259d15, type: 3}
   explosionRadius: 0
-  launchForce: 75
+  launchForce: 50
   GOPrefab: {fileID: 2386400630290685019, guid: ef42b40f184ac4b8184e938c63f21653,
     type: 3}
   launchSFX: {fileID: 8300000, guid: a1f2bc9efe2d58b479259e1c395aaa00, type: 3}

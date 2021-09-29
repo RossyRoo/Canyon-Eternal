@@ -32,6 +32,11 @@ public class CharacterManager : MonoBehaviour
     public bool isStunned;
     public bool isDashing;
 
+    [Header("Status Effects")]
+    public bool isPoisoned;
+    public bool isFrozen;
+    public bool isHypnotized;
+
     [Header("Movement")]
     public Vector2 currentMoveDirection;
     public Vector2 lastMoveDirection;

@@ -17,9 +17,13 @@ public class PlayerManager : CharacterManager
     [Header("Interactions")]
     public GameObject interactionPopupGO;
     public GameObject itemPopupGO;
-
     public InteractableUI interactableUI;
     public LayerMask interactableLayers;
+
+    [Header("Status Timer")]
+    public StatusEffectUI statusEffectUI;
+    public float currentStatusTime;
+
 
     public AreaNameText areaNameText;
 
@@ -55,6 +59,7 @@ public class PlayerManager : CharacterManager
         playerSpellHandler.TickSpellChargeTimer();
         EnemyCheck();
         playerMeleeHandler.TickAttackCooldown();
+        TickCurrentStatusEffect();
     }
 
     private void FixedUpdate()
@@ -223,6 +228,57 @@ public class PlayerManager : CharacterManager
         isInteractingWithUI = false;
         animator.SetBool("isInteracting", false);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    #endregion
+
+    #region Status Checks
+    public void StartStatusEffect(int damageType)
+    {
+        statusEffectUI.DisplayPlayerStatus(damageType);
+
+        if(damageType == 5)
+        {
+            isPoisoned = true;
+            currentStatusTime = 10f;
+        }
+        else if(damageType == 6)
+        {
+            isHypnotized = true;
+            currentStatusTime = 10f;
+        }
+        else if(damageType == 7)
+        {
+            isFrozen = true;
+            currentStatusTime = 10f;
+        }
+    }
+
+    public void RemoveAllStatusEffects()
+    {
+        isPoisoned = false;
+        isHypnotized = false;
+        isFrozen = false;
+
+        statusEffectUI.HidePlayerStatus();
+    }
+
+    private void TickCurrentStatusEffect()
+    {
+        if (isPoisoned || isHypnotized || isFrozen)
+        {
+            if (currentStatusTime <= 0)
+            {
+                RemoveAllStatusEffects();
+            }
+            else
+            {
+                currentStatusTime -= Time.deltaTime;
+            }
+            
+        }
+        
+
     }
 
     #endregion
